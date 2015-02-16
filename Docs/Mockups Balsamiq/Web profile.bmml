@@ -1,0 +1,154 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1371" measuredH="826" mockupW="1147" mockupH="795">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="224" y="31" w="1147" h="795" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%20%0Ahttp%3A//</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::MenuBar" x="224" y="95" w="1147" h="59" measuredW="62" measuredH="29" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::RoundButton" x="1196" y="101" w="47" h="46" measuredW="32" measuredH="32" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::ComboBox" x="1272" y="112" w="-1" h="-1" measuredW="77" measuredH="24" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Espa%F1ol</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::RoundButton" x="264" y="188" w="114" h="112" measuredW="32" measuredH="32" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::Label" x="411" y="173" w="-1" h="-1" measuredW="101" measuredH="32" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text>John%20Doe</text>
+      </controlProperties>
+    </control>
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::Button" x="426" y="397" w="114" h="35" measuredW="22" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>40463</color>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::Button" x="426" y="451" w="80" h="35" measuredW="22" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>7317724</color>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="42" controlTypeID="com.balsamiq.mockups::Button" x="426" y="509" w="107" h="35" measuredW="22" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>40463</color>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Button" x="426" y="559" w="116" h="35" measuredW="22" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>40463</color>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::Button" x="426" y="606" w="95" h="35" measuredW="22" measuredH="27" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>7317724</color>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Button" x="426" y="659" w="129" h="35" measuredW="22" measuredH="27" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>40463</color>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::Button" x="426" y="715" w="80" h="35" measuredW="22" measuredH="27" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>7317724</color>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::Label" x="264" y="402" w="-1" h="-1" measuredW="130" measuredH="24" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Predicci%F3n%20Simple</text>
+      </controlProperties>
+    </control>
+    <control controlID="48" controlTypeID="com.balsamiq.mockups::Label" x="264" y="456" w="-1" h="-1" measuredW="122" measuredH="24" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Predicci%F3n%20Doble</text>
+      </controlProperties>
+    </control>
+    <control controlID="49" controlTypeID="com.balsamiq.mockups::Label" x="264" y="509" w="-1" h="-1" measuredW="131" measuredH="24" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Goles%20Local%20Mitad</text>
+      </controlProperties>
+    </control>
+    <control controlID="50" controlTypeID="com.balsamiq.mockups::Label" x="264" y="559" w="-1" h="-1" measuredW="156" measuredH="24" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Goles%20Visitante%20Mitad</text>
+      </controlProperties>
+    </control>
+    <control controlID="51" controlTypeID="com.balsamiq.mockups::Label" x="264" y="611" w="-1" h="-1" measuredW="124" measuredH="24" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Goles%20Local%20Final</text>
+      </controlProperties>
+    </control>
+    <control controlID="52" controlTypeID="com.balsamiq.mockups::Label" x="264" y="664" w="-1" h="-1" measuredW="149" measuredH="24" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Goles%20Visitante%20Final</text>
+      </controlProperties>
+    </control>
+    <control controlID="53" controlTypeID="com.balsamiq.mockups::Label" x="264" y="720" w="-1" h="-1" measuredW="127" measuredH="24" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>M%E1s%20de%202.5%20Goles</text>
+      </controlProperties>
+    </control>
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::DataGrid" x="613" y="349" w="636" h="236" measuredW="428" measuredH="201" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Liga%2CLocal%2CVisitante%2CFecha%2CPredicci%F3n%0ABBVA%2CSevilla%2CValencia%2C14/12/2014%2017%3A00%2CX%0ABBVA%2CAlmer%EDa%2CEspayol%2C14/12/2014%2017%3A00%2C1%0APremier%2CChelsea%2CBurnley%2C21/12/2014%2019%3A00%2C2%0APremier%2CSwansea%20Citu%2CMan%20United%2C21/12/2014%2020%3A00%2C2%0ASerie%20A%2C%20Atlanta%2CInter%2C22/12/2014%2016%3A00%2C2%0ASerie%20A%2CChievo%20Verno%2C%20Sampdoria%2C22/12/2014%2016%3A00%2C2</text>
+      </controlProperties>
+    </control>
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::Label" x="797" y="296" w="289" h="-1" measuredW="268" measuredH="36" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>28</size>
+        <text>%DAltimas%20Predicci%F3nes</text>
+      </controlProperties>
+    </control>
+    <control controlID="56" controlTypeID="com.balsamiq.mockups::Link" x="411" y="215" w="-1" h="-1" measuredW="108" measuredH="22" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>32%20Seguidores</text>
+      </controlProperties>
+    </control>
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::Link" x="411" y="248" w="-1" h="-1" measuredW="97" measuredH="22" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>20%20Siguiendo</text>
+      </controlProperties>
+    </control>
+    <control controlID="60" controlTypeID="com.balsamiq.mockups::Link" x="411" y="278" w="-1" h="-1" measuredW="87" measuredH="22" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Mis%20equipos</text>
+      </controlProperties>
+    </control>
+    <control controlID="61" controlTypeID="com.balsamiq.mockups::Label" x="264" y="334" w="-1" h="-1" measuredW="162" measuredH="26" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>18</size>
+        <text>Puesto%20Ranking%3A%2023</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
