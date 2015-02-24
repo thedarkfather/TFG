@@ -1,0 +1,8 @@
+title Registrarse/Editar perfil
+opt Secuencia Normal
+    Usuario->Sistema: registrarse(username,password,name,email)
+    Sistema->Usuario: usuario registrado correctamente
+end
+opt Excepciones
+    Sistema->Usuario: el usuario no pudo registrarse correctamente   
+end

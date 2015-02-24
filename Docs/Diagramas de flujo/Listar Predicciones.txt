@@ -1,0 +1,8 @@
+title Listar Predicciones
+opt Secuencia Normal
+    Usuario->Sistema: listPrediciones(filtro)
+    Sistema->Usuario: Collection<Predicción>
+end
+opt Excepciones
+    Sistema->Usuario: no hay predicciones para su búsqueda
+end

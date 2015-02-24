@@ -1,0 +1,8 @@
+title Seguir Usuario
+opt Secuencia Normal
+    Usuario->Sistema: seguirUsuario(usuario,usuarioASeguir)
+    Sistema->Usuario: el usuario se ha marcado como siguiendo
+end
+opt Excepciones
+    Sistema->Usuario: no se pudo marcar como siguiendo a este usuario
+end

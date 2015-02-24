@@ -1,0 +1,8 @@
+title Ver Estadísticas
+opt Secuencia Normal
+    Usuario->Sistema: verEstadísticas(predicción/equipo)
+    Sistema->Usuario:Estadísticas
+end
+opt Excepciones
+    Sistema->Usuario: no hay estadísticas disponibles
+end

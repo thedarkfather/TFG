@@ -1,0 +1,8 @@
+title Ver predicción
+opt Secuencia Normal
+    Usuario->Sistema: verPredicción(identificador)
+    Sistema->Usuario:Prediccion
+end
+opt Excepciones
+    Sistema->Usuario: no se encuentra la predicción
+end

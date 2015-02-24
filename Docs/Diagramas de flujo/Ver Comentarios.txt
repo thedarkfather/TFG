@@ -1,0 +1,8 @@
+title Ver Comentarios
+opt Secuencia Normal
+    Usuario->Sistema: verComentarios(predicción,filtro)
+    Sistema->Usuario: Collection<Comentario>
+end
+opt Excepciones
+    Sistema->Usuario: no hay comentarios para esta predicción
+end

@@ -1,0 +1,8 @@
+title Dejar de Seguir Equipo
+opt Secuencia Normal
+    Usuario->Sistema: noSeguirEquipo(usuario,Equipo)
+    Sistema->Usuario: el equipo se ha desmarcado como siguiendo
+end
+opt Excepciones
+    Sistema->Usuario: el equipo no se pudo desmarcar como siguiendo
+end

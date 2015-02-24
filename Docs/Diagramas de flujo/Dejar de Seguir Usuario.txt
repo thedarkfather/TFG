@@ -1,0 +1,8 @@
+title Dejar de Seguir Usuario
+opt Secuencia Normal
+    Usuario->Sistema: dejarDeSeguirUsuario(usuario,usuarioANoSeguir)
+    Sistema->Usuario: ya no se se sigue al usuario
+end
+opt Excepciones
+    Sistema->Usuario: no se pudo realizar la operación
+end

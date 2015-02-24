@@ -1,0 +1,8 @@
+title Hacer Comentario
+opt Secuencia Normal
+    Usuario->Sistema: hacerComentario(usuario,texto,predicción/comentario)
+    Sistema->Usuario: el comentario se ha almacenado correctamente
+end
+opt Excepciones
+    Sistema->Usuario: el comentario no se pudo almacenar
+end

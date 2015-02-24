@@ -1,0 +1,8 @@
+title Editar Predicción
+opt Secuencia Normal
+    Usuario->Sistema: editarPredicción(Predicción,Usuario)
+    Sistema->Usuario:la predicción se ha modificado correctamente
+end
+opt Excepciones
+    Sistema->Usuario: no se pudo modificar la predicción
+end

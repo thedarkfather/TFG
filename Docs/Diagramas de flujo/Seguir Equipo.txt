@@ -1,0 +1,8 @@
+title Seguir Equipo
+opt Secuencia Normal
+    Usuario->Sistema: seguirEquipo(usuario,Equipo)
+    Sistema->Usuario: el equipo se ha marcado como siguiendo
+end
+opt Excepciones
+    Sistema->Usuario: el equipo no se pudo marcar como siguiendo
+end

@@ -1,0 +1,8 @@
+title Eliminar Predicción
+opt Secuencia Normal
+    Usuario->Sistema: eliminarPredicción(predicción,usuario)
+    Sistema->Usuario:la predicción fué eliminada correctamente
+end
+opt Excepciones
+    Sistema->Usuario: no se pudo eliminar la predicción
+end

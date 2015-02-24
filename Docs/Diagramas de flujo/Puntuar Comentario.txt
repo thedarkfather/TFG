@@ -1,0 +1,8 @@
+title Puntuar Comentario
+opt Secuencia Normal
+    Usuario->Sistema: puntuar(usuario,comentario,puntuación)
+    Sistema->Usuario: la puntuación se guardó satisfactoriamente
+end
+opt Excepciones
+    Sistema->Usuario: no se pudo puntuar el comentario
+end

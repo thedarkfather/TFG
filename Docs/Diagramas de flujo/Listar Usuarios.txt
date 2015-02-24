@@ -1,0 +1,8 @@
+title Listar Usuarios
+opt Secuencia Normal
+    Usuario->Sistema: listUsuarios(filtro)
+    Sistema->Usuario: Collection<Usuario>
+end
+opt Excepciones
+    Sistema->Usuario: no se han encontrado usuarios
+end

@@ -1,0 +1,8 @@
+title Editar Perfil
+opt Secuencia Normal
+    Usuario->Sistema: editarPerfil(username,password,name,email,usuario)
+    Sistema->Usuario: el perfil ha quedado modificado
+end
+opt Excepciones
+    Sistema->Usuario: no se pudo editar su perfil
+end
