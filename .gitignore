@@ -1,2 +1,9 @@
 Docs/~$cumento de Análisis.docx
 Docs/~$pecificación de Requisitos.docx
+*.bak
+*.db
+.metadata
+*.pyc
+.settings/
+.project
+.pydevproject
