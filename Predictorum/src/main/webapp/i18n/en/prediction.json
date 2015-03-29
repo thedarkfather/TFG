@@ -1,0 +1,37 @@
+{
+    "predictorumApp": {
+        "prediction" : {
+            "home": {
+                "title": "Predictions",
+                "createLabel": "Create a new Prediction",
+                "createOrEditLabel": "Create or edit a Prediction"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Prediction {{ id }}?"
+            },
+            "detail": {
+                "title": "Prediction"
+            },
+            "simpleResult": "SimpleResult",
+            "pSimpleResult": "PSimpleResult",
+            "doubleResult": "DoubleResult",
+            "pDoubleResult": "PDoubleResult",
+            "simpleHalfResult": "SimpleHalfResult",
+            "pSimpleHalfResult": "PSimpleHalfResult",
+            "doubleHalfResult": "DoubleHalfResult",
+            "pDoubleHalfResult": "PDoubleHalfResult",
+            "homeGoals": "HomeGoals",
+            "pHomeGoals": "PHomeGoals",
+            "awayGoals": "AwayGoals",
+            "halfHomeGoals": "HalfHomeGoals",
+            "pAwayGoals": "PAwayGoals",
+            "pHalfHomeGoals": "PHalfHomeGoals",
+            "halfAwayGoals": "HalfAwayGoals",
+            "pHalfAwayGoals": "PHalfAwayGoals",
+            "moreThan25": "MoreThan25",
+            "pMoreThan25": "PMoreThan25",
+            "match": "match",
+            "actor": "actor"
+        }
+    }
+}

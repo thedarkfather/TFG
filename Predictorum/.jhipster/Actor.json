@@ -1,0 +1,142 @@
+{
+    "relationships": [{
+            "relationshipId": 1,
+            "relationshipName": "follower",
+            "relationshipNameCapitalized": "Follower",
+            "relationshipFieldName": "follower",
+            "otherEntityName": "actor",
+            "relationshipType": "many-to-many",
+            "otherEntityNameCapitalized": "Actor",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "owner",
+            "relationshipNameCapitalized": "Owner",
+            "relationshipFieldName": "owner",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "User",
+            "otherEntityField": "login"
+        }],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "srPoints",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "SrPoints",
+            "fieldNameUnderscored": "sr_points",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "drPoints",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "DrPoints",
+            "fieldNameUnderscored": "dr_points",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "sHRPoints",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "SHRPoints",
+            "fieldNameUnderscored": "s_hrpoints",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "dHRPoints",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "DHRPoints",
+            "fieldNameUnderscored": "d_hrpoints",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "hGPoints",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "HGPoints",
+            "fieldNameUnderscored": "h_gpoints",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "aGPoints",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "AGPoints",
+            "fieldNameUnderscored": "a_gpoints",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "hHGPoints",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "HHGPoints",
+            "fieldNameUnderscored": "h_hgpoints",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "hAGPoints",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "HAGPoints",
+            "fieldNameUnderscored": "h_agpoints",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "mT25Points",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "MT25Points",
+            "fieldNameUnderscored": "m_t25_points",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150329133742",
+    "pagination": "pagination",
+    "validation": true
+}

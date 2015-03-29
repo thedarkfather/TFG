@@ -1,0 +1,102 @@
+
+<div>
+    <h2><span translate="predictorumApp.actor.detail.title">Actor</span> {{actor.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="predictorumApp.actor.srPoints">SrPoints</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{actor.srPoints}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="predictorumApp.actor.drPoints">DrPoints</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{actor.drPoints}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="predictorumApp.actor.sHRPoints">SHRPoints</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{actor.sHRPoints}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="predictorumApp.actor.dHRPoints">DHRPoints</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{actor.dHRPoints}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="predictorumApp.actor.hGPoints">HGPoints</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{actor.hGPoints}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="predictorumApp.actor.aGPoints">AGPoints</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{actor.aGPoints}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="predictorumApp.actor.hHGPoints">HHGPoints</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{actor.hHGPoints}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="predictorumApp.actor.hAGPoints">HAGPoints</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{actor.hAGPoints}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="predictorumApp.actor.mT25Points">MT25Points</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{actor.mT25Points}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="predictorumApp.actor.owner">owner</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{actor.owner.login}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="actor"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

@@ -1,0 +1,19 @@
+{
+  "generator-jhipster": {
+    "baseName": "predictorum",
+    "packageName": "es.us.predictorum",
+    "packageFolder": "es/us/predictorum",
+    "authenticationType": "session",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "useCompass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "javaVersion": "8",
+    "rememberMeKey": "f9febfabcd772bc384ec91fd69c19cbddc494fdd"
+  }
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Prediction.
+    -->
+    <changeSet id="20150329135359" author="jhipster">
+        <createTable tableName="T_PREDICTION">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="simple_result" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="p_simple_result" type="decimal(10,2)"/>
+            <column name="double_result" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="p_double_result" type="decimal(10,2)"/>
+            <column name="simple_half_result" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="p_simple_half_result" type="decimal(10,2)"/>
+            <column name="double_half_result" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="p_double_half_result" type="decimal(10,2)"/>
+            <column name="home_goals" type="integer"/>
+            <column name="p_home_goals" type="decimal(10,2)"/>
+            <column name="away_goals" type="integer"/>
+            <column name="half_home_goals" type="integer"/>
+            <column name="p_away_goals" type="decimal(10,2)"/>
+            <column name="p_half_home_goals" type="decimal(10,2)"/>
+            <column name="half_away_goals" type="integer"/>
+            <column name="p_half_away_goals" type="decimal(10,2)"/>
+            <column name="more_than25" type="bit"/>
+            <column name="p_more_than25" type="decimal(10,2)"/>
+            <column name="match_id" type="bigint"/>
+            <column name="actor_id" type="bigint"/>
+        </createTable>
+        
+        <addForeignKeyConstraint baseColumnNames="match_id"
+                                 baseTableName="T_PREDICTION"
+                                 constraintName="fk_prediction_match_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_MATCH"/>
+
+        <addForeignKeyConstraint baseColumnNames="actor_id"
+                                 baseTableName="T_PREDICTION"
+                                 constraintName="fk_prediction_actor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_ACTOR"/>
+
+    </changeSet>
+</databaseChangeLog>

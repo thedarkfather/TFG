@@ -1,0 +1,20 @@
+{
+    "predictorumApp": {
+        "evaluation" : {
+            "home": {
+                "title": "Evaluations",
+                "createLabel": "Create a new Evaluation",
+                "createOrEditLabel": "Create or edit a Evaluation"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Evaluation {{ id }}?"
+            },
+            "detail": {
+                "title": "Evaluation"
+            },
+            "type": "Type",
+            "actor": "actor",
+            "comment": "comment"
+        }
+    }
+}

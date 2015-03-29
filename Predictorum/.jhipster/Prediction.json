@@ -1,0 +1,259 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "match",
+            "relationshipNameCapitalized": "Match",
+            "relationshipFieldName": "match",
+            "otherEntityName": "match",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Match",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "actor",
+            "relationshipNameCapitalized": "Actor",
+            "relationshipFieldName": "actor",
+            "otherEntityName": "actor",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Actor",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "simpleResult",
+            "fieldType": "String",
+            "fieldNameCapitalized": "SimpleResult",
+            "fieldNameUnderscored": "simple_result",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "pSimpleResult",
+            "fieldType": "BigDecimal",
+            "fieldNameCapitalized": "PSimpleResult",
+            "fieldNameUnderscored": "p_simple_result",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": "1"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "doubleResult",
+            "fieldType": "String",
+            "fieldNameCapitalized": "DoubleResult",
+            "fieldNameUnderscored": "double_result",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "pDoubleResult",
+            "fieldType": "BigDecimal",
+            "fieldNameCapitalized": "PDoubleResult",
+            "fieldNameUnderscored": "p_double_result",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": "1"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "simpleHalfResult",
+            "fieldType": "String",
+            "fieldNameCapitalized": "SimpleHalfResult",
+            "fieldNameUnderscored": "simple_half_result",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "pSimpleHalfResult",
+            "fieldType": "BigDecimal",
+            "fieldNameCapitalized": "PSimpleHalfResult",
+            "fieldNameUnderscored": "p_simple_half_result",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": "1"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "doubleHalfResult",
+            "fieldType": "String",
+            "fieldNameCapitalized": "DoubleHalfResult",
+            "fieldNameUnderscored": "double_half_result",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "pDoubleHalfResult",
+            "fieldType": "BigDecimal",
+            "fieldNameCapitalized": "PDoubleHalfResult",
+            "fieldNameUnderscored": "p_double_half_result",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": "1"
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "homeGoals",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "HomeGoals",
+            "fieldNameUnderscored": "home_goals",
+            "fieldValidate": true,
+            "fieldValidateRules": []
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "pHomeGoals",
+            "fieldType": "BigDecimal",
+            "fieldNameCapitalized": "PHomeGoals",
+            "fieldNameUnderscored": "p_home_goals",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": "1"
+        },
+        {
+            "fieldId": 11,
+            "fieldName": "awayGoals",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "AwayGoals",
+            "fieldNameUnderscored": "away_goals",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldId": 12,
+            "fieldName": "halfHomeGoals",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "HalfHomeGoals",
+            "fieldNameUnderscored": "half_home_goals",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldId": 13,
+            "fieldName": "pAwayGoals",
+            "fieldType": "BigDecimal",
+            "fieldNameCapitalized": "PAwayGoals",
+            "fieldNameUnderscored": "p_away_goals",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": "1"
+        },
+        {
+            "fieldId": 14,
+            "fieldName": "pHalfHomeGoals",
+            "fieldType": "BigDecimal",
+            "fieldNameCapitalized": "PHalfHomeGoals",
+            "fieldNameUnderscored": "p_half_home_goals",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": "1"
+        },
+        {
+            "fieldId": 15,
+            "fieldName": "halfAwayGoals",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "HalfAwayGoals",
+            "fieldNameUnderscored": "half_away_goals",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldId": 16,
+            "fieldName": "pHalfAwayGoals",
+            "fieldType": "BigDecimal",
+            "fieldNameCapitalized": "PHalfAwayGoals",
+            "fieldNameUnderscored": "p_half_away_goals",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": "1"
+        },
+        {
+            "fieldId": 17,
+            "fieldName": "moreThan25",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "MoreThan25",
+            "fieldNameUnderscored": "more_than25",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 18,
+            "fieldName": "pMoreThan25",
+            "fieldType": "BigDecimal",
+            "fieldNameCapitalized": "PMoreThan25",
+            "fieldNameUnderscored": "p_more_than25",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": "1"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": true,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150329135359",
+    "pagination": "pagination",
+    "validation": true
+}

@@ -1,0 +1,31 @@
+{
+    "predictorumApp": {
+        "teamStatistics" : {
+            "home": {
+                "title": "TeamStatisticss",
+                "createLabel": "Créer un nouveau TeamStatistics",
+                "createOrEditLabel": "Créer ou éditer un TeamStatistics"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le TeamStatistics {{ id }} ?"
+            },
+            "detail": {
+                "title": "TeamStatistics"
+            },
+            "streak": "Streak",
+            "wonMatchPercentage": "WonMatchPercentage",
+            "lostMatchPercentage": "LostMatchPercentage",
+            "drawnMatchPercentage": "DrawnMatchPercentage",
+            "moreThan25Percentage": "MoreThan25Percentage",
+            "wonHalfMatchPercentage": "WonHalfMatchPercentage",
+            "lostHalfMatchPercentage": "LostHalfMatchPercentage",
+            "drawHalfMatchPercentage": "DrawHalfMatchPercentage",
+            "homeWonMatches": "HomeWonMatches",
+            "awayWonMatches": "AwayWonMatches",
+            "leaguePosition": "LeaguePosition",
+            "leaguePoints": "LeaguePoints",
+            "team": "team"
+        }
+    }
+}
+

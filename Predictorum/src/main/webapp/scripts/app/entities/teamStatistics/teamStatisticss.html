@@ -1,0 +1,351 @@
+<div>
+
+    <h2 translate="predictorumApp.teamStatistics.home.title">TeamStatistics</h2>
+
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveTeamStatisticsModal" ng-click="clear()">
+        <span class="glyphicon glyphicon-flash"></span> <span translate="predictorumApp.teamStatistics.home.createLabel">Create a new TeamStatistics</span>
+    </button>
+    <div class="modal fade" id="saveTeamStatisticsModal" tabindex="-1" role="dialog" aria-labelledby="myTeamStatisticsLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="editForm" role="form" novalidate ng-submit="create()" show-validation>
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="myTeamStatisticsLabel" translate="predictorumApp.teamStatistics.home.createOrEditLabel">Create or edit a TeamStatistics</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" name="id"
+                                   ng-model="teamStatistics.id" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label translate="predictorumApp.teamStatistics.streak">Streak</label>
+                            <input type="text" class="form-control" name="streak"
+                                   ng-model="teamStatistics.streak" required>
+
+                            <div ng-show="editForm.streak.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.streak.$error.required" translate="entity.validation.required">
+                                    This field is required.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="predictorumApp.teamStatistics.wonMatchPercentage">WonMatchPercentage</label>
+                            <input type="number" class="form-control" name="wonMatchPercentage"
+                                   ng-model="teamStatistics.wonMatchPercentage" min="0" max="100">
+
+                            <div ng-show="editForm.wonMatchPercentage.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.wonMatchPercentage.$error.min" translate="entity.validation.min" translate-value-min="0">
+                                    This field should be more than 0.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.wonMatchPercentage.$error.max" translate="entity.validation.max" translate-value-max="100">
+                                    This field cannot be more than 100.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.wonMatchPercentage.$error.number" translate="entity.validation.number">
+                                    This field should be a number.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="predictorumApp.teamStatistics.lostMatchPercentage">LostMatchPercentage</label>
+                            <input type="number" class="form-control" name="lostMatchPercentage"
+                                   ng-model="teamStatistics.lostMatchPercentage" min="0" max="100">
+
+                            <div ng-show="editForm.lostMatchPercentage.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.lostMatchPercentage.$error.min" translate="entity.validation.min" translate-value-min="0">
+                                    This field should be more than 0.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.lostMatchPercentage.$error.max" translate="entity.validation.max" translate-value-max="100">
+                                    This field cannot be more than 100.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.lostMatchPercentage.$error.number" translate="entity.validation.number">
+                                    This field should be a number.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="predictorumApp.teamStatistics.drawnMatchPercentage">DrawnMatchPercentage</label>
+                            <input type="number" class="form-control" name="drawnMatchPercentage"
+                                   ng-model="teamStatistics.drawnMatchPercentage" min="0" max="100">
+
+                            <div ng-show="editForm.drawnMatchPercentage.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.drawnMatchPercentage.$error.min" translate="entity.validation.min" translate-value-min="0">
+                                    This field should be more than 0.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.drawnMatchPercentage.$error.max" translate="entity.validation.max" translate-value-max="100">
+                                    This field cannot be more than 100.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.drawnMatchPercentage.$error.number" translate="entity.validation.number">
+                                    This field should be a number.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="predictorumApp.teamStatistics.moreThan25Percentage">MoreThan25Percentage</label>
+                            <input type="number" class="form-control" name="moreThan25Percentage"
+                                   ng-model="teamStatistics.moreThan25Percentage" min="0" max="100">
+
+                            <div ng-show="editForm.moreThan25Percentage.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.moreThan25Percentage.$error.min" translate="entity.validation.min" translate-value-min="0">
+                                    This field should be more than 0.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.moreThan25Percentage.$error.max" translate="entity.validation.max" translate-value-max="100">
+                                    This field cannot be more than 100.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.moreThan25Percentage.$error.number" translate="entity.validation.number">
+                                    This field should be a number.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="predictorumApp.teamStatistics.wonHalfMatchPercentage">WonHalfMatchPercentage</label>
+                            <input type="number" class="form-control" name="wonHalfMatchPercentage"
+                                   ng-model="teamStatistics.wonHalfMatchPercentage" min="0" max="100">
+
+                            <div ng-show="editForm.wonHalfMatchPercentage.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.wonHalfMatchPercentage.$error.min" translate="entity.validation.min" translate-value-min="0">
+                                    This field should be more than 0.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.wonHalfMatchPercentage.$error.max" translate="entity.validation.max" translate-value-max="100">
+                                    This field cannot be more than 100.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.wonHalfMatchPercentage.$error.number" translate="entity.validation.number">
+                                    This field should be a number.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="predictorumApp.teamStatistics.lostHalfMatchPercentage">LostHalfMatchPercentage</label>
+                            <input type="number" class="form-control" name="lostHalfMatchPercentage"
+                                   ng-model="teamStatistics.lostHalfMatchPercentage" min="0" max="100">
+
+                            <div ng-show="editForm.lostHalfMatchPercentage.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.lostHalfMatchPercentage.$error.min" translate="entity.validation.min" translate-value-min="0">
+                                    This field should be more than 0.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.lostHalfMatchPercentage.$error.max" translate="entity.validation.max" translate-value-max="100">
+                                    This field cannot be more than 100.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.lostHalfMatchPercentage.$error.number" translate="entity.validation.number">
+                                    This field should be a number.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="predictorumApp.teamStatistics.drawHalfMatchPercentage">DrawHalfMatchPercentage</label>
+                            <input type="number" class="form-control" name="drawHalfMatchPercentage"
+                                   ng-model="teamStatistics.drawHalfMatchPercentage" min="0" max="100">
+
+                            <div ng-show="editForm.drawHalfMatchPercentage.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.drawHalfMatchPercentage.$error.min" translate="entity.validation.min" translate-value-min="0">
+                                    This field should be more than 0.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.drawHalfMatchPercentage.$error.max" translate="entity.validation.max" translate-value-max="100">
+                                    This field cannot be more than 100.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.drawHalfMatchPercentage.$error.number" translate="entity.validation.number">
+                                    This field should be a number.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="predictorumApp.teamStatistics.homeWonMatches">HomeWonMatches</label>
+                            <input type="number" class="form-control" name="homeWonMatches"
+                                   ng-model="teamStatistics.homeWonMatches" min="0">
+
+                            <div ng-show="editForm.homeWonMatches.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.homeWonMatches.$error.min" translate="entity.validation.min" translate-value-min="0">
+                                    This field should be more than 0.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.homeWonMatches.$error.number" translate="entity.validation.number">
+                                    This field should be a number.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="predictorumApp.teamStatistics.awayWonMatches">AwayWonMatches</label>
+                            <input type="number" class="form-control" name="awayWonMatches"
+                                   ng-model="teamStatistics.awayWonMatches" min="0">
+
+                            <div ng-show="editForm.awayWonMatches.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.awayWonMatches.$error.min" translate="entity.validation.min" translate-value-min="0">
+                                    This field should be more than 0.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.awayWonMatches.$error.number" translate="entity.validation.number">
+                                    This field should be a number.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="predictorumApp.teamStatistics.leaguePosition">LeaguePosition</label>
+                            <input type="number" class="form-control" name="leaguePosition"
+                                   ng-model="teamStatistics.leaguePosition" min="1">
+
+                            <div ng-show="editForm.leaguePosition.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.leaguePosition.$error.min" translate="entity.validation.min" translate-value-min="1">
+                                    This field should be more than 1.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.leaguePosition.$error.number" translate="entity.validation.number">
+                                    This field should be a number.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="predictorumApp.teamStatistics.leaguePoints">LeaguePoints</label>
+                            <input type="number" class="form-control" name="leaguePoints"
+                                   ng-model="teamStatistics.leaguePoints" min="0">
+
+                            <div ng-show="editForm.leaguePoints.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.leaguePoints.$error.min" translate="entity.validation.min" translate-value-min="0">
+                                    This field should be more than 0.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.leaguePoints.$error.number" translate="entity.validation.number">
+                                    This field should be a number.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteTeamStatisticsConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(teamStatistics.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="predictorumApp.teamStatistics.delete.question" translate-values="{id: '{{teamStatistics.id}}'}">Are you sure you want to delete this TeamStatistics?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th translate="predictorumApp.teamStatistics.streak">Streak</th>
+                    <th translate="predictorumApp.teamStatistics.wonMatchPercentage">WonMatchPercentage</th>
+                    <th translate="predictorumApp.teamStatistics.lostMatchPercentage">LostMatchPercentage</th>
+                    <th translate="predictorumApp.teamStatistics.drawnMatchPercentage">DrawnMatchPercentage</th>
+                    <th translate="predictorumApp.teamStatistics.moreThan25Percentage">MoreThan25Percentage</th>
+                    <th translate="predictorumApp.teamStatistics.wonHalfMatchPercentage">WonHalfMatchPercentage</th>
+                    <th translate="predictorumApp.teamStatistics.lostHalfMatchPercentage">LostHalfMatchPercentage</th>
+                    <th translate="predictorumApp.teamStatistics.drawHalfMatchPercentage">DrawHalfMatchPercentage</th>
+                    <th translate="predictorumApp.teamStatistics.homeWonMatches">HomeWonMatches</th>
+                    <th translate="predictorumApp.teamStatistics.awayWonMatches">AwayWonMatches</th>
+                    <th translate="predictorumApp.teamStatistics.leaguePosition">LeaguePosition</th>
+                    <th translate="predictorumApp.teamStatistics.leaguePoints">LeaguePoints</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="teamStatistics in teamStatisticss">
+                    <td><a ui-sref="teamStatisticsDetail({id:teamStatistics.id})">{{teamStatistics.id}}</a></td>
+                    <td>{{teamStatistics.streak}}</td>
+                    <td>{{teamStatistics.wonMatchPercentage}}</td>
+                    <td>{{teamStatistics.lostMatchPercentage}}</td>
+                    <td>{{teamStatistics.drawnMatchPercentage}}</td>
+                    <td>{{teamStatistics.moreThan25Percentage}}</td>
+                    <td>{{teamStatistics.wonHalfMatchPercentage}}</td>
+                    <td>{{teamStatistics.lostHalfMatchPercentage}}</td>
+                    <td>{{teamStatistics.drawHalfMatchPercentage}}</td>
+                    <td>{{teamStatistics.homeWonMatches}}</td>
+                    <td>{{teamStatistics.awayWonMatches}}</td>
+                    <td>{{teamStatistics.leaguePosition}}</td>
+                    <td>{{teamStatistics.leaguePoints}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="teamStatisticsDetail({id:teamStatistics.id})"
+                                class="btn btn-info">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="update(teamStatistics.id)"
+                                class="btn btn-primary">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(teamStatistics.id)"
+                                class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pagination">
+                <li ng-show="links['first']" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
+                <li ng-show="links['prev']" ng-click="loadPage(links['prev'])"><a>&lt;</a></li>
+                <li ng-show="page > 2" ng-click="loadPage(page - 2)"><a>{{page - 2}}</a></li>
+                <li ng-show="page > 1" ng-click="loadPage(page - 1)"><a>{{page - 1}}</a></li>
+                <li class="active"><a>{{page}}</a></li>
+                <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 1}}</a></li>
+                <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 2}}</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
+                <li ng-show="links['last']" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

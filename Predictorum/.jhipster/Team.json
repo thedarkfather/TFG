@@ -1,0 +1,54 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "league",
+            "relationshipNameCapitalized": "League",
+            "relationshipFieldName": "league",
+            "otherEntityName": "league",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "League",
+            "otherEntityField": "id"
+        },
+		{
+            "relationshipId": 2,
+            "relationshipName": "teamStatistics",
+            "relationshipNameCapitalized": "TeamStatistics",
+            "relationshipFieldName": "teamStatistics",
+            "otherEntityName": "teamStatistics",
+            "relationshipType": "one-to-one",
+            "otherEntityNameCapitalized": "TeamStatistics",
+            "ownerSide": false
+        }],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Name",
+            "fieldNameUnderscored": "name",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "logo",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Logo",
+            "fieldNameUnderscored": "logo",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150329133958",
+    "pagination": "pagination",
+    "validation": true
+}

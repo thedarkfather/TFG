@@ -1,0 +1,44 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "actor",
+            "relationshipNameCapitalized": "Actor",
+            "relationshipFieldName": "actor",
+            "otherEntityName": "actor",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Actor",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "comment",
+            "relationshipNameCapitalized": "Comment",
+            "relationshipFieldName": "comment",
+            "otherEntityName": "comment",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Comment",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "type",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "Type",
+            "fieldNameUnderscored": "type",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150329135645",
+    "pagination": "pagination",
+    "validation": false
+}
