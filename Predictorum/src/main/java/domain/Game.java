@@ -35,14 +35,11 @@ public class Game extends DomainEntity {
 
 	//Relaciones
 	private Result result;
-	
-
 	private Collection<Prediction> predictions;
 	private Team homeTeam;
 	private Team awayTeam;
 
 	@Valid
-	@NotNull
 	@OneToOne(mappedBy="game")
 	public Result getResult() {
 		return result;

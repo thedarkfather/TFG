@@ -68,7 +68,6 @@ public class Team extends DomainEntity{
 	}
 	
 	@Valid
-	@NotNull
 	@OneToOne(mappedBy="team")
 	public TeamStatistics getTeamStatistics() {
 		return teamStatistics;

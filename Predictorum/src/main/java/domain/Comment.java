@@ -1,18 +1,22 @@
 package domain;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -21,7 +25,20 @@ public class Comment extends DomainEntity{
 	private String text;
 	private Integer posPoints;
 	private Integer negPoints;
+	private Date date;	
 	
+	@NotNull
+	@Past
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy HH:mm")
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	@NotBlank
 	public String getText() {
 		return text;
@@ -53,25 +70,25 @@ public class Comment extends DomainEntity{
 	
 	//Relaciones
 	
-	private Collection<Comment> parents;
+	private Comment parent;
 	private Collection<Comment> children;
 	private Collection<Evaluation> evaluations;
 	private Prediction prediction;
 	private User user;
 	
 	@Valid
-	@NotNull
-	@ManyToMany
-	public Collection<Comment> getParents() {
-		return parents;
+	@ManyToOne(optional=true)
+	public Comment getParent() {
+		return parent;
 	}
-	public void setParents(Collection<Comment> parents) {
-		this.parents = parents;
+
+	public void setParent(Comment parent) {
+		this.parent = parent;
 	}
-	
+
 	@Valid
 	@NotNull
-	@ManyToMany(mappedBy="parents")
+	@OneToMany(mappedBy="parent")
 	public Collection<Comment> getChildren() {
 		return children;
 	}

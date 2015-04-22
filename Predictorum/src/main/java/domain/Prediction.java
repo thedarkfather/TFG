@@ -218,7 +218,6 @@ public class Prediction extends DomainEntity{
 	private Collection<Comment>comments;
 	
 	@Valid
-	@NotNull
 	@ManyToOne(optional = true)
 	public User getUser() {
 		return user;
