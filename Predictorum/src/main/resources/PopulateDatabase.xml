@@ -212,10 +212,14 @@
 		<!-- Relaciones -->
 		<property name="following">
 			<list>		
+				<ref bean="user1"/>
+				<ref bean="user3"/>
 			</list>
 		</property>
 		<property name="followers">
 			<list>		
+				<ref bean="user1"/>
+				<ref bean="user3"/>
 			</list>
 		</property>
 		<property name="teams">
