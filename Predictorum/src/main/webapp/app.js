@@ -1,17 +1,28 @@
 // Creación del módulo
 
-var predictorum = angular.module('predictorum', ['ngRoute']);
+var predictorum = angular.module('predictorum', [ 'ngRoute' ]);
 
-//Configuración de las rutas
+// Configuración de las rutas
 
-routingApp.config([ '$routeProvider', '$locationProvider',
+predictorum.config([ '$routeProvider', '$locationProvider',
 		function($routeProvider, $locationProvider) {
-	
-	$routeProvider
-	
-	
-	.otherwise({
-		redirectTo : '/'
-	});
-	
+
+			$routeProvider
+
+			.when('/', {
+				templateUrl : 'public/welcome.html',
+				controller : 'indexController'
+			})
+			
+			.otherwise({
+				redirectTo : '/'
+			});
+
+		} ]);
+
+predictorum.controller('indexController', [ '$scope', '$http',
+		'$location', function($scope, $http, $location) {
+
+	$scope.isWelcome = $location.path() === '/';
+
 }]);

@@ -175,9 +175,9 @@ Drop Down Menu Fade Effect
     jQuery('.skills li').each(function () {
         jQuery(this).fappear(function() {
           jQuery(this).animate({opacity:1,left:"0px"},800);
-          var b = jQuery(this).find(".progress-bar").attr("data-width");
+          var broad = jQuery(this).find(".progress-bar").attr("data-width");
           jQuery(this).find(".progress-bar").animate({
-            width: b + "%"
+            width: broad + "%"
           }, 1300, "easeOutCirc");
         }); 
     });   
