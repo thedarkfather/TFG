@@ -10,27 +10,36 @@
 
 package controllers;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.ClassUtils;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class AbstractController {
-	
+
 	// Panic handler ----------------------------------------------------------
-	
+
 	@ExceptionHandler(Throwable.class)
-	public ModelAndView panic(Throwable oops) {
-		ModelAndView result;
-
-		result = new ModelAndView("misc/panic");
-		result.addObject("name", ClassUtils.getShortName(oops.getClass()));
-		result.addObject("exception", oops.getMessage());
-		result.addObject("stackTrace", ExceptionUtils.getStackTrace(oops));
-
+	public Map<String, Object> panic(Throwable oops) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		oops.fillInStackTrace();
+		result.put("error", oops.toString());
+		result.put("trace", oops.getStackTrace());
 		return result;
-	}	
+	}
+
+	public Map<String, String> buildErrors(Object form, BindingResult binding) {
+		Map<String, String> errors = new HashMap<String, String>();
+		List<FieldError> e = binding.getFieldErrors();
+		for (FieldError fieldError : e) {
+			errors.put(fieldError.getField(), fieldError.getDefaultMessage());
+		}
+		return errors;
+	}
 
 }
