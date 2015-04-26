@@ -280,30 +280,6 @@ Drop Down Menu Fade Effect
     });
 
 
-/*----------------------------------------------------*/
-/*  Jquery Google map Section
-/*----------------------------------------------------*/
-        
-    //Google map
-    jQuery('#maps').gMap({
-        address: "Av. Reina Mercedes S/N, Sevilla",
-        zoom: 16,
-        controls: {
-         panControl: true,
-         zoomControl: true,
-         mapTypeControl: true,
-         scaleControl: true,
-         streetViewControl: true,
-         overviewMapControl: true
-     },
-        markers: [{
-            latitude: 37.358563, 
-            longitude: -5.988012,
-            html: "<h4>Predictorum</h4>",
-            popup: true
-        }]
-    });
-
 
 
 

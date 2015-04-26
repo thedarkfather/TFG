@@ -6,11 +6,11 @@
 <!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Agency Parallax Responsive HTML5/CSS3 Template | FIFO
-	THEMES</title>
+<title>Predictorum</title>
 <meta name="description"
-	content="Agency Parallax Responsive HTML5/CSS3 Template from FIFOTHEMES.COM">
-<meta name="author" content="FIFOTHEMES.COM">
+	content="Predictorum: a place to satisfy your concerns about soccer matches,
+	we make soccer predictions for Liga BBVA, Serie A and Premier League.">
+<meta name="author" content="David Letrán & Miguel Ángel Núñez">
 <!-- Mobile Metas -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Google Fonts -->
@@ -45,13 +45,6 @@
 	class="colors">
 <!-- Favicons -->
 <link rel="shortcut icon" href="static/img/ico/favicon.ico">
-<link rel="apple-touch-icon" href="static/img/ico/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72"
-	href="static/img/ico/apple-touch-icon-72.png">
-<link rel="apple-touch-icon" sizes="114x114"
-	href="static/img/ico/apple-touch-icon-114.png">
-<link rel="apple-touch-icon" sizes="144x144"
-	href="static/img/ico/apple-touch-icon-144.png">
 <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -86,13 +79,13 @@
 						<!-- Top Logo -->
 						<div class="top-logo">
 							<div class="scrollNormal">
-								<a href="#section2"> <img width="140" height="140"
-									alt="Agency" src="static/img/logo_welcome.png">
+								<a href="#welcome"> <img width="140" height="140"
+									alt="Predictorum" src="static/img/logo_welcome.png">
 								</a>
 							</div>
 							<div class="scrollDown">
-								<a href="#section2"> <img width="140" height="140"
-									alt="Agency" src="static/img/logo2_welcome.png">
+								<a href="#welcome"> <img width="140" height="140"
+									alt="Predictorum" src="static/img/logo2_welcome.png">
 								</a>
 							</div>
 						</div>
@@ -102,7 +95,8 @@
 							<li><span class="text-color">Free</span> Features</li>
 							<li><span class="text-color"> Compete</span> with friends!</li>
 						</ul>
-						<a href="#section2" class="btn btn-1 img-btn">Learn More</a>
+						<a href="#aboutUs" class="btn btn-1 img-btn" style="margin-right:5px;">Learn More</a> 
+						<a href="#welcome" class="btn btn-1 img-btn">Log in</a>
 					</div>
 				</div>
 			</div>
@@ -119,8 +113,8 @@
 							<div class="col-md-2 mob-logo">
 								<div class="row">
 									<div class="site-logo">
-										<a href="index-image-slider.html"><img
-											src="static/img/logo.png" alt="Agency"></a>
+										<a href="/"><img src="static/img/logo.png"
+											alt="Predictorum"></a>
 									</div>
 								</div>
 							</div>
@@ -138,23 +132,8 @@
 									<!-- Collect the nav links, forms, and other content for toggling -->
 									<div class="collapse navbar-collapse" id="menu">
 										<ul class="nav navbar-nav navbar-right">
-											<li class="active"><a href="#section1">Home</a></li>
-											<li><a href="#section2">About Us</a></li>
-											<li><a href="#section3">Portfolio</a></li>
-											<li><a href="#section4">Services</a></li>
-											<li><a href="#section5">Clients</a></li>
-											<li><a href="#section6">Pricing</a></li>
-											<li class="dropdown nav-toggle"><a href="#"
-												class="dropdown-toggle" data-toggle="dropdown">Blog<b
-													class="caret"></b></a>
-												<ul class="dropdown-menu">
-													<li><a class="external" href="blog.html">Blog</a></li>
-													<li><a class="external" href="blog-big.html">Blog
-															Large</a></li>
-													<li><a class="external" href="single-post.html">Single
-															Page</a></li>
-												</ul></li>
-											<li><a href="#section7">Contact</a></li>
+											<li class="active"><a href="#welcome">Home</a></li>
+											<li><a href="#aboutUs">About Us</a></li>
 										</ul>
 									</div>
 									<!-- /.Navbar-collapse -->
@@ -174,6 +153,403 @@
 			<div ng-view>
 				<!-- We inject views here -->
 			</div>
+		</div>
+		<div id="welcome" ng-show="isWelcome">
+			<section id="section7" class="contacts">
+				<!-- Subscription Wrap -->
+				<div class="subscription-wrap light">
+					<div class="texture-layer">
+						<div class="container">
+							<div class="row">			
+								<!-- Sign In -->
+								<div class="col-md-6">
+									<!--Sign In Title row -->
+									<div class="row text-center">
+										<div class="col-md-12 big-title light wow bounceIn">
+											<h2>Sign In</h2>
+										</div>
+									</div>
+									<!-- /Sign In Title row -->
+
+									<!-- Sign In form -->
+									<div class="row text-center" style="height:300px;">
+										<div class="col-md-2"></div>
+										<div class="col-md-8">
+											<form method="post" action="#" id="signup">
+												<fieldset>
+
+													<input class="form-control wow fadeInLeft" type="text"
+														placeholder="Username" style="margin-bottom: 5%;">
+													<input class="form-control wow fadeInLeft" type="password"
+														placeholder="Password" style="margin: auto;">
+													<div class="clearfix"></div>
+													<button class="btn btn-1 wow fadeInRight">Sign in</button>
+												</fieldset>
+											</form>
+										</div>
+										<div class="col-md-2"></div>
+									</div>
+									<!-- /Sign in form -->
+
+								</div>
+								<!-- /Sign in -->
+								<!--  Sign Up -->
+								<div class="col-md-6">
+									<!--Sign Up Title row -->
+									<div class="row text-center">
+										<div class="col-md-12 big-title light wow bounceIn">
+											<h2>Sign Up</h2>
+										</div>
+									</div>
+									<!-- /Sign up Title row -->
+
+									<!-- Sign up form -->
+									<div class="row text-center">
+										<div class="col-md-2"></div>
+										<div class="col-md-8">
+											<form method="post" action="#" id="signup">
+												<fieldset>
+													<input class="form-control wow fadeInLeft" type="text"
+														placeholder="Username" style="margin-bottom: 5%;">
+													<input class="form-control wow fadeInLeft" type="password"
+														placeholder="Password" style="margin: auto;"> <input
+														class="form-control wow fadeInLeft" type="password"
+														placeholder="Repeat Password">
+													<div class="clearfix"></div>
+													<button class="btn btn-1 wow fadeInRight">Join</button>
+												</fieldset>
+											</form>
+										</div>
+										<div class="col-md-2"></div>
+									</div>
+									<!-- /Sign up form -->
+
+								</div>
+								<!-- Sign up -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Subscription Wrap -->
+			</section>
+			<!-- Section 2 -->
+			<section id="aboutUs" class="about">
+				<div class="container">
+					<!-- Title row -->
+					<div class="row">
+						<div class="col-md-12 big-title wow bounceIn">
+							<h2>About Us</h2>
+						</div>
+
+						<div class="clearfix"></div>
+
+						<div class="col-md-12 sub-title text-center wow slideInRight">
+							<h3>We match robust functionality with ease of use so you
+								can satisfy your soccer concerns ASAP!</h3>
+						</div>
+					</div>
+					<!-- /Title row -->
+
+					<div class="row">
+						<div class="col-md-12">
+							<img src="static/img/about-us.png" alt="About Us"
+								class="img-responsive">
+						</div>
+					</div>
+
+
+				</div>
+
+				<!-- Service wrap -->
+				<div class="about-wrap">
+					<div class="parallax-layer">
+						<div class="icons"></div>
+					</div>
+					<div class="parallax-layer">
+						<div class="texture"></div>
+					</div>
+					<div class="container">
+						<!-- Content row -->
+						<div class="row">
+							<!-- Content box 1 -->
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class="content-box big ch-item wow fadeInLeft">
+									<div class="ch-info-wrap">
+										<div class="ch-info">
+											<div class="ch-info-front ch-img-1">
+												<i class="fa fa-arrows-alt"></i>
+											</div>
+										</div>
+									</div>
+									<div class="content-box-info">
+										<h4>Professional Work</h4>
+										<p>Great development is the architecture that complements
+											and supports the design. It is made by excellent use of white
+											space, and plenty of it!</p>
+									</div>
+								</div>
+							</div>
+							<!-- /Content box 1 -->
+
+							<!-- Content box 2 -->
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class="content-box big ch-item wow fadeInDown">
+									<div class="ch-info-wrap">
+										<div class="ch-info">
+											<div class="ch-info-front ch-img-1">
+												<i class="fa fa-eye"></i>
+											</div>
+										</div>
+									</div>
+									<div class="content-box-info">
+										<h4>Unique Design</h4>
+										<p>Great development is the architecture that complements
+											and supports the design. It is made by excellent use of white
+											space, and plenty of it!</p>
+									</div>
+								</div>
+							</div>
+							<!-- /Content box 2 -->
+
+							<!-- Content box 3 -->
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class="content-box big ch-item wow fadeInRight">
+									<div class="ch-info-wrap">
+										<div class="ch-info">
+											<div class="ch-info-front ch-img-1">
+												<i class="fa fa-rocket"></i>
+											</div>
+										</div>
+									</div>
+									<div class="content-box-info">
+										<h4>Superb Support</h4>
+										<p>Great development is the architecture that complements
+											and supports the design. It is made by excellent use of white
+											space, and plenty of it!</p>
+									</div>
+								</div>
+							</div>
+							<!-- /Content box 3 -->
+						</div>
+						<!-- /Content row -->
+					</div>
+				</div>
+				<!-- /Service wrap -->
+
+				<!-- Team -->
+				<div class="team-wrap">
+					<div class="container">
+						<!-- Title row -->
+						<div class="row">
+							<div class="col-md-12 big-title wow bounceIn">
+								<h2>Predictorum Team</h2>
+							</div>
+
+							<div class="clearfix"></div>
+
+							<div class="col-md-12 sub-title text-center wow slideInRight">
+								<h3>Get to know the talented people behind it all!</h3>
+							</div>
+						</div>
+						<!-- /Title row -->
+
+						<!-- Team members row 1-->
+						<div class="row">
+							<!-- item 1 -->
+							<div
+								class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item wow fadeInLeft"></div>
+							<div
+								class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item wow fadeInLeft">
+								<div class="team-member">
+									<div class="team-member-holder">
+										<div class="team-member-image">
+											<img alt="" src="static/img/team/team-member-1.jpg">
+											<div class="team-member-links">
+												<div class="team-member-links-list">
+													<a target="_blank" class="facebook team-member-links-item"
+														href="#"><i class="fa fa-facebook"></i></a> <a
+														target="_blank" class="twitter team-member-links-item"
+														href="#"><i class="fa fa-twitter"></i></a> <a
+														target="_blank" class="linkedin team-member-links-item"
+														href="#"><i class="fa fa-linkedin"></i></a>
+													<p>El que obedece no se equivoca.</p>
+												</div>
+											</div>
+										</div>
+										<div class="team-member-meta">
+											<h4 class="team-member-name">Miguel Ángel Núñez</h4>
+											<div class="team-member-role">Back-End</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End -->
+							<!-- item 2 -->
+							<div
+								class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item wow fadeInDown">
+								<div class="team-member">
+									<div class="team-member-holder">
+										<div class="team-member-image">
+											<img alt="" src="static/img/team/team-member-2.jpg">
+											<div class="team-member-links">
+												<div class="team-member-links-list">
+													<a target="_blank" class="facebook team-member-links-item"
+														href="#"><i class="fa fa-facebook"></i></a> <a
+														target="_blank" class="twitter team-member-links-item"
+														href="#"><i class="fa fa-twitter"></i></a> <a
+														target="_blank" class="linkedin team-member-links-item"
+														href="#"><i class="fa fa-linkedin"></i></a>
+													<p>Los pequeños detalles marcan la diferencia.</p>
+												</div>
+											</div>
+										</div>
+										<div class="team-member-meta">
+											<h4 class="team-member-name">David Letrán</h4>
+											<div class="team-member-role">Front-End</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End -->
+						</div>
+						<div
+								class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item wow fadeInLeft"></div>
+						<!-- /Team members row 1-->
+					</div>
+				</div>
+				<!-- /Predictorum Team -->
+				<!-- Fun Facts -->
+				<div class="fun-wrap">
+					<div class="texture-layer">
+						<div class="container">
+							<!-- Title row -->
+							<div class="row">
+								<div class="col-md-12 big-title light wow bounceIn">
+									<h2>Some Fun Facts</h2>
+								</div>
+							</div>
+							<!-- /Title row -->
+
+							<div class="row">
+								<div class="col-md-3 wow fadeInLeft">
+									<div class="fun-box">
+										<i class="fa fa-clock-o"></i> <span class="fun" data-from="0"
+											data-to="{{predictionsNumber}}" data-speed="5000"
+											data-refresh-interval="50"></span>
+										<p>Made Predictions</p>
+									</div>
+								</div>
+
+								<div class="col-md-3 wow fadeInDown">
+									<div class="fun-box">
+										<i class="fa fa-users"></i> <span class="fun" data-from="0"
+											data-to="101" data-speed="5000" data-refresh-interval="50"></span>
+										<p>Satisfied client</p>
+									</div>
+								</div>
+
+								<div class="col-md-3 wow fadeInDown">
+									<div class="fun-box">
+										<i class="fa fa-check"></i> <span class="fun" data-from="0"
+											data-to="222" data-speed="5000" data-refresh-interval="50"></span>
+										<p>Projects Completed</p>
+									</div>
+								</div>
+
+								<div class="col-md-3 wow fadeInRight">
+									<div class="fun-box">
+										<i class="fa fa-trophy"></i> <span class="fun" data-from="0"
+											data-to="49" data-speed="5000" data-refresh-interval="50"></span>
+										<p>Awards Won</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Fun Facts -->
+			</section>
+			<!-- /Section 2 -->
+			<!-- Section 6 -->
+			<section id="section6" class="pricing">
+				<div class="container">
+					<div class="row flat">
+						<!-- Title row -->
+						<div class="row">
+							<div class="col-md-12 big-title wow bounceIn">
+								<h2>Pricing</h2>
+							</div>
+
+							<div class="clearfix"></div>
+
+							<div class="col-md-12 sub-title text-center wow slideInRight">
+								<h3>What you have become is the price you paid to get what
+									you used to want!</h3>
+							</div>
+						</div>
+						<!-- /Title row -->
+
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInLeft">
+								<ul class="plan plan1">
+									<li class="plan-name">Basic</li>
+									<li class="plan-price"><strong>$29</strong> / month</li>
+									<li><strong>5GB</strong> Storage</li>
+									<li><strong>1GB</strong> RAM</li>
+									<li><strong>400GB</strong> Bandwidth</li>
+									<li><strong>10</strong> Email Address</li>
+									<li><strong>Forum</strong> Support</li>
+									<li class="plan-action"><a href="#"
+										class="btn btn-2 btn-2c">Signup</a></li>
+								</ul>
+							</div>
+
+							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+								<ul class="plan plan2 featured">
+									<li class="plan-name">Standard</li>
+									<li class="plan-price"><strong>$39</strong> / month</li>
+									<li><strong>5GB</strong> Storage</li>
+									<li><strong>1GB</strong> RAM</li>
+									<li><strong>400GB</strong> Bandwidth</li>
+									<li><strong>10</strong> Email Address</li>
+									<li><strong>Forum</strong> Support</li>
+									<li class="plan-action"><a href="#"
+										class="btn btn-2 btn-2c">Signup</a></li>
+								</ul>
+							</div>
+
+							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInDown">
+								<ul class="plan plan3">
+									<li class="plan-name">Advanced</li>
+									<li class="plan-price"><strong>$199</strong> / month</li>
+									<li><strong>5GB</strong> Storage</li>
+									<li><strong>1GB</strong> RAM</li>
+									<li><strong>400GB</strong> Bandwidth</li>
+									<li><strong>10</strong> Email Address</li>
+									<li><strong>Forum</strong> Support</li>
+									<li class="plan-action"><a href="#"
+										class="btn btn-2 btn-2c">Signup</a></li>
+								</ul>
+							</div>
+
+							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInRight">
+								<ul class="plan plan4">
+									<li class="plan-name">Mighty</li>
+									<li class="plan-price"><strong>$999</strong> / month</li>
+									<li><strong>5GB</strong> Storage</li>
+									<li><strong>1GB</strong> RAM</li>
+									<li><strong>400GB</strong> Bandwidth</li>
+									<li><strong>10</strong> Email Address</li>
+									<li><strong>Forum</strong> Support</li>
+									<li class="plan-action"><a href="#"
+										class="btn btn-2 btn-2c">Signup</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /Section 6 -->
 		</div>
 
 		<footer class="footer-wrap text-center">
@@ -201,9 +577,8 @@
 	<!-- /Wrapper -->
 
 
-
 	<!-- The Scripts -->
-	<script src="static/js/jquery.min.js"></script>
+	<script src="static/js/jquery.min-1.9.1.js"></script>
 	<script src="static/js/jquery-migrate-1.0.0.js"></script>
 	<script src="static/js/jquery-ui.js"></script>
 	<script src="static/js/bootstrap.min.js"></script>
@@ -232,7 +607,6 @@
 	<script src="static/js/custom.js"></script>
 	<script src="static/js/angular.min.js"></script>
 	<script src="static/js/angular-route.min.js"></script>
-
 	<!-- ANGULAR MODULES -->
 
 	<script src="app.js"></script>

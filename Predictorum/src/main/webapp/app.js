@@ -9,10 +9,7 @@ predictorum.config([ '$routeProvider', '$locationProvider',
 
 			$routeProvider
 
-			.when('/', {
-				templateUrl : 'public/welcome.html',
-				controller : 'indexController'
-			})
+			
 			
 			.otherwise({
 				redirectTo : '/'
@@ -20,9 +17,9 @@ predictorum.config([ '$routeProvider', '$locationProvider',
 
 		} ]);
 
-predictorum.controller('indexController', [ '$scope', '$http',
-		'$location', function($scope, $http, $location) {
+predictorum.controller('indexController', function($scope, $location) {
 
 	$scope.isWelcome = $location.path() === '/';
+	$scope.predictionsNumber = 5650;
 
-}]);
+});

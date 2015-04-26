@@ -28,6 +28,7 @@
 	<!-- Access control -->
 
 	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/#/" access="permitAll" />
 		<security:intercept-url pattern="/" access="permitAll" /> 
 
 		<security:intercept-url pattern="/favicon.ico" access="permitAll" /> 
@@ -52,10 +53,10 @@
 		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
 	
-		<security:intercept-url pattern="/**" access="permitAll" />
+		<security:intercept-url pattern="/**" access="permitAll()" />
 
 		<security:form-login 
-			login-page="/security/login.do"
+			login-page="/#/#welcome"
 			password-parameter="password" 
 			username-parameter="username"
 			authentication-failure-url="/security/loginFailure.do" />
