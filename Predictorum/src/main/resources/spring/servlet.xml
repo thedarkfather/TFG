@@ -131,13 +131,6 @@
 
 	<import resource="config/security.xml" />
 
-	<security:authentication-manager>
-		<security:authentication-provider
-			user-service-ref="loginService">
-			<security:password-encoder ref="passwordEncoder" />
-		</security:authentication-provider>
-	</security:authentication-manager>
-
 	<!-- Cache -->
 	
 	<import resource="config/cache.xml" />

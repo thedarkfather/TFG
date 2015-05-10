@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 
 import repositories.UserRepository;
 import security.Authority;
+import security.LoginService;
 import security.UserAccount;
 import domain.Comment;
 import domain.Evaluation;
@@ -20,6 +21,7 @@ import domain.Prediction;
 import domain.Team;
 import domain.User;
 import forms.JoinForm;
+import forms.UserToList;
 
 @Service
 @Transactional
@@ -27,6 +29,9 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private LoginService loginService;
 	
 	public User reconstructJoin(JoinForm joinForm) {
 		User u = new User();
@@ -73,6 +78,41 @@ public class UserService {
 		userRepository.save(user);		
 	}
 	
+	public Collection<User> findFollowers() {
+		User u = findByPrincipal();
+		Collection<User> users = userRepository.findFollowersByUserId(u.getUserAccount().getId());
+		return users;
+	}
+	
+	public Collection<User> findFollowing() {
+		User u = findByPrincipal();
+		Collection<User> users = userRepository.findFollowingByUserId(u.getUserAccount().getId());
+		return users;
+	}
+	
+	public User findByPrincipal(){
+		return userRepository.findOneByUserAccount(LoginService.getPrincipal().getId());
+	}
+	
+	public Collection<UserToList> reconstructsToList(Collection<User> userAux) {
+		Collection<UserToList> usersToList = new LinkedList<>();
+		for(User u:userAux){
+			UserToList uTL = reconstructToList(u);
+			usersToList.add(uTL);
+		}
+		return usersToList;
+	}
+	
+	public UserToList reconstructToList(User user) {
+		UserToList userToList = new UserToList();
+		userToList.setId(user.getId());
+		userToList.setName(user.getName());		
+		Integer points = user.getaGPoints() + user.getdHRPoints() + user.getdRPoints() + user.gethAGPoints() + user.gethGPoints() + user.gethHGPoints() + user.getmT25Points() + user.getsHRPoints() + user.getsRPoints();
+		userToList.setPoints(points);
+		return userToList;
+	}
+
+	
 	//checks
 	public boolean checkUniqueUsername(JoinForm joinForm){
 		Boolean res = true;
@@ -89,5 +129,6 @@ public class UserService {
 		return joinForm.getPassword().equals(joinForm.getRpassword());		
 	}
 
+	
 	
 }
