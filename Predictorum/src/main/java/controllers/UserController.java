@@ -17,7 +17,7 @@ import domain.User;
 import forms.UserToList;
 
 @Controller
-@RequestMapping("/league")
+@RequestMapping("/user")
 public class UserController extends AbstractController{
 
 	@Autowired

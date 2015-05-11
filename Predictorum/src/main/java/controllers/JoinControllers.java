@@ -24,7 +24,7 @@ public class JoinControllers extends AbstractController{
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/joing", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.POST, value = "/join", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public GeneralResponse join(@RequestBody @Valid JoinForm joinForm, BindingResult binding){
 		GeneralResponse generalResponse;
 		if (binding.hasErrors()) {
