@@ -47,7 +47,7 @@ public class Team extends DomainEntity{
 	
 	@Valid
 	@NotNull
-	@ManyToMany(mappedBy="teams")
+	@ManyToMany
 	public Collection<User> getUsers() {
 		return users;
 	}

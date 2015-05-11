@@ -151,7 +151,7 @@ public class User extends Actor{
 	
 	@Valid
 	@NotNull
-	@ManyToMany
+	@ManyToMany(mappedBy="users")
 	public Collection<Team> getTeams() {
 		return teams;
 	}
