@@ -24,6 +24,6 @@ public interface UserRepository extends JpaRepository<User,Integer>{
 	Collection<User> findFollowingByUserId(int id);
 
 	@Query("select u from User u join u.following uf where uf.id=?1 and u.id=?2 group by u")
-	Collection<User> findIsFollowed(Integer userId, Integer principalId);
+	User findIsFollowed(Integer userId, Integer principalId);
 
 }

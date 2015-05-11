@@ -29,9 +29,14 @@ public class TeamService {
 		return teams;
 	}
 	
+	public Collection<Team> findAll(){
+		Collection<Team> teams = teamRepository.findAll();
+		return teams;
+	}
+	
 	public TeamToList reconstructToList(Team team){
 		TeamToList teamToList = new TeamToList();
-		teamToList.setFollowing(true);//hay que cambiarlo si vamos a listar todos los equipos de otra forma
+		teamToList.setFollowing(isFollowed(team));
 		teamToList.setLeagueId(team.getLeague().getId());
 		teamToList.setLeagueName(team.getLeague().getName());
 		teamToList.setPosLeague(team.getTeamStatistics().getLeaguePosition());
@@ -49,4 +54,10 @@ public class TeamService {
 		return teamsToList;
 	}
 
+	public boolean isFollowed(Team team){
+		User principal = userService.findByPrincipal();
+		Team aux = teamRepository.findIsFollowed(team.getId(),principal.getId());
+		boolean res = aux!=null;
+		return res;
+	}
 }

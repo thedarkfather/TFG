@@ -120,8 +120,8 @@ public class UserService {
 	
 	public boolean isFollowed(User user){
 		User principal = findByPrincipal();
-		Collection<User> users = userRepository.findIsFollowed(user.getId(), principal.getId());
-		boolean res = !users.isEmpty();
+		User aux = userRepository.findIsFollowed(user.getId(), principal.getId());
+		boolean res = aux!=null;
 		return res;
 	}
 
