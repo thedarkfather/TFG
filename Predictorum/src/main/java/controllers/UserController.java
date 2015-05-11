@@ -26,6 +26,14 @@ public class UserController extends AbstractController{
 	// quitar luego
 	@Autowired
 	private LoginService loginService;
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/list")
+	public Collection<UserToList> findAll() {
+		authenticate("user3");
+		Collection<User> userAux = userService.findAll();
+		Collection<UserToList> usersToList = userService.reconstructsToList(userAux);
+		return usersToList;
+	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/listFollowers")
 	public Collection<UserToList> findFollowers() {

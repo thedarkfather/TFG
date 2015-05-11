@@ -4,6 +4,7 @@ public class UserToList {
 	private int id;
 	private String name;
 	private Integer points;
+	private Boolean following;
 
 	public Integer getId() {
 		return id;
@@ -28,4 +29,13 @@ public class UserToList {
 	public void setPoints(Integer points) {
 		this.points = points;
 	}
+
+	public Boolean getFollowing() {
+		return following;
+	}
+
+	public void setFollowing(Boolean following) {
+		this.following = following;
+	}	
+	
 }

@@ -78,6 +78,11 @@ public class UserService {
 		userRepository.save(user);		
 	}
 	
+	public Collection<User> findAll() {
+		Collection<User> users = userRepository.findAll();
+		return users;
+	}
+	
 	public Collection<User> findFollowers() {
 		User u = findByPrincipal();
 		Collection<User> users = userRepository.findFollowersByUserId(u.getUserAccount().getId());
@@ -109,7 +114,15 @@ public class UserService {
 		userToList.setName(user.getName());		
 		Integer points = user.getaGPoints() + user.getdHRPoints() + user.getdRPoints() + user.gethAGPoints() + user.gethGPoints() + user.gethHGPoints() + user.getmT25Points() + user.getsHRPoints() + user.getsRPoints();
 		userToList.setPoints(points);
+		userToList.setFollowing(isFollowed(user));
 		return userToList;
+	}
+	
+	public boolean isFollowed(User user){
+		User principal = findByPrincipal();
+		Collection<User> users = userRepository.findIsFollowed(user.getId(), principal.getId());
+		boolean res = !users.isEmpty();
+		return res;
 	}
 
 	
@@ -128,7 +141,5 @@ public class UserService {
 	public boolean checkPassword(JoinForm joinForm){
 		return joinForm.getPassword().equals(joinForm.getRpassword());		
 	}
-
-	
 	
 }
