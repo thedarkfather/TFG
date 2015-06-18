@@ -59,6 +59,10 @@ h1 {
     margin-bottom: 15px;
 }
 
+.error {
+	color: red;
+	font-weight: bold;
+}
 
 .wrap {
     height: 100%;

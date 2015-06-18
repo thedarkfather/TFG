@@ -1,0 +1,23 @@
+{
+"LEARN_MORE": 				"Cuéntame más",
+"SIGN_IN": 					"Entrar",
+"SIGN_UP":					"Registrarse",
+"HOME":						"INICIO",
+"ABOUT_US":					"SOBRE NOSOTROS",
+"LANGUAGE":					"IDIOMA",
+"SPANISH":					"ESPAÑOL",
+"ENGLISH":					"INGLÉS",
+"ABOUT_PARAGRAPH":			"¡Unimos una funcionalidad robusta con una gran facilidad de uso para que puedas satisfacer tus dudas futboleras lo antes posible!",	
+"HEADLINE1": {
+		"WORD1":			"TODO",
+		"WORD2":			" GRATUITO"
+		},
+"HEADLINE2": {
+		"WORD1":			"JUEGA",
+		"WORD2":			" CON AMIGOS"
+		},
+"HEADLINE3": {
+		"WORD1":			"PREDICCIONES",
+		"WORD2":			" PRECISAS"
+		}		
+}

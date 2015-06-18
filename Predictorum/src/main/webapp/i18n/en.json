@@ -1,0 +1,23 @@
+{
+"LEARN_MORE": 				"Learn more",
+"SIGN_IN": 					"Sign in",
+"SIGN_UP":					"Sign up",
+"HOME":						"HOME",
+"ABOUT_US":					"ABOUT US",
+"LANGUAGE":					"LANGUAGE",
+"SPANISH":					"SPANISH",
+"ENGLISH":					"ENGLISH",
+"ABOUT_PARAGRAPH":			"We match robust functionality with ease of use so you can satisfy your soccer concerns ASAP!",	
+"HEADLINE1": {
+		"WORD1":			"FREE",
+		"WORD2":			" FEATURES"
+		},
+"HEADLINE2": {
+		"WORD1":			"COMPETE",
+		"WORD2":			" WITH FRIENDS"
+		},
+"HEADLINE3": {
+		"WORD1":			"ACCURATE",
+		"WORD2":			" PREDICTIONS"
+		}	
+}

@@ -55,7 +55,7 @@
       <![endif]-->
 </head>
 <body ng-app="predictorum" ng-controller="indexController"
-	data-spy="scroll" data-target="#navigation" data-offset="75">
+	data-spy="scroll" data-target="#navigation" data-offset="75" >
 	<!-- Page Preloader -->
 	<div class="page-mask">
 		<div class="page-loader">
@@ -91,12 +91,13 @@
 						</div>
 						<!-- /Top Logo -->
 						<ul class="text-slide">
-							<li><span class="text-color"> Accurate </span>Predictions</li>
-							<li><span class="text-color">Free</span> Features</li>
-							<li><span class="text-color"> Compete</span> with friends!</li>
+							<li><span class="text-color">  {{"HEADLINE3.WORD1" | translate}}</span> {{"HEADLINE3.WORD2" | translate}}</li>
+							<li ><span class="text-color"> {{"HEADLINE1.WORD1" | translate}}</span> {{"HEADLINE1.WORD2" | translate}}</li>
+							<li><span class="text-color">  {{"HEADLINE2.WORD1" | translate}}</span> {{"HEADLINE2.WORD2" | translate}}</li>
 						</ul>
-						<a href="#aboutUs" class="btn btn-1 img-btn" style="margin-right:5px;">Learn More</a> 
-						<a href="#welcome" class="btn btn-1 img-btn">Log in</a>
+						<a href="#aboutUs" class="btn btn-1 img-btn"
+							style="margin-right: 5px;" translate>LEARN_MORE</a> <a
+							href="#welcome" class="btn btn-1 img-btn" translate>SIGN_IN</a>
 					</div>
 				</div>
 			</div>
@@ -132,8 +133,15 @@
 									<!-- Collect the nav links, forms, and other content for toggling -->
 									<div class="collapse navbar-collapse" id="menu">
 										<ul class="nav navbar-nav navbar-right">
-											<li class="active"><a href="#welcome">Home</a></li>
-											<li><a href="#aboutUs">About Us</a></li>
+											<li class="active"><a href="#welcome" translate>HOME</a></li>
+											<li><a href="#aboutUs" translate>ABOUT_US</a></li>
+											<li class="dropdown nav-toggle">
+                                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" translate>LANGUAGE<b class="caret"></b></a>
+                                                                        <ul class="dropdown-menu">
+                                                                              <li><a class="external" ng-click="switchLanguage('es')" translate>SPANISH</a></li>
+                                                                              <li><a class="external" ng-click="switchLanguage('en')" translate>ENGLISH</a></li>
+                                                                        </ul>
+                                                                  </li>
 										</ul>
 									</div>
 									<!-- /.Navbar-collapse -->
@@ -160,30 +168,30 @@
 				<div class="subscription-wrap light">
 					<div class="texture-layer">
 						<div class="container">
-							<div class="row">			
+							<div class="row">
 								<!-- Sign In -->
 								<div class="col-md-6">
 									<!--Sign In Title row -->
 									<div class="row text-center">
 										<div class="col-md-12 big-title light wow bounceIn">
-											<h2>Sign In</h2>
+											<h2 translate>SIGN_IN</h2>
 										</div>
 									</div>
 									<!-- /Sign In Title row -->
 
 									<!-- Sign In form -->
-									<div class="row text-center" style="height:300px;">
+									<div class="row text-center" style="height: 300px;">
 										<div class="col-md-2"></div>
 										<div class="col-md-8">
 											<form method="post" action="#" id="signup">
 												<fieldset>
-
-													<input class="form-control wow fadeInLeft" type="text"
+													<input data-ng-model="login.user" class="form-control wow fadeInLeft" type="text"
 														placeholder="Username" style="margin-bottom: 5%;">
-													<input class="form-control wow fadeInLeft" type="password"
+													<input data-ng-model="login.password" class="form-control wow fadeInLeft" type="password"
 														placeholder="Password" style="margin: auto;">
+													<p ng-if="result=='ERROR'" class="error"> Invalid credentials </p>
 													<div class="clearfix"></div>
-													<button class="btn btn-1 wow fadeInRight">Sign in</button>
+													<a ng-click="goLogin()" class="btn btn-1 wow fadeInRight" translate>SIGN_IN</a>
 												</fieldset>
 											</form>
 										</div>
@@ -198,7 +206,7 @@
 									<!--Sign Up Title row -->
 									<div class="row text-center">
 										<div class="col-md-12 big-title light wow bounceIn">
-											<h2>Sign Up</h2>
+											<h2 translate>SIGN_UP</h2>
 										</div>
 									</div>
 									<!-- /Sign up Title row -->
@@ -216,7 +224,7 @@
 														class="form-control wow fadeInLeft" type="password"
 														placeholder="Repeat Password">
 													<div class="clearfix"></div>
-													<button class="btn btn-1 wow fadeInRight">Join</button>
+													<a class="btn btn-1 wow fadeInRight" translate>SIGN_UP</a>
 												</fieldset>
 											</form>
 										</div>
@@ -238,14 +246,13 @@
 					<!-- Title row -->
 					<div class="row">
 						<div class="col-md-12 big-title wow bounceIn">
-							<h2>About Us</h2>
+							<h2 translate>ABOUT_US</h2>
 						</div>
 
 						<div class="clearfix"></div>
 
 						<div class="col-md-12 sub-title text-center wow slideInRight">
-							<h3>We match robust functionality with ease of use so you
-								can satisfy your soccer concerns ASAP!</h3>
+							<h3 translate>ABOUT_PARAGRAPH</h3>
 						</div>
 					</div>
 					<!-- /Title row -->
@@ -413,7 +420,7 @@
 							<!-- End -->
 						</div>
 						<div
-								class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item wow fadeInLeft"></div>
+							class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item wow fadeInLeft"></div>
 						<!-- /Team members row 1-->
 					</div>
 				</div>
@@ -605,11 +612,21 @@
 	<script src="static/js/jquery.mb.YTPlayer.js"></script>
 	<script src="static/js/tytabs.js"></script>
 	<script src="static/js/custom.js"></script>
+
+	<!-- Angular scripts -->
+
 	<script src="static/js/angular.min.js"></script>
 	<script src="static/js/angular-route.min.js"></script>
-	<!-- ANGULAR MODULES -->
+	<script src="static/js/angular-cookies.min.js"></script>
+	<script src="static/js/angular-translate.min.js"></script>
+	<script src="static/js/angular-translate-storage-cookie.min.js"></script>
+	<script src="static/js/angular-translate-storage-local.min.js"></script>
+	<script src="static/js/angular-translate-loader-static-files.min.js"></script>
 
+	<!-- ANGULAR MODULES -->
+	
 	<script src="app.js"></script>
+	<script src="actor/actorService.js"></script>
 
 </body>
 </html>
