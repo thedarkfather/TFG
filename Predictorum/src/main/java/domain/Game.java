@@ -1,43 +1,28 @@
 package domain;
 
 import java.util.Collection;
-import java.util.Date;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class Game extends DomainEntity {
 	
-	private Date date;	
 	
-	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="dd/MM/yyyy HH:mm")
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
 
 	//Relaciones
 	private Result result;
 	private Collection<Prediction> predictions;
 	private Team homeTeam;
 	private Team awayTeam;
+	private Season season;
 
 	@Valid
 	@OneToOne(mappedBy="game")
@@ -82,5 +67,18 @@ public class Game extends DomainEntity {
 	public void setAwayTeam(Team awayTeam) {
 		this.awayTeam = awayTeam;
 	}
+
+	@Valid
+	@NotNull
+	@ManyToOne(optional=false)
+	public Season getSeason() {
+		return season;
+	}
+
+	public void setSeason(Season season) {
+		this.season = season;
+	}
+	
+	
 	
 }
