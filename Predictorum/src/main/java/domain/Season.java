@@ -23,6 +23,7 @@ public class Season extends DomainEntity {
 	private String title;
 	private Date startDate;
 	private Date finishDate;
+	private Boolean updated;
 	
 	@NotBlank
 	public String getTitle() {
@@ -54,7 +55,18 @@ public class Season extends DomainEntity {
 	public void setFinishDate(Date finishDate) {
 		this.finishDate = finishDate;
 	}
-	
+		
+	@NotNull
+	public Boolean getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Boolean updated) {
+		this.updated = updated;
+	}
+
+
+
 	//Relaciones
 	private League league;
 	private Collection<Game> games;
