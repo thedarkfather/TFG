@@ -13,15 +13,28 @@ import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Season extends DomainEntity {
-
+public class Round extends DomainEntity {
+	
+	private Integer roundNumber;
 	private Date startDate;
 	private Date finishDate;
+	private Boolean updated;
 	
+	
+	@Range(min=0)
+	@NotNull
+	public Integer getRoundNumber() {
+		return roundNumber;
+	}
+
+	public void setRoundNumber(Integer roundNumber) {
+		this.roundNumber = roundNumber;
+	}
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
@@ -45,48 +58,41 @@ public class Season extends DomainEntity {
 		this.finishDate = finishDate;
 	}
 		
+	@NotNull
+	public Boolean getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Boolean updated) {
+		this.updated = updated;
+	}
+
+
+
 	//Relaciones
-	private League league;
-	private Collection<Round> rounds;
-	private Collection<Team> teams;
+	private Season season;
+	private Collection<Game> games;
 
 	@Valid
 	@NotNull
 	@ManyToOne(optional=false)
-	public League getLeague() {
-		return league;
+	public Season getSeason() {
+		return season;
 	}
 
-	public void setLeague(League league) {
-		this.league = league;
+	public void setSeason(Season season) {
+		this.season = season;
 	}
 
 	@Valid
 	@NotNull
-	@OneToMany(mappedBy="season")
-	public Collection<Round> getRounds() {
-		return rounds;
+	@OneToMany(mappedBy="round")
+	public Collection<Game> getGames() {
+		return games;
 	}
 
-	public void setRounds(Collection<Round> rounds) {
-		this.rounds = rounds;
+	public void setGames(Collection<Game> games) {
+		this.games = games;
 	}
-	
-	@Valid
-	@NotNull
-	@OneToMany(mappedBy="season")
-	public Collection<Team> getTeams() {
-		return teams;
-	}
-	
-	public void setTeams(Collection<Team> teams) {
-		this.teams = teams;
-	}
-	
-	
-		
-	
-	
-	
 
 }

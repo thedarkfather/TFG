@@ -28,7 +28,7 @@ public class LeagueService {
 		LeagueToList leagueToList = new LeagueToList();
 		leagueToList.setId(league.getId());
 		leagueToList.setName(league.getName());
-		leagueToList.setSeason(league.getSeason());
+		//leagueToList.setSeason(league.getSeason());
 		return leagueToList;
 	}
 	

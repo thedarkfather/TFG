@@ -40,7 +40,7 @@ public class Team extends DomainEntity{
 	
 	//Relaciones
 	private Collection<User> users;
-	private League league;
+	private Season season;
 	private TeamStatistics teamStatistics;
 	private Collection<Game> homeMatchs;
 	private Collection<Game> awayMatchs;
@@ -59,12 +59,12 @@ public class Team extends DomainEntity{
 	@Valid
 	@NotNull
 	@ManyToOne(optional=false)
-	public League getLeague() {
-		return league;
+	public Season getSeason() {
+		return season;
 	}
 	
-	public void setLeague(League league) {
-		this.league = league;
+	public void setSeason(Season season) {
+		this.season = season;
 	}
 	
 	@Valid

@@ -240,32 +240,14 @@
 		</property>
 	</bean>
 	
-	<!-- league -->
-	
 	<bean id="BBVA" class="domain.League">
 		<property name="name" value="BBVA"/>
-		<!-- relaciones -->
-		<property name="teams">
-			<list>		
-			</list>
-		</property>
+		<!-- Relaciones -->
 		<property name="seasons">
 			<list>		
 			</list>
 		</property>
 	</bean>
 	
-	<bean id="Adelante" class="domain.League">
-		<property name="name" value="Adelante"/>
-		<!-- relaciones -->
-		<property name="teams">
-			<list>		
-			</list>
-		</property>
-		<property name="seasons">
-			<list>		
-			</list>
-		</property>
-	</bean>
 	
 </beans>

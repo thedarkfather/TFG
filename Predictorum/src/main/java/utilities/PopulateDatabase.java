@@ -10,20 +10,17 @@
 
 package utilities;
 
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.Map.Entry;
 
 import javax.persistence.Entity;
+
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import utilities.internal.DatabaseUtil;
 import domain.DomainEntity;
-import domain.League;
-import domain.Season;
-import domain.Team;
+
 
 public class PopulateDatabase {
 
@@ -58,17 +55,8 @@ public class PopulateDatabase {
 				databaseUtil.persist(entity);
 				System.out.printf(" -> id = %d, version = %d%n", entity.getId(), entity.getVersion());
 			}
-			//Una vez que se ha populado con los datos por defecto lo voy a popular con los datos de la api
-			League league = new League();			
-			String name = "Liga italiana";
-			Collection<Team> teams = new LinkedList<Team>();
-			Collection<Season> seasons = new LinkedList<Season>();
-			league.setName(name);
-			league.setTeams(teams);
-			league.setSeasons(seasons);
-			databaseUtil.persist(league);
 			databaseUtil.commitTransaction();
-			System.err.println("Creo que la liga se ha insertado correctamente");
+			
 		} catch (Throwable oops) {
 			System.out.flush();
 			System.err.printf("%n%s%n", oops.getLocalizedMessage());

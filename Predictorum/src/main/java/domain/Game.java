@@ -22,7 +22,7 @@ public class Game extends DomainEntity {
 	private Collection<Prediction> predictions;
 	private Team homeTeam;
 	private Team awayTeam;
-	private Season season;
+	private Round round;
 
 	@Valid
 	@OneToOne(mappedBy="game")
@@ -71,12 +71,12 @@ public class Game extends DomainEntity {
 	@Valid
 	@NotNull
 	@ManyToOne(optional=false)
-	public Season getSeason() {
-		return season;
+	public Round getRound() {
+		return round;
 	}
 
-	public void setSeason(Season season) {
-		this.season = season;
+	public void setRound(Round round) {
+		this.round = round;
 	}
 	
 	

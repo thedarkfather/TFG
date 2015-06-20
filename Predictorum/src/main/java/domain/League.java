@@ -15,8 +15,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Access(AccessType.PROPERTY)
 public class League extends DomainEntity{
 	
-	private String name;
-	
+	private String name;	
 	
 	@NotBlank
 	public String getName() {
@@ -25,23 +24,10 @@ public class League extends DomainEntity{
 	
 	public void setName(String name) {
 		this.name = name;
-	}
+	}	
 	
-	
-	//Relaciones
-	private Collection<Team> teams;
-	private Collection<Season> seasons;
-	
-	@Valid
-	@NotNull
-	@OneToMany(mappedBy="league")
-	public Collection<Team> getTeams() {
-		return teams;
-	}
-	
-	public void setTeams(Collection<Team> teams) {
-		this.teams = teams;
-	}
+	//Relaciones	
+	private Collection<Season> seasons;	
 
 	@Valid
 	@NotNull
@@ -53,7 +39,5 @@ public class League extends DomainEntity{
 	public void setSeasons(Collection<Season> seasons) {
 		this.seasons = seasons;
 	}	
-	
-	
 
 }

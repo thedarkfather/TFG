@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import domain.Team;
 import domain.User;
@@ -37,8 +38,6 @@ public class TeamService {
 	public TeamToList reconstructToList(Team team){
 		TeamToList teamToList = new TeamToList();
 		teamToList.setFollowing(isFollowed(team));
-		teamToList.setLeagueId(team.getLeague().getId());
-		teamToList.setLeagueName(team.getLeague().getName());
 		teamToList.setPosLeague(team.getTeamStatistics().getLeaguePosition());
 		teamToList.setTeamId(team.getId());
 		teamToList.setTeamName(team.getName());
@@ -60,4 +59,16 @@ public class TeamService {
 		boolean res = aux!=null;
 		return res;
 	}
+	
+	public Team findByTeamName(String teamName){
+		Assert.notNull(teamName);
+		Team team = teamRepository.findByTeamName(teamName);
+		return team;
+	}
+	
+	public Team saveEasy(Team team){
+		Assert.notNull(team);
+		return teamRepository.save(team);
+	}
+
 }

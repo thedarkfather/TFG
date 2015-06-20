@@ -27,13 +27,13 @@ public class PredictionService {
 	public PredictionToList reconstructToList(Prediction prediction){
 		PredictionToList predictionToList = new PredictionToList();
 		predictionToList.setPredictionId(prediction.getId());
-		predictionToList.setLeagueId(prediction.getGame().getHomeTeam().getLeague().getId());
-		predictionToList.setLeagueName(prediction.getGame().getHomeTeam().getLeague().getName());
+		//predictionToList.setLeagueId(prediction.getGame().getHomeTeam().getLeague().getId());
+		//predictionToList.setLeagueName(prediction.getGame().getHomeTeam().getLeague().getName());
 		predictionToList.setHomeTeamId(prediction.getGame().getHomeTeam().getId());
 		predictionToList.setHomeTeamName(prediction.getGame().getHomeTeam().getName());
 		predictionToList.setAwayTeamId(prediction.getGame().getAwayTeam().getId());
 		predictionToList.setAwayTeamName(prediction.getGame().getAwayTeam().getName());
-		predictionToList.setGameDate(prediction.getGame().getDate());
+		//predictionToList.setGameDate(prediction.getGame().getDate());
 		predictionToList.setPredictionResult(prediction.getSimpleResult());
 		predictionToList.setProbability(prediction.getpSimpleResult());
 		return predictionToList;
