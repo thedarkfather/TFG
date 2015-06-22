@@ -1,7 +1,7 @@
 // Creación del módulo
 
 var predictorum = angular.module('predictorum', [ 'ngRoute','ngCookies',
-		'pascalprecht.translate', 'predictorum.actorService']);
+		'pascalprecht.translate', 'predictorum.sessionService']);
 
 // Configuración
 
@@ -26,7 +26,7 @@ predictorum.config(['$routeProvider','$locationProvider','$translateProvider',fu
 
 }]);
 
-predictorum.controller('indexController', function($scope, $location, $translate, actorService) {
+predictorum.controller('indexController', function($scope, $location, $translate, sessionService) {
 
 	$scope.isWelcome = $location.path() === '/';
 	
@@ -36,11 +36,11 @@ predictorum.controller('indexController', function($scope, $location, $translate
 	}
 
 	$scope.goLogin = function(){
-		actorService.login($scope.login.user,$scope.login.password).success(function(data) {
+		sessionService.login($scope.login.user,$scope.login.password).success(function(data) {
 			if (data.error) {
 				$scope.result = "ERROR";
 			} else {
-				$scope.result = "OK"
+				$location.path() === '/'
 			}
 
 		});	
