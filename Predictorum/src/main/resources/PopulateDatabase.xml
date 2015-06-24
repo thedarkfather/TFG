@@ -238,7 +238,9 @@
 			<list>		
 			</list>
 		</property>
-	</bean>
+	</bean>	
+	
+	
 	
 	<bean id="BBVA" class="domain.League">
 		<property name="name" value="BBVA"/>
@@ -248,6 +250,44 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="Adelante" class="domain.League">
+		<property name="name" value="Adelante"/>
+		<!-- Relaciones -->
+		<property name="seasons">
+			<list>		
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="Bundesliga" class="domain.League">
+		<property name="name" value="Bundesliga"/>
+		<!-- Relaciones -->
+		<property name="seasons">
+			<list>		
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="Calcio" class="domain.League">
+		<property name="name" value="Calcio"/>
+		<!-- Relaciones -->
+		<property name="seasons">
+			<list>		
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="Premier" class="domain.League">
+		<property name="name" value="Premier"/>
+		<!-- Relaciones -->
+		<property name="seasons">
+			<list>		
+			</list>
+		</property>
+	</bean>
+	
+
 	
 	
 </beans>

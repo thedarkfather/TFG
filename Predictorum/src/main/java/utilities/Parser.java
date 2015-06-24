@@ -23,7 +23,7 @@ public class Parser {
 		Integer anyoInicio = -1;
 		Integer anyoFin = -1;
 		Integer anyoActual = -1;
-		//Mar. 28 y Jue. 30 Abril
+		// Mar. 28 y Jue. 30 Abril
 		Pattern p = Pattern.compile("[^\\.]+\\.([^y]+)[^0-9]+([0-9]+)(.*)");
 		Matcher matcher = p.matcher(fecha);
 		while (matcher.find()) {
@@ -32,8 +32,8 @@ public class Parser {
 			mesFinJornada = new Integer(mesANumero(matcher.group(3)));
 			break;
 		}
-		
-		//Calendario Liga BBVA 2014-2015 - MARCA.com
+
+		// Calendario Liga BBVA 2014-2015 - MARCA.com
 		Pattern pTitle = Pattern.compile("[^0-9]+([0-9]+)-([0-9]+).*");
 		Matcher matcherTitle = pTitle.matcher(title);
 		while (matcherTitle.find()) {
@@ -43,9 +43,9 @@ public class Parser {
 		}
 
 		Calendar calendarJornadaFin = Calendar.getInstance();
-		if(mesFinJornada>7){
+		if (mesFinJornada > 7) {
 			anyoActual = anyoInicio;
-		}else{
+		} else {
 			anyoActual = anyoFin;
 		}
 		calendarJornadaFin.set(anyoActual, mesFinJornada - 1, diaFinJornada);
@@ -59,9 +59,9 @@ public class Parser {
 		} else {
 			mesInicioJornada = mesFinJornada;
 		}
-		if(mesInicioJornada>7){
+		if (mesInicioJornada > 7) {
 			anyoActual = anyoInicio;
-		}else{
+		} else {
 			anyoActual = anyoFin;
 		}
 		calendarJornadaInicio.set(anyoActual, mesInicioJornada - 1,
@@ -73,11 +73,62 @@ public class Parser {
 
 		return fechas;
 	}
-	
-	public static List<Date> getStartDateAndFinishDate(String title){
+
+	public static List<Date> parseFecha(String cadenaFechas) {
+		List<Date> fechas = new LinkedList<Date>();
+		cadenaFechas = cadenaFechas.replace(" ", ""); // quitamos caracteres en blanco
+		Integer d1 = -1;
+		Integer d2 = -1;
+		Integer m1 = -1;
+		Integer m2 = -1;
+		Integer y1 = -1;
+		Integer y2 = -1;
+		// 03.02.2015 - 04.02.2015
+		Pattern pTitle = Pattern
+				.compile("([0-9]+)[^0-9]+([0-9]+)[^0-9]+([0-9]+)[^0-9]+([0-9]+)[^0-9]+([0-9]+)[^0-9]+([0-9]+)");
+		Matcher matcherTitle = pTitle.matcher(cadenaFechas);
+		while (matcherTitle.find()) {
+			m1 = new Integer(matcherTitle.group(1));
+			d1 = new Integer(matcherTitle.group(2));
+			y1 = new Integer(matcherTitle.group(3));
+			m2 = new Integer(matcherTitle.group(4));
+			d2 = new Integer(matcherTitle.group(5));
+			y2 = new Integer(matcherTitle.group(6));
+			break;
+		}
+		// Puede que la jornada tenga solo una fecha y empieze el mismo día que
+		// termina
+		if (d1.equals(-1)) {
+			pTitle = Pattern.compile("([0-9]+)[^0-9]+([0-9]+)[^0-9]+([0-9]+)");
+			matcherTitle = pTitle.matcher(cadenaFechas);
+			while (matcherTitle.find()) {
+				m1 = new Integer(matcherTitle.group(1));
+				d1 = new Integer(matcherTitle.group(2));
+				y1 = new Integer(matcherTitle.group(3));
+				m2 = new Integer(matcherTitle.group(1));
+				d2 = new Integer(matcherTitle.group(2));
+				y2 = new Integer(matcherTitle.group(3));
+				break;
+			}
+		}
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(y1, m1 - 1, d1);
+		Date startDate = calendar.getTime();
+		calendar.set(y2, m2 - 1, d2);
+		Date finishDate = calendar.getTime();
+
+		fechas.add(startDate);
+		fechas.add(finishDate);
+
+		return fechas;
+
+	}
+
+	public static List<Date> getStartDateAndFinishDate(String title) {
 		List<Date> result = new LinkedList<Date>();
-		
-		//Calendario Liga BBVA 2014-2015 - MARCA.com
+
+		// Calendario Liga BBVA 2014-2015 - MARCA.com
 		Integer anyoInicio = -1;
 		Integer anyoFin = -1;
 		Pattern pTitle = Pattern.compile("[^0-9]+([0-9]+)-([0-9]+).*");
@@ -87,18 +138,18 @@ public class Parser {
 			anyoFin = new Integer(matcherTitle.group(2));
 			break;
 		}
-		
+
 		Assert.isTrue(!anyoInicio.equals(-1));
-		Assert.isTrue(!anyoFin.equals(-1));		
+		Assert.isTrue(!anyoFin.equals(-1));
 		Calendar calendarInicio = Calendar.getInstance();
 		Calendar calendarFin = Calendar.getInstance();
-		calendarInicio.set(anyoInicio,6,2);
-		calendarFin.set(anyoFin,6,1);
+		calendarInicio.set(anyoInicio, 6, 2);
+		calendarFin.set(anyoFin, 6, 1);
 		Date startDate = calendarInicio.getTime();
 		Date finishDate = calendarFin.getTime();
 		result.add(startDate);
 		result.add(finishDate);
-		
+
 		return result;
 	}
 
@@ -150,7 +201,7 @@ public class Parser {
 		Pattern pTitle = Pattern.compile("[^0-9]+([0-9]+).*");
 		Matcher matcherTitle = pTitle.matcher(numeroJornada);
 		while (matcherTitle.find()) {
-			result = new Integer(matcherTitle.group(1));			
+			result = new Integer(matcherTitle.group(1));
 			break;
 		}
 		Assert.isTrue(!result.equals(-1));
