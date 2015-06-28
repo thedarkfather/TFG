@@ -241,7 +241,6 @@
 	</bean>	
 	
 	
-	
 	<bean id="BBVA" class="domain.League">
 		<property name="name" value="BBVA"/>
 		<!-- Relaciones -->
@@ -286,7 +285,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 
 	
 	

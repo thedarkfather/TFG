@@ -15,8 +15,6 @@ public class Result extends DomainEntity {
 	
 	private Integer homeGoals;
 	private Integer awayGoals;
-	private Integer halfHomeGoals;
-	private Integer halfAwayGoals;
 	
 	@Range(min=0)
 	@NotNull
@@ -36,25 +34,6 @@ public class Result extends DomainEntity {
 	
 	public void setAwayGoals(Integer awayGoals) {
 		this.awayGoals = awayGoals;
-	}
-	
-	@Range(min=0)
-	@NotNull
-	public Integer getHalfHomeGoals() {
-		return halfHomeGoals;
-	}
-	
-	public void setHalfHomeGoals(Integer halfHomeGoals) {
-		this.halfHomeGoals = halfHomeGoals;
-	}
-	
-	@Range(min=0)
-	@NotNull
-	public Integer getHalfAwayGoals() {
-		return halfAwayGoals;
-	}
-	public void setHalfAwayGoals(Integer halfAwayGoals) {
-		this.halfAwayGoals = halfAwayGoals;
 	}
 	
 	//Relaciones

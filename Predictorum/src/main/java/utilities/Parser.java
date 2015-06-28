@@ -88,11 +88,11 @@ public class Parser {
 				.compile("([0-9]+)[^0-9]+([0-9]+)[^0-9]+([0-9]+)[^0-9]+([0-9]+)[^0-9]+([0-9]+)[^0-9]+([0-9]+)");
 		Matcher matcherTitle = pTitle.matcher(cadenaFechas);
 		while (matcherTitle.find()) {
-			m1 = new Integer(matcherTitle.group(1));
-			d1 = new Integer(matcherTitle.group(2));
+			d1 = new Integer(matcherTitle.group(1));
+			m1 = new Integer(matcherTitle.group(2));
 			y1 = new Integer(matcherTitle.group(3));
-			m2 = new Integer(matcherTitle.group(4));
-			d2 = new Integer(matcherTitle.group(5));
+			d2 = new Integer(matcherTitle.group(4));
+			m2 = new Integer(matcherTitle.group(5));
 			y2 = new Integer(matcherTitle.group(6));
 			break;
 		}
@@ -102,11 +102,11 @@ public class Parser {
 			pTitle = Pattern.compile("([0-9]+)[^0-9]+([0-9]+)[^0-9]+([0-9]+)");
 			matcherTitle = pTitle.matcher(cadenaFechas);
 			while (matcherTitle.find()) {
-				m1 = new Integer(matcherTitle.group(1));
-				d1 = new Integer(matcherTitle.group(2));
+				d1 = new Integer(matcherTitle.group(1));
+				m1 = new Integer(matcherTitle.group(2));
 				y1 = new Integer(matcherTitle.group(3));
-				m2 = new Integer(matcherTitle.group(1));
-				d2 = new Integer(matcherTitle.group(2));
+				d2 = new Integer(matcherTitle.group(1));
+				m2 = new Integer(matcherTitle.group(2));
 				y2 = new Integer(matcherTitle.group(3));
 				break;
 			}
@@ -206,6 +206,25 @@ public class Parser {
 		}
 		Assert.isTrue(!result.equals(-1));
 		return result;
+	}
+
+	public static List<Integer> result(String cadenaResultado) {
+		List<Integer> res = new LinkedList<Integer>();
+		Integer home = null;
+		Integer away = null;
+		cadenaResultado = cadenaResultado.replace(" ", ""); // quitamos caracteres en blanco
+		Pattern pTitle = Pattern.compile("([0-9]+)-([0-9]+)");
+		Matcher matcherTitle = pTitle.matcher(cadenaResultado);
+		while (matcherTitle.find()) {
+			home = new Integer(matcherTitle.group(1));
+			away = new Integer(matcherTitle.group(2));
+			break;
+		}
+		Assert.notNull(home);
+		Assert.notNull(away);
+		res.add(home);
+		res.add(away);		
+		return res;
 	}
 
 }

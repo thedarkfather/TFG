@@ -19,4 +19,10 @@ public class SeasonService {
 		return seasonRepository.save(season);
 	}
 
+	public Season findByLeagueId(Integer leagueId) {
+		Assert.notNull(leagueId);
+		Season season = seasonRepository.findByLeagueId(leagueId);
+		return season;
+	}
+
 }

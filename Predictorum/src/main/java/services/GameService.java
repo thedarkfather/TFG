@@ -19,4 +19,13 @@ public class GameService {
 		return gameRepository.save(game);
 		
 	}
+
+	public Game findByRoundIdAndLocalTeamAndAwayTeam(Integer roundId,String localTeam, String awayTeam) {
+		Assert.notNull(roundId);
+		Assert.notNull(localTeam);
+		Assert.notNull(awayTeam);
+		Game game = gameRepository.findByRoundIdAndLocalTeamAndAwayTeam(roundId,localTeam,awayTeam);
+		return game;
+		
+	}
 }
