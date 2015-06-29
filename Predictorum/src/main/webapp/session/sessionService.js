@@ -9,7 +9,6 @@ sessionService
 	
 	var sessionService = {};
 	
-	sessionService.principal = {name: ''}
 	
 	sessionService.getPrincipal = function() { return sessionService.principal };
 	
@@ -33,6 +32,7 @@ sessionService
 				sessionService.loginResult = "ERROR";
 			} else {
 				sessionService.loginResult= "OK";
+				sessionService.principal.logged = true;
 			}
 		});	
 		

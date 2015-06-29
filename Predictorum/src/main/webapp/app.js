@@ -53,6 +53,7 @@ predictorum.controller('indexController', function($scope, $location, $translate
 				$scope.login.result = "ERROR";
 			} else {
 				$scope.login.result = "OK";
+				$scope.showMenu = true;
 				$scope.toggleMenu();
 			};
 		});
@@ -65,6 +66,7 @@ predictorum.controller('indexController', function($scope, $location, $translate
 	}
 	
 	//SVG Menu
+	$scope.showMenu = sessionService.getPrincipal()!==undefined;
 	var svg = document.getElementById('svg-menu'),
     items = svg.querySelectorAll('.item'),
     trigger = document.getElementById('trigger'),
