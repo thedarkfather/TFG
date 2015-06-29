@@ -30,9 +30,8 @@ public class TeamController extends AbstractController {
 	@RequestMapping(method = RequestMethod.GET, value = "/list")
 	public Collection<TeamToList> findAll() {
 		authenticate("user1");
-		Collection<Team> teams = teamService.findAll();
-		Collection<TeamToList> teamsToList = teamService
-				.reconstructsToList(teams);
+		Collection<Team> teams = teamService.findRealTeams();
+		Collection<TeamToList> teamsToList = teamService.reconstructsToList(teams);
 		return teamsToList;
 	}
 	

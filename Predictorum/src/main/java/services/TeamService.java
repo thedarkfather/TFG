@@ -35,12 +35,20 @@ public class TeamService {
 		return teams;
 	}
 	
+	
+	//Devuelve todos los equipos que hay en las temporadas actuales
+	public Collection<Team> findRealTeams(){
+		Collection<Team> teams = teamRepository.findActualTeams();
+		return teams;
+	}
+	
 	public TeamToList reconstructToList(Team team){
 		TeamToList teamToList = new TeamToList();
-		teamToList.setFollowing(isFollowed(team));
-		teamToList.setPosLeague(team.getTeamStatistics().getLeaguePosition());
+		teamToList.setIsFollow(isFollowed(team));
+		teamToList.setTeamPosition(1);//team.getTeamStatistics().getLeaguePosition()
 		teamToList.setTeamId(team.getId());
 		teamToList.setTeamName(team.getName());
+		teamToList.setLeagueName(team.getSeason().getLeague().getName());
 		return teamToList;
 	}
 	

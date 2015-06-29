@@ -1,60 +1,62 @@
 package forms;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class TeamToList {
-
-	private int leagueId;
+	
 	private String leagueName;
-	private int teamId;
+	private Integer teamId;
 	private String teamName;
-	private Integer posLeague;
-	private Boolean following;
-
-	public int getLeagueId() {
-		return leagueId;
-	}
-
-	public void setLeagueId(int leagueId) {
-		this.leagueId = leagueId;
-	}
-
+	private Integer teamPosition;
+	private Boolean isFollow;
+	
+	@NotBlank
 	public String getLeagueName() {
 		return leagueName;
 	}
-
+	
 	public void setLeagueName(String leagueName) {
 		this.leagueName = leagueName;
 	}
-
-	public int getTeamId() {
+	
+	@NotNull
+	public Integer getTeamId() {
 		return teamId;
 	}
-
-	public void setTeamId(int teamId) {
+	
+	public void setTeamId(Integer teamId) {
 		this.teamId = teamId;
 	}
-
+	
+	@NotBlank
 	public String getTeamName() {
 		return teamName;
 	}
-
+	
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
 	}
-
-	public Integer getPosLeague() {
-		return posLeague;
+	
+	@NotNull
+	public Integer getTeamPosition() {
+		return teamPosition;
 	}
-
-	public void setPosLeague(Integer posLeague) {
-		this.posLeague = posLeague;
+	
+	public void setTeamPosition(Integer teamPosition) {
+		this.teamPosition = teamPosition;
 	}
-
-	public Boolean getFollowing() {
-		return following;
+	
+	@NotNull
+	public Boolean getIsFollow() {
+		return isFollow;
 	}
-
-	public void setFollowing(Boolean following) {
-		this.following = following;
+	
+	public void setIsFollow(Boolean isFollow) {
+		this.isFollow = isFollow;
 	}
+	
+	
 
 }

@@ -18,4 +18,7 @@ public interface TeamRepository extends JpaRepository<Team,Integer> {
 	@Query("select t from Team t where t.name=?1")
 	Team findByTeamName(String teamName);
 
+	@Query("select t from Team t where t.season.startDate < CURRENT_TIMESTAMP and t.season.finishDate > CURRENT_TIMESTAMP")
+	Collection<Team> findActualTeams();
+
 }
