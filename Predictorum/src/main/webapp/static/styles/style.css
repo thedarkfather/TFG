@@ -507,6 +507,40 @@ ul.text-slide {
     color: white;
 }
 
+.btn-xs {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 3px 5px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 5;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    z-index: 101;
+}
+
+.btn-xs:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-xs:focus {
+    outline: none;
+    color: white;
+}
+
 /* Button 1 */
 .btn-1 {
     border: 3px solid #fff;

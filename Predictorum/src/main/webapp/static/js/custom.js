@@ -50,90 +50,11 @@ Drop Down Menu Fade Effect
 
 
 
-/*==========================*/
-/* Navigation Scrolling
-/*==========================*/
-    jQuery('.nav').onePageNav({
-            filter: ':not(.external)',
-            begin: function() {
-            console.log("start")
-            },
-            end: function() {
-            console.log("stop")
-            }
-        });
 
-
-    var navigationHeight = jQuery("#navigation").outerHeight();
-
-    jQuery('.align-center a, .caption-inside a, .top-logo a, .video-section a').click(function(){
-        jQuery('html, body').animate({
-            scrollTop: jQuery( $.attr(this, 'href') ).offset().top - navigationHeight + 44
-        }, 800, 'easeInQuad');
-        
-        /* Fix jumping of navigation. */
-        setTimeout(function() {
-            jQuery(window).trigger('scroll');
-        }, 900);
-        
-        return false;
-    });
 
 
 
     
-
-/*==========================*/
-/* FullScreen Slider
-/*==========================*/
-
-    jQuery(function (){
-        jQuery('#fullscreen-slider').maximage({
-            cycleOptions: {
-                fx: 'fade',
-                speed: 1000, // Has to match the speed for CSS transitions in jQuery.maximage.css (lines 30 - 33)
-                timeout: 0,
-                prev: '#slider_left',
-                next: '#slider_right',
-                pause: 1,
-                before: function(last,current){
-                    jQuery('.slide-content').fadeOut().animate({top:'500px'},{queue:false, easing: 'easeOutQuad', duration: 750});
-                    jQuery('.slide-content').fadeOut().animate({top:'-500px'});
-                },
-                after: function(last,current){
-                    jQuery('.slide-content').fadeIn().animate({top:'0'},{queue:false, easing: 'easeOutQuad', duration: 650});
-                }   
-                
-                
-                        
-            },
-            
-            
-            
-            onFirstImageLoaded: function(){
-                //jQuery('#cycle-loader').delay(1000).hide();
-                jQuery('#fullscreen-slider').delay(1000).fadeIn('slow');
-                jQuery('.slide-content').fadeIn().animate({top:'0'});
-                jQuery('.slide-content a').bind('click',function(event){
-                    var $anchor = jQuery(this);              
-                    jQuery('html, body').stop().animate({
-                    scrollTop: jQuery($anchor.attr('href')).offset().top -44
-                    }, 1500,'easeInOutExpo');               
-                    event.preventDefault();
-                    });         
-            }
-        });
-
-        // Helper function to Fill and Center the HTML5 Video
-        jQuery('video,object').maximage('maxcover');
-        
-        
-        
-        
-
-        // To show it is dynamic html text
-        
-    });
 
 
     
@@ -168,19 +89,7 @@ Drop Down Menu Fade Effect
     }); 
 
 
-/*----------------------------------------------------*/
-/*  Animated Progress Bars
-/*----------------------------------------------------*/
 
-    jQuery('.skills li').each(function () {
-        jQuery(this).fappear(function() {
-          jQuery(this).animate({opacity:1,left:"0px"},800);
-          var broad = jQuery(this).find(".progress-bar").attr("data-width");
-          jQuery(this).find(".progress-bar").animate({
-            width: broad + "%"
-          }, 1300, "easeOutCirc");
-        }); 
-    });   
 
 
 /*----------------------------------------------------*/
@@ -221,41 +130,6 @@ Drop Down Menu Fade Effect
 
 
 
-/*----------------------------------------------------*/
-/*  Accordion Section
-/*----------------------------------------------------*/
-
-    jQuery('.accordionMod').each(function (index) {
-        var thisBox = jQuery(this).children(),
-            thisMainIndex = index + 1;
-        jQuery(this).attr('id', 'accordion' + thisMainIndex);
-        thisBox.each(function (i) {
-            var thisIndex = i + 1,
-                thisParentIndex = thisMainIndex,
-                thisMain = jQuery(this).parent().attr('id'),
-                thisTriggers = jQuery(this).find('.accordion-toggle'),
-                thisBoxes = jQuery(this).find('.accordion-inner');
-            jQuery(this).addClass('panel');
-            thisBoxes.wrap('<div id=\"collapseBox' + thisParentIndex + '_' + thisIndex + '\" class=\"panel-collapse collapse\" />');
-            thisTriggers.wrap('<div class=\"panel-heading\" />');
-            thisTriggers.attr('data-toggle', 'collapse').attr('data-parent', '#' + thisMain).attr('data-target', '#collapseBox' + thisParentIndex + '_' + thisIndex);
-        });
-        jQuery('.accordion-toggle').prepend('<span class=\"icon\" />');
-        jQuery("div.accordion-item:first-child .accordion-toggle").addClass("current");
-        jQuery("div.accordion-item:first-child .icon").addClass("iconActive");
-        jQuery("div.accordion-item:first-child .panel-collapse").addClass("in");
-        jQuery('.accordionMod .accordion-toggle').click(function () {
-            if (jQuery(this).parent().parent().find('.panel-collapse').is('.in')) {
-                jQuery(this).removeClass('current');
-                jQuery(this).find('.icon').removeClass('iconActive');
-            } else {
-                jQuery(this).addClass('current');
-                jQuery(this).find('.icon').addClass('iconActive');
-            }
-            jQuery(this).parent().parent().siblings().find('.accordion-toggle').removeClass('current');
-            jQuery(this).parent().parent().siblings().find('.accordion-toggle > .icon').removeClass('iconActive');
-        });
-    });
 
 
 /*----------------------------------------------------*/
@@ -280,109 +154,8 @@ Drop Down Menu Fade Effect
     });
 
 
-
-
-
-/*===============================================*/
-/*  Video Script
-/*===============================================*/
-
-    jQuery(function(){
-        jQuery(".player").mb_YTPlayer();
-    }); 
-
-
-/*----------------------------------------------------*/
-/*  Carousel Section
-/*----------------------------------------------------*/
-
-    
-    jQuery('.testimonials-carousel').carousel({interval: false, wrap: false});   
-    
-    jQuery('.testimonials-carousel-widget').carousel({interval: 5000, pause: "hover"});
-
 });
 
-
-
-
-/*----------------------------------------------------*/
-/*  Portfolio Isotope
-/*----------------------------------------------------*/
-
-  jQuery(document).ready(function(){     
-
-    var container = jQuery('#portfolio-wrap'); 
-    var winWidth = jQuery(window).width();  
-    
-    container.isotope({
-        animationEngine : 'best-available',
-        animationOptions: {
-            duration: 200,
-            queue: false
-        },
-        layoutMode: 'fitRows'
-    });
-
-    //Initialize the column
-    setProjects(); 
-
-
-    jQuery('#filters a').click(function(){
-        jQuery('#filters a').removeClass('active');
-        jQuery(this).addClass('active');
-        var selector = jQuery(this).attr('data-filter');
-        container.isotope({ filter: selector });
-        setProjects();      
-        return false;
-    });
-        
-        
-        function splitColumns() { 
-            var winWidth = jQuery(window).width(), 
-                columnNumb = 1;
-            
-            
-            if (winWidth > 1024) {
-                columnNumb = 4;
-            } else if (winWidth > 900) {
-                columnNumb = 2;
-            } else if (winWidth > 479) {
-                columnNumb = 2;
-            } else if (winWidth < 479) {
-                columnNumb = 1;
-            }
-            
-            return columnNumb;
-        }       
-        
-        function setColumns() { 
-            var winWidth = jQuery(window).width(), 
-                columnNumb = splitColumns(), 
-                postWidth = Math.floor(winWidth / columnNumb);
-            
-            container.find('.portfolio-item').each(function () { 
-                jQuery(this).css( { 
-                    width : postWidth + 'px' 
-                });
-            });
-        }       
-        
-        function setProjects() { 
-            setColumns();
-            container.isotope('reLayout');
-        }       
-        
-        container.imagesLoaded(function () { 
-            setColumns();
-        });
-        
-    
-        jQuery(window).bind('resize', function () { 
-            setProjects();          
-        });
-
-});
 
 
 
@@ -438,58 +211,3 @@ jQuery(document).ready(function(){
 
     
 });  
-
-/*----------------------------------------------------*/
-/*  Contact Form Section
-/*----------------------------------------------------*/
-    $("#contact").submit(function (e) {
-        e.preventDefault();
-        var name = $("#name").val();
-        var email = $("#email").val();
-        var subject = $("#subject").val();
-        var text = $("#text").val();
-        var dataString = 'name=' + name + '&email=' + email + '&subject=' + subject + '&text=' + text;
-        
-
-        function isValidEmail(emailAddress) {
-            var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
-            return pattern.test(emailAddress);
-        };
-
-        if (isValidEmail(email) && (text.length > 100) && (name.length > 1)) {
-            $.ajax({
-                type: "POST",
-                url: "ajax/process.php",
-                data: dataString,
-                success: function () {
-                    $('.success').fadeIn(1000).delay(3000).fadeOut(1000);
-                    $('#contact')[0].reset();
-                }
-            });
-        } else {
-            $('.error').fadeIn(1000).delay(5000).fadeOut(1000);
-
-        }
-
-        return false;
-    });
-
-
-
- /* ==============================================
-Firefox anchor fix
-=============================================== */
-    $(document).ready(function(){
-        if ( $.browser.mozilla ) {
-        var h = window.location.hash;
-        if (h) {
-            var headerH = $('#navigation').outerHeight();
-            $('html, body').stop().animate({
-                scrollTop : $(h).offset().top - headerH + "px"
-            }, 1200, 'easeInOutExpo');
-
-                event.preventDefault();
-        }
-
-    }
-    });
