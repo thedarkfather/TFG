@@ -1,0 +1,20 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-7 col-xs-12 col-lg-offset-3"
+			style="margin-top: 20px;">
+			<div class="list-group" >
+				<a ng-repeat="team in teams"
+					class="list-group-item">
+							<img ng-src=""
+								class="img-responsive pull-left"
+								style="width: 30px; height: 30px; margin-right:5px;">
+							<b >{{team.name}}</b>
+							<span class="pull-right">
+								<span class="text-muted">{{team.league}}</span>
+								<button class="btn-xs btn-2" style="margin-left:5px;"> Follow </button>
+							</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

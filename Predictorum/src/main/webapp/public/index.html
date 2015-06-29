@@ -55,7 +55,7 @@
       <![endif]-->
 </head>
 <body ng-app="predictorum" ng-controller="indexController"
-	data-spy="scroll" data-target="#navigation" data-offset="75" >
+	data-spy="scroll" data-target="#navigation" data-offset="75">
 	<!-- Page Preloader -->
 	<div class="page-mask">
 		<div class="page-loader">
@@ -79,25 +79,31 @@
 						<!-- Top Logo -->
 						<div class="top-logo">
 							<div class="scrollNormal">
-								<a href="#welcome"> <img width="140" height="140"
-									alt="Predictorum" src="static/img/logo_welcome.png">
+								<a href="#welcome" scroll-to="welcome"> <img width="140"
+									height="140" alt="Predictorum"
+									src="static/img/logo_welcome.png">
 								</a>
 							</div>
 							<div class="scrollDown">
-								<a href="#welcome"> <img width="140" height="140"
-									alt="Predictorum" src="static/img/logo2_welcome.png">
+								<a href="#" scroll-to="welcome"> <img width="140"
+									height="140" alt="Predictorum"
+									src="static/img/logo2_welcome.png">
 								</a>
 							</div>
 						</div>
 						<!-- /Top Logo -->
 						<ul class="text-slide">
-							<li><span class="text-color">  {{"HEADLINE3.WORD1" | translate}}</span> {{"HEADLINE3.WORD2" | translate}}</li>
-							<li ><span class="text-color"> {{"HEADLINE1.WORD1" | translate}}</span> {{"HEADLINE1.WORD2" | translate}}</li>
-							<li><span class="text-color">  {{"HEADLINE2.WORD1" | translate}}</span> {{"HEADLINE2.WORD2" | translate}}</li>
+							<li><span class="text-color" translate>HL3.WORD1</span> <span
+								translate>HL3.WORD2</span></li>
+							<li><span class="text-color" translate>HL2.WORD1</span> <span
+								translate>HL2.WORD2</span></li>
+							<li><span class="text-color" translate>HL1.WORD1</span> <span
+								translate>HL1.WORD2</span></li>
 						</ul>
-						<a href="#aboutUs" class="btn btn-1 img-btn"
-							style="margin-right: 5px;" translate>LEARN_MORE</a> <a
-							href="#welcome" class="btn btn-1 img-btn" translate>SIGN_IN</a>
+						<a href="#" scroll-to="aboutUs" class="btn btn-1 img-btn"
+							style="margin-right: 5px;"><span translate>LEARN_MORE</span></a>
+						<a href="#" class="btn btn-1 img-btn" scroll-to="welcome"><span
+							translate>SIGN_IN</span></a>
 					</div>
 				</div>
 			</div>
@@ -114,7 +120,7 @@
 							<div class="col-md-2 mob-logo">
 								<div class="row">
 									<div class="site-logo">
-										<a href="/"><img src="static/img/logo.png"
+										<a href="#/"><img src="static/img/logo.png"
 											alt="Predictorum"></a>
 									</div>
 								</div>
@@ -133,15 +139,18 @@
 									<!-- Collect the nav links, forms, and other content for toggling -->
 									<div class="collapse navbar-collapse" id="menu">
 										<ul class="nav navbar-nav navbar-right">
-											<li class="active"><a href="#welcome" translate>HOME</a></li>
-											<li><a href="#aboutUs" translate>ABOUT_US</a></li>
-											<li class="dropdown nav-toggle">
-                                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" translate>LANGUAGE<b class="caret"></b></a>
-                                                                        <ul class="dropdown-menu">
-                                                                              <li><a class="external" ng-click="switchLanguage('es')" translate>SPANISH</a></li>
-                                                                              <li><a class="external" ng-click="switchLanguage('en')" translate>ENGLISH</a></li>
-                                                                        </ul>
-                                                                  </li>
+											<li><a href="#/team/list" translate>TEAMS</a></li>
+											<li ng-show="isWelcome"><a href="#/" scroll-to="aboutUs"><span
+													translate>ABOUT_US</span></a></li>
+											<li class="dropdown nav-toggle"><a href
+												class="dropdown-toggle" data-toggle="dropdown" translate>LANGUAGE<b
+													class="caret"></b></a>
+												<ul class="dropdown-menu">
+													<li><a class="external"
+														ng-click="switchLanguage('es')" translate>SPANISH</a></li>
+													<li><a class="external"
+														ng-click="switchLanguage('en')" translate>ENGLISH</a></li>
+												</ul></li>
 										</ul>
 									</div>
 									<!-- /.Navbar-collapse -->
@@ -158,7 +167,7 @@
 
 
 		<div id="app">
-			<div ng-view>
+			<div ng-view class="animated pulse">
 				<!-- We inject views here -->
 			</div>
 		</div>
@@ -168,7 +177,7 @@
 				<div class="subscription-wrap light">
 					<div class="texture-layer">
 						<div class="container">
-							<div class="row">
+							<div class="row" ng-show="login.result=='' || login.result=='ERROR'">
 								<!-- Sign In -->
 								<div class="col-md-6">
 									<!--Sign In Title row -->
@@ -183,15 +192,19 @@
 									<div class="row text-center" style="height: 300px;">
 										<div class="col-md-2"></div>
 										<div class="col-md-8">
-											<form method="post" action="#" id="signup">
+											<form id="signup">
 												<fieldset>
-													<input data-ng-model="login.user" class="form-control wow fadeInLeft" type="text"
+													<input data-ng-model="login.user"
+														class="form-control wow fadeInLeft" type="text"
 														placeholder="Username" style="margin-bottom: 5%;">
-													<input data-ng-model="login.password" class="form-control wow fadeInLeft" type="password"
+													<input data-ng-model="login.password"
+														class="form-control wow fadeInLeft" type="password"
 														placeholder="Password" style="margin: auto;">
-													<p ng-if="result=='ERROR'" class="error"> Invalid credentials </p>
+													<p ng-if="login.result=='ERROR'" class="error" translate>
+														INVALID_CREDENTIALS</p>
 													<div class="clearfix"></div>
-													<a ng-click="goLogin()" class="btn btn-1 wow fadeInRight" translate>SIGN_IN</a>
+													<button type="submit" ng-click="goLogin()"
+														class="btn btn-1 wow fadeInRight" translate>SIGN_IN</button>
 												</fieldset>
 											</form>
 										</div>
@@ -215,7 +228,7 @@
 									<div class="row text-center">
 										<div class="col-md-2"></div>
 										<div class="col-md-8">
-											<form method="post" action="#" id="signup">
+											<form id="signup">
 												<fieldset>
 													<input class="form-control wow fadeInLeft" type="text"
 														placeholder="Username" style="margin-bottom: 5%;">
@@ -224,7 +237,8 @@
 														class="form-control wow fadeInLeft" type="password"
 														placeholder="Repeat Password">
 													<div class="clearfix"></div>
-													<a class="btn btn-1 wow fadeInRight" translate>SIGN_UP</a>
+													<button type="submit" class="btn btn-1 wow fadeInRight"
+														translate>SIGN_UP</button>
 												</fieldset>
 											</form>
 										</div>
@@ -235,6 +249,167 @@
 								</div>
 								<!-- Sign up -->
 							</div>
+
+							<!--  SVG MENU -->
+							<svg ng-show="login.result=='OK'" xmlns="http://www.w3.org/2000/svg"
+								xmlns:xlink="http://www.w3.org/1999/xlink"
+								viewBox="-2 -2 504 300" id="svg-menu">
+								
+			                    <style>
+									svg {
+										font-family: "Open Sans", Helvetica, Arial, sans-serif;
+										font-size: 14px;
+										line-height: 24px;
+										height:60%;
+										width:80%;
+										}
+			
+									#svg-menu {
+										display: block;
+										margin: 0 auto;
+										overflow: visible;
+									}
+			
+									a {
+										cursor: pointer;
+										/* SVG &lt;a&gt; elements don't get this by default, so you need to explicitly set it */
+										outline: none;
+									}
+									
+									/* You can change these default styles any way you want */
+									.item {
+										visibility: hidden;
+									}
+									.item .sector {
+										transition: all .1s linear;
+										fill: #none;
+									}
+									
+									.item:hover .sector, .item:focus .sector {
+										fill: #59ab02;
+									}
+									
+									.menu-trigger {
+										stroke: #fff;
+										fill: none;
+										pointer-events: auto;
+										/* KEEP THIS to make sure it stays clickable even when SVG's pointer events is disabled */
+									}
+									
+									.menu-trigger:hover, .menu-trigger:focus {
+										cursor: pointer;
+									}
+									
+									symbol {
+										overflow: visible;
+										/* KEEP THIS so that text will not get cut off it it is wider than the icon width */
+									}
+									</style>
+			                    <g id="symbolsContainer">    
+									
+									<symbol class="icon icon-profile" id="icon-1" viewBox="0 0 1024 1024">
+										<path fill="#fff" d="M576 706.612v-52.78c70.498-39.728 128-138.772 128-237.832 0-159.058 0-288-192-288s-192 128.942-192 288c0 99.060 57.502 198.104 128 237.832v52.78c-217.102 17.748-384 124.42-384 253.388h896c0-128.968-166.898-235.64-384-253.388z"></path>
+									</symbol>
+			
+								    <symbol class="icon icon-shield" id="icon-2" viewBox="0 0 1024 1024">
+										<title>shield2</title>
+										<path fill="#fff" d="M960 0l-448 128-448-128c0 0-4.5 51.698 0 128l448 140.090 448-140.090c4.498-76.302 0-128 0-128zM72.19 195.106c23.986 250.696 113.49 672.234 439.81 828.894 326.32-156.66 415.824-578.198 439.81-828.894l-439.81 165.358-439.81-165.358z"></path>
+									</symbol>
+			
+								    <symbol class="icon icon-" id="icon-3" viewBox="0 0 41 41">
+									<!--Replace the contents of this symbol with the content of your icon-->
+									<text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle"
+																	font-size="1.2em">Menú3</text>
+									</symbol>
+			
+								    <symbol class="icon icon-" id="icon-4" viewBox="0 0 41 41">
+									<!--Replace the contents of this symbol with the content of your icon-->
+									<text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle"
+																	font-size="1.2em">Menú4</text>
+									</symbol>
+								
+								    <symbol class="icon icon-" id="icon-5" viewBox="0 0 41 41">
+									<!--Replace the contents of this symbol with the content of your icon-->
+									<text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle"
+																	font-size="1.2em">Menú5</text>
+									</symbol>
+								
+								    <symbol class="icon icon-" id="icon-6" viewBox="0 0 41 41">
+									<!--Replace the contents of this symbol with the content of your icon-->
+									<text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle"
+																	font-size="1.2em">Menú6</text>
+									</symbol>
+			
+								</g>
+			                    <g id="itemsContainer">        
+			                    	<a class="item"
+												id="item-1" role="link" tabindex="0" xlink:href=" "
+												xlink:title=" " transform="matrix(1,0,0,1,0,0)"
+												data-svg-origin="250 250" style=""><path fill="none"
+													stroke="#fff"
+													d="M405,250 l95,0 A250,250 0 0,0 472.75163104709196,136.5023750651133 l-84.64561979789494,43.12909747525694 A155,155 0 0,1 405,250"
+													class="sector"></path>
+												<use xlink:href="#icon-1" width="41" height="41"
+													x="433.69769287109375" y="180.47647094726562"
+													transform="rotate(76.5 454.19769287109375 200.97647094726562)"></use></a>
+			        				<a class="item" id="item-2" role="link" tabindex="0"
+												xlink:href=" " xlink:title=" "
+												transform="matrix(0.86074,-0.50904,0.50904,0.86074,-92.44586068857876,162.07484718660692)"
+												data-svg-origin="250 250" style=""><path fill="none"
+													stroke="#fff"
+													d="M405,250 l95,0 A250,250 0 0,0 472.75163104709196,136.5023750651133 l-84.64561979789494,43.12909747525694 A155,155 0 0,1 405,250"
+													class="sector"></path>
+												<use xlink:href="#icon-2" width="41" height="41"
+													x="433.69769287109375" y="180.47647094726562"
+													transform="rotate(76.5 454.19769287109375 200.97647094726562)"></use></a>
+			        				<a class="item" id="item-3" role="link" tabindex="0"
+												xlink:href=" " xlink:title=" "
+												transform="matrix(0.48175,-0.8763,0.8763,0.48175,-89.51508853639473,348.6382514855371)"
+												data-svg-origin="250 250" style=""><path fill="none"
+													stroke="#fff"
+													d="M405,250 l95,0 A250,250 0 0,0 472.75163104709196,136.5023750651133 l-84.64561979789494,43.12909747525694 A155,155 0 0,1 405,250"
+													class="sector"></path>
+												<use xlink:href="#icon-3" width="41" height="41"
+													x="433.69769287109375" y="180.47647094726562"
+													transform="rotate(76.5 454.19769287109375 200.97647094726562)"></use></a>
+			        				<a class="item" id="item-4" role="link" tabindex="0"
+												xlink:href=" " xlink:title=" "
+												transform="matrix(-0.03141,-0.9995,0.9995,-0.03141,7.97604967809923,507.72932986096504)"
+												data-svg-origin="250 250" style=""><path fill="none"
+													stroke="#fff"
+													d="M405,250 l95,0 A250,250 0 0,0 472.75163104709196,136.5023750651133 l-84.64561979789494,43.12909747525694 A155,155 0 0,1 405,250"
+													class="sector"></path>
+												<use xlink:href="#icon-4" width="41" height="41"
+													x="433.69769287109375" y="180.47647094726562"
+													transform="rotate(76.5 454.19769287109375 200.97647094726562)"></use></a>
+			       					<a class="item" id="item-5" role="link" tabindex="0"
+												xlink:href=" " xlink:title=" "
+												transform="matrix(-0.53582,-0.84432,0.84432,-0.53582,172.8747173692455,595.0386801202529)"
+												data-svg-origin="250 250" style=""><path fill="none"
+													stroke="#fff"
+													d="M405,250 l95,0 A250,250 0 0,0 472.75163104709196,136.5023750651133 l-84.64561979789494,43.12909747525694 A155,155 0 0,1 405,250"
+													class="sector"></path>
+												<use xlink:href="#icon-5" width="41" height="41"
+													x="433.69769287109375" y="180.47647094726562"
+													transform="rotate(76.5 454.19769287109375 200.97647094726562)"></use></a>
+			        				<a class="item" id="item-6" role="link" tabindex="0"
+												xlink:href=" " xlink:title=" "
+												transform="matrix(-0.891,-0.45399,0.45399,-0.891,359.2540061122052,586.2492559819786)"
+												data-svg-origin="250 250" style=""><path fill="none"
+													stroke="#fff"
+													d="M405,250 l95,0 A250,250 0 0,0 472.75163104709196,136.5023750651133 l-84.64561979789494,43.12909747525694 A155,155 0 0,1 405,250"
+													class="sector"></path>
+												<use xlink:href="#icon-6" width="41" height="41"
+													x="433.69769287109375" y="180.47647094726562"
+													transform="rotate(76.5 454.19769287109375 200.97647094726562)"></use></a>
+								</g>
+			                    <g id="trigger" class="trigger menu-trigger"
+												role="button" ng-click="toggleMenu()">
+			                        <circle cx="250" cy="250" r="40"></circle>
+									<text id="label" text-anchor="middle" x="250" y="262" fill="#fff" font-size="3em">-</text>
+			                    </g>
+                			</svg>
+							<!-- /SVG MENU -->
 						</div>
 					</div>
 				</div>
@@ -478,74 +653,72 @@
 			</section>
 			<!-- /Section 2 -->
 
-		<footer class="footer-wrap text-center">
-			<div class="container">
-				<ul class="social social-icons-footer-bottom wow fadeInDown">
-					<li class="facebook"><a href="#" data-toggle="tooltip"
-						title="Facebook"><i class="fa fa-facebook"></i></a></li>
-					<li class="twitter"><a href="#" data-toggle="tooltip"
-						title="Twitter"><i class="fa fa-twitter"></i></a></li>
-					<li class="dribbble"><a href="#" data-toggle="tooltip"
-						title="Dribble"><i class="fa fa-dribbble"></i></a></li>
-					<li class="linkedin"><a href="#" data-toggle="tooltip"
-						title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-					<li class="rss"><a href="#" data-toggle="tooltip" title="Rss"><i
-							class="fa fa-rss"></i></a></li>
-				</ul>
+			<footer class="footer-wrap text-center">
+				<div class="container">
+					<ul class="social social-icons-footer-bottom wow fadeInDown">
+						<li class="facebook"><a href="#" data-toggle="tooltip"
+							title="Facebook"><i class="fa fa-facebook"></i></a></li>
+						<li class="twitter"><a href="#" data-toggle="tooltip"
+							title="Twitter"><i class="fa fa-twitter"></i></a></li>
+						<li class="dribbble"><a href="#" data-toggle="tooltip"
+							title="Dribble"><i class="fa fa-dribbble"></i></a></li>
+						<li class="linkedin"><a href="#" data-toggle="tooltip"
+							title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+						<li class="rss"><a href="#" data-toggle="tooltip" title="Rss"><i
+								class="fa fa-rss"></i></a></li>
+					</ul>
 
-				<p class="site-info wow fadeInUp">© 2015 Predictorum</p>
-			</div>
-		</footer>
+					<p class="site-info wow fadeInUp">© 2015 Predictorum</p>
+				</div>
+			</footer>
 
-		<!-- Scroll To Top -->
-		<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
-	</div>
-	<!-- /Wrapper -->
+			<!-- Scroll To Top -->
+			<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
+		</div>
+		<!-- /Wrapper -->
 
 
-	<!-- The Scripts -->
-	<script src="static/js/jquery.min-1.9.1.js"></script>
-	<script src="static/js/jquery-migrate-1.0.0.js"></script>
-	<script src="static/js/jquery-ui.js"></script>
-	<script src="static/js/bootstrap.min.js"></script>
-	<script src="static/js/jquery.parallax.js"></script>
-	<script src="static/js/jquery.hparallax.js"></script>
-	<script src="static/js/jquery.wait.js"></script>
-	<script src="static/js/appear.js"></script>
-	<script src="static/js/fappear.js"></script>
-	<script src="static/js/modernizr-2.6.2.min.js"></script>
-	<script src="static/js/jquery.bxslider.min.js"></script>
-	<script src="static/js/jquery.maximage.js"></script>
-	<script src="static/js/jquery.cycle.all.js"></script>
-	<script src="static/js/jquery.prettyPhoto.js"></script>
-	<script src="static/js/jquery.sticky.js"></script>
-	<script src="static/js/jquery.isotope.js"></script>
-	<script src="static/js/imagesloaded.pkgd.min.js"></script>
-	<script src="static/js/jquery.countTo.js"></script>
-	<script src="static/js/skrollr.min.js"></script>
-	<script src="static/js/jquery.scrollTo.min.js"></script>
-	<script src="static/js/wow.js"></script>
-	<script src="static/js/jquery.nav.js"></script>
-	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-	<script src="static/js/jquery.gmap.min.js"></script>
-	<script src="static/js/jquery.mb.YTPlayer.js"></script>
-	<script src="static/js/tytabs.js"></script>
-	<script src="static/js/custom.js"></script>
+		<!-- The Scripts -->
+		<script src="static/js/jquery.min-1.9.1.js"></script>
+		<script src="static/js/jquery-ui.js"></script>
+		<script src="static/js/bootstrap.min.js"></script>
+		<script src="static/js/jquery.parallax.js"></script>
+		<script src="static/js/jquery.hparallax.js"></script>
+		<script src="static/js/jquery.wait.js"></script>
+		<script src="static/js/appear.js"></script>
+		<script src="static/js/fappear.js"></script>
+		<script src="static/js/modernizr-2.6.2.min.js"></script>
+		<script src="static/js/jquery.bxslider.min.js"></script>
+		<script src="static/js/jquery.maximage.js"></script>
+		<script src="static/js/jquery.cycle.all.js"></script>
+		<script src="static/js/jquery.prettyPhoto.js"></script>
+		<script src="static/js/jquery.sticky.js"></script>
+		<script src="static/js/jquery.isotope.js"></script>
+		<script src="static/js/imagesloaded.pkgd.min.js"></script>
+		<script src="static/js/jquery.countTo.js"></script>
+		<script src="static/js/skrollr.min.js"></script>
+		<script src="static/js/jquery.scrollTo.min.js"></script>
+		<script src="static/js/wow.js"></script>
+		<script src="static/js/jquery.nav.js"></script>
+		<script src="static/js/tytabs.js"></script>
+		<script src="static/js/TweenMax.min.js"></script>
+		<script src="static/js/custom.js"></script>
 
-	<!-- Angular scripts -->
+		<!-- Angular scripts -->
 
-	<script src="static/js/angular.min.js"></script>
-	<script src="static/js/angular-route.min.js"></script>
-	<script src="static/js/angular-cookies.min.js"></script>
-	<script src="static/js/angular-translate.min.js"></script>
-	<script src="static/js/angular-translate-storage-cookie.min.js"></script>
-	<script src="static/js/angular-translate-storage-local.min.js"></script>
-	<script src="static/js/angular-translate-loader-static-files.min.js"></script>
+		<script src="static/js/angular.min.js"></script>
+		<script src="static/js/angular-route.min.js"></script>
+		<script src="static/js/angular-cookies.min.js"></script>
+		<script src="static/js/angular-translate.min.js"></script>
+		<script src="static/js/angular-translate-storage-cookie.min.js"></script>
+		<script src="static/js/angular-translate-loader-static-files.min.js"></script>
+		<script src="static/js/angular-animate.min.js"></script>
+		<script src="static/js/angular-smooth-scroll.js"></script>
 
-	<!-- ANGULAR MODULES -->
-	
-	<script src="app.js"></script>
-	<script src="session/sessionService.js"></script>
+		<!-- ANGULAR MODULES -->
 
+		<script src="app.js"></script>
+		<script src="session/sessionService.js"></script>
+		<script src="team/teamController.js"></script>
 </body>
 </html>

@@ -1,14 +1,20 @@
 /**
  * 
  */
-var actorService = angular.module('predictorum.sessionService', []);
+var sessionService = angular.module('predictorum.sessionService', []);
 
 
-actorService
+sessionService
 .factory('sessionService', function($http) {
 	
+	var sessionService = {};
+	
+	sessionService.principal = {name: ''}
+	
+	sessionService.getPrincipal = function() { return sessionService.principal };
+	
 
-	var login = function(username,password) {
+	sessionService.login = function(username,password) {
 		var req = {
 			method : 'POST',
 			url : 'http://localhost:8080/Predictorum/j_spring_security_check',
@@ -22,11 +28,18 @@ actorService
 			withCredentials : false,
 		}
 		
-		return $http(req);
+		result = $http(req).success(function(data) {
+			if (data!=="") {
+				sessionService.loginResult = "ERROR";
+			} else {
+				sessionService.loginResult= "OK";
+			}
+		});	
+		
+		return result;
 	}
 	
-	return {
-		login : login
-	}
+	
+	return sessionService;
 	
 } );

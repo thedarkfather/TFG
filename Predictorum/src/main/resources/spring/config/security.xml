@@ -108,7 +108,7 @@
 		<!-- Aquí terminan los intercepts -->
 
 		<sec:form-login authentication-success-handler-ref="mySuccessHandler"
-			authentication-failure-url="/?loginFailure=true" />
+			authentication-failure-url="/#/?loginFailure=true" />
 		<sec:access-denied-handler ref="myAuthenticationAccessDeniedHandler" />
 		<http-basic />
 		<logout logout-url="/logout" />

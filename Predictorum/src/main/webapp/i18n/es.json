@@ -7,16 +7,18 @@
 "LANGUAGE":					"IDIOMA",
 "SPANISH":					"ESPAÑOL",
 "ENGLISH":					"INGLÉS",
-"ABOUT_PARAGRAPH":			"¡Unimos una funcionalidad robusta con una gran facilidad de uso para que puedas satisfacer tus dudas futboleras lo antes posible!",	
-"HEADLINE1": {
+"ABOUT_PARAGRAPH":			"We match robust functionality with ease of use so you can satisfy your soccer concerns ASAP!",
+"TEAMS":					"Equipos",
+"INVALID_CREDENTIALS":		"Usuario o contraseña erróneos",		
+"HL1": {
 		"WORD1":			"TODO",
 		"WORD2":			" GRATUITO"
 		},
-"HEADLINE2": {
+"HL2": {
 		"WORD1":			"JUEGA",
 		"WORD2":			" CON AMIGOS"
 		},
-"HEADLINE3": {
+"HL3": {
 		"WORD1":			"PREDICCIONES",
 		"WORD2":			" PRECISAS"
 		}		
