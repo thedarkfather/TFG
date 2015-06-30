@@ -29,10 +29,11 @@ public class Prediction extends DomainEntity{
 	private Double pHomeGoals;
 	private Integer awayGoals;
 	private Double pAwayGoals;
-	private Integer halfHomeGoals;
-	private Double pHalfHomeGoals;
-	private Integer halfAwayGoals;
-	private Double pHalfAwayGoals;
+	//POR AHORA NO SE PONDRÁN LOS GOLES A MITAD DE TIEMPO
+	//private Integer halfHomeGoals;
+	//private Double pHalfHomeGoals;
+	//private Integer halfAwayGoals;
+	//private Double pHalfAwayGoals;
 	private Boolean moreThan25;
 	private Double pMoreThan25;
 	
@@ -152,45 +153,45 @@ public class Prediction extends DomainEntity{
 		this.pAwayGoals = pAwayGoals;
 	}
 	
-	@Range(min=0)
-	@NotNull
-	public Integer getHalfHomeGoals() {
-		return halfHomeGoals;
-	}
-	
-	public void setHalfHomeGoals(Integer halfHomeGoals) {
-		this.halfHomeGoals = halfHomeGoals;
-	}
-	
-	@Range(min=0,max=1)
-	@NotNull
-	public Double getpHalfHomeGoals() {
-		return pHalfHomeGoals;
-	}
-	
-	public void setpHalfHomeGoals(Double pHalfHomeGoals) {
-		this.pHalfHomeGoals = pHalfHomeGoals;
-	}
-	
-	@Range(min=0)
-	@NotNull
-	public Integer getHalfAwayGoals() {
-		return halfAwayGoals;
-	}
-	
-	public void setHalfAwayGoals(Integer halfAwayGoals) {
-		this.halfAwayGoals = halfAwayGoals;
-	}
-	
-	@Range(min=0,max=1)
-	@NotNull
-	public Double getpHalfAwayGoals() {
-		return pHalfAwayGoals;
-	}
-	
-	public void setpHalfAwayGoals(Double pHalfAwayGoals) {
-		this.pHalfAwayGoals = pHalfAwayGoals;
-	}
+//	@Range(min=0)
+//	@NotNull
+//	public Integer getHalfHomeGoals() {
+//		return halfHomeGoals;
+//	}
+//	
+//	public void setHalfHomeGoals(Integer halfHomeGoals) {
+//		this.halfHomeGoals = halfHomeGoals;
+//	}
+//	
+//	@Range(min=0,max=1)
+//	@NotNull
+//	public Double getpHalfHomeGoals() {
+//		return pHalfHomeGoals;
+//	}
+//	
+//	public void setpHalfHomeGoals(Double pHalfHomeGoals) {
+//		this.pHalfHomeGoals = pHalfHomeGoals;
+//	}
+//	
+//	@Range(min=0)
+//	@NotNull
+//	public Integer getHalfAwayGoals() {
+//		return halfAwayGoals;
+//	}
+//	
+//	public void setHalfAwayGoals(Integer halfAwayGoals) {
+//		this.halfAwayGoals = halfAwayGoals;
+//	}
+//	
+//	@Range(min=0,max=1)
+//	@NotNull
+//	public Double getpHalfAwayGoals() {
+//		return pHalfAwayGoals;
+//	}
+//	
+//	public void setpHalfAwayGoals(Double pHalfAwayGoals) {
+//		this.pHalfAwayGoals = pHalfAwayGoals;
+//	}
 	
 	@NotNull
 	public Boolean getMoreThan25() {
