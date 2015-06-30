@@ -88,8 +88,10 @@ public class UpdateService {
 	
 	@Autowired
 	private ResultService resultService;
+	
+	@Autowired
+	private TeamStatisticsService teamStatisticsService;
 
-	// @Scheduled(cron = "0 0 2 * * *")
 	//@Scheduled(cron = "*/120 * * * * ?")
 	public void inicializaCalendario() throws IOException {
 		/*
@@ -179,7 +181,7 @@ public class UpdateService {
 			}
 
 			//Primero cojo la temporada
-			Season season = seasonService.findByLeagueId(league.getId());
+			Season season = seasonService.findRealByLeagueId(league.getId());
 			
 
 			/*
@@ -217,24 +219,13 @@ public class UpdateService {
 				Round round = roundService.findNoUpdatedBySeasonIdAndRoundNumber(season.getId(),roundNumber);
 				//Si existe esta ronda, tengo que actualizar los partidos
 				if(round!=null){
-					// Añado partidos a las jornadas
+					//Actualizo los resultados de los diferentes partidos de las jornadas
 					Element jornadaAux = elementJornada.getElementsByTag(tagTbody).get(0);
 					Elements elementPartidos = jornadaAux.getElementsByTag(tagTr);
 					for (Element elementPartido : elementPartidos) {
-						String equipoLocal = elementPartido.getElementsByClass(classLocal).text();
-						String equipoVisitante = elementPartido.getElementsByClass(classVisitante).text();
-						Game game = gameService.findByRoundIdAndLocalTeamAndAwayTeam(round.getId(),equipoLocal,equipoVisitante);
-						Assert.notNull(game);
-						
-						//actualizo el resultado para ese game
-						String cadenaResultado = elementPartido.getElementsByClass(classResultado).text();
-						List<Integer> goals = Parser.result(cadenaResultado);
-						Result result = new Result();
-						result.setGame(game);
-						result.setHomeGoals(goals.get(0));
-						result.setAwayGoals(goals.get(1));						
-						resultService.save(result);
-						
+						Game game = findGame(elementPartido, round);
+						Result result = saveResult(elementPartido, game);
+						teamStatisticsService.update(result);						
 					}
 					round.setUpdated(true);
 					roundService.saveEasy(round);	
@@ -242,6 +233,7 @@ public class UpdateService {
 				}
 
 			}
+			teamStatisticsService.updateLeaguePosition(season);
 
 		} catch (IOException e) {
 			LOG.info("No se pudo actualizar las jornadas para la liga: "+ season.getLeague().getName());
@@ -268,30 +260,20 @@ public class UpdateService {
 				Round round = roundService.findNoUpdatedBySeasonIdAndRoundNumber(season.getId(),roundNumber);
 				//Si existe esta ronda, tengo que actualizar los partidos
 				if(round!=null){
-					// Añado partidos a las jornadas
+					//Actualizo los resultados de los diferentes partidos de las jornadas
 					Element jornadaAux = elementJornada.getElementsByTag(tagTbody).get(0);
 					Elements elementPartidos = jornadaAux.getElementsByTag(tagTr);
 					for (Element elementPartido : elementPartidos) {
-
-						String equipoLocal = elementPartido.getElementsByClass(classLocal).text();
-						String equipoVisitante = elementPartido.getElementsByClass(classVisitante).text();
-						Game game = gameService.findByRoundIdAndLocalTeamAndAwayTeam(round.getId(),equipoLocal,equipoVisitante);
-						Assert.notNull(game);
-								
-						//actualizo el resultado para ese game
-						String cadenaResultado = elementPartido.getElementsByClass(classResultado).text();
-						List<Integer> goals = Parser.result(cadenaResultado);
-						Result result = new Result();
-						result.setGame(game);
-						result.setHomeGoals(goals.get(0));
-						result.setAwayGoals(goals.get(1));						
-						resultService.save(result);						
+						Game game = findGame(elementPartido, round);
+						Result result = saveResult(elementPartido, game);	
+						teamStatisticsService.update(result);
 					}
 					round.setUpdated(true);
 					roundService.saveEasy(round);					
 				}
 
 			}
+			teamStatisticsService.updateLeaguePosition(season);
 
 		} catch (IOException e) {
 			LOG.info("No se pudo actualizar las jornadas para la liga: "+ season.getLeague().getName());
@@ -316,34 +298,43 @@ public class UpdateService {
 				Round round = roundService.findNoUpdatedBySeasonIdAndRoundNumber(season.getId(),roundNumber);
 				//Si existe esta ronda, tengo que actualizar los partidos
 				if(round!=null){
-					// Añado partidos a las jornadas
+					//Actualizo los resultados de los diferentes partidos de las jornadas
 					Elements elementPartidos = elementJornada.getElementsByTag(tagH3);
 					for (Element elementPartido : elementPartidos) {
-
-						String equipoLocal = elementPartido.getElementsByClass(classLocal).text();
-						String equipoVisitante = elementPartido.getElementsByClass(classVisitante).text();
-						Game game = gameService.findByRoundIdAndLocalTeamAndAwayTeam(round.getId(),equipoLocal,equipoVisitante);
-						Assert.notNull(game);
-						
-						//actualizo el resultado para ese game
-						String cadenaResultado = elementPartido.getElementsByClass(classResultado).text();
-						List<Integer> goals = Parser.result(cadenaResultado);
-						Result result = new Result();
-						result.setGame(game);
-						result.setHomeGoals(goals.get(0));
-						result.setAwayGoals(goals.get(1));						
-						resultService.save(result);						
+						Game game = findGame(elementPartido, round);
+						Result result = saveResult(elementPartido, game);	
+						teamStatisticsService.update(result);
 					}
 					round.setUpdated(true);
 					roundService.saveEasy(round);					
 				}
 
 			}
+			teamStatisticsService.updateLeaguePosition(season);
 
 		} catch (IOException e) {
 			LOG.info("No se pudo actualizar las jornadas para la liga: "+ season.getLeague().getName());
 		}		
 		
+	}
+	
+	public Game findGame(Element elementPartido, Round round){
+		String equipoLocal = elementPartido.getElementsByClass(classLocal).text();
+		String equipoVisitante = elementPartido.getElementsByClass(classVisitante).text();
+		Game game = gameService.findByRoundIdAndLocalTeamAndAwayTeam(round.getId(),equipoLocal,equipoVisitante);
+		return game;
+	}
+	
+	public Result saveResult(Element elementPartido, Game game){
+		Assert.notNull(game);		
+		String cadenaResultado = elementPartido.getElementsByClass(classResultado).text();
+		List<Integer> goals = Parser.result(cadenaResultado);
+		Result result = new Result();
+		result.setGame(game);
+		result.setHomeGoals(goals.get(0));
+		result.setAwayGoals(goals.get(1));						
+		result = resultService.save(result);
+		return result;
 	}
 
 	private String createSeasonDateString() {
@@ -410,7 +401,8 @@ public class UpdateService {
 				team.setUsers(users);
 				team.setAwayMatchs(games);
 				team.setHomeMatchs(games);
-				teamService.saveEasy(team);
+				team = teamService.saveEasy(team);
+				teamStatisticsService.createAndSave(team);
 			}
 		} catch (IOException e) {
 			LOG.info("No se pudo actualizar los equipos con la url: "+ urlEquipos);
@@ -443,20 +435,7 @@ public class UpdateService {
 				// Añado partidos a las jornadas
 				Elements elementPartidos = elementJornada.getElementsByTag(tagH3);
 				for (Element elementPartido : elementPartidos) {
-
-					String equipoLocal = elementPartido.getElementsByClass(classLocal).text();
-					String equipoVisitante = elementPartido.getElementsByClass(classVisitante).text();
-					Team localTeam = teamService.findByTeamName(equipoLocal);
-					Team awayTeam = teamService.findByTeamName(equipoVisitante);
-					Assert.notNull(localTeam);
-					Assert.notNull(awayTeam);
-					Game game = new Game();
-					game.setHomeTeam(localTeam);
-					game.setAwayTeam(awayTeam);
-					game.setRound(round);
-					game.setPredictions(new LinkedList<Prediction>());
-					game = gameService.saveEasy(game);
-
+					saveGame(elementPartido, round);
 				}
 
 			}
@@ -497,20 +476,7 @@ public class UpdateService {
 				Element jornadaAux = elementJornada.getElementsByTag(tagTbody).get(0);
 				Elements elementPartidos = jornadaAux.getElementsByTag(tagTr);
 				for (Element elementPartido : elementPartidos) {
-
-					String equipoLocal = elementPartido.getElementsByClass(	classLocal).text();
-					String equipoVisitante = elementPartido.getElementsByClass(classVisitante).text();
-					Team localTeam = teamService.findByTeamName(equipoLocal);
-					Team awayTeam = teamService.findByTeamName(equipoVisitante);
-					Assert.notNull(localTeam);
-					Assert.notNull(awayTeam);
-					Game game = new Game();
-					game.setHomeTeam(localTeam);
-					game.setAwayTeam(awayTeam);
-					game.setRound(round);
-					game.setPredictions(new LinkedList<Prediction>());
-					game = gameService.saveEasy(game);
-
+					saveGame(elementPartido, round);
 				}
 
 			}
@@ -549,20 +515,7 @@ public class UpdateService {
 				Element jornadaAux = elementJornada.getElementsByTag(tagTbody).get(0);
 				Elements elementPartidos = jornadaAux.getElementsByTag(tagTr);
 				for (Element elementPartido : elementPartidos) {
-
-					String equipoLocal = elementPartido.getElementsByClass(classLocal).text();
-					String equipoVisitante = elementPartido.getElementsByClass(classVisitante).text();
-					Team localTeam = teamService.findByTeamName(equipoLocal);
-					Team awayTeam = teamService.findByTeamName(equipoVisitante);
-					Assert.notNull(localTeam);
-					Assert.notNull(awayTeam);
-					Game game = new Game();
-					game.setHomeTeam(localTeam);
-					game.setAwayTeam(awayTeam);
-					game.setRound(round);
-					game.setPredictions(new LinkedList<Prediction>());
-					game = gameService.saveEasy(game);
-
+					saveGame(elementPartido, round);
 				}
 
 			}
@@ -571,6 +524,22 @@ public class UpdateService {
 			LOG.info("No se pudo actualizar las jornadas para la liga: "+ season.getLeague().getName());
 		}
 
+	}
+	
+	public Game saveGame(Element elementPartido, Round round){
+		String equipoLocal = elementPartido.getElementsByClass(classLocal).text();
+		String equipoVisitante = elementPartido.getElementsByClass(classVisitante).text();
+		Team localTeam = teamService.findByTeamName(equipoLocal);
+		Team awayTeam = teamService.findByTeamName(equipoVisitante);
+		Assert.notNull(localTeam);
+		Assert.notNull(awayTeam);
+		Game game = new Game();
+		game.setHomeTeam(localTeam);
+		game.setAwayTeam(awayTeam);
+		game.setRound(round);
+		game.setPredictions(new LinkedList<Prediction>());
+		game = gameService.saveEasy(game);
+		return game;
 	}
 
 }

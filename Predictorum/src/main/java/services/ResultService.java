@@ -13,9 +13,9 @@ public class ResultService {
 	@Autowired
 	private ResultRepository resultRepository;
 	
-	public void save(Result result){
+	public Result save(Result result){
 		Assert.notNull(result);
-		resultRepository.save(result);
+		return resultRepository.save(result);
 	}
 
 }

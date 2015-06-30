@@ -7,29 +7,31 @@ import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class TeamStatistics extends DomainEntity{
 	
-	private String streak;
-	private Integer wonMatchPercentage;
-	private Integer lostMatchPercentage;
-	private Integer drawMatchPercentage;
-	private Integer moreThan25Percentage;
-	private Integer wonHalfMatchPercentage;
-	private Integer lostHalfMatchPercentage;
-	private Integer drawHalfMatchPercentage;
-	private Integer homeWonMatches;
-	private Integer awayWonMatches;
-	private Integer homeGoals;
-	private Integer awayGoals;
+	private String streak; //PUESTO
+	private Integer wonMatchPercentage;//PUESTO
+	private Integer lostMatchPercentage;//PUESTO
+	private Integer drawMatchPercentage;//PUESTO
+	private Integer moreThan25Percentage;//PUESTO
+	private Integer moreThan25; //PUESTO
+	//private Integer wonHalfMatchPercentage;
+	//private Integer lostHalfMatchPercentage;
+	//private Integer drawHalfMatchPercentage;
+	private Integer homeWonMatches; //PUESTO
+	private Integer awayWonMatches; //PUESTO
+	private Integer homeLostMatches; //PUESTO
+	private Integer awayLostMatches; //PUESTO
+	private Integer homeGoals; //PUESTO
+	private Integer awayGoals; //PUESTO
 	private Integer leaguePosition;
-	private Integer points;
+	private Integer points; //PUESTO
+	private Integer totalGames; //PUESTO
 	
-	@NotBlank
 	public String getStreak() {
 		return streak;
 	}
@@ -78,36 +80,48 @@ public class TeamStatistics extends DomainEntity{
 		this.moreThan25Percentage = moreThan25Percentage;
 	}
 	
-	@Range(min=0,max=100)
+	
+	
+//	@Range(min=0,max=100)
+//	@NotNull
+//	public Integer getWonHalfMatchPercentage() {
+//		return wonHalfMatchPercentage;
+//	}
+//	
+//	public void setWonHalfMatchPercentage(Integer wonHalfMatchPercentage) {
+//		this.wonHalfMatchPercentage = wonHalfMatchPercentage;
+//	}
+//	
+//	@Range(min=0,max=100)
+//	@NotNull
+//	public Integer getLostHalfMatchPercentage() {
+//		return lostHalfMatchPercentage;
+//	}
+//	
+//	public void setLostHalfMatchPercentage(Integer lostHalfMatchPercentage) {
+//		this.lostHalfMatchPercentage = lostHalfMatchPercentage;
+//	}
+//	
+//	@Range(min=0,max=100)
+//	@NotNull
+//	public Integer getDrawHalfMatchPercentage() {
+//		return drawHalfMatchPercentage;
+//	}
+//	
+//	public void setDrawHalfMatchPercentage(Integer drawHalfMatchPercentage) {
+//		this.drawHalfMatchPercentage = drawHalfMatchPercentage;
+//	}
+	
+	@Range(min=0)
 	@NotNull
-	public Integer getWonHalfMatchPercentage() {
-		return wonHalfMatchPercentage;
+	public Integer getMoreThan25() {
+		return moreThan25;
 	}
-	
-	public void setWonHalfMatchPercentage(Integer wonHalfMatchPercentage) {
-		this.wonHalfMatchPercentage = wonHalfMatchPercentage;
+
+	public void setMoreThan25(Integer moreThan25) {
+		this.moreThan25 = moreThan25;
 	}
-	
-	@Range(min=0,max=100)
-	@NotNull
-	public Integer getLostHalfMatchPercentage() {
-		return lostHalfMatchPercentage;
-	}
-	
-	public void setLostHalfMatchPercentage(Integer lostHalfMatchPercentage) {
-		this.lostHalfMatchPercentage = lostHalfMatchPercentage;
-	}
-	
-	@Range(min=0,max=100)
-	@NotNull
-	public Integer getDrawHalfMatchPercentage() {
-		return drawHalfMatchPercentage;
-	}
-	
-	public void setDrawHalfMatchPercentage(Integer drawHalfMatchPercentage) {
-		this.drawHalfMatchPercentage = drawHalfMatchPercentage;
-	}
-	
+
 	@Range(min=0)
 	@NotNull
 	public Integer getHomeWonMatches() {
@@ -130,6 +144,26 @@ public class TeamStatistics extends DomainEntity{
 	
 	@Range(min=0)
 	@NotNull
+	public Integer getHomeLostMatches() {
+		return homeLostMatches;
+	}
+
+	public void setHomeLostMatches(Integer homeLostMatches) {
+		this.homeLostMatches = homeLostMatches;
+	}
+
+	@Range(min=0)
+	@NotNull
+	public Integer getAwayLostMatches() {
+		return awayLostMatches;
+	}
+
+	public void setAwayLostMatches(Integer awayLostMatches) {
+		this.awayLostMatches = awayLostMatches;
+	}
+
+	@Range(min=0)
+	@NotNull
 	public Integer getHomeGoals() {
 		return homeGoals;
 	}
@@ -148,7 +182,8 @@ public class TeamStatistics extends DomainEntity{
 		this.awayGoals = awayGoals;
 	}
 	
-	@Range(min=1)
+	//Será 0 si la liga no ha empezado
+	@Range(min=0)
 	@NotNull
 	public Integer getLeaguePosition() {
 		return leaguePosition;
@@ -168,8 +203,17 @@ public class TeamStatistics extends DomainEntity{
 		this.points = points;
 	}
 	
-	//Relaciones
+	@Range(min=0)
+	@NotNull
+	public Integer getTotalGames() {
+		return totalGames;
+	}
+
+	public void setTotalGames(Integer totalGames) {
+		this.totalGames = totalGames;
+	}
 	
+	//Relaciones	
 	private Team team;
 	
 	@Valid

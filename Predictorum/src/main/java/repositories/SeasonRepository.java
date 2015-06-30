@@ -11,8 +11,8 @@ import domain.Season;
 @Repository 
 public interface SeasonRepository extends JpaRepository<Season,Integer> {
 
-	@Query("select s from Season s where s.league.id = ?1")
-	Season findByLeagueId(Integer leagueId);
+	@Query("select s from Season s where s.league.id = ?1 and s.startDate < CURRENT_TIMESTAMP and s.finishDate > CURRENT_TIMESTAMP")
+	Season findRealByLeagueId(Integer leagueId);
 	
 
 }

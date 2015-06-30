@@ -19,9 +19,9 @@ public class SeasonService {
 		return seasonRepository.save(season);
 	}
 
-	public Season findByLeagueId(Integer leagueId) {
+	public Season findRealByLeagueId(Integer leagueId) {
 		Assert.notNull(leagueId);
-		Season season = seasonRepository.findByLeagueId(leagueId);
+		Season season = seasonRepository.findRealByLeagueId(leagueId);
 		return season;
 	}
 
