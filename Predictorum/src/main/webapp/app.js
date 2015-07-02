@@ -5,8 +5,12 @@ var predictorum = angular.module('predictorum', [ 'ngAnimate','ngRoute','ngCooki
 
 // Configuración
 
-predictorum.config(['$routeProvider','$locationProvider','$translateProvider',function($routeProvider, $locationProvider,
-		$translateProvider) {
+predictorum.config(['$routeProvider','$locationProvider','$translateProvider','$httpProvider',function($routeProvider, $locationProvider,
+		$translateProvider,$httpProvider) {
+	
+	//Llamadas de distintos dominios
+	
+	$httpProvider.defaults.useXDomain = true;
 
 	//idiomas
 	  
@@ -16,8 +20,10 @@ predictorum.config(['$routeProvider','$locationProvider','$translateProvider',fu
 	});
 	$translateProvider.preferredLanguage('es');
 	$translateProvider.useCookieStorage();
-	 // Enable escaping of HTML
-	  $translateProvider.useSanitizeValueStrategy('escaped');
+	
+	// Enable escaping of HTML
+	$translateProvider.useSanitizeValueStrategy('escaped');
+	  
 	//rutas
 	
 	$routeProvider

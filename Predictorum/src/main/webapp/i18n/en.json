@@ -10,6 +10,12 @@
 "ABOUT_PARAGRAPH":			"We match robust functionality with ease of use so you can satisfy your soccer concerns ASAP!",
 "TEAMS":					"Teams",
 "INVALID_CREDENTIALS":		"Invalid credentials",	
+"SEARCH":					"Search",
+"SORT":						"Sort by",
+"ALPHABETICAL":				"Alphabetical",
+"POSITION":					"Position",
+"ALL":						"All",
+"EMPTY_LIST":				"Nothing to show! :(",		
 "HL1": {
 		"WORD1":			"FREE",
 		"WORD2":			" FEATURES"

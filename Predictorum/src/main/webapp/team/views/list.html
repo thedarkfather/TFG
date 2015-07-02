@@ -1,18 +1,53 @@
-<div class="container">
+<div class="container" style="margin-top: 50px;">
 	<div class="row">
-		<div class="col-lg-7 col-xs-12 col-lg-offset-3"
-			style="margin-top: 20px;">
-			<div class="list-group" >
-				<a ng-repeat="team in teams"
-					class="list-group-item">
-							<img ng-src=""
-								class="img-responsive pull-left"
-								style="width: 30px; height: 30px; margin-right:5px;">
-							<b >{{team.name}}</b>
-							<span class="pull-right">
-								<span class="text-muted">{{team.league}}</span>
-								<button class="btn-xs btn-2" style="margin-left:5px;"> Follow </button>
-							</span>
+		<div class="col-lg-7 col-xs-12 col-lg-offset-3">
+			<div class="widget tabs">
+				<div id="horizontal-tabs">
+					<ul class="tabs">
+						<li ng-click="tab.current=''"
+							ng-class="{current: tab.current===''}" translate>ALL</li>
+						<li ng-click="tab.current='BBVA'"
+							ng-class="{current: tab.current==='BBVA'}">Liga BBVA</li>
+						<li ng-click="tab.current='Adelante'"
+							ng-class="{current: tab.current==='Adelante'}">Liga Adelante</li>
+						<li ng-click="tab.current='Calcio'"
+							ng-class="{current: tab.current==='Calcio'}">Calcio</li>
+						<li ng-click="tab.current='Bundesliga'"
+							ng-class="{current: tab.current==='Bundesliga'}">Bundesliga</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-2 col-xs-12 col-lg-offset-1">
+			<div class="form-group">
+				<span translate>SEARCH</span>: <input ng-model="query"
+					class="form-control">
+			</div>
+			<div>
+				<span translate>SORT</span>: <select ng-model="orderProp"
+					class="form-control">
+					<option value="teamName">{{"ALPHABETICAL" | translate}}</option>
+					<option value="teamPosition">{{"POSITION" | translate}}</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-lg-7 col-xs-12" style="margin-top: 20px;">
+			<p ng-hide="filteredTeams.length" class="text-center" style="font-weight:bold;" translate>EMPTY_LIST</p>
+			<div class="list-group">
+				<a
+					ng-repeat="team in filteredTeams = (teams | filter:{teamName:query,leagueName:tab.current} | orderBy:orderProp)"
+					class="list-group-item clearfix"> <img ng-src=""
+					class="img-responsive pull-left"
+					style="width: 30px; height: 30px; margin-right: 5px;"><b><span
+						class="text-color">{{team.teamPosition}}&deg;</span>
+						{{team.teamName}}</b> <span class="pull-right"> <span
+						class="text-muted">{{team.leagueName}}</span>
+						<button ng-click="team.isFollow=true" ng-show="!team.isFollow" class="btn-xs btn-2"
+							style="margin-left: 5px;width:100px">Follow</button>
+						<button ng-click="team.isFollow=false" ng-show="team.isFollow" class="btn-xs btn-2-red"
+							style="margin-left: 5px;width:100px;">Unfollow</button>
+				</span>
 				</a>
 			</div>
 		</div>

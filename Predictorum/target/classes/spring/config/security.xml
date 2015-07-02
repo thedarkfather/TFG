@@ -18,92 +18,7 @@
 		
 		<!-- STATIC FILES -->
 		
-		<!--<sec:intercept-url pattern="/actor/views/login.html" access="isAnonymous()" /> -->
-		
-		<!-- INDEX -->
-		
-		<sec:intercept-url pattern="/api/register/userInfo" access="permitAll" />
-		<sec:intercept-url pattern="/api/search/**" access="permitAll" />
-		
-		<!-- MAIN PAGE -->
-		
-		<sec:intercept-url pattern="/api/newsItem/developer/timeline" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/gameproject/popular" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/workingTeam/developer/listOwn" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/gameproject/mine" access="hasRole('DEVELOPER')" />
-		
-		<!-- ACTOR -->
-		
 		<sec:intercept-url pattern="/j_spring_security_check" access="permitAll" />
-		<sec:intercept-url pattern="/api/profile/**" access="permitAll" />
-		<sec:intercept-url pattern="/api/gameproject/subscription/**" access="permitAll" />
-		<sec:intercept-url pattern="/api/profile/edit" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/profile/editProf" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/register/register" access="permitAll" />
-		<sec:intercept-url pattern="/api/register/check" access="permitAll" />
-		<sec:intercept-url pattern="/api/register/premium" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/profile/coins" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/register/pay/**" access="isAuthenticated()" />
-		
-		<!-- GAMEPROJECT -->
-		
-		<sec:intercept-url pattern="/api/state/all" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/platform/all" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/gameproject/save" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/subscription/btnMessage/**" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/subscription/change/**" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/gameproject/details/**" access="permitAll" />
-		<sec:intercept-url pattern="/api/review/list/**" access="permitAll" />
-		<sec:intercept-url pattern="/api/newsItem/list/**" access="permitAll" />
-		<sec:intercept-url pattern="/api/review/edit/**" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/assessment/assesReview" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/gameproject/edit/**" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/gameproject/list/**" access="permitAll" />
-		<sec:intercept-url pattern="/api/gameproject/check" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/gameproject/isCreator" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/gameproject/belongs" access="hasRole('DEVELOPER')" />
-		
-		
-		<!-- NEWSITEM -->
-		
-		<sec:intercept-url pattern="/api/newsItem/developer/edit" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/newsItem/display/**" access="permitAll" />
-		<sec:intercept-url pattern="/api/comment/list/**" access="permitAll" />
-		<sec:intercept-url pattern="/api/comment/save" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/assessment/asses" access="isAuthenticated()" />
-		
-		<!-- WORKINGTEAM -->
-		
-		<sec:intercept-url pattern="/api/workingTeam/developer/save" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/workingTeam/developer/check" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/workingTeam/developer/edit" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/workingTeam/developer/details/workingTeam" access="permitAll" />
-		<sec:intercept-url pattern="/api/workingTeam/developer/details/gameProjects" access="permitAll" />
-		<sec:intercept-url pattern="/api/workingTeam/developer/details/developers" access="permitAll" />
-		<sec:intercept-url pattern="/api/workingTeam/developer/mine" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/workingTeam/developer/list" access="permitAll()" />	
-		<sec:intercept-url pattern="/api/workingTeam/developer/listByDeveloperId/**" access="permitAll()" />	
-	
-		<!-- POSITION -->
-		
-		<sec:intercept-url pattern="/api/specialty/all" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/position/developer/**" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/application/developer/**" access="hasRole('DEVELOPER')" />
-	
-		<!-- AUCTIONS -->
-		
-		<sec:intercept-url pattern="/api/auction/create/**" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/auction/edit" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/auction/list" access="permitAll" />
-		<sec:intercept-url pattern="/api/auction/display/**" access="permitAll" />
-		<sec:intercept-url pattern="/api/auction/pastAuctions/**" access="hasRole('DEVELOPER')" />
-		<sec:intercept-url pattern="/api/bid/display/**" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/bid/bid" access="isAuthenticated()" />
-	
-		<!-- KEYS -->
-		
-		<sec:intercept-url pattern="/api/keys/mine" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/keys/mineOfGameProject/**" access="isAuthenticated()" />
 		
 		<!-- Aquí terminan los intercepts -->
 
@@ -130,7 +45,7 @@
 	<beans:bean id="passwordEncoder"
 		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
 
-	<beans:bean id="corsHandler" class="security.CorsFilter" />
+	<beans:bean id="corsHandler" class="security.SimpleCORSFilter" />
 
 
 	<!-- Authentication manager -->

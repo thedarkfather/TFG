@@ -17,6 +17,10 @@ ul.why li:before,
     background: #82dc23;
 }
 
+.btn-2-red{
+	background: #d12d32;
+}
+
 .bg-color {
     background: #82dc23;
 	color: #fff;
@@ -59,6 +63,10 @@ div.content-box.big div.content-box-info p, .content-box-info h4 {
 
 .btn-2:hover, .btn-2:active, .btn-2 {
 	box-shadow: 0 4px #59ab02;
+}
+
+.btn-2-red:hover, .btn-2-red:active, .btn-2-red {
+	box-shadow: 0 4px #9e0b0f;
 }
 
 

@@ -27,6 +27,17 @@
  24.Responsive Media Quaries  
 -------------------------------------------------*/
 
+.ng-enter {
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+ 
+.ng-leave {
+   -webkit-animation: fadeOut 1s;
+    animation: fadeOut 1s;
+    display: block !important;
+}
+
 /*-------------------------------------------------------*/
 /* 1. General code
 /*-------------------------------------------------------*/
@@ -572,6 +583,13 @@ ul.text-slide {
     transition: none;
 }
 
+.btn-2-red {
+    color: #fff;
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+}
+
 /* Button 2c */
 .btn-2 {
     border-radius: 5px;
@@ -583,6 +601,20 @@ ul.text-slide {
 }
 
 .btn-2:active {
+    color: #fff;
+    top: 6px;
+}
+
+.btn-2-red {
+    border-radius: 5px;
+}
+
+.btn-2-red:hover {
+    color: #fff;
+    top: 2px;
+}
+
+.btn-2-red:active {
     color: #fff;
     top: 6px;
 }

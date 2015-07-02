@@ -1,11 +1,14 @@
 /**
  * 
  */
-var teamController = angular.module('predictorum.teamController',[]);
+var teamController = angular.module('predictorum.teamController',['predictorum.teamService']);
 
-teamController.controller('teamController',function($scope){
+teamController.controller('teamController',function($scope,teamService){
 	
-	$scope.teams = [{name:'Real Madrid',league: 'BBVA'},{name:'Barcelona',league: 'BBVA'}];
-	
-	
+	$scope.tab = {current: ''};
+	$scope.orderProp ="teamPosition";
+	teamService.findAll().then(function(result){
+		$scope.teams = result.data;
+	});
+
 });

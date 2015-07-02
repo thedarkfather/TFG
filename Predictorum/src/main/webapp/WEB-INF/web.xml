@@ -43,25 +43,22 @@
   <filter>
     <filter-name>CORS</filter-name>
     <filter-class>
-          org.eclipse.jetty.servlets.CrossOriginFilter
+          security.SimpleCORSFilter
         </filter-class>
     <init-param>
-      <param-name>allowedOrigins</param-name>
+      <param-name>cors.allowOrigins</param-name>
       <param-value>*</param-value>
     </init-param>
     <init-param>
-      <param-name>allowedMethods</param-name>
+      <param-name>cors.supportedMethods</param-name>
       <param-value>GET,POST,DELETE,PUT,HEAD</param-value>
     </init-param>
     <init-param>
-      <param-name>allowedHeaders</param-name>
-      <param-value>
-               origin, content-type, accept, authorization, 
-                  x-requested-with
-            </param-value>
+      <param-name>cors.supportedHeaders</param-name>
+      <param-value>origin,content-type,accept,authorization,x-requested-with </param-value>
     </init-param>
     <init-param>
-      <param-name>supportsCredentials</param-name>
+      <param-name>cors.supportsCredentials</param-name>
       <param-value>true</param-value>
     </init-param>
   </filter>

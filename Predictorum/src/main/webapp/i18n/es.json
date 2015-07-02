@@ -7,9 +7,15 @@
 "LANGUAGE":					"IDIOMA",
 "SPANISH":					"ESPAÑOL",
 "ENGLISH":					"INGLÉS",
-"ABOUT_PARAGRAPH":			"We match robust functionality with ease of use so you can satisfy your soccer concerns ASAP!",
+"ABOUT_PARAGRAPH":			"¡Mezclamos una funcionalidad robusta con facilidad de uso para que puedas satisfacer tus inquietudes futbolísticas cuanto antes!",
 "TEAMS":					"Equipos",
-"INVALID_CREDENTIALS":		"Usuario o contraseña erróneos",		
+"INVALID_CREDENTIALS":		"Usuario o contraseña erróneos",
+"SEARCH":					"Buscar",
+"SORT":						"Ordenar",
+"ALPHABETICAL":				"Alfabético",
+"POSITION":					"Posición",
+"ALL":						"Todos",
+"EMPTY_LIST":				"¡Nada que mostrar! :(",				
 "HL1": {
 		"WORD1":			"TODO",
 		"WORD2":			" GRATUITO"
