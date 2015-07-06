@@ -152,7 +152,7 @@ public class UpdateService {
 
 	}
 	
-	//@Scheduled(cron = "*/120 * * * * ?")
+	@Scheduled(cron = "*/120 * * * * ?")
 	public void actualizaCalendario() throws IOException {
 		/*
 		 * Primero tengo que crear la temporada, después tengo que añadir los
@@ -181,23 +181,23 @@ public class UpdateService {
 			}
 
 			//Primero cojo la temporada
-			Season season = seasonService.findRealByLeagueId(league.getId());
-			
-
-			/*
-			 * Añado jornadas a la temporada
-			 * 
-			 * El html para las ligas bbva y adelante tienen un formato
-			 * diferente por lo que habrá que hacer distinción según el nombre
-			 * de la liga
-			 */
-			if (BBVA.equals(leagueName)) {
-				updatePrimera(urlCalendarioResultados, season);
-			} else if(adelante.equals(leagueName)) {
-				updateSegunda(urlCalendarioResultados, season);
-			} else {
-				updateOthersLeagues(urlCalendarioResultados,season);
-			}
+			Season season = seasonService.findCurrentByLeagueId(league.getId());
+			if(season!=null){
+				/*
+				 * Añado jornadas a la temporada
+				 * 
+				 * El html para las ligas bbva y adelante tienen un formato
+				 * diferente por lo que habrá que hacer distinción según el nombre
+				 * de la liga
+				 */
+				if (BBVA.equals(leagueName)) {
+					updatePrimera(urlCalendarioResultados, season);
+				} else if(adelante.equals(leagueName)) {
+					updateSegunda(urlCalendarioResultados, season);
+				} else {
+					updateOthersLeagues(urlCalendarioResultados,season);
+				}
+			}			
 
 		}
 
@@ -339,9 +339,9 @@ public class UpdateService {
 
 	private String createSeasonDateString() {
 		String seasonDate = "";
-		Date actual = new Date(System.currentTimeMillis());
+		Date current = new Date(System.currentTimeMillis());
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(actual);
+		calendar.setTime(current);
 		int realMonth = calendar.get(Calendar.MONTH) + 1;
 		int realYear = calendar.get(Calendar.YEAR);
 		if (realMonth > 7) {
@@ -358,11 +358,11 @@ public class UpdateService {
 	}
 
 	private Season createSeason(League league) {
-		Date actual = new Date(System.currentTimeMillis());
+		Date current = new Date(System.currentTimeMillis());
 		Calendar startCalendar = Calendar.getInstance();
 		Calendar finishCalendar = Calendar.getInstance();
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(actual);
+		calendar.setTime(current);
 		int realMonth = calendar.get(Calendar.MONTH) + 1;
 		int realYear = calendar.get(Calendar.YEAR);
 		if (realMonth > 7) {
