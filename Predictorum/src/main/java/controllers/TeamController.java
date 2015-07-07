@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,6 +22,7 @@ import responses.GeneralResponse;
 import security.LoginService;
 import services.TeamService;
 import domain.Team;
+import forms.FollowTeamForm;
 import forms.TeamToList;
 
 @Controller
@@ -44,14 +45,14 @@ public class TeamController extends AbstractController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/follow", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public GeneralResponse follow(@RequestBody @NotNull Integer teamId, BindingResult binding){
+	public GeneralResponse follow(@RequestBody @Valid FollowTeamForm followTeamForm, BindingResult binding){
 		authenticate("user1");
 		GeneralResponse generalResponse;
 		if (binding.hasErrors()) {
-			generalResponse = new GeneralResponse(false, buildErrors(teamId, binding));
+			generalResponse = new GeneralResponse(false, buildErrors(followTeamForm, binding));
 		} else {
 			try{
-				teamService.followTeam(teamId);
+				teamService.followTeam(followTeamForm.getTeamId());
 				generalResponse= new GeneralResponse(true, new HashMap<String,String>());
 			}catch (Throwable oops){
 				Map<String,String> errors = new HashMap<String,String>();
