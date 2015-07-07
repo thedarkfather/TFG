@@ -9,9 +9,6 @@ import domain.Team;
 
 public interface TeamRepository extends JpaRepository<Team,Integer> {
 
-	@Query("select t from Team t join t.users u where u.id=?1")
-	Collection<Team> findByPrincipal(Integer principalId);
-
 	@Query("select t from Team t join t.users u where t.id=?1 and u.id=?2")
 	Team findIsFollowed(Integer teamId, Integer principalId);
 
@@ -19,6 +16,6 @@ public interface TeamRepository extends JpaRepository<Team,Integer> {
 	Team findByTeamName(String teamName);
 
 	@Query("select t from Team t where t.season.startDate < CURRENT_TIMESTAMP and t.season.finishDate > CURRENT_TIMESTAMP")
-	Collection<Team> findActualTeams();
+	Collection<Team> findCurrentTeams();
 
 }

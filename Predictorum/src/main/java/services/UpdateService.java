@@ -152,7 +152,7 @@ public class UpdateService {
 
 	}
 	
-	@Scheduled(cron = "*/120 * * * * ?")
+	//@Scheduled(cron = "*/120 * * * * ?")
 	public void actualizaCalendario() throws IOException {
 		/*
 		 * Primero tengo que crear la temporada, después tengo que añadir los
@@ -366,11 +366,11 @@ public class UpdateService {
 		int realMonth = calendar.get(Calendar.MONTH) + 1;
 		int realYear = calendar.get(Calendar.YEAR);
 		if (realMonth > 7) {
-			startCalendar.set(realYear, 6, 2);
-			finishCalendar.set(realYear + 1, 6, 1);
+			startCalendar.set(realYear, 7, 1);
+			finishCalendar.set(realYear + 1, 6, 31);
 		} else {
-			startCalendar.set(realYear - 1, 6, 2);
-			finishCalendar.set(realYear, 6, 1);
+			startCalendar.set(realYear - 1, 7, 1);
+			finishCalendar.set(realYear, 6, 31);
 		}
 		Date startDate = startCalendar.getTime();
 		Date finishDate = finishCalendar.getTime();

@@ -24,21 +24,15 @@ public class TeamService {
 	@Autowired
 	private UserService userService;
 
-	public Collection<Team> findFollowing() {
-		User principal = userService.findByPrincipal();
-		Collection<Team> teams = teamRepository.findByPrincipal(principal.getId());
-		return teams;
-	}
 	
 	public Collection<Team> findAll(){
 		Collection<Team> teams = teamRepository.findAll();
 		return teams;
 	}
-	
-	
+		
 	//Devuelve todos los equipos que hay en las temporadas actuales
-	public Collection<Team> findRealTeams(){
-		Collection<Team> teams = teamRepository.findActualTeams();
+	public Collection<Team> findCurrentTeams(){
+		Collection<Team> teams = teamRepository.findCurrentTeams();
 		return teams;
 	}
 	
