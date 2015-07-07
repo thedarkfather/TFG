@@ -228,14 +228,18 @@
 									<div class="row text-center">
 										<div class="col-md-2"></div>
 										<div class="col-md-8">
-											<form id="signup">
+											<form id="signup" ng-submit="goSignUp()">
 												<fieldset>
 													<input class="form-control wow fadeInLeft" type="text"
-														placeholder="Username" style="margin-bottom: 5%;">
+														placeholder="Username" data-ng-model="signUp.username" style="margin-bottom: 5%;">
+													<span ng-show="signUp.usernameError" translate>USERNAME_ERROR</span>
 													<input class="form-control wow fadeInLeft" type="password"
-														placeholder="Password" style="margin: auto;"> <input
+														placeholder="Password" data-ng-model="signUp.password" style="margin: auto;"> 
+													<span ng-show="signUp.usernameError" translate>PASSWORD_ERROR</span>
+													<input
 														class="form-control wow fadeInLeft" type="password"
-														placeholder="Repeat Password">
+														placeholder="Repeat Password" data-ng-model="signUp.rpassword">
+													<span ng-show="signUp.rpasswordError" translate>RPASSWORD_ERROR</span>
 													<div class="clearfix"></div>
 													<button type="submit" class="btn btn-1 wow fadeInRight"
 														translate>SIGN_UP</button>

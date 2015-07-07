@@ -34,9 +34,26 @@ sessionService
 				sessionService.loginResult= "OK";
 				sessionService.principal.logged = true;
 			}
-		});	
+		});
 		
-		return result;
+	}
+	
+	sessionService.signUp = function(signUpForm){
+		if(signUpForm===undefined){
+			signUpForm = {username: null,password: null,rpassword:null};
+		}
+		var req = {
+				method : 'POST',
+				url : 'http://localhost:8080/Predictorum/api/join',
+				data : signUpForm,
+				withCredentials : false,
+			}
+			
+		result = $http(req);
+	
+	
+	return result;
+	
 	}
 	
 	

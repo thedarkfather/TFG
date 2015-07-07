@@ -34,12 +34,12 @@ public class JoinControllers extends AbstractController{
 				Boolean success = true;
 				Map<String,String> errors = new HashMap<String, String>();
 				generalResponse = new GeneralResponse(success, errors);
-				if(userService.checkPassword(joinForm)){
-					errors.put("passord", "Password and his confirmation are differents.");
+				if(!userService.checkPassword(joinForm)){
+					errors.put("password", "Passwords must match");
 					success = false;
 				}
-				if(userService.checkUniqueUsername(joinForm)){
-					errors.put("notUnique", "There's other user with the same user name.");
+				if(!userService.checkUniqueUsername(joinForm)){
+					errors.put("notUnique", "There's other user with the same username.");
 					success = false;
 				}
 				if(success){

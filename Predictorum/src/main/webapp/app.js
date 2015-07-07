@@ -65,6 +65,14 @@ predictorum.controller('indexController', function($scope, $location, $translate
 		});
 	}
 	
+	//Sign up
+	
+	$scope.goSignUp = function(){
+		sessionService.signUp($scope.signUp).then(function(result){
+			var pene;
+		});
+	}
+	
 	//Languages
 	
 	$scope.switchLanguage = function(lang){
