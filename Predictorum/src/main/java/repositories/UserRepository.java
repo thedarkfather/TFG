@@ -1,6 +1,7 @@
 package repositories;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,5 +26,8 @@ public interface UserRepository extends JpaRepository<User,Integer>{
 
 	@Query("select u from User u join u.following uf where uf.id=?1 and u.id=?2 group by u")
 	User findIsFollowed(Integer userId, Integer principalId);
+
+	@Query("select u from User u join u.teams t where t.id=?1 group by u")
+	List<User> findFollowersByTeamId(Integer teamId);
 
 }

@@ -2,6 +2,7 @@ package services;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -71,6 +72,23 @@ public class TeamService {
 	public Team saveEasy(Team team){
 		Assert.notNull(team);
 		return teamRepository.save(team);
+	}
+
+	public void followTeam(Integer teamId) {
+		Assert.notNull(teamId);
+		User principal = userService.findByPrincipal();
+		Team team = teamRepository.findIsFollowed(teamId,principal.getId());
+		List<User> users = userService.findFollowersByTeamId(teamId);
+		if(team!=null){
+			//Sigo al equip			
+			users.add(principal);			
+		}else{
+			//Dejo de seguirlo
+			users.remove(principal);
+		}
+		team.setUsers(users);
+		saveEasy(team);
+		
 	}
 
 }

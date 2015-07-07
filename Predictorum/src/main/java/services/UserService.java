@@ -3,6 +3,7 @@ package services;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -140,6 +141,11 @@ public class UserService {
 	
 	public boolean checkPassword(JoinForm joinForm){
 		return joinForm.getPassword().equals(joinForm.getRpassword());		
+	}
+
+	public List<User> findFollowersByTeamId(Integer teamId) {
+		Assert.notNull(teamId);
+		return userRepository.findFollowersByTeamId(teamId);
 	}
 	
 }
