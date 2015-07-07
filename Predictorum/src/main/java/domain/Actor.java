@@ -9,7 +9,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 
 import security.UserAccount;
 
@@ -21,22 +20,21 @@ public abstract class Actor extends DomainEntity{
 	private String email;
 	private byte[] logo;
 	
-	@NotBlank
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	@NotBlank
+	
 	public String getSurname() {
 		return surname;
 	}
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	@Email
-	@NotBlank
+	
+	@Email	
 	public String getEmail() {
 		return email;
 	}

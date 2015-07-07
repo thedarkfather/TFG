@@ -39,7 +39,7 @@ public class UserService {
 		u.setaGPoints(0);
 		u.setComments(new LinkedList<Comment>());
 		u.setdHRPoints(0);
-		u.setEmail("");
+		u.setEmail(null);
 		u.setEvaluations(new LinkedList<Evaluation>());
 		u.setFollowers(new LinkedList<User>());
 		u.setFollowing(new LinkedList<User>());
@@ -48,11 +48,12 @@ public class UserService {
 		u.sethHGPoints(0);
 		u.setLogo(null);
 		u.setmT25Points(0);
-		u.setName("");		
+		u.setName(null);		
 		u.setPredictions(new LinkedList<Prediction>());
 		u.setsHRPoints(0);
 		u.setsRPoints(0);
-		u.setSurname("");
+		u.setSurname(null);
+		u.setdRPoints(0);
 		u.setTeams(new LinkedList<Team>());
 		
 		UserAccount ua = new UserAccount();
@@ -60,13 +61,13 @@ public class UserService {
 		Collection<Authority> authorities = new ArrayList<Authority>();		
 		authority.setAuthority(Authority.USER);
 		authorities.add(authority);		
+		
 		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		String hash = encoder.encodePassword(joinForm.getPassword(), null);
 		ua.setPassword(hash);
 
 
 		ua.setUsername(joinForm.getUsername());
-		ua.setPassword(joinForm.getPassword());
 		ua.setAuthorities(authorities);
 		
 		u.setUserAccount(ua);
