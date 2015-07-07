@@ -79,16 +79,16 @@ public class TeamService {
 		User principal = userService.findByPrincipal();
 		Team team = teamRepository.findIsFollowed(teamId,principal.getId());
 		List<User> users = userService.findFollowersByTeamId(teamId);
-		if(team!=null){
-			//Sigo al equip			
+		if(team==null){
+			//Sigo al equip	
+			team = teamRepository.findOne(teamId);
 			users.add(principal);			
 		}else{
 			//Dejo de seguirlo
 			users.remove(principal);
 		}
 		team.setUsers(users);
-		saveEasy(team);
-		
+		saveEasy(team);		
 	}
 
 }

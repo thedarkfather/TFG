@@ -13,7 +13,7 @@ teamController.controller('teamController',function($scope,teamService){
 	
 	$scope.follow = function(team){
 		teamService.switchFollow(team).then(function(result){
-			if(result.success){
+			if(result.data.success){
 				team.isFollow = !team.isFollow;
 			}
 		});
