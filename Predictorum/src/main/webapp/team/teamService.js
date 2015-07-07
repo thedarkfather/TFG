@@ -19,6 +19,20 @@ teamService.factory('teamService', function($http) {
 		return result;
 	}
 	
+	teamService.switchFollow = function(team){
+		var teamForm = {teamId: team.teamId};
+		var req = {
+				method: 'POST',
+				url: 'http://localhost:8080/Predictorum/api/team/follow',
+				withCredentials: true,
+				data: teamForm
+		};
+		
+		result = $http(req);
+		
+		return result;
+	};
+	
 	return teamService;
 
 });

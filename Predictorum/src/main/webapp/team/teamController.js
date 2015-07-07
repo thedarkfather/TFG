@@ -10,5 +10,13 @@ teamController.controller('teamController',function($scope,teamService){
 	teamService.findAll().then(function(result){
 		$scope.teams = result.data;
 	});
+	
+	$scope.follow = function(team){
+		teamService.switchFollow(team).then(function(result){
+			if(result.success){
+				team.isFollow = !team.isFollow;
+			}
+		});
+	};
 
 });
