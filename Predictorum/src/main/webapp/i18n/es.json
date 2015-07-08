@@ -1,7 +1,11 @@
 {
 "LEARN_MORE": 				"Cuéntame más",
 "SIGN_IN": 					"Entrar",
+"MENU":						"Menú",
 "SIGN_UP":					"Registrarse",
+"BLANK_ERROR":				"No debe estar en blanco",
+"PASSWORD_MATCH_ERROR":		"Las contraseñas deben ser iguales",
+"NOT_UNIQUE_ERROR":			"El nombre de usuario ya está en uso",
 "HOME":						"INICIO",
 "ABOUT_US":					"SOBRE NOSOTROS",
 "LANGUAGE":					"IDIOMA",
@@ -15,7 +19,8 @@
 "ALPHABETICAL":				"Alfabético",
 "POSITION":					"Posición",
 "ALL":						"Todos",
-"EMPTY_LIST":				"¡Nada que mostrar! :(",				
+"EMPTY_LIST":				"¡Nada que mostrar! :(",
+"FAVORITES":				"Favoritos",				
 "HL1": {
 		"WORD1":			"TODO",
 		"WORD2":			" GRATUITO"

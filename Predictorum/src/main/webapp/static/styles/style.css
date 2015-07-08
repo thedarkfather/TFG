@@ -75,6 +75,11 @@ h1 {
 	font-weight: bold;
 }
 
+.ng-submitted .ng-invalid
+{
+    border:2px solid red;
+}
+
 .wrap {
     height: 100%;
     width: 100%;

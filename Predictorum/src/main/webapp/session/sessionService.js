@@ -9,7 +9,6 @@ sessionService
 	
 	var sessionService = {};
 	
-	
 	sessionService.getPrincipal = function() { return sessionService.principal };
 	
 
@@ -36,6 +35,7 @@ sessionService
 			}
 		});
 		
+		return result
 	}
 	
 	sessionService.signUp = function(signUpForm){
