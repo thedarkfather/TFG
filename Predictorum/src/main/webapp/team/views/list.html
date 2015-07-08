@@ -4,16 +4,18 @@
 			<div class="widget tabs">
 				<div id="horizontal-tabs">
 					<ul class="tabs">
-						<li ng-click="tab.current=''"
-							ng-class="{current: tab.current===''}" translate>ALL</li>
-						<li ng-click="tab.current='BBVA'"
+						<li ng-click="switchTab('')"
+							ng-class="{current: tab.all}" translate>ALL</li>
+						<li ng-click="switchTab('BBVA')"
 							ng-class="{current: tab.current==='BBVA'}">Liga BBVA</li>
-						<li ng-click="tab.current='Adelante'"
+						<li ng-click="switchTab('Adelante')"
 							ng-class="{current: tab.current==='Adelante'}">Liga Adelante</li>
-						<li ng-click="tab.current='Calcio'"
+						<li ng-click="switchTab('Calcio')"
 							ng-class="{current: tab.current==='Calcio'}">Calcio</li>
-						<li ng-click="tab.current='Bundesliga'"
+						<li ng-click="switchTab('Bundesliga')"
 							ng-class="{current: tab.current==='Bundesliga'}">Bundesliga</li>
+						<li ng-click="switchTab('Favorites')"
+							ng-class="{current: tab.favorites}" translate>FAVORITES</li>
 					</ul>
 
 				</div>
@@ -36,11 +38,11 @@
 			<p ng-hide="filteredTeams.length" class="text-center" style="font-weight:bold;" translate>EMPTY_LIST</p>
 			<div class="list-group">
 				<a
-					ng-repeat="team in filteredTeams = (teams | filter:{teamName:query,leagueName:tab.current} | orderBy:orderProp)"
+					ng-repeat="team in filteredTeams = (teams | filter:{teamName:query,leagueName:tab.current, isFollow: tab.favorites} | orderBy:orderProp)"
 					class="list-group-item clearfix"> <img ng-src=""
 					class="img-responsive pull-left"
 					style="width: 30px; height: 30px; margin-right: 5px;"><b><span
-						class="text-color">{{team.teamPosition}}&deg;</span>
+						class="text-color" style="margin-right:5px;">{{team.teamPosition}}&deg;</span>
 						{{team.teamName}}</b> <span class="pull-right"> <span
 						class="text-muted">{{team.leagueName}}</span>
 						<button ng-click="follow(team)" ng-show="!team.isFollow" class="btn-xs btn-2"
