@@ -1,7 +1,11 @@
 {
 "LEARN_MORE": 				"Learn more",
 "SIGN_IN": 					"Sign in",
+"MENU":						"Menu",
 "SIGN_UP":					"Sign up",
+"BLANK_ERROR":				"Must not be blank",
+"PASSWORD_MATCH_ERROR":		"Passwords must match",
+"NOT_UNIQUE_ERROR":			"That username is already in use",
 "HOME":						"HOME",
 "ABOUT_US":					"ABOUT US",
 "LANGUAGE":					"LANGUAGE",
@@ -15,7 +19,8 @@
 "ALPHABETICAL":				"Alphabetical",
 "POSITION":					"Position",
 "ALL":						"All",
-"EMPTY_LIST":				"Nothing to show! :(",		
+"EMPTY_LIST":				"Nothing to show! :(",
+"FAVORITES":				"Favorites",
 "HL1": {
 		"WORD1":			"FREE",
 		"WORD2":			" FEATURES"
