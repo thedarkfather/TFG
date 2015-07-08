@@ -91,12 +91,6 @@ public class UserService {
 		return users;
 	}
 	
-	public Collection<User> findFollowing() {
-		User u = findByPrincipal();
-		Collection<User> users = userRepository.findFollowingByUserId(u.getUserAccount().getId());
-		return users;
-	}
-	
 	public User findByPrincipal(){
 		return userRepository.findOneByUserAccount(LoginService.getPrincipal().getId());
 	}
@@ -127,6 +121,23 @@ public class UserService {
 		return res;
 	}
 
+	public void followUser(Integer userId) {
+		Assert.notNull(userId);
+		User principal = findByPrincipal();
+		User user = userRepository.findOne(userId);
+		Boolean isBeingFollowed = isFollowed(user);
+		Collection<User> users = userRepository.findFollowingByUserId(principal.getId());
+		if(isBeingFollowed){
+			//Sigo al equip	
+			users.add(user);			
+		}else{
+			//Dejo de seguirlo
+			users.remove(user);
+		}
+		principal.setFollowing(users);
+		userRepository.save(user);			
+	}
+	
 	
 	//checks
 	public boolean checkUniqueUsername(JoinForm joinForm){
@@ -148,5 +159,5 @@ public class UserService {
 		Assert.notNull(teamId);
 		return userRepository.findFollowersByTeamId(teamId);
 	}
-	
+
 }
