@@ -32,11 +32,6 @@ predictorum.config(['$routeProvider','$locationProvider','$translateProvider','$
 		templateUrl : 'team/views/list.html',
 		controller : 'teamController'
 	})
-	
-	.when('/team/favorites', {
-		templateUrl : 'team/views/list.html',
-		controller : 'teamController'
-	})
 
 	.otherwise({
 		redirectTo : '/'
@@ -73,31 +68,8 @@ predictorum.controller('indexController', function($scope, $location, $translate
 	//Sign up
 	
 	$scope.goSignUp = function(){
-		$scope.signUpSubmitted = true;
-		$scope.blankError = false;
-		$scope.passwordMatchError = false;
 		sessionService.signUp($scope.signUp).then(function(result){
-			if(!result.data.success){
-				if(result.data.errors.username){
-					$scope.blankError = result.data.errors.username.includes('empty')
-				}
-				if(result.data.errors.password){
-					$scope.passwordMatchError = result.data.errors.password.includes('match');
-					$scope.blankError = result.data.errors.password.includes('empty') || $scope.blankError;
-				}
-				if(result.data.errors.rpassword){ 
-					$scope.blankError = result.data.errors.rpassword.includes('empty') || $scope.blankError;
-				}
-				if(result.data.errors.notUnique){
-					$scope.notUniqueError = !$scope.passwordMatchError; //para que no se muestren ambos errores a la vez
-				}
-			}else{
-				//se ha registrado y lo logueamos
-				sessionService.login($scope.login.user,$scope.login.password).success(function(data) {
-						$scope.showMenu = true;
-						$scope.toggleMenu();
-				});
-			}
+			var pene;
 		});
 	}
 	
