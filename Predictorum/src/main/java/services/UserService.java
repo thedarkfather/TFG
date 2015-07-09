@@ -91,6 +91,13 @@ public class UserService {
 		return users;
 	}
 	
+
+	public Collection<User> findFollowing() {
+		User u = findByPrincipal();
+		Collection<User> users = userRepository.findFollowingByUserId(u.getUserAccount().getId());
+		return users;
+	}
+	
 	public User findByPrincipal(){
 		return userRepository.findOneByUserAccount(LoginService.getPrincipal().getId());
 	}

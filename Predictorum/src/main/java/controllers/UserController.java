@@ -22,7 +22,6 @@ import responses.GeneralResponse;
 import security.LoginService;
 import services.UserService;
 import domain.User;
-import forms.FollowTeamForm;
 import forms.FollowUserForm;
 import forms.UserToList;
 
@@ -41,6 +40,14 @@ public class UserController extends AbstractController{
 	public Collection<UserToList> findAll() {
 		authenticate("user3");
 		Collection<User> userAux = userService.findAll();
+		Collection<UserToList> usersToList = userService.reconstructsToList(userAux);
+		return usersToList;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/listFollowing")
+	public Collection<UserToList> findFollowing() {
+		authenticate("user3");
+		Collection<User> userAux = userService.findFollowing();
 		Collection<UserToList> usersToList = userService.reconstructsToList(userAux);
 		return usersToList;
 	}

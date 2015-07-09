@@ -1,6 +1,8 @@
 package services;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -22,6 +24,15 @@ public class RoundService {
 	public Round findNoUpdatedBySeasonIdAndRoundNumber(Integer seasonId,Integer roundNumber) {
 		Assert.notNull(seasonId);
 		Round round = roundRepository.findNoUpdatedBySeasonIdAndRoundNumber(seasonId,roundNumber);
+		return round;
+	}
+	
+	public Round nextRound(Integer leagueId){
+		List<Round> rounds = roundRepository.nextRounds(leagueId);
+		Round round = null;
+		if(!rounds.isEmpty()){
+			round = rounds.get(0);
+		}
 		return round;
 	}
 
