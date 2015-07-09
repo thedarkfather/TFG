@@ -23,6 +23,7 @@ import domain.Team;
 import domain.User;
 import forms.JoinForm;
 import forms.UserToList;
+import forms.UserToRank;
 
 @Service
 @Transactional
@@ -102,6 +103,29 @@ public class UserService {
 		return userRepository.findOneByUserAccount(LoginService.getPrincipal().getId());
 	}
 	
+	public List<UserToRank> findRankedUsers() {
+		List<UserToRank> usersToRank = new LinkedList<UserToRank>();
+		List<User> rankedUser = userRepository.findRankedUsers();
+		User principal = findByPrincipal();
+		int size = rankedUser.size();
+		for(int i = 0; i<100;i++){
+			if(i<size){
+				User user = rankedUser.get(i);
+				UserToRank userToRank = new UserToRank();
+				userToRank.setFollowing(isFollowed(principal));
+				userToRank.setId(user.getId());
+				userToRank.setName(user.getUserAccount().getUsername());
+				Integer points = user.getaGPoints() + user.getdHRPoints() + user.getdRPoints() + user.gethAGPoints() + user.gethGPoints() + user.gethHGPoints() + user.getmT25Points() + user.getsHRPoints() + user.getsRPoints();
+				userToRank.setPoints(points);
+				userToRank.setPosition(i+1);
+				usersToRank.add(userToRank);
+			}else{
+				break;
+			}
+		}
+		return usersToRank;
+	}
+	
 	public Collection<UserToList> reconstructsToList(Collection<User> userAux) {
 		Collection<UserToList> usersToList = new LinkedList<>();
 		for(User u:userAux){
@@ -114,7 +138,7 @@ public class UserService {
 	public UserToList reconstructToList(User user) {
 		UserToList userToList = new UserToList();
 		userToList.setId(user.getId());
-		userToList.setName(user.getName());		
+		userToList.setName(user.getUserAccount().getUsername());		
 		Integer points = user.getaGPoints() + user.getdHRPoints() + user.getdRPoints() + user.gethAGPoints() + user.gethGPoints() + user.gethHGPoints() + user.getmT25Points() + user.getsHRPoints() + user.getsRPoints();
 		userToList.setPoints(points);
 		userToList.setFollowing(isFollowed(user));
@@ -166,5 +190,6 @@ public class UserService {
 		Assert.notNull(teamId);
 		return userRepository.findFollowersByTeamId(teamId);
 	}
+
 
 }

@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -24,6 +25,7 @@ import services.UserService;
 import domain.User;
 import forms.FollowUserForm;
 import forms.UserToList;
+import forms.UserToRank;
 
 @Controller
 @RequestMapping("/user")
@@ -36,11 +38,10 @@ public class UserController extends AbstractController{
 	@Autowired
 	private LoginService loginService;
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/list")
-	public Collection<UserToList> findAll() {
+	@RequestMapping(method = RequestMethod.GET, value = "/ranking")
+	public List<UserToRank> findRanking() {
 		authenticate("user3");
-		Collection<User> userAux = userService.findAll();
-		Collection<UserToList> usersToList = userService.reconstructsToList(userAux);
+		List<UserToRank> usersToList = userService.findRankedUsers();
 		return usersToList;
 	}
 	
