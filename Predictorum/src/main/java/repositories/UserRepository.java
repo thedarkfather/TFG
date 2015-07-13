@@ -32,5 +32,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query("select u from User u order by (u.sRPoints + u.dRPoints + u.sHRPoints + u.dHRPoints + u.hGPoints + u.aGPoints + u.hHGPoints + u.hAGPoints + u.mT25Points) desc")
 	List<User> findRankedUsers();
+	
+	@Query("select u from User u where u.userAccount.username like %?1% group by u")
+	Collection<User> findUserByString(String userName);
 
 }

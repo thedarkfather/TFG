@@ -191,5 +191,9 @@ public class UserService {
 		return userRepository.findFollowersByTeamId(teamId);
 	}
 
+	public Collection<User> findUserByString(String cadena) {
+		return userRepository.findUserByString(cadena);
+	}
+
 
 }

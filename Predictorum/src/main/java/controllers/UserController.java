@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,6 +58,13 @@ public class UserController extends AbstractController{
 	public Collection<UserToList> findFollowers() {
 		authenticate("user4");
 		Collection<User> userAux = userService.findFollowers();
+		Collection<UserToList> usersToList = userService.reconstructsToList(userAux);
+		return usersToList;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/find/{cadena}")
+	public Collection<UserToList> findUserByString(@PathVariable String cadena) {	authenticate("user4");
+		Collection<User> userAux = userService.findUserByString(cadena);
 		Collection<UserToList> usersToList = userService.reconstructsToList(userAux);
 		return usersToList;
 	}
