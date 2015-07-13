@@ -106,13 +106,12 @@ public class UserService {
 	public List<UserToRank> findRankedUsers() {
 		List<UserToRank> usersToRank = new LinkedList<UserToRank>();
 		List<User> rankedUser = userRepository.findRankedUsers();
-		User principal = findByPrincipal();
 		int size = rankedUser.size();
 		for(int i = 0; i<100;i++){
 			if(i<size){
 				User user = rankedUser.get(i);
 				UserToRank userToRank = new UserToRank();
-				userToRank.setFollowing(isFollowed(principal));
+				userToRank.setFollowing(isFollowed(rankedUser.get(i)));
 				userToRank.setId(user.getId());
 				userToRank.setName(user.getUserAccount().getUsername());
 				Integer points = user.getaGPoints() + user.getdHRPoints() + user.getdRPoints() + user.gethAGPoints() + user.gethGPoints() + user.gethHGPoints() + user.getmT25Points() + user.getsHRPoints() + user.getsRPoints();

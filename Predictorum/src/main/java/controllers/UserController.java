@@ -41,14 +41,12 @@ public class UserController extends AbstractController{
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/ranking")
 	public List<UserToRank> findRanking() {
-		authenticate("user3");
 		List<UserToRank> usersToList = userService.findRankedUsers();
 		return usersToList;
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/listFollowing")
 	public Collection<UserToList> findFollowing() {
-		authenticate("user3");
 		Collection<User> userAux = userService.findFollowing();
 		Collection<UserToList> usersToList = userService.reconstructsToList(userAux);
 		return usersToList;
@@ -56,7 +54,6 @@ public class UserController extends AbstractController{
 
 	@RequestMapping(method = RequestMethod.GET, value = "/listFollowers")
 	public Collection<UserToList> findFollowers() {
-		authenticate("user4");
 		Collection<User> userAux = userService.findFollowers();
 		Collection<UserToList> usersToList = userService.reconstructsToList(userAux);
 		return usersToList;
@@ -71,7 +68,6 @@ public class UserController extends AbstractController{
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/follow", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public GeneralResponse follow(@RequestBody @Valid FollowUserForm followUserForm, BindingResult binding){
-		authenticate("user1");
 		GeneralResponse generalResponse;
 		if (binding.hasErrors()) {
 			generalResponse = new GeneralResponse(false, buildErrors(followUserForm, binding));
