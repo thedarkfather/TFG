@@ -2,10 +2,43 @@
  * 
  */
 
-var actorController = angular.module('predictorum.actorController', ['predictorum.actorService']);
+var actorController = angular.module('predictorum.actorController',
+		[ 'predictorum.actorService' ]);
 
-actorController.controller("actorController", function($scope,actorService){
-	
-	$scope.login = actorService.login($scope.user,$scope.password);
-	
+actorController.controller("actorController", function($scope, actorService) {
+
+	$scope.tab = {
+		current : 'followers'
+	};
+
+	$scope.switchTab = function(tab) {
+		if (tab === 'followers') {
+			$scope.getFollowers();
+		} else if (tab === 'following') {
+			$scope.getFollowing();
+		} else if (tab === 'ranking') {
+			$scope.getRanking();
+		}
+		$scope.tab.current = tab;
+	};
+
+	$scope.getFollowers = function() {
+		actorService.getFollowers().then(function(result) {
+			$scope.actors = result.data;
+		});
+	};
+
+	$scope.getFollowing = function() {
+		actorService.getFollowing().then(function(result) {
+			$scope.actors = result.data;
+		});
+	}
+
+	$scope.getRanking = function() {
+		actorService.getRanking().then(function(result) {
+			$scope.ranking = result.data;
+		});
+	};
+
+	$scope.getFollowers()
 });

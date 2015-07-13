@@ -7,26 +7,38 @@ var actorService = angular.module('predictorum.actorService', []);
 actorService
 .factory('actorService', function($http) {
 	
-
-	var login = function(username,password) {
+	actorService = {};
+	
+	actorService.getFollowers = function() {
 		var req = {
-			method : 'POST',
-			url : 'http://localhost:8080/Predictorum/j_spring_security_check',
-			headers : {
-				'Content-Type' : 'application/x-www-form-urlencoded'
-			},
-			data : $.param({
-				j_username : username,
-				j_password : password
-			}),
-			withCredentials : false,
+			method : 'GET',
+			url : 'http://localhost:8080/Predictorum/api/user/listFollowers',
+			withCredentials : true,
 		}
 		
 		return $http(req);
 	}
 	
-	return {
-		login : login
+	actorService.getFollowing = function() {
+		var req = {
+			method : 'GET',
+			url : 'http://localhost:8080/Predictorum/api/user/listFollowing',
+			withCredentials : true,
+		}
+		
+		return $http(req);
 	}
+	
+	actorService.getRanking = function() {
+		var req = {
+			method : 'GET',
+			url : 'http://localhost:8080/Predictorum/api/user/ranking',
+			withCredentials : true,
+		}
+		
+		return $http(req);
+	}
+	
+	return actorService;
 	
 } );

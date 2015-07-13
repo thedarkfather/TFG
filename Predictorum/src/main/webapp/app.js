@@ -1,7 +1,7 @@
 // Creación del módulo
 
 var predictorum = angular.module('predictorum', [ 'ngAnimate','ngRoute','ngCookies',
-		'pascalprecht.translate', 'smoothScroll', 'predictorum.sessionService', 'predictorum.teamController']);
+		'pascalprecht.translate', 'smoothScroll', 'predictorum.sessionService', 'predictorum.teamController','predictorum.actorController']);
 
 // Configuración
 
@@ -36,6 +36,11 @@ predictorum.config(['$routeProvider','$locationProvider','$translateProvider','$
 	.when('/team/favorites', {
 		templateUrl : 'team/views/list.html',
 		controller : 'teamController'
+	})
+	
+	.when('/user/followers', {
+		templateUrl : 'actor/views/list.html',
+		controller : 'actorController'
 	})
 
 	.otherwise({
