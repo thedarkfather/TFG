@@ -36,7 +36,15 @@ actorController.controller("actorController", function($scope, actorService) {
 
 	$scope.getRanking = function() {
 		actorService.getRanking().then(function(result) {
-			$scope.ranking = result.data;
+			$scope.actors = result.data;
+		});
+	};
+	
+	$scope.switchFollow = function(actor){
+		actorService.switchFollow(actor).then(function(result){
+			if(result.data.success){
+				actor.following = !actor.following;
+			}
 		});
 	};
 

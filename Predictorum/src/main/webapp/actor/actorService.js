@@ -39,6 +39,20 @@ actorService
 		return $http(req);
 	}
 	
+	actorService.switchFollow = function(actor){
+		var userForm = {userId: actor.id};
+		var req = {
+				method: 'POST',
+				url: 'http://localhost:8080/Predictorum/api/user/follow',
+				withCredentials: true,
+				data: userForm
+		};
+		
+		result = $http(req);
+		
+		return result;
+	};
+	
 	return actorService;
 	
 } );

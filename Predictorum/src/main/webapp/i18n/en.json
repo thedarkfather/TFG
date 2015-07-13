@@ -20,6 +20,11 @@
 "POSITION":					"Position",
 "ALL":						"All",
 "EMPTY_LIST":				"Nothing to show! :(",
+"POINT":					"point",
+"FOLLOWERS":				"FOLLOWERS",
+"FOLLOWING":				"FOLLOWING",
+"FOLLOW":					"FOLLOW",
+"UNFOLLOW":					"UNFOLLOW",
 "FAVORITES":				"Favorites",
 "HL1": {
 		"WORD1":			"FREE",
