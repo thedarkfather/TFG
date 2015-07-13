@@ -53,6 +53,16 @@ actorService
 		return result;
 	};
 	
+	actorService.find = function(query){
+		var req = {
+				method : 'GET',
+				url : 'http://localhost:8080/Predictorum/api/user/find/'+query,
+				withCredentials : true,
+			}
+			
+			return $http(req);
+	}
+	
 	return actorService;
 	
 } );

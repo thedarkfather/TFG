@@ -5,19 +5,25 @@
 				<div id="horizontal-tabs">
 					<ul class="tabs">
 						<li ng-click="switchTab('ranking')"
-							ng-class="{current: tab.current==='ranking'}" style="width: 33%; text-align: center;">RANKING</li>
+							ng-class="{current: tab.current==='ranking'}"
+							style="width: 33%; text-align: center;">RANKING</li>
 						<li ng-click="switchTab('followers')"
-							ng-class="{current: tab.current==='followers'}" style="width: 33%; text-align: center;" translate>FOLLOWERS</li>
+							ng-class="{current: tab.current==='followers'}"
+							style="width: 33%; text-align: center;" translate>FOLLOWERS</li>
 						<li ng-click="switchTab('following')"
-							ng-class="{current: tab.current==='following'}" style="width: 33%; text-align: center;" translate>FOLLOWING</li>
+							ng-class="{current: tab.current==='following'}"
+							style="width: 34%; text-align: center;" translate>FOLLOWING</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 
 		<div class="col-lg-10 col-xs-12 col-lg-offset-1">
-			<input type="text" class="form-control" placeholder="Search"
-				data-ng-model="searchText">
+			<form ng-submit="find()">
+				<input type="text" class="form-control" placeholder="{{'SEARCH' | translate}}"
+					data-ng-model="query">
+			</form>
+
 		</div>
 
 		<div class="col-lg-10 col-lg-offset-1">
@@ -31,16 +37,17 @@
 
 					</div>
 					<div class="col-lg-6 col-xs-6">
-					 	
-						<a><b><i ng-show="tab.current==='ranking'">{{actor.position}}&deg;</i>  @{{actor.name}}</b></a>
+
+						<a><b><i ng-show="tab.current==='ranking'">{{actor.position}}&deg;</i>
+								@{{actor.name}}</b></a>
 					</div>
 					<div class="col-lg-6 col-xs-6">
 						<i class="fa fa-trophy"></i> {{actor.points}} <span translate>POINT</span><ng-pluralize count="actor.points" when="{'1':'','other':'s'}"></ng-pluralize>
 					</div>
 
 					<div class="col-lg-12 col-xs-12" style="margin-top: 5px;">
-						<button ng-click="switchFollow(actor)" ng-show="!actor.following" class="btn-xs btn-2"
-							style="width: 100px" translate>FOLLOW</button>
+						<button ng-click="switchFollow(actor)" ng-show="!actor.following"
+							class="btn-xs btn-2" style="width: 100px" translate>FOLLOW</button>
 						<button ng-click="switchFollow(actor)" ng-show="actor.following"
 							class="btn-xs btn-2-red" style="width: 100px;" translate>UNFOLLOW</button>
 					</div>

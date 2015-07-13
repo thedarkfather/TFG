@@ -20,6 +20,7 @@ actorController.controller("actorController", function($scope, actorService) {
 			$scope.getRanking();
 		}
 		$scope.tab.current = tab;
+		$scope.query = '';
 	};
 
 	$scope.getFollowers = function() {
@@ -39,10 +40,19 @@ actorController.controller("actorController", function($scope, actorService) {
 			$scope.actors = result.data;
 		});
 	};
-	
-	$scope.switchFollow = function(actor){
-		actorService.switchFollow(actor).then(function(result){
-			if(result.data.success){
+
+	$scope.find = function() {
+		if ($scope.query !== undefined && $scope.query !== '') {
+			$scope.tab.current = '';
+			actorService.find($scope.query).then(function(result) {
+				$scope.actors = result.data;
+			});
+		}
+	}
+
+	$scope.switchFollow = function(actor) {
+		actorService.switchFollow(actor).then(function(result) {
+			if (result.data.success) {
 				actor.following = !actor.following;
 			}
 		});
