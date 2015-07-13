@@ -156,15 +156,15 @@ public class UserService {
 		User principal = findByPrincipal();
 		User user = userRepository.findOne(userId);
 		Boolean isBeingFollowed = isFollowed(user);
-		Collection<User> users = userRepository.findFollowingByUserId(principal.getId());
-		if(isBeingFollowed){
+		Collection<User> users = userRepository.findFollowersByTeamId(userId);
+		if(!isBeingFollowed){
 			//Sigo al equip	
-			users.add(user);			
+			users.add(principal);			
 		}else{
 			//Dejo de seguirlo
-			users.remove(user);
+			users.remove(principal);
 		}
-		principal.setFollowing(users);
+		user.setFollowers(users);
 		userRepository.save(user);			
 	}
 	
