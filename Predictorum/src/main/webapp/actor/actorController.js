@@ -5,12 +5,22 @@
 var actorController = angular.module('predictorum.actorController',
 		[ 'predictorum.actorService' ]);
 
-actorController.controller("actorController", function($scope, actorService) {
+actorController.controller("actorController", function($scope, $location, actorService) {
 
-	$scope.tab = {
-		current : 'followers'
-	};
-
+	if($location.path().includes('followers')){
+		$scope.tab = {
+				current : 'followers'
+		};
+	}else if($location.path().includes('following')){
+		$scope.tab = {
+				current : 'following'
+		};
+	}else{
+		$scope.tab = {
+				current : 'ranking'
+		};
+	}
+	
 	$scope.switchTab = function(tab) {
 		if (tab === 'followers') {
 			$scope.getFollowers();
@@ -58,5 +68,6 @@ actorController.controller("actorController", function($scope, actorService) {
 		});
 	};
 
-	$scope.getFollowers()
+	$scope.switchTab($scope.tab.current);
+	
 });

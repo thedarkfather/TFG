@@ -27,6 +27,7 @@
 		</div>
 
 		<div class="col-lg-10 col-lg-offset-1">
+			<p ng-hide="actors.length" class="text-center" style="font-weight:bold;" translate>EMPTY_LIST</p>
 			<div ng-repeat="actor in actors" class="col-lg-4 col-xs-12"
 				style="margin-top: 20px;">
 				<div class="list-group-item clearfix">
@@ -52,6 +53,9 @@
 							class="btn-xs btn-2-red" style="width: 100px;" translate>UNFOLLOW</button>
 					</div>
 				</div>
+			</div>
+			<div>
+			
 			</div>
 		</div>
 	</div>

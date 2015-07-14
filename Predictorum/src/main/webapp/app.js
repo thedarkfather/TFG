@@ -42,6 +42,16 @@ predictorum.config(['$routeProvider','$locationProvider','$translateProvider','$
 		templateUrl : 'actor/views/list.html',
 		controller : 'actorController'
 	})
+	
+	.when('/user/following', {
+		templateUrl : 'actor/views/list.html',
+		controller : 'actorController'
+	})
+	
+	.when('/user/ranking', {
+		templateUrl : 'actor/views/list.html',
+		controller : 'actorController'
+	})
 
 	.otherwise({
 		redirectTo : '/'
