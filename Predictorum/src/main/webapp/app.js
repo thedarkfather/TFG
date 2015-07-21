@@ -1,7 +1,22 @@
 // Creación del módulo
 
 var predictorum = angular.module('predictorum', [ 'ngAnimate','ngRoute','ngCookies',
-		'pascalprecht.translate', 'smoothScroll', 'predictorum.sessionService', 'predictorum.teamController','predictorum.actorController']);
+		'pascalprecht.translate', 'smoothScroll','isteven-omni-bar',
+		'predictorum.sessionService', 'predictorum.teamController','predictorum.actorController']);
+
+// Directivas propias
+
+predictorum.directive('errSrc', function() {
+	return {
+		link : function(scope, element, attrs) {
+			element.bind('error', function() {
+				if (attrs.src != attrs.errSrc) {
+					attrs.$set('src', attrs.errSrc);
+				}
+			});
+		}
+	}
+});
 
 // Configuración
 
@@ -50,6 +65,11 @@ predictorum.config(['$routeProvider','$locationProvider','$translateProvider','$
 	
 	.when('/user/ranking', {
 		templateUrl : 'actor/views/list.html',
+		controller : 'actorController'
+	})
+	
+	.when('/user/profile', {
+		templateUrl : 'actor/views/display.html',
 		controller : 'actorController'
 	})
 

@@ -5,7 +5,7 @@
 var actorController = angular.module('predictorum.actorController',
 		[ 'predictorum.actorService' ]);
 
-actorController.controller("actorController", function($scope, $location, actorService) {
+actorController.controller("actorController", function($scope, $location,$interval, actorService) {
 
 	if($location.path().includes('followers')){
 		$scope.tab = {
@@ -70,4 +70,29 @@ actorController.controller("actorController", function($scope, $location, actorS
 
 	$scope.switchTab($scope.tab.current);
 	
+	$scope.predictions = [{homeTeam: 'R.Madrid', awayTeam: 'Barcelona', homeGoals: 2, awayGoals: 0, matchDate: '10/08/2015'},{homeTeam: 'At.Madrid', awayTeam: 'Getafe', homeGoals: 3, awayGoals: 1, matchDate: '11/08/2015'}];
+	$scope.maxSimpleValue = 69;
+	$scope.simpleValue = 0;
+	$scope.maxDoubleValue = 35;
+	$scope.doubleValue = 0;
+	$scope.maxHalfTimeHomeGoals = 70;
+	$scope.halfTimeHomeGoals = 0;
+	$scope.maxHalfTimeAwayGoals = 85;
+	$scope.halfTimeAwayGoals = 0;
+	$scope.maxFinalTimeHomeGoals = 26;
+	$scope.finalTimeHomeGoals = 0;
+	$scope.maxFinalTimeAwayGoals = 90;
+	$scope.finalTimeAwayGoals = 0;
+	$scope.maxMoreThan25 = 46;
+	$scope.moreThan25 = 0;
+
+	$interval(function() {
+	    $scope.simpleValue+=$scope.maxSimpleValue/100;
+	    $scope.doubleValue+=$scope.maxDoubleValue/100;
+	    $scope.halfTimeHomeGoals+=$scope.maxHalfTimeHomeGoals/100;
+	    $scope.halfTimeAwayGoals+=$scope.maxHalfTimeAwayGoals/100;
+	    $scope.finalTimeHomeGoals+=$scope.maxFinalTimeHomeGoals/100;
+	    $scope.finalTimeAwayGoals+=$scope.maxFinalTimeAwayGoals/100;
+	    $scope.moreThan25+=$scope.maxMoreThan25/100;
+	}, 30, 100);
 });

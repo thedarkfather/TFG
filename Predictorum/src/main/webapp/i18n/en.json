@@ -26,6 +26,13 @@
 "FOLLOW":					"FOLLOW",
 "UNFOLLOW":					"UNFOLLOW",
 "FAVORITES":				"Favorites",
+"HIT_PERCENTAGE":			"Percentage of right answers",
+"DOUBLE":					"Double",
+"HTHG":						"Half Time Home Goals",
+"HTAG":						"Half Time Away Goals",
+"FTHG":						"Home Goals",
+"FTAG":						"Away Goals",
+"MT25":						"More Than 2.5 Goals",
 "HL1": {
 		"WORD1":			"FREE",
 		"WORD2":			" FEATURES"
