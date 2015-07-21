@@ -25,7 +25,14 @@
 "FOLLOWING":				"SIGUIENDO",
 "FOLLOW":					"SEGUIR",
 "UNFOLLOW":					"NO SEGUIR",
-"FAVORITES":				"Favoritos",				
+"FAVORITES":				"Favoritos",
+"HIT_PERCENTAGE":			"Porcentaje de aciertos",
+"DOUBLE":					"Doble",
+"HTHG":						"Goles Local al descanso",
+"HTAG":						"Goles Visitante al descanso",
+"FTHG":						"Goles Local",
+"FTAG":						"Goles Visitante",
+"MT25":						"Más de 2.5 goles",				
 "HL1": {
 		"WORD1":			"TODO",
 		"WORD2":			" GRATUITO"
