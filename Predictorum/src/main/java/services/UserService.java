@@ -43,23 +43,32 @@ public class UserService {
 	public User reconstructJoin(JoinForm joinForm) {
 		User u = new User();
 		u.setaGPoints(0);
+		u.setaGPointsPossible(0);
 		u.setComments(new LinkedList<Comment>());
 		u.setdHRPoints(0);
+		u.setdHRPointsPossible(0);
 		u.setEmail(null);
 		u.setEvaluations(new LinkedList<Evaluation>());
 		u.setFollowers(new LinkedList<User>());
 		u.setFollowing(new LinkedList<User>());
 		u.sethAGPoints(0);
+		u.sethAGPointsPossible(0);
 		u.sethGPoints(0);
+		u.sethGPointsPossible(0);
 		u.sethHGPoints(0);
+		u.sethHGPointsPossible(0);
 		u.setLogo(null);
 		u.setmT25Points(0);
+		u.setmT25PointsPossible(0);
 		u.setName(null);		
 		u.setPredictions(new LinkedList<Prediction>());
 		u.setsHRPoints(0);
+		u.setsHRPointsPossible(0);
 		u.setsRPoints(0);
+		u.setsRPointsPossible(0);
 		u.setSurname(null);
 		u.setdRPoints(0);
+		u.setdRPointsPossible(0);
 		u.setTeams(new LinkedList<Team>());
 		
 		UserAccount ua = new UserAccount();
@@ -211,10 +220,14 @@ public class UserService {
 			userDetailsForm.setsRPointsPercentaje(principal.getsRPointsPossible()/principal.getsRPoints());
 		}else{
 			userDetailsForm.setsRPointsPercentaje(cero);
-		}		
+		}
+		if(!cero.equals(principal.getsRPointsPossible())){
+			userDetailsForm.setmT25PointsPercentaje(principal.getmT25PointsPossible()/principal.getmT25Points());
+		}else{
+			userDetailsForm.setmT25PointsPercentaje(cero);
+		}	
 		userDetailsForm.setFollowersNumber(principal.getFollowers().size());
-		userDetailsForm.setFollowingNumber(principal.getFollowing().size());		
-		userDetailsForm.setmT25PointsPercentaje(principal.getmT25PointsPossible()/principal.getmT25Points());
+		userDetailsForm.setFollowingNumber(principal.getFollowing().size());			
 		List<PredictionToListForm> predictionsToListForm = predictionService.findToListByUserId(principal.getId());
 		userDetailsForm.setPredictions(predictionsToListForm);
 		Integer rankingPosition = getPosition(principal);
