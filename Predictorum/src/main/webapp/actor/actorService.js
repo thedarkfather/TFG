@@ -9,6 +9,16 @@ actorService
 	
 	actorService = {};
 	
+	actorService.getProfile = function() {
+		var req = {
+				method : 'GET',
+				url : 'http://localhost:8080/Predictorum/api/user/profile',
+				withCredentials : true,
+			}
+			
+			return $http(req);
+	};
+	
 	actorService.getFollowers = function() {
 		var req = {
 			method : 'GET',
@@ -17,7 +27,7 @@ actorService
 		}
 		
 		return $http(req);
-	}
+	};
 	
 	actorService.getFollowing = function() {
 		var req = {

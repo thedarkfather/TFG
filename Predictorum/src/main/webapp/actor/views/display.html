@@ -8,12 +8,12 @@
 						style="width: 200px; height: 200px;">
 				</div>
 				<div class="col-lg-6 col-xs-6" style="margin-top: 10px;">
-					<span class="text-color"><b> Nombre </b></span>
+					<span class="text-color"><b> {{profile.username}} </b></span>
 					<p>
-						<b>Ranking:</b> 23&deg;
+						<b>Ranking:</b> {{profile.rankingPosition}}&deg;
 					</p>
-					<p><a href="#/user/followers">12 {{"FOLLOWERS" | translate | lowercase}}</a></p>
-					<p><a href="#/user/following">20 {{"FOLLOWING" | translate | lowercase}}</a></p>
+					<p><a href="#/user/followers">{{profile.followersNumber}} {{"FOLLOWERS" | translate | lowercase}}</a></p>
+					<p><a href="#/user/following">{{profile.followingNumber}} {{"FOLLOWING" | translate | lowercase}}</a></p>
 					<button ng-click="switchFollow(actor)" ng-show="!false"
 							class="btn-xs btn-2" style="width: 100px" translate>FOLLOW</button>
 						<button ng-click="switchFollow(actor)" ng-show="false"
@@ -24,8 +24,6 @@
 					<h4 class="text-center"translate>HIT_PERCENTAGE</h4>
 						<div isteven-omni-bar current-value="simpleValue" style="height: 25px;"><i>Simple</i> {{simpleValue | number: 0}}%</div>
 						<div isteven-omni-bar current-value="doubleValue" style="height: 25px;"> <i translate>DOUBLE</i> {{doubleValue | number:0}}%</div>
-						<div isteven-omni-bar current-value="halfTimeHomeGoals" style="height: 25px;"><i translate>HTHG</i> {{halfTimeHomeGoals | number:0}}%</div>
-						<div isteven-omni-bar current-value="halfTimeAwayGoals" style="height: 25px;"><i translate>HTAG</i> {{halfTimeAwayGoals | number:0}}%</div>
 						<div isteven-omni-bar current-value="finalTimeHomeGoals" style="height: 25px;"><i translate>FTHG</i> {{finalTimeHomeGoals | number:0}}% </div>
 						<div isteven-omni-bar current-value="finalTimeAwayGoals" style="height: 25px;"><i translate>FTAG</i> {{finalTimeAwayGoals | number:0}}%</div>
 						<div isteven-omni-bar current-value="moreThan25" style="height: 25px;"><i translate>MT25</i> {{moreThan25 | number:0}}%</div>
@@ -35,7 +33,7 @@
 
 			<div class="col-lg-6 col-xs-12" style="margin-top: 10px;">
 				<div class="list-group">
-					<a ng-repeat="prediction in predictions"
+					<a ng-repeat="prediction in profile.predictions"
 						class="list-group-item clearfix"> {{prediction.homeTeam}}:
 						{{prediction.homeGoals}} vs {{prediction.awayTeam}}:
 						{{prediction.awayGoals}} <i class="pull-right">{{prediction.matchDate}}

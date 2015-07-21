@@ -70,6 +70,14 @@ actorController.controller("actorController", function($scope, $location,$interv
 
 	$scope.switchTab($scope.tab.current);
 	
+	//Profile
+	
+	actorService.getProfile().then(function(result) {
+		if(result.status=='200'){ //if success
+			$scope.profile = result.data;
+		}
+	});
+	
 	$scope.predictions = [{homeTeam: 'R.Madrid', awayTeam: 'Barcelona', homeGoals: 2, awayGoals: 0, matchDate: '10/08/2015'},{homeTeam: 'At.Madrid', awayTeam: 'Getafe', homeGoals: 3, awayGoals: 1, matchDate: '11/08/2015'}];
 	$scope.maxSimpleValue = 69;
 	$scope.simpleValue = 0;
@@ -87,12 +95,10 @@ actorController.controller("actorController", function($scope, $location,$interv
 	$scope.moreThan25 = 0;
 
 	$interval(function() {
-	    $scope.simpleValue+=$scope.maxSimpleValue/100;
-	    $scope.doubleValue+=$scope.maxDoubleValue/100;
-	    $scope.halfTimeHomeGoals+=$scope.maxHalfTimeHomeGoals/100;
-	    $scope.halfTimeAwayGoals+=$scope.maxHalfTimeAwayGoals/100;
-	    $scope.finalTimeHomeGoals+=$scope.maxFinalTimeHomeGoals/100;
-	    $scope.finalTimeAwayGoals+=$scope.maxFinalTimeAwayGoals/100;
-	    $scope.moreThan25+=$scope.maxMoreThan25/100;
+	    $scope.simpleValue+=$scope.profile.sRPointsPercentaje/100;
+	    $scope.doubleValue+=$scope.profile.dRPointsPercentaje/100;
+	    $scope.finalTimeHomeGoals+=$scope.profile.hGPointsPercentaje/100;
+	    $scope.finalTimeAwayGoals+=$scope.profile.aGPointsPercentaje/100;
+	    $scope.moreThan25+=$scope.profile.mT25PointsPercentaje/100;
 	}, 30, 100);
 });
