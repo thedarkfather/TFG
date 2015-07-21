@@ -25,6 +25,7 @@ import security.LoginService;
 import services.UserService;
 import domain.User;
 import forms.FollowUserForm;
+import forms.UserDetailsForm;
 import forms.UserToList;
 import forms.UserToRank;
 
@@ -82,6 +83,12 @@ public class UserController extends AbstractController{
 			}
 		}
 		return generalResponse;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/profile")
+	public UserDetailsForm profile(){
+		UserDetailsForm userDetailsForm = userService.getProfile();
+		return userDetailsForm;
 	}
 
 	// quitar luego

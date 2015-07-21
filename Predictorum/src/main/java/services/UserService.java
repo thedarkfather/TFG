@@ -22,6 +22,8 @@ import domain.Prediction;
 import domain.Team;
 import domain.User;
 import forms.JoinForm;
+import forms.PredictionToListForm;
+import forms.UserDetailsForm;
 import forms.UserToList;
 import forms.UserToRank;
 
@@ -34,6 +36,9 @@ public class UserService {
 	
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private PredictionService predictionService;
 	
 	public User reconstructJoin(JoinForm joinForm) {
 		User u = new User();
@@ -168,7 +173,70 @@ public class UserService {
 		userRepository.save(user);			
 	}
 	
+	public UserDetailsForm getProfile() {
+		User principal  = findByPrincipal();
+		Integer cero = 0;
+		UserDetailsForm userDetailsForm = new UserDetailsForm();
+		if(!cero.equals(principal.getaGPointsPossible())){
+			userDetailsForm.setaGPointsPercentaje(principal.getaGPointsPossible()/principal.getaGPoints());
+		}else{
+			userDetailsForm.setaGPointsPercentaje(cero);
+		}		
+		if(!cero.equals(principal.getdHRPointsPossible())){
+			userDetailsForm.setdHRPointsPercentaje(principal.getdHRPointsPossible()/principal.getdHRPoints());
+		}else{
+			userDetailsForm.setdHRPointsPercentaje(cero);
+		}
+		if(!cero.equals(principal.getdRPointsPossible())){
+			userDetailsForm.setdRPointsPercentaje(principal.getdRPointsPossible()/principal.getdHRPoints());
+		}else{
+			userDetailsForm.setdRPointsPercentaje(cero);
+		}
+		if(!cero.equals(principal.gethAGPointsPossible())){
+			userDetailsForm.sethAGPointsPercentaje(principal.gethAGPointsPossible()/principal.gethAGPoints());
+		}else{
+			userDetailsForm.sethAGPointsPercentaje(cero);
+		}
+		if(!cero.equals(principal.gethGPointsPossible())){
+			userDetailsForm.sethGPointsPercentaje(principal.gethGPointsPossible()/principal.gethGPoints());
+		}else{
+			userDetailsForm.sethGPointsPercentaje(cero);
+		}
+		if(!cero.equals(principal.getsHRPointsPossible())){
+			userDetailsForm.setsHRPointsPercentaje(principal.getsHRPointsPossible()/principal.getsHRPoints());
+		}else{
+			userDetailsForm.setsHRPointsPercentaje(cero);
+		}
+		if(!cero.equals(principal.getsRPointsPossible())){
+			userDetailsForm.setsRPointsPercentaje(principal.getsRPointsPossible()/principal.getsRPoints());
+		}else{
+			userDetailsForm.setsRPointsPercentaje(cero);
+		}		
+		userDetailsForm.setFollowersNumber(principal.getFollowers().size());
+		userDetailsForm.setFollowingNumber(principal.getFollowing().size());		
+		userDetailsForm.setmT25PointsPercentaje(principal.getmT25PointsPossible()/principal.getmT25Points());
+		List<PredictionToListForm> predictionsToListForm = predictionService.findToListByUserId(principal.getId());
+		userDetailsForm.setPredictions(predictionsToListForm);
+		Integer rankingPosition = getPosition(principal);
+		Assert.notNull(rankingPosition);
+		userDetailsForm.setRankingPosition(rankingPosition);		
+		userDetailsForm.setUsername(principal.getUserAccount().getUsername());
+		return userDetailsForm;
+	}
 	
+	private Integer getPosition(User principal) {
+		Integer rankingPosition = null;
+		List<User> rankedUser = userRepository.findRankedUsers();
+		int size = rankedUser.size();
+		for(int i = 0; i<size;i++){
+			if(rankedUser.get(i).getId()==principal.getId()){
+				rankingPosition = i+1;
+				break;
+			}
+		}
+		return rankingPosition;
+	}
+
 	//checks
 	public boolean checkUniqueUsername(JoinForm joinForm){
 		Boolean res = true;
@@ -193,6 +261,5 @@ public class UserService {
 	public Collection<User> findUserByString(String cadena) {
 		return userRepository.findUserByString(cadena);
 	}
-
 
 }

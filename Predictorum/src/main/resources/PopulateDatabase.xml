@@ -83,6 +83,16 @@
 		<property name="hHGPoints" value="10"/>
 		<property name="hAGPoints" value="10"/>
 		<property name="mT25Points" value="10"/>
+		
+		<property name="sRPointsPossible" value="100"/>
+		<property name="dRPointsPossible" value="100"/>
+		<property name="sHRPointsPossible" value="100"/>
+		<property name="dHRPointsPossible" value="100"/>
+		<property name="hGPointsPossible" value="100"/>
+		<property name="aGPointsPossible" value="100"/>
+		<property name="hHGPointsPossible" value="100"/>
+		<property name="hAGPointsPossible" value="100"/>
+		<property name="mT25PointsPossible" value="100"/>
 		<!-- Relaciones -->
 		<property name="following">
 			<list>		
@@ -125,6 +135,16 @@
 		<property name="hHGPoints" value="20"/>
 		<property name="hAGPoints" value="20"/>
 		<property name="mT25Points" value="20"/>
+		
+		<property name="sRPointsPossible" value="100"/>
+		<property name="dRPointsPossible" value="100"/>
+		<property name="sHRPointsPossible" value="100"/>
+		<property name="dHRPointsPossible" value="100"/>
+		<property name="hGPointsPossible" value="100"/>
+		<property name="aGPointsPossible" value="100"/>
+		<property name="hHGPointsPossible" value="100"/>
+		<property name="hAGPointsPossible" value="100"/>
+		<property name="mT25PointsPossible" value="100"/>
 		<!-- Relaciones -->
 		<property name="following">
 			<list>		
@@ -167,6 +187,16 @@
 		<property name="hHGPoints" value="30"/>
 		<property name="hAGPoints" value="30"/>
 		<property name="mT25Points" value="30"/>
+		
+		<property name="sRPointsPossible" value="100"/>
+		<property name="dRPointsPossible" value="100"/>
+		<property name="sHRPointsPossible" value="100"/>
+		<property name="dHRPointsPossible" value="100"/>
+		<property name="hGPointsPossible" value="100"/>
+		<property name="aGPointsPossible" value="100"/>
+		<property name="hHGPointsPossible" value="100"/>
+		<property name="hAGPointsPossible" value="100"/>
+		<property name="mT25PointsPossible" value="100"/>
 		<!-- Relaciones -->
 		<property name="following">
 			<list>		
@@ -209,6 +239,16 @@
 		<property name="hHGPoints" value="40"/>
 		<property name="hAGPoints" value="40"/>
 		<property name="mT25Points" value="40"/>
+		
+		<property name="sRPointsPossible" value="100"/>
+		<property name="dRPointsPossible" value="100"/>
+		<property name="sHRPointsPossible" value="100"/>
+		<property name="dHRPointsPossible" value="100"/>
+		<property name="hGPointsPossible" value="100"/>
+		<property name="aGPointsPossible" value="100"/>
+		<property name="hHGPointsPossible" value="100"/>
+		<property name="hAGPointsPossible" value="100"/>
+		<property name="mT25PointsPossible" value="100"/>
 		<!-- Relaciones -->
 		<property name="following">
 			<list>		

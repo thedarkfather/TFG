@@ -1,6 +1,8 @@
 package services;
 
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -10,6 +12,7 @@ import org.springframework.util.Assert;
 
 import domain.Prediction;
 import forms.PredictionForm;
+import forms.PredictionToListForm;
 import repositories.PredictionRepository;
 
 @Service
@@ -50,5 +53,21 @@ public class PredictionService {
 		predictionForm.setAwayGoals(prediction.getAwayGoals());
 		predictionForm.setpAwayGoals(prediction.getpAwayGoals());
 		return predictionForm;
+	}
+
+	public List<PredictionToListForm> findToListByUserId(Integer userId) {
+		Assert.notNull(userId);
+		List<Prediction> predictions = predictionRepository.findToListByUserId(userId);
+		List<PredictionToListForm> predictionsToListForm = new LinkedList<PredictionToListForm>();
+		for(Prediction prediction: predictions){
+			PredictionToListForm predictionToListForm = new PredictionToListForm();
+			predictionToListForm.setAwayTeamGoals(prediction.getAwayGoals());
+			predictionToListForm.setAwayTeamName(prediction.getGame().getAwayTeam().getName());
+			predictionToListForm.setFinishDate(prediction.getGame().getRound().getFinishDate());
+			predictionToListForm.setHomeTeamName(prediction.getGame().getHomeTeam().getName());
+			predictionToListForm.setHomeTeamGoals(prediction.getHomeGoals());
+			predictionToListForm.setId(prediction.getId());
+		}
+		return predictionsToListForm;
 	}
 }

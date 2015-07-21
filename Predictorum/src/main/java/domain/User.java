@@ -29,6 +29,16 @@ public class User extends Actor{
 	private Integer hAGPoints;
 	private Integer mT25Points;
 	
+	private Integer sRPointsPossible;
+	private Integer dRPointsPossible;
+	private Integer sHRPointsPossible;
+	private Integer dHRPointsPossible;
+	private Integer hGPointsPossible;
+	private Integer aGPointsPossible;
+	private Integer hHGPointsPossible;
+	private Integer hAGPointsPossible;
+	private Integer mT25PointsPossible;
+	
 	@Range(min=0)
 	@NotNull
 	public Integer getsRPoints() {
@@ -117,8 +127,100 @@ public class User extends Actor{
 	
 	public void setmT25Points(Integer mT25Points) {
 		this.mT25Points = mT25Points;
-	}
+	}	
 	
+	@Range(min=0)
+	@NotNull
+	public Integer getsRPointsPossible() {
+		return sRPointsPossible;
+	}
+
+	public void setsRPointsPossible(Integer sRPointsPossible) {
+		this.sRPointsPossible = sRPointsPossible;
+	}
+
+	@Range(min=0)
+	@NotNull
+	public Integer getdRPointsPossible() {
+		return dRPointsPossible;
+	}
+
+	public void setdRPointsPossible(Integer dRPointsPossible) {
+		this.dRPointsPossible = dRPointsPossible;
+	}
+
+	@Range(min=0)
+	@NotNull
+	public Integer getsHRPointsPossible() {
+		return sHRPointsPossible;
+	}
+
+	public void setsHRPointsPossible(Integer sHRPointsPossible) {
+		this.sHRPointsPossible = sHRPointsPossible;
+	}
+
+	@Range(min=0)
+	@NotNull
+	public Integer getdHRPointsPossible() {
+		return dHRPointsPossible;
+	}
+
+	public void setdHRPointsPossible(Integer dHRPointsPossible) {
+		this.dHRPointsPossible = dHRPointsPossible;
+	}
+
+	@Range(min=0)
+	@NotNull
+	public Integer gethGPointsPossible() {
+		return hGPointsPossible;
+	}
+
+	public void sethGPointsPossible(Integer hGPointsPossible) {
+		this.hGPointsPossible = hGPointsPossible;
+	}
+
+	@Range(min=0)
+	@NotNull
+	public Integer getaGPointsPossible() {
+		return aGPointsPossible;
+	}
+
+	public void setaGPointsPossible(Integer aGPointsPossible) {
+		this.aGPointsPossible = aGPointsPossible;
+	}
+
+	@Range(min=0)
+	@NotNull
+	public Integer gethHGPointsPossible() {
+		return hHGPointsPossible;
+	}
+
+	public void sethHGPointsPossible(Integer hHGPointsPossible) {
+		this.hHGPointsPossible = hHGPointsPossible;
+	}
+
+	@Range(min=0)
+	@NotNull
+	public Integer gethAGPointsPossible() {
+		return hAGPointsPossible;
+	}
+
+	public void sethAGPointsPossible(Integer hAGPointsPossible) {
+		this.hAGPointsPossible = hAGPointsPossible;
+	}
+
+	@Range(min=0)
+	@NotNull
+	public Integer getmT25PointsPossible() {
+		return mT25PointsPossible;
+	}
+
+	public void setmT25PointsPossible(Integer mT25PointsPossible) {
+		this.mT25PointsPossible = mT25PointsPossible;
+	}
+
+
+
 	//Relaciones
 	private Collection<User> following;
 	private Collection<User> followers;
