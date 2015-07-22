@@ -146,6 +146,8 @@
 											<li><a href="#/team/list" translate>TEAMS</a></li>
 											<li ng-show="isWelcome"><a href="#/" scroll-to="aboutUs"><span
 													translate>ABOUT_US</span></a></li>
+											<li ng-show="showMenu"><a href="logout" ng-click="logout()"><span
+													translate>LOGOUT</span></a></li>
 											<li class="dropdown nav-toggle"><a href
 												class="dropdown-toggle" data-toggle="dropdown" translate>LANGUAGE<b
 													class="caret"></b></a>
@@ -187,7 +189,7 @@
 									<!--Sign In Title row -->
 									<div class="row text-center">
 										<div class="col-md-12 big-title light wow bounceIn">
-											<h2 translate>SIGN_IN</h2>
+											<h2 translate >SIGN_IN</h2>
 										</div>
 									</div>
 									<!-- /Sign In Title row -->
@@ -223,7 +225,8 @@
 									<!--Sign Up Title row -->
 									<div class="row text-center">
 										<div class="col-md-12 big-title light wow bounceIn">
-											<h2 translate>SIGN_UP</h2>
+											<h2 translate ng-show="notRegistered">SIGN_UP</h2>
+											<h2 translate ng-show="!notRegistered" class="animated pulse">CONGRATULATIONS</h2>
 										</div>
 									</div>
 									<!-- /Sign up Title row -->
@@ -232,7 +235,7 @@
 									<div class="row text-center">
 										<div class="col-md-2"></div>
 										<div class="col-md-8">
-											<form id="signup" name="signUpForm" ng-submit="goSignUp()" novalidate>
+											<form ng-show="notRegistered" id="signup" name="signUpForm" ng-submit="goSignUp()" novalidate>
 												<fieldset>
 													<input ng-class="{'ng-submitted ng-invalid': notUniqueError}" class="form-control wow fadeInLeft" type="text"
 														placeholder="Username" data-ng-model="signUp.username" style="margin-bottom: 5%;" required>
@@ -251,6 +254,7 @@
 														translate>SIGN_UP</button>
 												</fieldset>
 											</form>
+											<h2 ng-show="!notRegistered" class="animated pulse"> <p translate>REGISTERED_MESSAGE</p> <p><i class="fa fa-arrow-left"></i></p> </h2>
 										</div>
 										<div class="col-md-2"></div>
 									</div>

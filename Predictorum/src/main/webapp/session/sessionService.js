@@ -1,15 +1,26 @@
 /**
  * 
  */
-var sessionService = angular.module('predictorum.sessionService', []);
+var sessionService = angular.module('predictorum.sessionService', ['ngCookies','predictorum.actorService']);
 
 
 sessionService
-.factory('sessionService', function($http) {
+.factory('sessionService', function($http,$location,$cookies,actorService) {
 	
 	var sessionService = {};
 	
-	sessionService.getPrincipal = function() { return sessionService.principal };
+	sessionService.getPrincipal = function() {
+		sessionService.principal = $cookies['principal'];
+		if(typeof sessionService.principal === "undefined"){
+			actorService.getProfile().then(function(result){
+				if(result.status=='200'){
+					sessionService.principal = result.data;
+					$cookies.principal = result.data;
+				}
+			});
+		}
+		return sessionService.principal 
+	};
 	
 
 	sessionService.login = function(username,password) {
@@ -31,7 +42,7 @@ sessionService
 				sessionService.loginResult = "ERROR";
 			} else {
 				sessionService.loginResult= "OK";
-				sessionService.principal.logged = true;
+				sessionService.getPrincipal();
 			}
 		});
 		
@@ -54,6 +65,10 @@ sessionService
 	
 	return result;
 	
+	}
+	
+	sessionService.logout = function(){
+		delete $cookies['principal'];
 	}
 	
 	

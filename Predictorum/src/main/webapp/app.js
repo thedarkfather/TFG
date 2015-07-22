@@ -92,6 +92,8 @@ predictorum.controller('indexController', function($scope, $location, $translate
 			password: "",
 			result: ""
 	}
+	
+	$scope.notRegistered = true;
 
 	$scope.goLogin = function(){
 		sessionService.login($scope.login.user,$scope.login.password).success(function(data) {
@@ -127,13 +129,18 @@ predictorum.controller('indexController', function($scope, $location, $translate
 					$scope.notUniqueError = !$scope.passwordMatchError; //para que no se muestren ambos errores a la vez
 				}
 			}else{
-				//se ha registrado y lo logueamos
-				sessionService.login($scope.login.user,$scope.login.password).success(function(data) {
-						$scope.showMenu = true;
-						$scope.toggleMenu();
-				});
+				//se ha registrado 
+				$scope.notRegistered = false;
 			}
 		});
+	}
+	
+	//Logout
+	
+	$scope.logout = function(){
+		sessionService.logout();
+		showMenu=false;
+		$scope.apply();
 	}
 	
 	//Languages
@@ -143,7 +150,7 @@ predictorum.controller('indexController', function($scope, $location, $translate
 	}
 	
 	//SVG Menu
-	$scope.showMenu = sessionService.getPrincipal()!==undefined;
+	$scope.showMenu = sessionService.getPrincipal()!==undefined && sessionService.getPrincipal()!=='[object Object]';
 	var svg = document.getElementById('svg-menu'),
     items = svg.querySelectorAll('.item'),
     trigger = document.getElementById('trigger'),
@@ -165,6 +172,10 @@ predictorum.controller('indexController', function($scope, $location, $translate
 	        label.innerHTML = "+";
 	      svg.style.pointerEvents = "none";
 	    }
+	}
+	
+	if($scope.showMenu){
+		$scope.toggleMenu();
 	}
 
 	$scope.predictionsNumber = 5650;

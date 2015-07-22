@@ -3,6 +3,8 @@
 "SIGN_IN": 					"Entrar",
 "MENU":						"Menú",
 "SIGN_UP":					"Registrarse",
+"CONGRATULATIONS":			"¡Enhorabuena!",
+"REGISTERED_MESSAGE":		"Ahora puedes entrar...",
 "BLANK_ERROR":				"No debe estar en blanco",
 "PASSWORD_MATCH_ERROR":		"Las contraseñas deben ser iguales",
 "NOT_UNIQUE_ERROR":			"El nombre de usuario ya está en uso",

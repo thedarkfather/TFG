@@ -3,6 +3,8 @@
 "SIGN_IN": 					"Sign in",
 "MENU":						"Menu",
 "SIGN_UP":					"Sign up",
+"CONGRATULATIONS":			"Congratulations!",
+"REGISTERED_MESSAGE":		"Now sign in...",
 "BLANK_ERROR":				"Must not be blank",
 "PASSWORD_MATCH_ERROR":		"Passwords must match",
 "NOT_UNIQUE_ERROR":			"That username is already in use",
