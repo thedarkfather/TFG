@@ -39,8 +39,8 @@
 					</div>
 					<div class="col-lg-6 col-xs-6">
 
-						<a href="#/user/profile"><b><i ng-show="tab.current==='ranking'">{{actor.position}}&deg;</i>
-								@{{actor.name}}</b></a>
+						<a href="#/user/profile" ><b><i ng-show="tab.current==='ranking'">{{actor.position}}&deg;</i>
+								@{{actor.name | limitTo:10}}</b><b ng-show="actor.name.length>10" >...</b></a>
 					</div>
 					<div class="col-lg-6 col-xs-6">
 						<i class="fa fa-trophy"></i> {{actor.points}} <span translate>POINT</span><ng-pluralize count="actor.points" when="{'1':'','other':'s'}"></ng-pluralize>

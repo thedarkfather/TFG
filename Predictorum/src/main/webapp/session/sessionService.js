@@ -1,21 +1,21 @@
 /**
  * 
  */
-var sessionService = angular.module('predictorum.sessionService', ['ngCookies','predictorum.actorService']);
+var sessionService = angular.module('predictorum.sessionService', ['ipCookie','predictorum.actorService']);
 
 
 sessionService
-.factory('sessionService', function($http,$location,$cookies,actorService) {
+.factory('sessionService', function($http,$location,ipCookie,actorService) {
 	
 	var sessionService = {};
 	
 	sessionService.getPrincipal = function() {
-		sessionService.principal = $cookies['principal'];
-		if(typeof sessionService.principal === "undefined"){
-			actorService.getProfile().then(function(result){
+		sessionService.principal = ipCookie('PRINCIPAL');
+		if(typeof sessionService.principal === 'undefined'){
+			actorService.getPrincipalProfile().then(function(result){
 				if(result.status=='200'){
 					sessionService.principal = result.data;
-					$cookies.principal = result.data;
+					ipCookie('PRINCIPAL', result.data,{expires: 3, expirationUnit: 'hours'});
 				}
 			});
 		}
@@ -68,7 +68,7 @@ sessionService
 	}
 	
 	sessionService.logout = function(){
-		delete $cookies['principal'];
+		ipCookie.remove('PRINCIPAL');
 	}
 	
 	

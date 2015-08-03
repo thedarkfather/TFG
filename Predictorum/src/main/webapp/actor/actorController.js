@@ -3,9 +3,9 @@
  */
 
 var actorController = angular.module('predictorum.actorController',
-		[ 'predictorum.actorService' ]);
+		[ 'predictorum.actorService', 'predictorum.sessionService' ]);
 
-actorController.controller("actorController", function($scope, $location,$interval, actorService) {
+actorController.controller("actorController", function($scope, $location,$interval, actorService, sessionService) {
 
 	if($location.path().includes('followers')){
 		$scope.tab = {
@@ -72,11 +72,8 @@ actorController.controller("actorController", function($scope, $location,$interv
 	
 	//Profile
 	
-	actorService.getProfile().then(function(result) {
-		if(result.status=='200'){ //if success
-			$scope.profile = result.data;
-		}
-	});
+	$scope.profile = sessionService.getPrincipal();
+			
 	
 	$scope.predictions = [{homeTeam: 'R.Madrid', awayTeam: 'Barcelona', homeGoals: 2, awayGoals: 0, matchDate: '10/08/2015'},{homeTeam: 'At.Madrid', awayTeam: 'Getafe', homeGoals: 3, awayGoals: 1, matchDate: '11/08/2015'}];
 	$scope.maxSimpleValue = 69;
