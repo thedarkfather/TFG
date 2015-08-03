@@ -10,6 +10,9 @@
 "NOT_UNIQUE_ERROR":			"El nombre de usuario ya está en uso",
 "HOME":						"INICIO",
 "ABOUT_US":					"SOBRE NOSOTROS",
+"PROFILE":					"PERFIL",
+"PREDICTIONS":				"PREDICCIONES",
+"LOGOUT":					"SALIR",
 "LANGUAGE":					"IDIOMA",
 "SPANISH":					"ESPAÑOL",
 "ENGLISH":					"INGLÉS",
@@ -34,7 +37,11 @@
 "HTAG":						"Goles Visitante al descanso",
 "FTHG":						"Goles Local",
 "FTAG":						"Goles Visitante",
-"MT25":						"Más de 2.5 goles",				
+"RESULT":					"Resultado",
+"MT25":						"Más de 2.5 goles",
+"LIKELY":					"PROBABLE",
+"UNLIKELY":					"IMPROBABLE",
+"YES":						"SÍ",				
 "HL1": {
 		"WORD1":			"TODO",
 		"WORD2":			" GRATUITO"

@@ -9,7 +9,7 @@ actorService
 	
 	actorService = {};
 	
-	actorService.getProfile = function() {
+	actorService.getPrincipalProfile = function() {
 		var req = {
 				method : 'GET',
 				url : 'http://localhost:8080/Predictorum/api/user/profile',

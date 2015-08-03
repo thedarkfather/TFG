@@ -1,0 +1,102 @@
+<div class="container" style="margin-top: 40px;">
+	<div class="row">
+		<div class="col-lg-10 col-xs-12 col-lg-offset-1">
+			<div class="col-lg-12 col-xs-12 text-center">
+				<h2>{{prediction.homeTeam}} vs {{prediction.awayTeam}}</h2>
+				<p class="text-muted">{{prediction.matchDate}}</p>
+			</div>
+			<div class="col-lg-12 col-xs-12">
+				<div class="widget tabs">
+					<div id="horizontal-tabs">
+						<ul class="tabs">
+							<li ng-click="switchTab('SIMPLE')"
+								ng-class="{current: tab.current==='SIMPLE'}"
+								style="width: 25%; text-align: center;">SIMPLE</li>
+							<li ng-click="switchTab('DOUBLE')"
+								ng-class="{current: tab.current==='DOUBLE'}"
+								style="width: 25%; text-align: center;">{{"DOUBLE" |
+								translate | uppercase}}</li>
+							<li ng-click="switchTab('RESULT')"
+								ng-class="{current: tab.current==='RESULT'}"
+								style="width: 25%; text-align: center;">{{"RESULT" |
+								translate | uppercase}}</li>
+							<li ng-click="switchTab('MT25')"
+								ng-class="{current: tab.current==='MT25'}"
+								style="width: 25%; text-align: center;">{{"MT25" |
+								translate | uppercase}}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8 col-xs-8">
+				<canvas ng-hide="tab.current==='RESULT'" tc-chartjs-doughnut
+					chart-options="options" chart-data="data"></canvas>
+				<div ng-show="tab.current==='RESULT'">
+					<div class="col-lg-6 col-xs-12">
+						<canvas tc-chartjs-doughnut chart-options="options"
+							chart-data="dataHome"></canvas>
+						<p class="text-center" translate>FTHG</p>
+					</div>
+					<div class="col-lg-6 col-xs-12">
+						<canvas tc-chartjs-doughnut chart-options="options"
+							chart-data="dataAway"></canvas>
+						<p class="text-center" translate>FTAG</p>
+					</div>
+				</div>
+				<span
+					style="width: 10px; height: 10px; background-color: #82dc23; display: inline-block"></span>
+				%<i translate>LIKELY</i> <span
+					style="width: 10px; height: 10px; background-color: #F7464A; display: inline-block"></span>
+				%<i translate>UNLIKELY</i>
+			</div>
+			<div class="col-lg-4 col-xs-4">
+				<h3 class="text-center">
+					{{"RESULT" | translate }} <span ng-hide="tab.current==='RESULT'">{{tab.current
+						| translate |lowercase}}</span>:
+				</h3>
+				<div ng-if="tab.current==='SIMPLE'" class="text-center"
+					style="font-size: 20px;">
+					<b ng-show="prediction.simple==='1'">1</b><span
+						ng-hide="prediction.simple==='1'">1</span> <b
+						ng-show="prediction.simple==='X'">X</b><span
+						ng-hide="prediction.simple==='X'">X</span> <b
+						ng-show="prediction.simple==='2'">2</b><span
+						ng-hide="prediction.simple==='2'">2</span>
+				</div>
+				<div ng-if="tab.current==='DOUBLE'" class="text-center"
+					style="font-size: 20px;">
+					<b ng-show="prediction.double.indexOf('1') != -1">1</b><span
+						ng-hide="prediction.double.indexOf('1') != -1">1</span> <b
+						ng-show="prediction.double.indexOf('X') != -1">X</b><span
+						ng-hide="prediction.double.indexOf('X') != -1">X</span> <b
+						ng-show="prediction.double.indexOf('2') != -1">2</b><span
+						ng-hide="prediction.double.indexOf('2') != -1">2</span>
+				</div>
+				<div ng-if="tab.current==='MT25'" class="text-center"
+					style="font-size: 20px;">
+					<b ng-show="prediction.mt25" translate>YES</b><span
+						ng-hide="prediction.mt25" translate>YES</span> <b
+						ng-show="!prediction.mt25">NO</b><span ng-hide="!prediction.mt25">NO</span>
+				</div>
+				<div ng-if="tab.current==='RESULT'" class="text-center"
+					style="font-size: 20px;">
+					<b>{{prediction.homeGoals}} - {{prediction.awayGoals}}</b>
+				</div>
+			</div>
+			<div class="col-lg-12 col-xs-12 text-left" style="margin-top:25px;">
+				<p ng-init="showComments=false" ng-click="showComments=!showComments"
+					style="cursor: pointer">SHOW COMMENTS</p>
+				<div ng-show="showComments" class="list-group">
+				
+					<div id="comment{{comment.id}}" ng-repeat="comment in prediction.comments | orderBy:orderProp"
+						class="list-group-item clearfix">
+						<a href="#/user/profile">@{{comment.user}}</a> <i class="pull-right text-muted"> #{{comment.id}}</i>
+						
+						<p> {{comment.text }} </p>
+						<p ng-if="comment.parent" class="text-muted"> In response to <a scroll-to="#comment{{comment.parent}}">#{{comment.parent}}</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

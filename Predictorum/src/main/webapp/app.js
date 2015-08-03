@@ -1,8 +1,9 @@
 // Creación del módulo
 
-var predictorum = angular.module('predictorum', [ 'ngAnimate','ngRoute','ngCookies',
-		'pascalprecht.translate', 'smoothScroll','isteven-omni-bar',
-		'predictorum.sessionService', 'predictorum.teamController','predictorum.actorController']);
+var predictorum = angular.module('predictorum', [ 'ngAnimate','ngRoute','ngCookies','ipCookie',
+		'pascalprecht.translate', 'smoothScroll','isteven-omni-bar','tc.chartjs',
+		'predictorum.sessionService','predictorum.teamController','predictorum.actorController',
+		'predictorum.predictionController']);
 
 // Directivas propias
 
@@ -71,6 +72,16 @@ predictorum.config(['$routeProvider','$locationProvider','$translateProvider','$
 	.when('/user/profile', {
 		templateUrl : 'actor/views/display.html',
 		controller : 'actorController'
+	})
+	
+	.when('/prediction/upcoming', {
+		templateUrl : 'prediction/views/list.html',
+		controller : 'predictionController'
+	})
+	
+	.when('/prediction/details', {
+		templateUrl : 'prediction/views/display.html',
+		controller : 'predictionController'
 	})
 
 	.otherwise({
@@ -150,7 +161,7 @@ predictorum.controller('indexController', function($scope, $location, $translate
 	}
 	
 	//SVG Menu
-	$scope.showMenu = sessionService.getPrincipal()!==undefined && sessionService.getPrincipal()!=='[object Object]';
+	$scope.showMenu = typeof sessionService.getPrincipal()!=='undefined';
 	var svg = document.getElementById('svg-menu'),
     items = svg.querySelectorAll('.item'),
     trigger = document.getElementById('trigger'),

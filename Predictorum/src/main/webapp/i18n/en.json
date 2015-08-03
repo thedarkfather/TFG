@@ -10,6 +10,8 @@
 "NOT_UNIQUE_ERROR":			"That username is already in use",
 "HOME":						"HOME",
 "ABOUT_US":					"ABOUT US",
+"PROFILE":					"PROFILE",
+"PREDICTIONS":				"PREDICTIONS",
 "LANGUAGE":					"LANGUAGE",
 "SPANISH":					"SPANISH",
 "ENGLISH":					"ENGLISH",
@@ -34,7 +36,11 @@
 "HTAG":						"Half Time Away Goals",
 "FTHG":						"Home Goals",
 "FTAG":						"Away Goals",
+"RESULT":					"Result",
 "MT25":						"More Than 2.5 Goals",
+"LIKELY":					"LIKELY",
+"UNLIKELY":					"UNLIKELY",
+"YES":						"YES",
 "HL1": {
 		"WORD1":			"FREE",
 		"WORD2":			" FEATURES"
