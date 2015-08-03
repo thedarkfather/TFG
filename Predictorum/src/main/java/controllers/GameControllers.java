@@ -24,4 +24,5 @@ public class GameControllers extends AbstractController{
 		Collection<GameToListForm> gamesToList = gameService.fragmentsToList(games);
 		return gamesToList;
 	}
+	
 }

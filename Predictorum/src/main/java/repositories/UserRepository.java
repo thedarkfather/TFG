@@ -30,7 +30,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("select u from User u join u.teams t where t.id=?1 group by u")
 	List<User> findFollowersByTeamId(Integer teamId);
 
-	@Query("select u from User u order by (u.sRPoints + u.dRPoints + u.sHRPoints + u.dHRPoints + u.hGPoints + u.aGPoints + u.hHGPoints + u.hAGPoints + u.mT25Points) desc")
+	@Query("select u from User u order by (u.sRPoints + u.dRPoints + u.hGPoints + u.aGPoints + u.mT25Points) desc")
 	List<User> findRankedUsers();
 	
 	@Query("select u from User u where u.userAccount.username like %?1% group by u")

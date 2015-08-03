@@ -11,10 +11,6 @@ public class PredictionForm {
 	private Double pSimpleResult;
 	private String doubleResult;
 	private Double pDoubleResult;
-	private String simpleHalfResult;
-	private Double pSimpeHalfResult;
-	private String doubleHalfResult;
-	private Double pDoubleHalfResult;
 	private Integer homeGoals;
 	private Double pHomeGoals;
 	private Integer awayGoals;
@@ -83,38 +79,7 @@ public class PredictionForm {
 	public void setpDoubleResult(Double pDoubleResult) {
 		this.pDoubleResult = pDoubleResult;
 	}
-	
-	public String getSimpleHalfResult() {
-		return simpleHalfResult;
-	}
-	
-	public void setSimpleHalfResult(String simpleHalfResult) {
-		this.simpleHalfResult = simpleHalfResult;
-	}
-	
-	public Double getpSimpeHalfResult() {
-		return pSimpeHalfResult;
-	}
-	
-	public void setpSimpeHalfResult(Double pSimpeHalfResult) {
-		this.pSimpeHalfResult = pSimpeHalfResult;
-	}
-	
-	public String getDoubleHalfResult() {		
-		return doubleHalfResult;
-	}
-	
-	public void setDoubleHalfResult(String doubleHalfResult) {
-		this.doubleHalfResult = doubleHalfResult;
-	}
-	
-	public Double getpDoubleHalfResult() {
-		return pDoubleHalfResult;
-	}
-	
-	public void setpDoubleHalfResult(Double pDoubleHalfResult) {
-		this.pDoubleHalfResult = pDoubleHalfResult;
-	}
+
 	
 	public Integer getHomeGoals() {
 		return homeGoals;

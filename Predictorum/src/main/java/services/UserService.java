@@ -45,24 +45,18 @@ public class UserService {
 		u.setaGPoints(0);
 		u.setaGPointsPossible(0);
 		u.setComments(new LinkedList<Comment>());
-		u.setdHRPoints(0);
 		u.setdHRPointsPossible(0);
 		u.setEmail(null);
 		u.setEvaluations(new LinkedList<Evaluation>());
 		u.setFollowers(new LinkedList<User>());
 		u.setFollowing(new LinkedList<User>());
-		u.sethAGPoints(0);
-		u.sethAGPointsPossible(0);
 		u.sethGPoints(0);
 		u.sethGPointsPossible(0);
-		u.sethHGPoints(0);
-		u.sethHGPointsPossible(0);
 		u.setLogo(null);
 		u.setmT25Points(0);
 		u.setmT25PointsPossible(0);
 		u.setName(null);		
 		u.setPredictions(new LinkedList<Prediction>());
-		u.setsHRPoints(0);
 		u.setsHRPointsPossible(0);
 		u.setsRPoints(0);
 		u.setsRPointsPossible(0);
@@ -128,7 +122,7 @@ public class UserService {
 				userToRank.setFollowing(isFollowed(rankedUser.get(i)));
 				userToRank.setId(user.getId());
 				userToRank.setName(user.getUserAccount().getUsername());
-				Integer points = user.getaGPoints() + user.getdHRPoints() + user.getdRPoints() + user.gethAGPoints() + user.gethGPoints() + user.gethHGPoints() + user.getmT25Points() + user.getsHRPoints() + user.getsRPoints();
+				Integer points = user.getaGPoints() + user.getdRPoints() + user.gethGPoints() + user.getmT25Points() + user.getsRPoints();
 				userToRank.setPoints(points);
 				userToRank.setPosition(i+1);
 				usersToRank.add(userToRank);
@@ -152,7 +146,7 @@ public class UserService {
 		UserToList userToList = new UserToList();
 		userToList.setId(user.getId());
 		userToList.setName(user.getUserAccount().getUsername());		
-		Integer points = user.getaGPoints() + user.getdHRPoints() + user.getdRPoints() + user.gethAGPoints() + user.gethGPoints() + user.gethHGPoints() + user.getmT25Points() + user.getsHRPoints() + user.getsRPoints();
+		Integer points = user.getaGPoints() + user.getdRPoints() + user.gethGPoints() + user.getmT25Points() + user.getsRPoints();
 		userToList.setPoints(points);
 		userToList.setFollowing(isFollowed(user));
 		return userToList;
@@ -190,31 +184,11 @@ public class UserService {
 			userDetailsForm.setaGPointsPercentaje((principal.getaGPoints()*100)/principal.getaGPointsPossible());
 		}else{
 			userDetailsForm.setaGPointsPercentaje(cero);
-		}		
-		if(!cero.equals(principal.getdHRPointsPossible())){
-			userDetailsForm.setdHRPointsPercentaje((principal.getdHRPoints()*100)/principal.getdHRPointsPossible());
-		}else{
-			userDetailsForm.setdHRPointsPercentaje(cero);
-		}
-		if(!cero.equals(principal.getdRPointsPossible())){
-			userDetailsForm.setdRPointsPercentaje((principal.getdHRPoints()*100)/principal.getdRPointsPossible());
-		}else{
-			userDetailsForm.setdRPointsPercentaje(cero);
-		}
-		if(!cero.equals(principal.gethAGPointsPossible())){
-			userDetailsForm.sethAGPointsPercentaje((principal.gethAGPoints()*100)/principal.gethAGPointsPossible());
-		}else{
-			userDetailsForm.sethAGPointsPercentaje(cero);
-		}
+		}				
 		if(!cero.equals(principal.gethGPointsPossible())){
 			userDetailsForm.sethGPointsPercentaje((principal.gethGPoints()*100)/principal.gethGPointsPossible());
 		}else{
 			userDetailsForm.sethGPointsPercentaje(cero);
-		}
-		if(!cero.equals(principal.getsHRPointsPossible())){
-			userDetailsForm.setsHRPointsPercentaje((principal.getsHRPoints()*100)/principal.getsHRPointsPossible());
-		}else{
-			userDetailsForm.setsHRPointsPercentaje(cero);
 		}
 		if(!cero.equals(principal.getsRPointsPossible())){
 			userDetailsForm.setsRPointsPercentaje((principal.getsRPoints()*100)/principal.getsRPointsPossible());

@@ -21,19 +21,19 @@ public class Prediction extends DomainEntity{
 	private Double pSimpleResult;
 	private String doubleResult;
 	private Double pDoubleResult;
-	private String simpleHalfResult;
-	private Double pSimpeHalfResult;
-	private String doubleHalfResult;
-	private Double pDoubleHalfResult;
 	private Integer homeGoals;
 	private Double pHomeGoals;
 	private Integer awayGoals;
 	private Double pAwayGoals;
-	//POR AHORA NO SE PONDRÁN LOS GOLES A MITAD DE TIEMPO
+	//POR AHORA NO SE PONDRAN LAS PREDICCIONES A MITAD DE TIEMPO
 	//private Integer halfHomeGoals;
 	//private Double pHalfHomeGoals;
 	//private Integer halfAwayGoals;
 	//private Double pHalfAwayGoals;
+	//private String simpleHalfResult;
+	//private Double pSimpeHalfResult;
+	//private String doubleHalfResult;
+	//private Double pDoubleHalfResult;
 	private Boolean moreThan25;
 	private Double pMoreThan25;
 	
@@ -73,44 +73,6 @@ public class Prediction extends DomainEntity{
 	
 	public void setpDoubleResult(Double pDoubleResult) {
 		this.pDoubleResult = pDoubleResult;
-	}
-	
-	@NotBlank
-	public String getSimpleHalfResult() {
-		return simpleHalfResult;
-	}
-	
-	public void setSimpleHalfResult(String simpleHalfResult) {
-		this.simpleHalfResult = simpleHalfResult;
-	}
-	
-	@Range(min=0,max=1)
-	@NotNull
-	public Double getpSimpeHalfResult() {
-		return pSimpeHalfResult;
-	}
-	
-	public void setpSimpeHalfResult(Double pSimpeHalfResult) {
-		this.pSimpeHalfResult = pSimpeHalfResult;
-	}
-	
-	@NotBlank
-	public String getDoubleHalfResult() {
-		return doubleHalfResult;
-	}
-	
-	public void setDoubleHalfResult(String doubleHalfResult) {
-		this.doubleHalfResult = doubleHalfResult;
-	}
-	
-	@Range(min=0,max=1)
-	@NotNull
-	public Double getpDoubleHalfResult() {
-		return pDoubleHalfResult;
-	}
-	
-	public void setpDoubleHalfResult(Double pDoubleHalfResult) {
-		this.pDoubleHalfResult = pDoubleHalfResult;
 	}
 	
 	@Range(min=0)

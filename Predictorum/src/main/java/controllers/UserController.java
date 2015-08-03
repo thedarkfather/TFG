@@ -61,7 +61,7 @@ public class UserController extends AbstractController{
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/find/{cadena}")
-	public Collection<UserToList> findUserByString(@PathVariable String cadena) {	authenticate("user4");
+	public Collection<UserToList> findUserByString(@PathVariable String cadena) {	
 		Collection<User> userAux = userService.findUserByString(cadena);
 		Collection<UserToList> usersToList = userService.reconstructsToList(userAux);
 		return usersToList;

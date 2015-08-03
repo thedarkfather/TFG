@@ -76,22 +76,14 @@
 		<!-- Logo -->
 		<property name="sRPoints" value="10"/>
 		<property name="dRPoints" value="10"/>
-		<property name="sHRPoints" value="10"/>
-		<property name="dHRPoints" value="10"/>
 		<property name="hGPoints" value="10"/>
 		<property name="aGPoints" value="10"/>
-		<property name="hHGPoints" value="10"/>
-		<property name="hAGPoints" value="10"/>
 		<property name="mT25Points" value="10"/>
 		
 		<property name="sRPointsPossible" value="100"/>
 		<property name="dRPointsPossible" value="100"/>
-		<property name="sHRPointsPossible" value="100"/>
-		<property name="dHRPointsPossible" value="100"/>
 		<property name="hGPointsPossible" value="100"/>
 		<property name="aGPointsPossible" value="100"/>
-		<property name="hHGPointsPossible" value="100"/>
-		<property name="hAGPointsPossible" value="100"/>
 		<property name="mT25PointsPossible" value="100"/>
 		<!-- Relaciones -->
 		<property name="following">
@@ -128,22 +120,14 @@
 		<!-- Logo -->
 		<property name="sRPoints" value="20"/>
 		<property name="dRPoints" value="20"/>
-		<property name="sHRPoints" value="20"/>
-		<property name="dHRPoints" value="20"/>
 		<property name="hGPoints" value="20"/>
 		<property name="aGPoints" value="20"/>
-		<property name="hHGPoints" value="20"/>
-		<property name="hAGPoints" value="20"/>
 		<property name="mT25Points" value="20"/>
 		
 		<property name="sRPointsPossible" value="100"/>
 		<property name="dRPointsPossible" value="100"/>
-		<property name="sHRPointsPossible" value="100"/>
-		<property name="dHRPointsPossible" value="100"/>
 		<property name="hGPointsPossible" value="100"/>
 		<property name="aGPointsPossible" value="100"/>
-		<property name="hHGPointsPossible" value="100"/>
-		<property name="hAGPointsPossible" value="100"/>
 		<property name="mT25PointsPossible" value="100"/>
 		<!-- Relaciones -->
 		<property name="following">
@@ -180,22 +164,14 @@
 		<!-- Logo -->
 		<property name="sRPoints" value="30"/>
 		<property name="dRPoints" value="30"/>
-		<property name="sHRPoints" value="30"/>
-		<property name="dHRPoints" value="30"/>
 		<property name="hGPoints" value="30"/>
 		<property name="aGPoints" value="30"/>
-		<property name="hHGPoints" value="30"/>
-		<property name="hAGPoints" value="30"/>
 		<property name="mT25Points" value="30"/>
 		
 		<property name="sRPointsPossible" value="100"/>
 		<property name="dRPointsPossible" value="100"/>
-		<property name="sHRPointsPossible" value="100"/>
-		<property name="dHRPointsPossible" value="100"/>
 		<property name="hGPointsPossible" value="100"/>
 		<property name="aGPointsPossible" value="100"/>
-		<property name="hHGPointsPossible" value="100"/>
-		<property name="hAGPointsPossible" value="100"/>
 		<property name="mT25PointsPossible" value="100"/>
 		<!-- Relaciones -->
 		<property name="following">
@@ -232,22 +208,14 @@
 		<!-- Logo -->
 		<property name="sRPoints" value="40"/>
 		<property name="dRPoints" value="40"/>
-		<property name="sHRPoints" value="40"/>
-		<property name="dHRPoints" value="40"/>
 		<property name="hGPoints" value="40"/>
 		<property name="aGPoints" value="40"/>
-		<property name="hHGPoints" value="40"/>
-		<property name="hAGPoints" value="40"/>
 		<property name="mT25Points" value="40"/>
 		
 		<property name="sRPointsPossible" value="100"/>
 		<property name="dRPointsPossible" value="100"/>
-		<property name="sHRPointsPossible" value="100"/>
-		<property name="dHRPointsPossible" value="100"/>
 		<property name="hGPointsPossible" value="100"/>
 		<property name="aGPointsPossible" value="100"/>
-		<property name="hHGPointsPossible" value="100"/>
-		<property name="hAGPointsPossible" value="100"/>
 		<property name="mT25PointsPossible" value="100"/>
 		<!-- Relaciones -->
 		<property name="following">

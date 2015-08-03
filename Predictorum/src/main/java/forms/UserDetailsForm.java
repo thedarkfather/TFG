@@ -7,12 +7,8 @@ public class UserDetailsForm {
 	//estadísticas
 	private Integer sRPointsPercentaje;
 	private Integer dRPointsPercentaje;
-	private Integer sHRPointsPercentaje;
-	private Integer dHRPointsPercentaje;
 	private Integer hGPointsPercentaje;
 	private Integer aGPointsPercentaje;
-	private Integer hHGPointsPercentaje;
-	private Integer hAGPointsPercentaje;
 	private Integer mT25PointsPercentaje;
 	private Integer rankingPosition;
 	//seguidores y siguiendo
@@ -45,22 +41,6 @@ public class UserDetailsForm {
 		this.dRPointsPercentaje = dRPointsPercentaje;
 	}
 	
-	public Integer getsHRPointsPercentaje() {
-		return sHRPointsPercentaje;
-	}
-	
-	public void setsHRPointsPercentaje(Integer sHRPointsPercentaje) {
-		this.sHRPointsPercentaje = sHRPointsPercentaje;
-	}
-	
-	public Integer getdHRPointsPercentaje() {
-		return dHRPointsPercentaje;
-	}
-	
-	public void setdHRPointsPercentaje(Integer dHRPointsPercentaje) {
-		this.dHRPointsPercentaje = dHRPointsPercentaje;
-	}
-	
 	public Integer gethGPointsPercentaje() {
 		return hGPointsPercentaje;
 	}
@@ -75,23 +55,7 @@ public class UserDetailsForm {
 	
 	public void setaGPointsPercentaje(Integer aGPointsPercentaje) {
 		this.aGPointsPercentaje = aGPointsPercentaje;
-	}
-	
-	public Integer gethHGPointsPercentaje() {
-		return hHGPointsPercentaje;
-	}
-	
-	public void sethHGPointsPercentaje(Integer hHGPointsPercentaje) {
-		this.hHGPointsPercentaje = hHGPointsPercentaje;
-	}
-	
-	public Integer gethAGPointsPercentaje() {
-		return hAGPointsPercentaje;
-	}
-	
-	public void sethAGPointsPercentaje(Integer hAGPointsPercentaje) {
-		this.hAGPointsPercentaje = hAGPointsPercentaje;
-	}
+	}	
 	
 	public Integer getmT25PointsPercentaje() {
 		return mT25PointsPercentaje;

@@ -19,14 +19,19 @@ import org.hibernate.validator.constraints.Range;
 @Access(AccessType.PROPERTY)
 public class User extends Actor{
 	
+	//simple result points
 	private Integer sRPoints;
+	//double result points
 	private Integer dRPoints;
-	private Integer sHRPoints;
-	private Integer dHRPoints;
+	//private Integer sHRPoints;
+	//private Integer dHRPoints;
+	//home goals points
 	private Integer hGPoints;
+	//away goals points
 	private Integer aGPoints;
-	private Integer hHGPoints;
-	private Integer hAGPoints;
+	//private Integer hHGPoints;
+	//private Integer hAGPoints;
+	//More than 2.5 goals
 	private Integer mT25Points;
 	
 	private Integer sRPointsPossible;
@@ -35,8 +40,6 @@ public class User extends Actor{
 	private Integer dHRPointsPossible;
 	private Integer hGPointsPossible;
 	private Integer aGPointsPossible;
-	private Integer hHGPointsPossible;
-	private Integer hAGPointsPossible;
 	private Integer mT25PointsPossible;
 	
 	@Range(min=0)
@@ -61,26 +64,6 @@ public class User extends Actor{
 	
 	@Range(min=0)
 	@NotNull
-	public Integer getsHRPoints() {
-		return sHRPoints;
-	}
-	
-	public void setsHRPoints(Integer sHRPoints) {
-		this.sHRPoints = sHRPoints;
-	}
-	
-	@Range(min=0)
-	@NotNull
-	public Integer getdHRPoints() {
-		return dHRPoints;
-	}
-	
-	public void setdHRPoints(Integer dHRPoints) {
-		this.dHRPoints = dHRPoints;
-	}
-	
-	@Range(min=0)
-	@NotNull
 	public Integer gethGPoints() {
 		return hGPoints;
 	}
@@ -97,26 +80,6 @@ public class User extends Actor{
 	
 	public void setaGPoints(Integer aGPoints) {
 		this.aGPoints = aGPoints;
-	}
-	
-	@Range(min=0)
-	@NotNull
-	public Integer gethHGPoints() {
-		return hHGPoints;
-	}
-	
-	public void sethHGPoints(Integer hHGPoints) {
-		this.hHGPoints = hHGPoints;
-	}
-	
-	@Range(min=0)
-	@NotNull
-	public Integer gethAGPoints() {
-		return hAGPoints;
-	}
-	
-	public void sethAGPoints(Integer hAGPoints) {
-		this.hAGPoints = hAGPoints;
 	}
 	
 	@Range(min=0)
@@ -187,26 +150,6 @@ public class User extends Actor{
 
 	public void setaGPointsPossible(Integer aGPointsPossible) {
 		this.aGPointsPossible = aGPointsPossible;
-	}
-
-	@Range(min=0)
-	@NotNull
-	public Integer gethHGPointsPossible() {
-		return hHGPointsPossible;
-	}
-
-	public void sethHGPointsPossible(Integer hHGPointsPossible) {
-		this.hHGPointsPossible = hHGPointsPossible;
-	}
-
-	@Range(min=0)
-	@NotNull
-	public Integer gethAGPointsPossible() {
-		return hAGPointsPossible;
-	}
-
-	public void sethAGPointsPossible(Integer hAGPointsPossible) {
-		this.hAGPointsPossible = hAGPointsPossible;
 	}
 
 	@Range(min=0)

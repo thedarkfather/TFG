@@ -1,5 +1,6 @@
 package repositories;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,5 +17,8 @@ public interface PredictionRepository extends JpaRepository<Prediction,Integer>{
 
 	@Query("select p from Prediction p where p.user.id = ?1 order by p.game.round.finishDate desc")
 	List<Prediction> findToListByUserId(Integer userId);
+
+	@Query("select p from Prediction p where p.game.id = ?1 and p.user!=null")
+	Collection<Prediction> findUserPredictionsByGameId(Integer gameId);
 
 }
