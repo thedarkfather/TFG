@@ -187,42 +187,42 @@ public class UserService {
 		Integer cero = 0;
 		UserDetailsForm userDetailsForm = new UserDetailsForm();
 		if(!cero.equals(principal.getaGPointsPossible())){
-			userDetailsForm.setaGPointsPercentaje(principal.getaGPointsPossible()/principal.getaGPoints());
+			userDetailsForm.setaGPointsPercentaje((principal.getaGPoints()*100)/principal.getaGPointsPossible());
 		}else{
 			userDetailsForm.setaGPointsPercentaje(cero);
 		}		
 		if(!cero.equals(principal.getdHRPointsPossible())){
-			userDetailsForm.setdHRPointsPercentaje(principal.getdHRPointsPossible()/principal.getdHRPoints());
+			userDetailsForm.setdHRPointsPercentaje((principal.getdHRPoints()*100)/principal.getdHRPointsPossible());
 		}else{
 			userDetailsForm.setdHRPointsPercentaje(cero);
 		}
 		if(!cero.equals(principal.getdRPointsPossible())){
-			userDetailsForm.setdRPointsPercentaje(principal.getdRPointsPossible()/principal.getdHRPoints());
+			userDetailsForm.setdRPointsPercentaje((principal.getdHRPoints()*100)/principal.getdRPointsPossible());
 		}else{
 			userDetailsForm.setdRPointsPercentaje(cero);
 		}
 		if(!cero.equals(principal.gethAGPointsPossible())){
-			userDetailsForm.sethAGPointsPercentaje(principal.gethAGPointsPossible()/principal.gethAGPoints());
+			userDetailsForm.sethAGPointsPercentaje((principal.gethAGPoints()*100)/principal.gethAGPointsPossible());
 		}else{
 			userDetailsForm.sethAGPointsPercentaje(cero);
 		}
 		if(!cero.equals(principal.gethGPointsPossible())){
-			userDetailsForm.sethGPointsPercentaje(principal.gethGPointsPossible()/principal.gethGPoints());
+			userDetailsForm.sethGPointsPercentaje((principal.gethGPoints()*100)/principal.gethGPointsPossible());
 		}else{
 			userDetailsForm.sethGPointsPercentaje(cero);
 		}
 		if(!cero.equals(principal.getsHRPointsPossible())){
-			userDetailsForm.setsHRPointsPercentaje(principal.getsHRPointsPossible()/principal.getsHRPoints());
+			userDetailsForm.setsHRPointsPercentaje((principal.getsHRPoints()*100)/principal.getsHRPointsPossible());
 		}else{
 			userDetailsForm.setsHRPointsPercentaje(cero);
 		}
 		if(!cero.equals(principal.getsRPointsPossible())){
-			userDetailsForm.setsRPointsPercentaje(principal.getsRPointsPossible()/principal.getsRPoints());
+			userDetailsForm.setsRPointsPercentaje((principal.getsRPoints()*100)/principal.getsRPointsPossible());
 		}else{
 			userDetailsForm.setsRPointsPercentaje(cero);
 		}
 		if(!cero.equals(principal.getsRPointsPossible())){
-			userDetailsForm.setmT25PointsPercentaje(principal.getmT25PointsPossible()/principal.getmT25Points());
+			userDetailsForm.setmT25PointsPercentaje((principal.getmT25Points()*100)/principal.getmT25PointsPossible());
 		}else{
 			userDetailsForm.setmT25PointsPercentaje(cero);
 		}	
