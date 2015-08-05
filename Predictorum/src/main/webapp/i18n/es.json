@@ -41,7 +41,9 @@
 "MT25":						"Más de 2.5 goles",
 "LIKELY":					"PROBABLE",
 "UNLIKELY":					"IMPROBABLE",
-"YES":						"SÍ",				
+"YES":						"SÍ",
+"SHOW_COMMENTS":			"MOSTRAR COMENTARIOS",
+"HIDE_COMMENTS":			"OCULTAR COMENTARIOS",				
 "HL1": {
 		"WORD1":			"TODO",
 		"WORD2":			" GRATUITO"
