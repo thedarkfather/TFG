@@ -80,7 +80,7 @@ public class CommentController extends AbstractController {
 		return generalResponse;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/delete/{commentId}")
+	@RequestMapping(method = RequestMethod.GET, value = "/evaluation/delete/{commentId}")
 	public GeneralResponse deleteEvaluation(@PathVariable Integer commentId) {
 		GeneralResponse generalResponse;	
 		try {
