@@ -23,7 +23,7 @@ public class PredictionController extends AbstractController {
 	@Autowired
 	private PredictionService predictionService;
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/systemPrediction/{gameIdId}")
+	@RequestMapping(method = RequestMethod.GET, value = "/systemPrediction/{gameId}")
 	public PredictionForm findSystemPrediction(@PathVariable Integer gameId) {
 		Prediction prediction = predictionService.findSystemPredictionByGameId(gameId);
 		PredictionForm predictionForm = predictionService.systemReconstructsToForm(prediction);
