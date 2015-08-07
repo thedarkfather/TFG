@@ -32,6 +32,15 @@
     animation: fadeIn 1s;
 }
 
+.ng-leave {
+	-webkit-animation: fadeOut 1s;
+    animation: fadeOut 1s;
+}
+
+.result.ng-leave {
+	animation: fadeOut 0s;
+}
+
 /*-------------------------------------------------------*/
 /* 1. General code
 /*-------------------------------------------------------*/

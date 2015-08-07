@@ -54,7 +54,7 @@
 					{{"RESULT" | translate }} <span ng-hide="tab.current==='RESULT'">{{tab.current
 						| translate |lowercase}}</span>:
 				</h3>
-				<div ng-if="tab.current==='SIMPLE'" class="text-center"
+				<div ng-if="tab.current==='SIMPLE'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
 					<b ng-show="prediction.simple==='1'">1</b><span
 						ng-hide="prediction.simple==='1'">1</span> <b
@@ -63,7 +63,7 @@
 						ng-show="prediction.simple==='2'">2</b><span
 						ng-hide="prediction.simple==='2'">2</span>
 				</div>
-				<div ng-if="tab.current==='DOUBLE'" class="text-center"
+				<div ng-if="tab.current==='DOUBLE'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
 					<b ng-show="prediction.double.indexOf('1') != -1">1</b><span
 						ng-hide="prediction.double.indexOf('1') != -1">1</span> <b
@@ -72,13 +72,13 @@
 						ng-show="prediction.double.indexOf('2') != -1">2</b><span
 						ng-hide="prediction.double.indexOf('2') != -1">2</span>
 				</div>
-				<div ng-if="tab.current==='MT25'" class="text-center"
+				<div ng-if="tab.current==='MT25'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
 					<b ng-show="prediction.mt25" translate>YES</b><span
 						ng-hide="prediction.mt25" translate>YES</span> <b
 						ng-show="!prediction.mt25">NO</b><span ng-hide="!prediction.mt25">NO</span>
 				</div>
-				<div ng-if="tab.current==='RESULT'" class="text-center"
+				<div ng-if="tab.current==='RESULT'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
 					<b>{{prediction.homeGoals}} - {{prediction.awayGoals}}</b>
 				</div>
@@ -102,6 +102,7 @@
 						<p ng-show="comment.parent" class="text-muted">
 							In response to <a scroll-to="comment{{comment.parent}}">#{{comment.parent}}</a>
 						</p>
+						<span class="pull-right"><i class="fa fa-thumbs-up"></i> 25 <i style="margin-left:10px;" class="fa fa-thumbs-down"></i> 12</span>
 						<a ng-if="comment.children.length"
 							ng-init="showChildren[comment.id]=false"
 							ng-click="showChildren[comment.id]= !showChildren[comment.id]"><i
@@ -114,6 +115,7 @@
 								class="pull-right text-muted"> #{{child.id}}</i>
 
 							<p>{{child.text }}</p>
+							<span class="pull-right"><i class="fa fa-thumbs-up"></i> 25 <i style="margin-left:10px;" class="fa fa-thumbs-down"></i> 12</span>
 							<a ng-if="child.children.length" ng-init="showChildren=false"
 								ng-click="showChildren=!showChildren"><i
 								class="fa fa-comments"></i> ({{child.children.length}})</a>
