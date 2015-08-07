@@ -79,7 +79,12 @@ public class CommentService {
 		commentToListForm.setText(comment.getText());
 		commentToListForm.setDate(comment.getDate());
 		Evaluation evaluation = evaluationService.findByPrincipalAndCommentId(comment.getId());
-		commentToListForm.setEvaluated(evaluation!=null);
+		if(evaluation==null){
+			commentToListForm.setEvaluated(null);
+		}else{
+			commentToListForm.setEvaluated(evaluation.getType());
+		}
+		
 		Comment commentAux = comment;
 		Collection<CommentToListForm> children = new LinkedList<CommentToListForm>();
 		Collection<Comment> childrens = commentRepository.findByParentId(commentAux.getId());
