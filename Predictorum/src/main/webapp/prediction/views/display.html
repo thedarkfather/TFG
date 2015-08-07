@@ -44,18 +44,18 @@
 					</div>
 				</div>
 				<span
-					style="width: 10px; height: 10px; background-color: #82dc23; display: inline-block"></span>
-				%<i translate>LIKELY</i> <span
-					style="width: 10px; height: 10px; background-color: #F7464A; display: inline-block"></span>
-				%<i translate>UNLIKELY</i>
+					style="width: 10px; height: 10px; background-color: #82dc23; display: inline-block">
+				</span> %<i translate>LIKELY</i> &nbsp;&nbsp;&nbsp;<span
+					style="width: 10px; height: 10px; background-color: #F7464A; display: inline-block">
+				</span> %<i translate>UNLIKELY</i>
 			</div>
-			<div class="col-lg-4 col-xs-4">
+			<div class="col-lg-4 col-xs-12" style="border: solid; height: 150px;">
 				<h3 class="text-center">
 					{{"RESULT" | translate }} <span ng-hide="tab.current==='RESULT'">{{tab.current
 						| translate |lowercase}}</span>:
 				</h3>
 				<div ng-if="tab.current==='SIMPLE'" class="text-center"
-					style="font-size: 20px;">
+					style="font-size: 30px; margin-top: 30px;">
 					<b ng-show="prediction.simple==='1'">1</b><span
 						ng-hide="prediction.simple==='1'">1</span> <b
 						ng-show="prediction.simple==='X'">X</b><span
@@ -64,7 +64,7 @@
 						ng-hide="prediction.simple==='2'">2</span>
 				</div>
 				<div ng-if="tab.current==='DOUBLE'" class="text-center"
-					style="font-size: 20px;">
+					style="font-size: 30px; margin-top: 30px;">
 					<b ng-show="prediction.double.indexOf('1') != -1">1</b><span
 						ng-hide="prediction.double.indexOf('1') != -1">1</span> <b
 						ng-show="prediction.double.indexOf('X') != -1">X</b><span
@@ -73,27 +73,52 @@
 						ng-hide="prediction.double.indexOf('2') != -1">2</span>
 				</div>
 				<div ng-if="tab.current==='MT25'" class="text-center"
-					style="font-size: 20px;">
+					style="font-size: 30px; margin-top: 30px;">
 					<b ng-show="prediction.mt25" translate>YES</b><span
 						ng-hide="prediction.mt25" translate>YES</span> <b
 						ng-show="!prediction.mt25">NO</b><span ng-hide="!prediction.mt25">NO</span>
 				</div>
 				<div ng-if="tab.current==='RESULT'" class="text-center"
-					style="font-size: 20px;">
+					style="font-size: 30px; margin-top: 30px;">
 					<b>{{prediction.homeGoals}} - {{prediction.awayGoals}}</b>
 				</div>
 			</div>
-			<div class="col-lg-12 col-xs-12 text-left" style="margin-top:25px;">
-				<p ng-init="showComments=false" ng-click="showComments=!showComments"
-					style="cursor: pointer">SHOW COMMENTS</p>
-				<div ng-show="showComments" class="list-group">
-				
-					<div id="comment{{comment.id}}" ng-repeat="comment in prediction.comments | orderBy:orderProp"
+			<div class="col-lg-12 col-xs-12" style="margin-top: 25px;">
+				<div scroll-to="comment1" ng-init="showComments=false"
+					ng-click="showComments=!showComments"
+					class="col-lg-12 col-xs-12 text-center"
+					style="background-color: #82dc23; color: white; cursor: pointer; margin-bottom:30px; padding: 5px; border-radius:25px;">
+					<b ng-hide="showComments">{{"SHOW_COMMENTS" | translate}} ({{prediction.comments.length}})</b>
+					<b ng-show="showComments">{{"HIDE_COMMENTS" | translate}} ({{prediction.comments.length}})</b>
+				</div>
+				<div ng-show="showComments" class="col-lg-12 col-xs-12 list-group">
+					<div id="comment{{comment.id}}"
+						ng-repeat="comment in prediction.comments | orderBy:orderProp"
 						class="list-group-item clearfix">
-						<a href="#/user/profile">@{{comment.user}}</a> <i class="pull-right text-muted"> #{{comment.id}}</i>
-						
-						<p> {{comment.text }} </p>
-						<p ng-if="comment.parent" class="text-muted"> In response to <a scroll-to="#comment{{comment.parent}}">#{{comment.parent}}</a></p>
+						<a href="#/user/profile">@{{comment.user}}</a> <i
+							class="pull-right text-muted"> #{{comment.id}}</i>
+
+						<p>{{comment.text }}</p>
+						<p ng-show="comment.parent" class="text-muted">
+							In response to <a scroll-to="comment{{comment.parent}}">#{{comment.parent}}</a>
+						</p>
+						<a ng-if="comment.children.length"
+							ng-init="showChildren[comment.id]=false"
+							ng-click="showChildren[comment.id]= !showChildren[comment.id]"><i
+							class="fa fa-comments"></i> ({{comment.children.length}})</a>
+						<div ng-show="showChildren[comment.id]"
+							ng-repeat="child in comment.children"
+							class="list-group-item clearfix"
+							style="background-color: #D8F6CE">
+							<a href="#/user/profile">@{{child.user}}</a> <i
+								class="pull-right text-muted"> #{{child.id}}</i>
+
+							<p>{{child.text }}</p>
+							<a ng-if="child.children.length" ng-init="showChildren=false"
+								ng-click="showChildren=!showChildren"><i
+								class="fa fa-comments"></i> ({{child.children.length}})</a>
+							<div></div>
+						</div>
 					</div>
 				</div>
 			</div>
