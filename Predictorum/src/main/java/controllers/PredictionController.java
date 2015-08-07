@@ -4,15 +4,24 @@ package controllers;
 
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import domain.Prediction;
 import forms.PredictionForm;
+import forms.PredictionFormToSave;
+import responses.GeneralResponse;
 import services.PredictionService;
 
 
@@ -35,6 +44,25 @@ public class PredictionController extends AbstractController {
 		Collection<Prediction> predictions = predictionService.findUserPredictionsByGameId(gameId);
 		Collection<PredictionForm> predictionForms = predictionService.userReconstructToForms(predictions);
 		return predictionForms;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/saveUserPredicion", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public GeneralResponse saveUserPredicion(@RequestBody @Valid PredictionFormToSave predictionFormToSave, BindingResult binding){
+		GeneralResponse generalResponse;
+		if (binding.hasErrors()) {
+			generalResponse = new GeneralResponse(false, buildErrors(predictionFormToSave, binding));
+		} else {
+			try{
+				Prediction prediction = predictionService.reconstructToSaveUserPrediction(predictionFormToSave);
+				predictionService.save(prediction);
+				generalResponse = new GeneralResponse(true, new HashMap<String, String>());			
+			}catch (Throwable oops){
+				Map<String,String> errors = new HashMap<String,String>();
+				errors.put("fail", "You can not commit this operation");
+				generalResponse = new GeneralResponse(false, errors);
+			}
+		}
+		return generalResponse;
 	}
 
 

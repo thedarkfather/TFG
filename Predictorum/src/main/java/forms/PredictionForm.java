@@ -15,6 +15,8 @@ public class PredictionForm {
 	private Double pHomeGoals;
 	private Integer awayGoals;
 	private Double pAwayGoals;
+	private Boolean moreThan25;
+	private Double pmoreThan25;
 	
 	public Integer getHomeTeamId() {
 		return homeTeamId;
@@ -111,6 +113,22 @@ public class PredictionForm {
 	
 	public void setpAwayGoals(Double pAwayGoals) {
 		this.pAwayGoals = pAwayGoals;
-	}	
+	}
 
+	public Boolean getMoreThan25() {
+		return moreThan25;
+	}
+
+	public void setMoreThan25(Boolean moreThan25) {
+		this.moreThan25 = moreThan25;
+	}
+
+	public Double getPmoreThan25() {
+		return pmoreThan25;
+	}
+
+	public void setPmoreThan25(Double pmoreThan25) {
+		this.pmoreThan25 = pmoreThan25;
+	}		
+	
 }

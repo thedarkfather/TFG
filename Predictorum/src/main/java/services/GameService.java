@@ -78,5 +78,9 @@ public class GameService {
 		return gamesToList;
 	}
 	
+	public Game findByGameId(Integer gameId){
+		return gameRepository.findOne(gameId);
+	}
+	
 	
 }
