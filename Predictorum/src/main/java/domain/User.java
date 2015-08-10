@@ -36,8 +36,6 @@ public class User extends Actor{
 	
 	private Integer sRPointsPossible;
 	private Integer dRPointsPossible;
-	private Integer sHRPointsPossible;
-	private Integer dHRPointsPossible;
 	private Integer hGPointsPossible;
 	private Integer aGPointsPossible;
 	private Integer mT25PointsPossible;
@@ -110,26 +108,6 @@ public class User extends Actor{
 
 	public void setdRPointsPossible(Integer dRPointsPossible) {
 		this.dRPointsPossible = dRPointsPossible;
-	}
-
-	@Range(min=0)
-	@NotNull
-	public Integer getsHRPointsPossible() {
-		return sHRPointsPossible;
-	}
-
-	public void setsHRPointsPossible(Integer sHRPointsPossible) {
-		this.sHRPointsPossible = sHRPointsPossible;
-	}
-
-	@Range(min=0)
-	@NotNull
-	public Integer getdHRPointsPossible() {
-		return dHRPointsPossible;
-	}
-
-	public void setdHRPointsPossible(Integer dHRPointsPossible) {
-		this.dHRPointsPossible = dHRPointsPossible;
 	}
 
 	@Range(min=0)
