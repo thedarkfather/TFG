@@ -79,7 +79,7 @@ predictorum.config(['$routeProvider','$locationProvider','$translateProvider','$
 		controller : 'predictionController'
 	})
 	
-	.when('/prediction/details', {
+	.when('/prediction/details/:gameId', {
 		templateUrl : 'prediction/views/display.html',
 		controller : 'predictionController'
 	})
