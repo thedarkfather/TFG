@@ -58,6 +58,7 @@ public class GameService {
 	
 	public GameToListForm fragmentToList(Game game){
 		GameToListForm gameToListForm = new GameToListForm();
+		gameToListForm.setId(game.getId());
 		gameToListForm.setAwayTeamId(game.getAwayTeam().getId());
 		gameToListForm.setAwayTeamName(game.getAwayTeam().getName());
 		gameToListForm.setFinishDate(game.getRound().getFinishDate());

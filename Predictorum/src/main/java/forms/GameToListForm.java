@@ -2,8 +2,11 @@ package forms;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class GameToListForm {
 	
+	private Integer id;
 	private Integer homeTeamId;
 	private Integer awayTeamId;
 	private String homeTeamName;
@@ -12,8 +15,17 @@ public class GameToListForm {
 	private Date finishDate;
 	private Integer roundNumber;
 	private String leagueName;
+
 	
-	
+	@NotNull
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Integer getHomeTeamId() {
 		return homeTeamId;
 	}
