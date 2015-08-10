@@ -45,7 +45,6 @@ public class UserService {
 		u.setaGPoints(0);
 		u.setaGPointsPossible(0);
 		u.setComments(new LinkedList<Comment>());
-		u.setdHRPointsPossible(0);
 		u.setEmail(null);
 		u.setEvaluations(new LinkedList<Evaluation>());
 		u.setFollowers(new LinkedList<User>());
@@ -57,7 +56,6 @@ public class UserService {
 		u.setmT25PointsPossible(0);
 		u.setName(null);		
 		u.setPredictions(new LinkedList<Prediction>());
-		u.setsHRPointsPossible(0);
 		u.setsRPoints(0);
 		u.setsRPointsPossible(0);
 		u.setSurname(null);

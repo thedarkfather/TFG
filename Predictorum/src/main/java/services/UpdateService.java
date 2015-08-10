@@ -61,6 +61,7 @@ public class UpdateService {
 	static final String classLocal = "local";
 	static final String classJor = "jor";
 	static final String classResultado = "resultado";
+	static final String classProx_Jor = "prox_jor";
 
 	// html tags
 	static final String tagH2 = "h2";
@@ -247,7 +248,7 @@ public class UpdateService {
 		Document doc;
 		try {
 			doc = Jsoup.connect(urlCalendarioResultados).get();
-			Elements elementJornadas = doc.getElementsByClass(classJor);
+			Elements elementJornadas = doc.getElementsByClass(classProx_Jor);
 			for (Element elementJornada : elementJornadas) {
 				Elements elementsTh = elementJornada.getElementsByTag(tagTh);
 				// Para cada classJor solo habrá dos th, uno para el número de
@@ -453,7 +454,7 @@ public class UpdateService {
 		try {
 			doc = Jsoup.connect(urlCalendarioResultados).get();
 			String title = doc.title();
-			Elements elementJornadas = doc.getElementsByClass(classJor);
+			Elements elementJornadas = doc.getElementsByClass(classProx_Jor);
 			for (Element elementJornada : elementJornadas) {
 				Elements elementsTh = elementJornada.getElementsByTag(tagTh);
 				// Para cada classJor solo habrá dos th, uno para el número de
