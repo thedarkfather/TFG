@@ -41,6 +41,9 @@
 	animation: fadeOut 0s;
 }
 
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.4); }
+
 /*-------------------------------------------------------*/
 /* 1. General code
 /*-------------------------------------------------------*/

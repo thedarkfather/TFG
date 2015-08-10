@@ -46,34 +46,40 @@ predictionController.controller('predictionController', function($scope,
 			user : 'david',
 			text : 'Ronaldo is going to score',
 			parent : null,
+			evaluated : 1,
 			children : [ {
 				id : 3,
 				user : 'andresin',
 				text : 'He may not play',
-				parent : 1
+				parent : 1,
+				evaluated : 2,
 			}, {
 				id : 4,
 				user : 'david',
 				text : 'He said he will yesterday',
-				parent : 1
+				parent : 1,
+				evaluated: 3,
 			} ]
 		}, {
 			id : 2,
 			user : 'miguelin',
 			text : 'R. Madrid is in a spree',
 			parent : null,
-			children: []
+			children: [],
+			evaluated: 1,
 		}, {
 			id : 3,
 			user : 'andresin',
 			text : 'He may not play',
 			parent : 1,
+			evaluated : 2,
 			children: []
 		}, {
 			id : 4,
 			user : 'david',
 			text : 'He said he will yesterday',
 			parent : 1,
+			evaluated: 3,
 			children: []
 		} ]
 	};

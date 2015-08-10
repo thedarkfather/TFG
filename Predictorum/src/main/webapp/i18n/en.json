@@ -43,6 +43,7 @@
 "YES":						"YES",
 "SHOW_COMMENTS":			"SHOW COMMENTS",
 "HIDE_COMMENTS":			"HIDE COMMENTS",
+"IN_RESPONSE":				"In response to",
 "HL1": {
 		"WORD1":			"FREE",
 		"WORD2":			" FEATURES"
