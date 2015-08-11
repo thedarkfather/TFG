@@ -81,6 +81,12 @@ public class CommentService {
 		commentToListForm.setDate(comment.getDate());
 		commentToListForm.setUserId(comment.getUser().getId());
 		commentToListForm.setUsername(comment.getUser().getUserAccount().getUsername());
+		if(comment.getParent()==null){
+			commentToListForm.setParent(null);
+		}else{
+			CommentToListForm commentToListFormParent = reconstruct(comment.getParent());
+			commentToListForm.setParent(commentToListFormParent);
+		}
 		Evaluation evaluation = evaluationService.findByPrincipalAndCommentId(comment.getId());
 		if(evaluation==null){
 			commentToListForm.setEvaluated(null);

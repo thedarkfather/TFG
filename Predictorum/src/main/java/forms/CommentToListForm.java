@@ -12,6 +12,7 @@ public class CommentToListForm {
 	private Integer negPoints;
 	private Date date;	
 	private Collection<CommentToListForm> children;
+	private CommentToListForm parent;
 	private Boolean evaluated;	
 	private Integer userId;
 	private String username;
@@ -62,6 +63,14 @@ public class CommentToListForm {
 	
 	public void setChildren(Collection<CommentToListForm> children) {
 		this.children = children;
+	}	
+
+	public CommentToListForm getParent() {
+		return parent;
+	}
+
+	public void setParent(CommentToListForm parent) {
+		this.parent = parent;
 	}
 
 	public Boolean getEvaluated() {
