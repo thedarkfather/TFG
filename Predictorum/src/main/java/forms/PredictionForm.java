@@ -18,6 +18,7 @@ public class PredictionForm {
 	private Double pAwayGoals;
 	private Boolean moreThan25;
 	private Double pmoreThan25;	
+	private Integer commentSize;
 
 	public Integer getId() {
 		return id;
@@ -138,6 +139,14 @@ public class PredictionForm {
 
 	public void setPmoreThan25(Double pmoreThan25) {
 		this.pmoreThan25 = pmoreThan25;
+	}
+
+	public Integer getCommentSize() {
+		return commentSize;
+	}
+
+	public void setCommentSize(Integer commentSize) {
+		this.commentSize = commentSize;
 	}		
 	
 }

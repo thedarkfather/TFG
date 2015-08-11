@@ -43,22 +43,20 @@ public class CommentController extends AbstractController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public GeneralResponse comment(@RequestBody @Valid CommentForm commentForm, BindingResult binding){
-		GeneralResponse generalResponse;
+	public CommentToListForm comment(@RequestBody @Valid CommentForm commentForm, BindingResult binding){
+		CommentToListForm commentToListForm;
 		if (binding.hasErrors()) {
-			generalResponse = new GeneralResponse(false, buildErrors(commentForm, binding));
+			commentToListForm = null;
 		} else {
 			try{
 				Comment comment = commentService.reconstructToSave(commentForm);
-				commentService.save(comment);
-				generalResponse = new GeneralResponse(true, new HashMap<String, String>());			
+				Comment result = commentService.save(comment);
+				commentToListForm = commentService.reconstruct(result);		
 			}catch (Throwable oops){
-				Map<String,String> errors = new HashMap<String,String>();
-				errors.put("fail", "You can not commit this operation");
-				generalResponse = new GeneralResponse(false, errors);
+				commentToListForm = null;
 			}
 		}
-		return generalResponse;
+		return commentToListForm;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/evaluate", consumes = MediaType.APPLICATION_JSON_VALUE)

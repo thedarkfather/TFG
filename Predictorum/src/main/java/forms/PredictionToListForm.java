@@ -10,6 +10,7 @@ public class PredictionToListForm {
 	private Date finishDate;
 	private Integer userId;
 	private Integer id;
+	private Integer commentSize;
 	
 	public String getAwayTeamName() {
 		return awayTeamName;
@@ -65,6 +66,14 @@ public class PredictionToListForm {
 	
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getCommentSize() {
+		return commentSize;
+	}
+
+	public void setCommentSize(Integer commentSize) {
+		this.commentSize = commentSize;
 	}	
 
 }

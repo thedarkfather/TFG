@@ -66,6 +66,7 @@ public class PredictionService {
 		predictionForm.setpAwayGoals(prediction.getpAwayGoals());
 		predictionForm.setMoreThan25(prediction.getMoreThan25());
 		predictionForm.setPmoreThan25(prediction.getpMoreThan25());
+		predictionForm.setCommentSize(prediction.getComments().size());
 		return predictionForm;
 	}
 
@@ -116,6 +117,7 @@ public class PredictionService {
 		predictionForm.setpAwayGoals(prediction.getpAwayGoals());
 		predictionForm.setMoreThan25(prediction.getMoreThan25());
 		predictionForm.setPmoreThan25(prediction.getpMoreThan25());
+		predictionForm.setCommentSize(prediction.getComments().size());
 		return predictionForm;
 	}
 	

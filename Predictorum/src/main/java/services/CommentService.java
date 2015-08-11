@@ -49,9 +49,10 @@ public class CommentService {
 		return comments;
 	}
 	
-	public void save(Comment comment){
+	public Comment save(Comment comment){
 		Assert.notNull(comment);
-		commentRepository.save(comment);
+		Comment result = commentRepository.save(comment);
+		return result;
 	}
 	
 	
@@ -78,6 +79,8 @@ public class CommentService {
 		commentToListForm.setPosPoints(comment.getPosPoints());
 		commentToListForm.setText(comment.getText());
 		commentToListForm.setDate(comment.getDate());
+		commentToListForm.setUserId(comment.getUser().getId());
+		commentToListForm.setUsername(comment.getUser().getUserAccount().getUsername());
 		Evaluation evaluation = evaluationService.findByPrincipalAndCommentId(comment.getId());
 		if(evaluation==null){
 			commentToListForm.setEvaluated(null);
