@@ -73,9 +73,10 @@
 				</div>
 				<div ng-if="tab.current==='MT25'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
-					<b ng-show="prediction.moreThan25" translate>YES</b>
-					<span ng-hide="prediction.moreThan25" translate>YES</span> <b
-						ng-show="!prediction.moreThan25">NO</b><span ng-hide="!prediction.moreThan25">NO</span>
+					<b ng-show="prediction.moreThan25" translate>YES</b> <span
+						ng-hide="prediction.moreThan25" translate>YES</span> <b
+						ng-show="!prediction.moreThan25">NO</b><span
+						ng-hide="!prediction.moreThan25">NO</span>
 				</div>
 				<div ng-if="tab.current==='RESULT'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
@@ -91,6 +92,14 @@
 						({{prediction.comments.length}})</b> <b ng-show="showComments">{{"HIDE_COMMENTS"
 						| translate}} ({{prediction.comments.length}})</b>
 				</div>
+				<div ng-show="showComments">
+					<span ng-if="prediction.comments.length" >In response to <select ng-model="replyTo" ng-options="parent.id for parent in prediction.comments"></select></span>
+					<textarea class="col-lg-11 col-xs-12"
+						style="resize: none; height:100px">Make a comment...</textarea>
+					<span class="col-lg-1 col-xs-12 btn-2" style="height:100%;">
+						<i class="fa fa-arrow-right"></i>
+					</span>
+				</div>
 				<div ng-show="showComments" class="col-lg-12 col-xs-12 list-group">
 					<div id="comment{{comment.id}}"
 						ng-repeat="comment in prediction.comments | orderBy:orderProp"
@@ -100,30 +109,31 @@
 
 						<p>{{comment.text }}</p>
 						<p ng-show="comment.parent" class="text-muted">
-							{{"IN_RESPONSE" | translate}} <a scroll-to="comment{{comment.parent}}">#{{comment.parent}}</a>
+							{{"IN_RESPONSE" | translate}} <a
+								scroll-to="comment{{comment.parent}}">#{{comment.parent}}</a>
 						</p>
-							<!-- Like and dislike buttons -->
-							<!-- If comment isn't evaluated like and dislike button appear green -->
-							<div ng-if="comment.evaluated===1" class="pull-right text-color"
-								style="cursor: pointer">
-								<i class="fa fa-thumbs-up grow"></i> 25 <i style="margin-left: 10px;"
-									class="fa fa-thumbs-down grow"></i> 12
-							</div>
-							<!-- If comment evaluated positive like button appears bold -->
-							<div ng-if="comment.evaluated===2" class="pull-right text-muted">
-								<b><i class="fa fa-thumbs-up" style="font-size:20px"></i> 25 </b> <i
-									style="margin-left: 10px;" class="fa fa-thumbs-down"></i> 12
-							</div>
-							<!-- If comment not evaluated dislike button appears bold -->
-							<div ng-if="comment.evaluated===3" class="pull-right text-muted"
-								style="cursor: pointer">
-								<i class="fa fa-thumbs-up"></i> 25 
-								<b><i style="margin-left: 10px; font-size:20px;"
-									class="fa fa-thumbs-down"></i> 12 </b>
-							</div>
+						<!-- Like and dislike buttons -->
+						<!-- If comment isn't evaluated like and dislike button appear green -->
+						<div ng-if="comment.evaluated===1" class="pull-right text-color"
+							style="cursor: pointer">
+							<i class="fa fa-thumbs-up grow"></i> 25 <i
+								style="margin-left: 10px;" class="fa fa-thumbs-down grow"></i>
+							12
+						</div>
+						<!-- If comment evaluated positive like button appears bold -->
+						<div ng-if="comment.evaluated===2" class="pull-right text-muted">
+							<b><i class="fa fa-thumbs-up" style="font-size: 20px"></i> 25
+							</b> <i style="margin-left: 10px;" class="fa fa-thumbs-down"></i> 12
+						</div>
+						<!-- If comment not evaluated dislike button appears bold -->
+						<div ng-if="comment.evaluated===3" class="pull-right text-muted"
+							style="cursor: pointer">
+							<i class="fa fa-thumbs-up"></i> 25 <b><i
+								style="margin-left: 10px; font-size: 20px;"
+								class="fa fa-thumbs-down"></i> 12 </b>
+						</div>
 						<!-- /Like and dislike buttons -->
-						 <a
-							ng-if="comment.children.length"
+						<a ng-if="comment.children.length"
 							ng-init="showChildren[comment.id]=false"
 							ng-click="showChildren[comment.id]= !showChildren[comment.id]"><i
 							class="fa fa-comments"></i> ({{comment.children.length}})</a>
@@ -135,26 +145,28 @@
 								class="pull-right text-muted"> #{{child.id}}</i>
 
 							<p>{{child.text }}</p>
-						<!-- Like and dislike buttons -->
+							<!-- Like and dislike buttons -->
 							<!-- If comment isn't evaluated like and dislike button appear green -->
 							<div ng-if="child.evaluated===1" class="pull-right text-color"
 								style="cursor: pointer">
-								<i class="fa fa-thumbs-up grow"></i> 25 <i style="margin-left: 10px;"
-									class="fa fa-thumbs-down grow"></i> 12
+								<i class="fa fa-thumbs-up grow"></i> 25 <i
+									style="margin-left: 10px;" class="fa fa-thumbs-down grow"></i>
+								12
 							</div>
 							<!-- If comment evaluated positive like button appears bold -->
 							<div ng-if="child.evaluated===2" class="pull-right text-muted">
-								<b><i class="fa fa-thumbs-up" style="font-size:20px"></i> 25 </b> <i
-									style="margin-left: 10px;" class="fa fa-thumbs-down"></i> 12
+								<b><i class="fa fa-thumbs-up" style="font-size: 20px"></i>
+									25 </b> <i style="margin-left: 10px;" class="fa fa-thumbs-down"></i>
+								12
 							</div>
 							<!-- If comment not evaluated dislike button appears bold -->
 							<div ng-if="child.evaluated===3" class="pull-right text-muted"
 								style="cursor: pointer">
-								<i class="fa fa-thumbs-up"></i> 25 
-								<b><i style="margin-left: 10px; font-size:20px;"
+								<i class="fa fa-thumbs-up"></i> 25 <b><i
+									style="margin-left: 10px; font-size: 20px;"
 									class="fa fa-thumbs-down"></i> 12 </b>
 							</div>
-						<!-- /Like and dislike buttons -->
+							<!-- /Like and dislike buttons -->
 							<a ng-if="child.children.length" ng-init="showChildren=false"
 								ng-click="showChildren=!showChildren"><i
 								class="fa fa-comments"></i> ({{child.children.length}})</a>
@@ -167,5 +179,5 @@
 	</div>
 </div>
 <!-- Scroll To Top -->
-			<a scroll-to="top" class="scrollup"><i class="fa fa-angle-up"></i></a>
-			<script src="static/js/jquery.scrollTo.min.js"></script>
+<a scroll-to="top" class="scrollup"><i class="fa fa-angle-up"></i></a>
+<script src="static/js/jquery.scrollTo.min.js"></script>
