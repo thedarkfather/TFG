@@ -174,38 +174,43 @@ public class UserService {
 		userRepository.save(user);			
 	}
 	
-	public UserDetailsForm getProfile() {
-		User principal  = findByPrincipal();
+	public UserDetailsForm getProfile(Integer userId) {
+		User user = null;
+		if(userId==null){
+			user  = findByPrincipal();
+		}else{
+			user = userRepository.findOne(userId);
+		}		
 		Integer cero = 0;
 		UserDetailsForm userDetailsForm = new UserDetailsForm();
-		if(!cero.equals(principal.getaGPointsPossible())){
-			userDetailsForm.setaGPointsPercentaje((principal.getaGPoints()*100)/principal.getaGPointsPossible());
+		if(!cero.equals(user.getaGPointsPossible())){
+			userDetailsForm.setaGPointsPercentaje((user.getaGPoints()*100)/user.getaGPointsPossible());
 		}else{
 			userDetailsForm.setaGPointsPercentaje(cero);
 		}				
-		if(!cero.equals(principal.gethGPointsPossible())){
-			userDetailsForm.sethGPointsPercentaje((principal.gethGPoints()*100)/principal.gethGPointsPossible());
+		if(!cero.equals(user.gethGPointsPossible())){
+			userDetailsForm.sethGPointsPercentaje((user.gethGPoints()*100)/user.gethGPointsPossible());
 		}else{
 			userDetailsForm.sethGPointsPercentaje(cero);
 		}
-		if(!cero.equals(principal.getsRPointsPossible())){
-			userDetailsForm.setsRPointsPercentaje((principal.getsRPoints()*100)/principal.getsRPointsPossible());
+		if(!cero.equals(user.getsRPointsPossible())){
+			userDetailsForm.setsRPointsPercentaje((user.getsRPoints()*100)/user.getsRPointsPossible());
 		}else{
 			userDetailsForm.setsRPointsPercentaje(cero);
 		}
-		if(!cero.equals(principal.getsRPointsPossible())){
-			userDetailsForm.setmT25PointsPercentaje((principal.getmT25Points()*100)/principal.getmT25PointsPossible());
+		if(!cero.equals(user.getsRPointsPossible())){
+			userDetailsForm.setmT25PointsPercentaje((user.getmT25Points()*100)/user.getmT25PointsPossible());
 		}else{
 			userDetailsForm.setmT25PointsPercentaje(cero);
 		}	
-		userDetailsForm.setFollowersNumber(principal.getFollowers().size());
-		userDetailsForm.setFollowingNumber(principal.getFollowing().size());			
-		List<PredictionToListForm> predictionsToListForm = predictionService.findToListByUserId(principal.getId());
+		userDetailsForm.setFollowersNumber(user.getFollowers().size());
+		userDetailsForm.setFollowingNumber(user.getFollowing().size());			
+		List<PredictionToListForm> predictionsToListForm = predictionService.findToListByUserId(user.getId());
 		userDetailsForm.setPredictions(predictionsToListForm);
-		Integer rankingPosition = getPosition(principal);
+		Integer rankingPosition = getPosition(user);
 		Assert.notNull(rankingPosition);
 		userDetailsForm.setRankingPosition(rankingPosition);		
-		userDetailsForm.setUsername(principal.getUserAccount().getUsername());
+		userDetailsForm.setUsername(user.getUserAccount().getUsername());
 		return userDetailsForm;
 	}
 	
@@ -245,6 +250,6 @@ public class UserService {
 
 	public Collection<User> findUserByString(String cadena) {
 		return userRepository.findUserByString(cadena);
-	}
+	}	
 
 }

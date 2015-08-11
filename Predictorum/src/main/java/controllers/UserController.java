@@ -87,7 +87,14 @@ public class UserController extends AbstractController{
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/profile")
 	public UserDetailsForm profile(){
-		UserDetailsForm userDetailsForm = userService.getProfile();
+		//Al ser null la llamada al getProfile te devolvera el perfil del principal
+		UserDetailsForm userDetailsForm = userService.getProfile(null);
+		return userDetailsForm;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/display/{userId}")
+	public UserDetailsForm display(@PathVariable Integer userId){
+		UserDetailsForm userDetailsForm = userService.getProfile(userId);
 		return userDetailsForm;
 	}
 
