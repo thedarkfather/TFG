@@ -4,6 +4,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -42,6 +43,7 @@ public abstract class Actor extends DomainEntity{
 		this.email = email;
 	}	
 	
+	@Lob
 	public byte[] getLogo() {
 		return logo;
 	}
