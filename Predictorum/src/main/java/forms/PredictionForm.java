@@ -2,6 +2,7 @@ package forms;
 
 public class PredictionForm {
 	
+	private Integer id;
 	private Integer homeTeamId;
 	private Integer awayTeamId;
 	private String homeName;
@@ -16,8 +17,16 @@ public class PredictionForm {
 	private Integer awayGoals;
 	private Double pAwayGoals;
 	private Boolean moreThan25;
-	private Double pmoreThan25;
-	
+	private Double pmoreThan25;	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Integer getHomeTeamId() {
 		return homeTeamId;
 	}

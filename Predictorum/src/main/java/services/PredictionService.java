@@ -50,6 +50,7 @@ public class PredictionService {
 	public PredictionForm systemReconstructsToForm(Prediction prediction) {
 		Assert.notNull(prediction);
 		PredictionForm predictionForm = new PredictionForm();
+		predictionForm.setId(prediction.getId());
 		predictionForm.setHomeTeamId(prediction.getGame().getHomeTeam().getId());
 		predictionForm.setAwayTeamId(prediction.getGame().getAwayTeam().getId());
 		predictionForm.setHomeName(prediction.getGame().getHomeTeam().getName());
@@ -99,6 +100,7 @@ public class PredictionService {
 		PredictionForm predictionForm = new PredictionForm();
 		User user = prediction.getUser();
 		Assert.notNull(user);
+		predictionForm.setId(prediction.getId());
 		predictionForm.setHomeTeamId(prediction.getGame().getHomeTeam().getId());
 		predictionForm.setAwayTeamId(prediction.getGame().getAwayTeam().getId());
 		predictionForm.setHomeName(prediction.getGame().getHomeTeam().getName());
