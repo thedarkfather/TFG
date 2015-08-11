@@ -21,6 +21,7 @@ import domain.Evaluation;
 import domain.Prediction;
 import domain.Team;
 import domain.User;
+import forms.EditUserForm;
 import forms.JoinForm;
 import forms.PredictionToListForm;
 import forms.UserDetailsForm;
@@ -39,6 +40,13 @@ public class UserService {
 	
 	@Autowired
 	private PredictionService predictionService;
+	
+	public User reconstructEdit(EditUserForm editUserForm){
+		User user = findByPrincipal();
+		user.setLogo(editUserForm.getImage());
+		user.setEmail(editUserForm.getEmail());
+		return user;
+	}
 	
 	public User reconstructJoin(JoinForm joinForm) {
 		User u = new User();
