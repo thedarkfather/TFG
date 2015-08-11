@@ -42,7 +42,7 @@ predictionController.controller('predictionController', function($scope,
 		pHome : 67,
 		awayGoals : 0,
 		pAway : 45,
-		comments : [ {
+		comments = [ {
 			id : 1,
 			user : 'david',
 			text : 'Ronaldo is going to score',
