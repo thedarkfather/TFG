@@ -5,29 +5,30 @@ var predictionController = angular.module('predictorum.predictionController',
 		[ 'predictorum.predictionService' ]);
 
 predictionController.controller('predictionController', function($scope,
-		$location, $timeout, predictionService) {
+		$location, $timeout, $routeParams, predictionService) {
 
 	// List
+	
+
+	$scope.switchTab = function(tab) {
+		$scope.tab.current = tab;
+
+	};
 
 	$scope.orderProp = "predictionPosition";
 
-	$scope.predictions = [ {
-		homeTeam : 'R.Madrid',
-		awayTeam : 'Barcelona',
-		homeGoals : 2,
-		awayGoals : 0,
-		matchDate : '10/08/2015'
-	}, {
-		homeTeam : 'At.Madrid',
-		awayTeam : 'Getafe',
-		homeGoals : 3,
-		awayGoals : 1,
-		matchDate : '11/08/2015'
-	} ];
+	if($location.path().includes('upcoming')){
+		predictionService.findUpcoming().then(function(result) {
+			$scope.predictions = result.data;
+			$scope.switchTab('');
+		});
+	}
 
 	// Display
-
-	$scope.prediction = {
+	
+	$scope.prediction = {};
+	
+	/*$scope.prediction = {
 		homeTeam : 'R.Madrid',
 		awayTeam : 'Barcelona',
 		matchDate : '10/08/2015',
@@ -58,34 +59,34 @@ predictionController.controller('predictionController', function($scope,
 				user : 'david',
 				text : 'He said he will yesterday',
 				parent : 1,
-				evaluated: 3,
+				evaluated : 3,
 			} ]
 		}, {
 			id : 2,
 			user : 'miguelin',
 			text : 'R. Madrid is in a spree',
 			parent : null,
-			children: [],
-			evaluated: 1,
+			children : [],
+			evaluated : 1,
 		}, {
 			id : 3,
 			user : 'andresin',
 			text : 'He may not play',
 			parent : 1,
 			evaluated : 2,
-			children: []
+			children : []
 		}, {
 			id : 4,
 			user : 'david',
 			text : 'He said he will yesterday',
 			parent : 1,
-			evaluated: 3,
-			children: []
+			evaluated : 3,
+			children : []
 		} ]
-	};
+	};*/
 
 	$scope.showChildren = [];
-	
+
 	$scope.tab = {
 		current : 'SIMPLE'
 	};
@@ -94,15 +95,38 @@ predictionController.controller('predictionController', function($scope,
 
 	$scope.switchTab = function(tab) {
 		$scope.tab.current = tab;
+		$scope.dataAway = [];
+		$scope.dataHome = [];
 		switch (tab) {
 		case 'SIMPLE':
-			$scope.switchData($scope.prediction.pSimple);
+			$scope.switchData($scope.prediction.pSimpleResult);
 			break;
 		case 'DOUBLE':
-			$scope.switchData($scope.prediction.pDouble);
+			$scope.switchData($scope.prediction.pDoubleResult);
 			break;
 		case 'MT25':
-			$scope.switchData($scope.prediction.pMT25);
+			$scope.switchData($scope.prediction.pmoreThan25);
+			break;
+		case 'RESULT':
+			$scope.dataAway = [ {
+				value : 100 - $scope.prediction.pAwayGoals,
+				color : '#F7464A',
+				highlight : '#FF5A5E',
+			}, {
+				value : $scope.prediction.pAwayGoals,
+				color : '#82dc23',
+				highlight : '#B2E67A',
+			}, ];
+
+			$scope.dataHome = [ {
+				value : 100 - $scope.prediction.pHomeGoals,
+				color : '#F7464A',
+				highlight : '#FF5A5E',
+			}, {
+				value : $scope.prediction.pHomeGoals,
+				color : '#82dc23',
+				highlight : '#B2E67A',
+			}, ];
 			break;
 		}
 	}
@@ -120,28 +144,14 @@ predictionController.controller('predictionController', function($scope,
 		}, ]
 		$scope.data = data;
 	}
-
-	$scope.switchData($scope.prediction.pSimple);
-
-	$scope.dataAway = [ {
-		value : 100 - $scope.prediction.pAway,
-		color : '#F7464A',
-		highlight : '#FF5A5E',
-	}, {
-		value : $scope.prediction.pAway,
-		color : '#82dc23',
-		highlight : '#B2E67A',
-	}, ];
-
-	$scope.dataHome = [ {
-		value : 100 - $scope.prediction.pHome,
-		color : '#F7464A',
-		highlight : '#FF5A5E',
-	}, {
-		value : $scope.prediction.pHome,
-		color : '#82dc23',
-		highlight : '#B2E67A',
-	}, ];
+	
+	if($location.path().includes('details')){
+		predictionService.findSystemPrediction($routeParams.gameId).then(function(result){
+			$scope.prediction = result.data;
+			$scope.switchData($scope.prediction.pSimpleResult);
+			
+		});
+	}
 
 	// Chart.js Options
 	$scope.options = {

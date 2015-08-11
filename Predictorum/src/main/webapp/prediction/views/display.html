@@ -2,8 +2,7 @@
 	<div class="row">
 		<div class="col-lg-10 col-xs-12 col-lg-offset-1">
 			<div class="col-lg-12 col-xs-12 text-center">
-				<h2>{{prediction.homeTeam}} vs {{prediction.awayTeam}}</h2>
-				<p class="text-muted">{{prediction.matchDate}}</p>
+				<h2>{{prediction.homeName}} vs {{prediction.awayName}}</h2>
 			</div>
 			<div class="col-lg-12 col-xs-12">
 				<div class="widget tabs">
@@ -31,7 +30,7 @@
 			<div class="col-lg-8 col-xs-8">
 				<canvas ng-hide="tab.current==='RESULT'" tc-chartjs-doughnut
 					chart-options="options" chart-data="data"></canvas>
-				<div ng-show="tab.current==='RESULT'">
+				<div ng-if="tab.current==='RESULT'">
 					<div class="col-lg-6 col-xs-12">
 						<canvas tc-chartjs-doughnut chart-options="options"
 							chart-data="dataHome"></canvas>
@@ -56,27 +55,27 @@
 				</h3>
 				<div ng-if="tab.current==='SIMPLE'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
-					<b ng-show="prediction.simple==='1'">1</b><span
-						ng-hide="prediction.simple==='1'">1</span> <b
-						ng-show="prediction.simple==='X'">X</b><span
-						ng-hide="prediction.simple==='X'">X</span> <b
-						ng-show="prediction.simple==='2'">2</b><span
-						ng-hide="prediction.simple==='2'">2</span>
+					<b ng-show="prediction.simpleResult==='1'">1</b><span
+						ng-hide="prediction.simpleResult==='1'">1</span> <b
+						ng-show="prediction.simpleResult==='X'">X</b><span
+						ng-hide="prediction.simpleResult==='X'">X</span> <b
+						ng-show="prediction.simpleResult==='2'">2</b><span
+						ng-hide="prediction.simpleResult==='2'">2</span>
 				</div>
 				<div ng-if="tab.current==='DOUBLE'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
-					<b ng-show="prediction.double.indexOf('1') != -1">1</b><span
-						ng-hide="prediction.double.indexOf('1') != -1">1</span> <b
-						ng-show="prediction.double.indexOf('X') != -1">X</b><span
-						ng-hide="prediction.double.indexOf('X') != -1">X</span> <b
-						ng-show="prediction.double.indexOf('2') != -1">2</b><span
-						ng-hide="prediction.double.indexOf('2') != -1">2</span>
+					<b ng-show="prediction.doubleResult.indexOf('1') != -1">1</b><span
+						ng-hide="prediction.doubleResult.indexOf('1') != -1">1</span> <b
+						ng-show="prediction.doubleResult.indexOf('X') != -1">X</b><span
+						ng-hide="prediction.doubleResult.indexOf('X') != -1">X</span> <b
+						ng-show="prediction.doubleResult.indexOf('2') != -1">2</b><span
+						ng-hide="prediction.doubleResult.indexOf('2') != -1">2</span>
 				</div>
 				<div ng-if="tab.current==='MT25'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
-					<b ng-show="prediction.mt25" translate>YES</b><span
-						ng-hide="prediction.mt25" translate>YES</span> <b
-						ng-show="!prediction.mt25">NO</b><span ng-hide="!prediction.mt25">NO</span>
+					<b ng-show="prediction.moreThan25" translate>YES</b>
+					<span ng-hide="prediction.moreThan25" translate>YES</span> <b
+						ng-show="!prediction.moreThan25">NO</b><span ng-hide="!prediction.moreThan25">NO</span>
 				</div>
 				<div ng-if="tab.current==='RESULT'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">

@@ -45,6 +45,8 @@
 "SHOW_COMMENTS":			"MOSTRAR COMENTARIOS",
 "HIDE_COMMENTS":			"OCULTAR COMENTARIOS",
 "IN_RESPONSE":				"En respuesta a",				
+"SOONER":					"Más próximos primero",
+"LATEST":					"Más lejanos primero",
 "HL1": {
 		"WORD1":			"TODO",
 		"WORD2":			" GRATUITO"
