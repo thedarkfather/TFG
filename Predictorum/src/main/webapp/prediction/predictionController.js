@@ -27,6 +27,7 @@ predictionController.controller('predictionController', function($scope,
 	// Display
 	
 	$scope.prediction = {};
+	$scope.myComment = {};
 	
 	$scope.tab = {
 		current : 'SIMPLE'
@@ -117,12 +118,15 @@ predictionController.controller('predictionController', function($scope,
 	}
 	
 	$scope.saveComment = function(){
-		var commentForm = $scope.myComment;
+		var commentForm ={};
+		commentForm.text = $scope.myComment.text;
+		commentForm.parentId = $scope.myComment.parent.id;
 		commentForm.predictionId = $scope.prediction.id;
 		predictionService.saveComment(commentForm).then(function(result){
-			if(result.data.success){
+			if(result.data.id){
 				$scope.myComment = {}; //vaciamos lo escrito
-				//$scope.prediction.comments.push(result.data.comment);
+				$scope.prediction.comments.push(result.data);
+				$scope.prediction.commentSize+=1;
 			}
 		});
 	}

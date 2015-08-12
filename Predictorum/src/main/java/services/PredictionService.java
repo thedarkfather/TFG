@@ -32,6 +32,9 @@ public class PredictionService {
 	@Autowired
 	private GameService gameService;
 	
+	@Autowired
+	private CommentService commentService;
+	
 	public Collection<Prediction> findAll(){
 		Collection<Prediction> predictions = predictionRepository.findAll();
 		return predictions;
@@ -66,7 +69,7 @@ public class PredictionService {
 		predictionForm.setpAwayGoals(prediction.getpAwayGoals());
 		predictionForm.setMoreThan25(prediction.getMoreThan25());
 		predictionForm.setPmoreThan25(prediction.getpMoreThan25());
-		predictionForm.setCommentSize(prediction.getComments().size());
+		predictionForm.setCommentSize(commentService.findByPrediciontId(prediction.getId()).size());
 		return predictionForm;
 	}
 

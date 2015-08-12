@@ -88,12 +88,12 @@
 					ng-click="findComments()" class="col-lg-12 col-xs-12 text-center"
 					style="background-color: #82dc23; color: white; cursor: pointer; margin-bottom: 30px; padding: 5px; border-radius: 25px;">
 					<b ng-hide="showComments">{{"SHOW_COMMENTS" | translate}}
-						({{prediction.comments.length}})</b> <b ng-show="showComments">{{"HIDE_COMMENTS"
-						| translate}} ({{prediction.comments.length}})</b>
+						({{prediction.commentSize}})</b> <b ng-show="showComments">{{"HIDE_COMMENTS"
+						| translate}} ({{prediction.commentSize}})</b>
 				</div>
 				<div ng-show="showComments" id="commentForm">
 					<span ng-if="prediction.comments.length">{{"IN_RESPONSE" |
-						translate}} <select ng-model="myComment.parentId"
+						translate}} <select ng-model="myComment.parent"
 						ng-options="parent.id for parent in prediction.comments"></select>
 					</span>
 					<textarea required placeholder="{{'WRITE_COMMENT' | translate}}"
@@ -119,11 +119,11 @@
 					<div id="comment{{comment.id}}"
 						ng-repeat="comment in prediction.comments | orderBy:commentOrder"
 						class="list-group-item clearfix">
-						<a href="#/user/profile">@{{comment.user}}</a> <i
+						<a ng-href="#/user/profile/{{comment.userId}}">@{{comment.username}}</a> <i
 							class="pull-right text-muted"> #{{comment.id}}</i>
 
 						<p>{{comment.text }}</p>
-						<p ng-show="comment.parent" class="text-muted">
+						<p ng-show="comment.parent!==null" class="text-muted">
 							{{"IN_RESPONSE" | translate}} <a
 								scroll-to="comment{{comment.parent}}">#{{comment.parent}}</a>
 						</p>
