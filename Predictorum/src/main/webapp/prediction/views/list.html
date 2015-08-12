@@ -32,7 +32,7 @@
 			<p ng-hide="predictions.length" class="text-center"
 				style="font-weight: bold;" translate>EMPTY_LIST</p>
 			<div class="list-group">
-				<a  href="#/prediction/details"
+				<a  ng-href="#/prediction/details/{{prediction.id}}"
 					ng-repeat="prediction in filteredPredictions = (predictions | filter:{leagueName:tab.current}) | orderBy:orderProp"
 					class="list-group-item clearfix"> <b>{{prediction.homeTeamName}}</b>
 					<span class="text-color" style="font-weight: bold;">vs</span> 

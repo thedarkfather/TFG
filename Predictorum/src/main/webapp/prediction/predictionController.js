@@ -5,7 +5,7 @@ var predictionController = angular.module('predictorum.predictionController',
 		[ 'predictorum.predictionService' ]);
 
 predictionController.controller('predictionController', function($scope,
-		$location, $timeout, $routeParams, predictionService) {
+		$location, $timeout, $routeParams, $filter, predictionService) {
 
 	// List
 	
@@ -28,65 +28,6 @@ predictionController.controller('predictionController', function($scope,
 	
 	$scope.prediction = {};
 	
-	/*$scope.prediction = {
-		homeTeam : 'R.Madrid',
-		awayTeam : 'Barcelona',
-		matchDate : '10/08/2015',
-		simple : '1',
-		pSimple : 78,
-		double : '1X',
-		pDouble : 97,
-		mt25 : true,
-		pMT25 : 42,
-		homeGoals : 2,
-		pHome : 67,
-		awayGoals : 0,
-		pAway : 45,
-		comments = [ {
-			id : 1,
-			user : 'david',
-			text : 'Ronaldo is going to score',
-			parent : null,
-			evaluated : 1,
-			children : [ {
-				id : 3,
-				user : 'andresin',
-				text : 'He may not play',
-				parent : 1,
-				evaluated : 2,
-			}, {
-				id : 4,
-				user : 'david',
-				text : 'He said he will yesterday',
-				parent : 1,
-				evaluated : 3,
-			} ]
-		}, {
-			id : 2,
-			user : 'miguelin',
-			text : 'R. Madrid is in a spree',
-			parent : null,
-			children : [],
-			evaluated : 1,
-		}, {
-			id : 3,
-			user : 'andresin',
-			text : 'He may not play',
-			parent : 1,
-			evaluated : 2,
-			children : []
-		}, {
-			id : 4,
-			user : 'david',
-			text : 'He said he will yesterday',
-			parent : 1,
-			evaluated : 3,
-			children : []
-		} ]
-	};*/
-
-	$scope.showChildren = [];
-
 	$scope.tab = {
 		current : 'SIMPLE'
 	};
@@ -148,10 +89,57 @@ predictionController.controller('predictionController', function($scope,
 	if($location.path().includes('details')){
 		predictionService.findSystemPrediction($routeParams.gameId).then(function(result){
 			$scope.prediction = result.data;
+			$scope.prediction.comments = [];
 			$scope.switchData($scope.prediction.pSimpleResult);
 			
 		});
 	}
+	
+	
+	$scope.switchCommentOrder = function(tab){
+		$scope.commentTab = tab;
+		if(tab==='MOST_RECENT'){
+			$scope.commentOrder = '-date';
+		}else{
+			$scope.commentOrder = '-posPoints';
+		}
+	}
+	
+	$scope.findComments = function(){
+		$scope.showComments = !$scope.showComments;
+		predictionService.findComments($scope.prediction.id).then(function(result){
+			if(!result.data.errors){
+				$scope.prediction.comments = result.data;
+				$scope.showChildren = []; //sirve para guardar booleans para saber qué respuestas mostrar
+				$scope.switchCommentOrder('MOST_RECENT');
+			}
+		});
+	}
+	
+	$scope.saveComment = function(){
+		var commentForm = $scope.myComment;
+		commentForm.predictionId = $scope.prediction.id;
+		predictionService.saveComment(commentForm).then(function(result){
+			if(result.data.success){
+				$scope.myComment = {}; //vaciamos lo escrito
+				//$scope.prediction.comments.push(result.data.comment);
+			}
+		});
+	}
+	
+	$scope.evaluateComment = function(comment, boolean){
+		predictionService.evaluateComment(comment.id,boolean).then(function(result){
+			if(result.data.success){
+				if(boolean){
+					comment.evaluated = true;
+					comment.posPoints+=1;
+				}else{
+					comment.evaluated = false;
+					comment.negPoints+=1;
+				}
+			}
+		});
+	};
 
 	// Chart.js Options
 	$scope.options = {

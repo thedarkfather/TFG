@@ -31,6 +31,45 @@ predictionService.factory('predictionService', function($http) {
 			return result;
 	};
 	
+	predictionService.findComments = function(predictionId){
+		var req = {
+				method : 'GET',
+				url : 'http://localhost:8080/Predictorum/api/comment/list/'+predictionId,
+				withCredentials : true,
+			}
+
+			result = $http(req)
+
+			return result;
+	}
+	
+	predictionService.saveComment = function(commentForm){
+		var req = {
+				method: 'POST',
+				url: 'http://localhost:8080/Predictorum/api/comment/save',
+				withCredentials: true,
+				data: commentForm
+		};
+		
+		result = $http(req);
+		
+		return result;
+	};
+	
+	predictionService.evaluateComment = function(commentId,boolean){
+		var evaluationForm = {commentId: commentId, type: boolean};
+		var req = {
+				method: 'POST',
+				url: 'http://localhost:8080/Predictorum/api/comment/evaluate',
+				withCredentials: true,
+				data: evaluationForm
+		};
+		
+		result = $http(req);
+		
+		return result;
+	}
+	
 	return predictionService;
 
 });
