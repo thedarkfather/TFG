@@ -10,6 +10,7 @@ import domain.Result;
 import domain.Season;
 import domain.Team;
 import domain.TeamStatistics;
+import forms.TeamStatisticsForm;
 import repositories.TeamStatisticsRepository;
 
 @Service
@@ -107,6 +108,35 @@ public class TeamStatisticsService {
 		teamStatistics.setTotalGames(0); 
 		teamStatistics.setTeam(team);
 		teamStatisticsRepository.save(teamStatistics);
+	}
+
+	public TeamStatistics findByTeamId(Integer teamId) {
+		Assert.notNull(teamId);
+		TeamStatistics teamStatistics = teamStatisticsRepository.findByTeamId(teamId);
+		return teamStatistics;
+	}
+
+	public TeamStatisticsForm reconstruct(TeamStatistics teamStatistics) {
+		Assert.notNull(teamStatistics);
+		TeamStatisticsForm teamStatisticsForm = new TeamStatisticsForm();
+		teamStatisticsForm.setStreak(teamStatistics.getStreak());
+		teamStatisticsForm.setWonMatchPercentage(teamStatistics.getWonMatchPercentage());
+		teamStatisticsForm.setLostMatchPercentage(teamStatistics.getLostMatchPercentage());
+		teamStatisticsForm.setDrawMatchPercentage(teamStatistics.getDrawMatchPercentage());
+		teamStatisticsForm.setMoreThan25Percentage(teamStatistics.getMoreThan25Percentage());
+		teamStatisticsForm.setMoreThan25(teamStatistics.getMoreThan25()); 
+		teamStatisticsForm.setHomeWonMatches(teamStatistics.getHomeWonMatches());
+		teamStatisticsForm.setAwayWonMatches(teamStatistics.getAwayWonMatches()); 
+		teamStatisticsForm.setHomeLostMatches(teamStatistics.getHomeLostMatches()); 
+		teamStatisticsForm.setAwayLostMatches(teamStatistics.getAwayLostMatches()); 
+		teamStatisticsForm.setHomeGoals(teamStatistics.getHomeGoals()); 
+		teamStatisticsForm.setAwayGoals(teamStatistics.getAwayGoals()); 
+		teamStatisticsForm.setLeaguePosition(teamStatistics.getLeaguePosition());
+		teamStatisticsForm.setPoints(teamStatistics.getPoints()); 
+		teamStatisticsForm.setTotalGames(teamStatistics.getTotalGames()); 
+		teamStatisticsForm.setTeamName(teamStatistics.getTeam().getName());
+		teamStatisticsForm.setLeagueName(teamStatistics.getTeam().getSeason().getLeague().getName());		
+		return teamStatisticsForm;
 	}
 
 }
