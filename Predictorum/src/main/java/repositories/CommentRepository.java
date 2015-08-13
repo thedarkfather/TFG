@@ -11,7 +11,7 @@ import domain.Comment;
 @Repository 
 public interface CommentRepository extends JpaRepository<Comment,Integer>{
 	
-	@Query("select c from Comment c where c.prediction.id=?1 and c.parent=null")
+	@Query("select c from Comment c where c.prediction.id=?1")
 	Collection<Comment> findByPredictionId(Integer predictionId);
 
 	@Query("select c from Comment c where c.parent.id=?1")
