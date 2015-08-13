@@ -92,6 +92,9 @@ public class UpdateService {
 	
 	@Autowired
 	private TeamStatisticsService teamStatisticsService;
+	
+	@Autowired
+	private UserService userService;
 
 	//@Scheduled(cron = "*/120 * * * * ?")
 	public void inicializaCalendario() throws IOException {
@@ -226,6 +229,7 @@ public class UpdateService {
 					for (Element elementPartido : elementPartidos) {
 						Game game = findGame(elementPartido, round);
 						Result result = saveResult(elementPartido, game);
+						userService.updatePointsByResult(result);
 						teamStatisticsService.update(result);						
 					}
 					round.setUpdated(true);
@@ -266,8 +270,9 @@ public class UpdateService {
 					Elements elementPartidos = jornadaAux.getElementsByTag(tagTr);
 					for (Element elementPartido : elementPartidos) {
 						Game game = findGame(elementPartido, round);
-						Result result = saveResult(elementPartido, game);	
-						teamStatisticsService.update(result);
+						Result result = saveResult(elementPartido, game);
+						userService.updatePointsByResult(result);
+						teamStatisticsService.update(result);						
 					}
 					round.setUpdated(true);
 					roundService.saveEasy(round);					
@@ -303,7 +308,8 @@ public class UpdateService {
 					Elements elementPartidos = elementJornada.getElementsByTag(tagH3);
 					for (Element elementPartido : elementPartidos) {
 						Game game = findGame(elementPartido, round);
-						Result result = saveResult(elementPartido, game);	
+						Result result = saveResult(elementPartido, game);
+						userService.updatePointsByResult(result);
 						teamStatisticsService.update(result);
 					}
 					round.setUpdated(true);

@@ -18,7 +18,9 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Comment;
 import domain.Evaluation;
+import domain.Game;
 import domain.Prediction;
+import domain.Result;
 import domain.Team;
 import domain.User;
 import forms.EditUserForm;
@@ -258,6 +260,59 @@ public class UserService {
 
 	public Collection<User> findUserByString(String cadena) {
 		return userRepository.findUserByString(cadena);
+	}
+
+	public void updatePointsByResult(Result result) {
+		Assert.notNull(result);
+		Game game = result.getGame();
+		Collection<Prediction> predictions = predictionService.findUserPredictionsByGameId(game.getId());
+		for(Prediction prediction : predictions){
+			User user = prediction.getUser();
+			
+			String sResult;
+			if(result.getHomeGoals().compareTo(result.getAwayGoals())>0){
+				sResult="1";
+			}else if(result.getHomeGoals().equals(result.getAwayGoals())){
+				sResult="X";
+			}else{
+				sResult="2";
+			}
+			
+			//Actualizamos los puntos por resultado simple		
+			if(prediction.getSimpleResult().equals(sResult)){
+				user.setsRPoints(user.getsRPoints()+1);
+			}
+			
+			//Actualizamos los puntos por resultado double
+			if(prediction.getDoubleResult().contains(sResult)){
+				user.setdRPoints(user.getdRPoints()+1);
+			}			
+			
+			//Actualiamos los puntos por home goals
+			if(prediction.getHomeGoals().equals(result.getHomeGoals())){
+				user.sethGPoints(user.gethGPoints()+1);
+			}
+			
+			//Actualizamos los puntos por away goals
+			if(prediction.getAwayGoals().equals(result.getAwayGoals())){
+				user.setaGPoints(user.getaGPoints()+1);
+			}
+			
+			//Actualizamos lo puntos por mas de 2.5 goals
+			Integer totalGoals = result.getHomeGoals()+result.getAwayGoals();
+			if(prediction.getMoreThan25() && totalGoals.compareTo(2)>0){
+				user.setmT25Points(user.getmT25Points()+1);
+			}else if(!prediction.getMoreThan25() && totalGoals.compareTo(2)<=0){
+				user.setmT25Points(user.getmT25Points()+1);
+			}
+			
+			user.setsRPointsPossible(user.getsRPointsPossible()+1);
+			user.setdRPointsPossible(user.getdRPointsPossible()+1);
+			user.sethGPointsPossible(user.gethGPointsPossible()+1);
+			user.setaGPointsPossible(user.getaGPointsPossible()+1);
+			user.setmT25PointsPossible(user.getmT25PointsPossible());			
+			save(user);
+		}		
 	}	
 
 }
