@@ -83,7 +83,7 @@
 					<b>{{prediction.homeGoals}} - {{prediction.awayGoals}}</b>
 				</div>
 			</div>
-			<div class="col-lg-12 col-xs-12" style="margin-top: 25px;">
+			<div ng-init="loadingComments=false" class="col-lg-12 col-xs-12" style="margin-top: 25px;">
 				<div scroll-to="commentForm" ng-init="showComments=false"
 					ng-click="findComments()" class="col-lg-12 col-xs-12 text-center"
 					style="background-color: #82dc23; color: white; cursor: pointer; margin-bottom: 30px; padding: 5px; border-radius: 25px;">
@@ -103,10 +103,11 @@
 						<i class="fa fa-arrow-right"></i>
 					</span>
 				</div>
-				<div ng-show="showComments" class="col-lg-12 col-xs-12 list-group"
-					style="margin-top: 20px;">
-					<div class="widget tabs">
-						<div id="horizontal-tabs">
+				<img style="margin-top: 15px;"class="col-lg-2 col-lg-offset-5 col-xs-10 col-xs-offset-1"ng-show="loadingComments" src="static/img/flat-loader_transp.gif" >
+				<div ng-show="showComments" ng-hide="loadingComments" class="col-lg-12 col-xs-12 list-group"
+					style="margin-top: 20px;" >
+					<div ng-show="showComments" class="widget tabs" style="margin-bottom:0;">
+						<div id="horizontal-tabs" style="margin-bottom:0;">
 							<ul class="tabs">
 								<li style="width: 50%;" ng-click="switchCommentOrder('MOST_RECENT')"
 									ng-class="{current: commentTab==='MOST_RECENT'}" translate>MOST_RECENT</li>
