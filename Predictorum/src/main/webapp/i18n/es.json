@@ -48,6 +48,8 @@
 "WRITE_COMMENT":			"Escribe un comentario...",				
 "SOONER":					"Más próximos primero",
 "LATEST":					"Más lejanos primero",
+"MOST_RECENT":				"Más recientes",
+"MOST_POPULAR":				"Más populares",
 "HL1": {
 		"WORD1":			"TODO",
 		"WORD2":			" GRATUITO"

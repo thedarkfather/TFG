@@ -237,8 +237,9 @@
 									<!-- Sign up form -->
 									<div class="row text-center">
 										<div class="col-md-2"></div>
-										<div class="col-md-8">
-											<form ng-show="notRegistered" id="signup" name="signUpForm" ng-submit="goSignUp()" novalidate>
+										<div class="col-md-8" ng-init="loading=false">
+											<img ng-show="loading" src="static/img/flat-loader_transp.gif">
+											<form ng-show="notRegistered" ng-hide="loading" id="signup" name="signUpForm" ng-submit="goSignUp()" novalidate>
 												<fieldset>
 													<input ng-class="{'ng-submitted ng-invalid': notUniqueError}" class="form-control wow fadeInLeft" type="text"
 														placeholder="Username" data-ng-model="signUp.username" style="margin-bottom: 5%;" required>
@@ -449,7 +450,7 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<img src="static/img/about-us.png" alt="About Us"
+							<img src="ic/img/about-us.png" alt="About Us"
 								class="img-responsive">
 						</div>
 					</div>

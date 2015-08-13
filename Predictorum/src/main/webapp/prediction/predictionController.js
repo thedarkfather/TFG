@@ -5,7 +5,7 @@ var predictionController = angular.module('predictorum.predictionController',
 		[ 'predictorum.predictionService' ]);
 
 predictionController.controller('predictionController', function($scope,
-		$location, $timeout, $routeParams, $filter, predictionService) {
+		$location, $timeout, $routeParams, $filter, $timeout, predictionService) {
 
 	// List
 	
@@ -108,9 +108,11 @@ predictionController.controller('predictionController', function($scope,
 	
 	$scope.findComments = function(){
 		$scope.showComments = !$scope.showComments;
+		$scope.loadingComments = $scope.showComments;
 		predictionService.findComments($scope.prediction.id).then(function(result){
 			if(!result.data.errors){
-				$scope.prediction.comments = result.data;
+				$timeout(function(){$scope.loadingComments = false},2000);
+				$timeout(function(){$scope.prediction.comments = result.data},2000);
 				$scope.showChildren = []; //sirve para guardar booleans para saber qué respuestas mostrar
 				$scope.switchCommentOrder('MOST_RECENT');
 			}
