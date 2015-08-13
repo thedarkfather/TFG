@@ -120,15 +120,16 @@
 					<div id="comment{{comment.id}}"
 						ng-repeat="comment in prediction.comments | orderBy:commentOrder"
 						class="list-group-item clearfix">
-						<a ng-href="#/user/profile/{{comment.userId}}">@{{comment.username}}</a> <i
+						<b><a ng-href="#/user/profile/{{comment.userId}}">@{{comment.username}}</a></b> <i
 							class="pull-right text-muted"> #{{comment.id}}</i>
 
-						<p>{{comment.text }}</p>
-						<p ng-show="comment.parent!==null" class="text-muted">
+						<p style="overflow:hidden;">{{comment.text }}</p>
+						<p ng-show="comment.parentId" class="text-muted">
 							{{"IN_RESPONSE" | translate}} <a
-								scroll-to="comment{{comment.parent}}">#{{comment.parent}}</a>
+								scroll-to="comment{{comment.parentId}}">#{{comment.parentId}}</a>
 						</p>
-						<i class="text-muted">{{comment.date | date: "dd/MM/yyyy HH:mm"}}</i>
+						<p><i class="text-muted pull-left">{{comment.date | date: "dd/MM/yyyy HH:mm"}}</i></p>
+						<a style="margin-left: 5px;" class="pull-left" ng-click="myComment.parent=comment" scroll-to="commentForm">Reply</a>
 						<!-- Like and dislike buttons -->
 						<!-- If comment isn't evaluated like and dislike button appear green -->
 						<div ng-if="comment.evaluated===null"
@@ -159,37 +160,33 @@
 							ng-repeat="child in comment.children"
 							class="list-group-item clearfix"
 							style="background-color: #D8F6CE">
-							<a href="#/user/profile">@{{child.user}}</a> <i
+							<b><a ng-href="#/user/profile/{{child.userId}}">@{{child.username}}</a></b> <i
 								class="pull-right text-muted"> #{{child.id}}</i>
 
-							<p>{{child.text }}</p>
-							<i class="text-muted">{{comment.date | date: "dd/MM/yyyy
-								HH:mm"}}</i>
+							<p style="overflow:hidden;">{{child.text }}</p>
+							<p><i class="text-muted pull-left">{{comment.date | date: "dd/MM/yyyy HH:mm"}}</i></p>
 							<!-- Like and dislike buttons -->
 							<!-- If comment isn't evaluated like and dislike button appear green -->
-							<div ng-if="child.evaluated===1" class="pull-right text-color result"
+							<div ng-if="child.evaluated===null" class="pull-right text-color result"
 								style="cursor: pointer">
-								<i class="fa fa-thumbs-up grow" ng-click="evaluateComment(comment,true)"></i> {{child.posPoints}} <i
-									style="margin-left: 10px;" class="fa fa-thumbs-down grow result" ng-click="evaluateComment(comment,false)"></i>
+								<i class="fa fa-thumbs-up grow" ng-click="evaluateComment(child,true)"></i> {{child.posPoints}} <i
+									style="margin-left: 10px;" class="fa fa-thumbs-down grow result" ng-click="evaluateComment(child,false)"></i>
 								{{child.negPoints}} 
 							</div>
 							<!-- If comment evaluated positive like button appears bold -->
-							<div ng-if="child.evaluated===2" class="pull-right text-muted result">
+							<div ng-if="child.evaluated===true" class="pull-right text-muted result">
 								<b><i class="fa fa-thumbs-up" style="font-size: 20px"></i>
 									{{child.posPoints}}  </b> <i style="margin-left: 10px;" class="fa fa-thumbs-down"></i>
 								{{child.negPoints}} 
 							</div>
 							<!-- If comment not evaluated dislike button appears bold -->
-							<div ng-if="child.evaluated===3" class="pull-right text-muted result"
+							<div ng-if="child.evaluated===false" class="pull-right text-muted result"
 								style="cursor: pointer">
 								<i class="fa fa-thumbs-up"></i> {{child.posPoints}}  <b><i
 									style="margin-left: 10px; font-size: 20px;"
 									class="fa fa-thumbs-down"></i> {{child.negPoints}}  </b>
 							</div>
 							<!-- /Like and dislike buttons -->
-							<a ng-if="child.children.length" ng-init="showChildren=false"
-								ng-click="showChildren=!showChildren"><i
-								class="fa fa-comments"></i> ({{child.children.length}})</a>
 							<div></div>
 						</div>
 					</div>
