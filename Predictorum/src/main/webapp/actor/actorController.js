@@ -5,7 +5,7 @@
 var actorController = angular.module('predictorum.actorController',
 		[ 'predictorum.actorService', 'predictorum.sessionService' ]);
 
-actorController.controller("actorController", function($scope, $location,$interval, actorService, sessionService) {
+actorController.controller("actorController", function($scope, $location,$interval, $routeParams, actorService, sessionService) {
 
 	if($location.path().includes('followers')){
 		$scope.tab = {
@@ -72,30 +72,31 @@ actorController.controller("actorController", function($scope, $location,$interv
 	
 	//Profile
 	
-	$scope.profile = sessionService.getPrincipal();
-			
-	
-	$scope.predictions = [{homeTeam: 'R.Madrid', awayTeam: 'Barcelona', homeGoals: 2, awayGoals: 0, matchDate: '10/08/2015'},{homeTeam: 'At.Madrid', awayTeam: 'Getafe', homeGoals: 3, awayGoals: 1, matchDate: '11/08/2015'}];
-	$scope.maxSimpleValue = 69;
+
 	$scope.simpleValue = 0;
-	$scope.maxDoubleValue = 35;
 	$scope.doubleValue = 0;
-	$scope.maxHalfTimeHomeGoals = 70;
-	$scope.halfTimeHomeGoals = 0;
-	$scope.maxHalfTimeAwayGoals = 85;
-	$scope.halfTimeAwayGoals = 0;
-	$scope.maxFinalTimeHomeGoals = 26;
 	$scope.finalTimeHomeGoals = 0;
-	$scope.maxFinalTimeAwayGoals = 90;
 	$scope.finalTimeAwayGoals = 0;
-	$scope.maxMoreThan25 = 46;
 	$scope.moreThan25 = 0;
 
-	$interval(function() {
-	    $scope.simpleValue+=$scope.profile.sRPointsPercentaje/100;
-	    $scope.doubleValue+=$scope.profile.dRPointsPercentaje/100;
-	    $scope.finalTimeHomeGoals+=$scope.profile.hGPointsPercentaje/100;
-	    $scope.finalTimeAwayGoals+=$scope.profile.aGPointsPercentaje/100;
-	    $scope.moreThan25+=$scope.profile.mT25PointsPercentaje/100;
-	}, 30, 100);
+	$scope.loadPercentage = function(){
+		$interval(function() {
+	    	$scope.simpleValue+=$scope.profile.sRPointsPercentaje/100;
+	    	$scope.doubleValue+=$scope.profile.dRPointsPercentaje/100;
+	    	$scope.finalTimeHomeGoals+=$scope.profile.hGPointsPercentaje/100;
+	    	$scope.finalTimeAwayGoals+=$scope.profile.aGPointsPercentaje/100;
+	    	$scope.moreThan25+=$scope.profile.mT25PointsPercentaje/100;
+		}, 30, 100);
+	}
+	
+	if($routeParams.userId){
+		actorService.getProfile($routeParams.userId).then(function(result){
+			$scope.profile = result.data;
+			$scope.loadPercentage();
+		});
+	}else{
+		$scope.profile = sessionService.getPrincipal();
+		$scope.loadPercentage();
+	}
+	
 });

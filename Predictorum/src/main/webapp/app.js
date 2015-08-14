@@ -74,6 +74,11 @@ predictorum.config(['$routeProvider','$locationProvider','$translateProvider','$
 		controller : 'actorController'
 	})
 	
+	.when('/user/profile/:userId', {
+		templateUrl : 'actor/views/display.html',
+		controller : 'actorController'
+	})
+	
 	.when('/prediction/upcoming', {
 		templateUrl : 'prediction/views/list.html',
 		controller : 'predictionController'

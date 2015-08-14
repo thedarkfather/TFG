@@ -39,7 +39,7 @@
 					</div>
 					<div class="col-lg-6 col-xs-6">
 
-						<a href="#/user/profile" ><b><i ng-show="tab.current==='ranking'">{{actor.position}}&deg;</i>
+						<a ng-href="#/user/profile/{{actor.id}}" ><b><i ng-show="tab.current==='ranking'">{{actor.position}}&deg;</i>
 								@{{actor.name | limitTo:10}}</b><b ng-show="actor.name.length>10" >...</b></a>
 					</div>
 					<div class="col-lg-6 col-xs-6">

@@ -128,8 +128,12 @@
 							{{"IN_RESPONSE" | translate}} <a
 								scroll-to="comment{{comment.parentId}}">#{{comment.parentId}}</a>
 						</p>
-						<p><i class="text-muted pull-left">{{comment.date | date: "dd/MM/yyyy HH:mm"}}</i></p>
-						<a style="margin-left: 5px;" class="pull-left" ng-click="myComment.parent=comment" scroll-to="commentForm">Reply</a>
+							<p align="left"><i class="text-muted">{{comment.date | date: "dd/MM/yyyy HH:mm"}}</i></p>
+							<a align="left" style="margin-right: 5px;" ng-click="myComment.parent=comment" scroll-to="commentForm">Reply</a>
+							<a align="left" ng-if="comment.children.length"
+							ng-init="showChildren[comment.id]=false"
+							ng-click="showChildren[comment.id]= !showChildren[comment.id]">
+							<i class="fa fa-comments"></i> ({{comment.children.length}})</a>
 						<!-- Like and dislike buttons -->
 						<!-- If comment isn't evaluated like and dislike button appear green -->
 						<div ng-if="comment.evaluated===null"
@@ -152,10 +156,6 @@
 								class="fa fa-thumbs-down"></i> {{comment.negPoints}} </b>
 						</div>
 						<!-- /Like and dislike buttons -->
-						<a ng-if="comment.children.length"
-							ng-init="showChildren[comment.id]=false"
-							ng-click="showChildren[comment.id]= !showChildren[comment.id]"><i
-							class="fa fa-comments"></i> ({{comment.children.length}})</a>
 						<div ng-show="showChildren[comment.id]"
 							ng-repeat="child in comment.children"
 							class="list-group-item clearfix"

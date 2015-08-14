@@ -114,7 +114,7 @@ predictionController.controller('predictionController', function($scope,
 				$timeout(function(){$scope.loadingComments = false},2000);
 				$timeout(function(){$scope.prediction.comments = result.data},2000);
 				$scope.showChildren = []; //sirve para guardar booleans para saber qué respuestas mostrar
-				$scope.switchCommentOrder('MOST_RECENT');
+				$scope.switchCommentOrder('MOST_POPULAR');
 			}
 		});
 	}
