@@ -193,26 +193,37 @@ public class UserService {
 		}		
 		Integer cero = 0;
 		UserDetailsForm userDetailsForm = new UserDetailsForm();
+		
 		if(!cero.equals(user.getaGPointsPossible())){
 			userDetailsForm.setaGPointsPercentaje((user.getaGPoints()*100)/user.getaGPointsPossible());
 		}else{
 			userDetailsForm.setaGPointsPercentaje(cero);
-		}				
+		}		
+		
 		if(!cero.equals(user.gethGPointsPossible())){
 			userDetailsForm.sethGPointsPercentaje((user.gethGPoints()*100)/user.gethGPointsPossible());
 		}else{
 			userDetailsForm.sethGPointsPercentaje(cero);
 		}
+		
 		if(!cero.equals(user.getsRPointsPossible())){
 			userDetailsForm.setsRPointsPercentaje((user.getsRPoints()*100)/user.getsRPointsPossible());
 		}else{
 			userDetailsForm.setsRPointsPercentaje(cero);
 		}
-		if(!cero.equals(user.getsRPointsPossible())){
+		
+		if(!cero.equals(user.getmT25PointsPossible())){
 			userDetailsForm.setmT25PointsPercentaje((user.getmT25Points()*100)/user.getmT25PointsPossible());
 		}else{
 			userDetailsForm.setmT25PointsPercentaje(cero);
-		}	
+		}
+		
+		if(!cero.equals(user.getdRPointsPossible())){
+			userDetailsForm.setdRPointsPercentaje((user.getdRPoints()*100)/user.getdRPointsPossible());
+		}else{
+			userDetailsForm.setdRPointsPercentaje(cero);
+		}
+		
 		userDetailsForm.setFollowersNumber(user.getFollowers().size());
 		userDetailsForm.setFollowingNumber(user.getFollowing().size());			
 		List<PredictionToListForm> predictionsToListForm = predictionService.findToListByUserId(user.getId());
