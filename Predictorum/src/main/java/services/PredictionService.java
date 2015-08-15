@@ -2,7 +2,6 @@ package services;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -73,10 +72,10 @@ public class PredictionService {
 		return predictionForm;
 	}
 
-	public List<PredictionToListForm> findToListByUserId(Integer userId) {
+	public Collection<PredictionToListForm> findToListByUserId(Integer userId) {
 		Assert.notNull(userId);
-		List<Prediction> predictions = predictionRepository.findToListByUserId(userId);
-		List<PredictionToListForm> predictionsToListForm = new LinkedList<PredictionToListForm>();
+		Collection<Prediction> predictions = predictionRepository.findToListByUserId(userId);
+		Collection<PredictionToListForm> predictionsToListForm = new LinkedList<PredictionToListForm>();
 		for(Prediction prediction: predictions){
 			PredictionToListForm predictionToListForm = new PredictionToListForm();
 			predictionToListForm.setAwayTeamGoals(prediction.getAwayGoals());
@@ -99,7 +98,7 @@ public class PredictionService {
 		return predictionForms;
 	}
 
-	private PredictionForm userReconstructToForm(Prediction prediction) {
+	public PredictionForm userReconstructToForm(Prediction prediction) {
 		Assert.notNull(prediction);
 		PredictionForm predictionForm = new PredictionForm();
 		User user = prediction.getUser();
@@ -120,7 +119,7 @@ public class PredictionService {
 		predictionForm.setpAwayGoals(prediction.getpAwayGoals());
 		predictionForm.setMoreThan25(prediction.getMoreThan25());
 		predictionForm.setPmoreThan25(prediction.getpMoreThan25());
-		predictionForm.setCommentSize(prediction.getComments().size());
+		predictionForm.setCommentSize(commentService.findByPrediciontId(prediction.getId()).size());
 		return predictionForm;
 	}
 	
@@ -184,6 +183,7 @@ public class PredictionService {
 	}
 
 	public Prediction findById(Integer predictionId) {
+		Assert.notNull(predictionId);
 		return predictionRepository.findOne(predictionId);
 	}
 	

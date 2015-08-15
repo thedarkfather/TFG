@@ -46,6 +46,13 @@ public class PredictionController extends AbstractController {
 		return predictionForms;
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/findOne/{predictionId}")
+	public PredictionForm findOne(@PathVariable Integer predictionId) {
+		Prediction prediction = predictionService.findById(predictionId);
+		PredictionForm predictionForm = predictionService.userReconstructToForm(prediction);
+		return predictionForm;
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/saveUserPredicion", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public GeneralResponse saveUserPredicion(@RequestBody @Valid PredictionFormToSave predictionFormToSave, BindingResult binding){
 		GeneralResponse generalResponse;

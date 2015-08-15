@@ -8,9 +8,7 @@ public class PredictionToListForm {
 	private Integer homeTeamGoals;
 	private Integer awayTeamGoals;
 	private Date finishDate;
-	private Integer userId;
 	private Integer id;
-	private Integer commentSize;
 	
 	public String getAwayTeamName() {
 		return awayTeamName;
@@ -51,14 +49,6 @@ public class PredictionToListForm {
 	public void setFinishDate(Date finishDate) {
 		this.finishDate = finishDate;
 	}
-	
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
 
 	public Integer getId() {
 		return id;
@@ -66,14 +56,6 @@ public class PredictionToListForm {
 	
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getCommentSize() {
-		return commentSize;
-	}
-
-	public void setCommentSize(Integer commentSize) {
-		this.commentSize = commentSize;
 	}	
 
 }

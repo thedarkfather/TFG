@@ -226,7 +226,7 @@ public class UserService {
 		
 		userDetailsForm.setFollowersNumber(user.getFollowers().size());
 		userDetailsForm.setFollowingNumber(user.getFollowing().size());			
-		List<PredictionToListForm> predictionsToListForm = predictionService.findToListByUserId(user.getId());
+		Collection<PredictionToListForm> predictionsToListForm = predictionService.findToListByUserId(user.getId());
 		userDetailsForm.setPredictions(predictionsToListForm);
 		Integer rankingPosition = getPosition(user);
 		Assert.notNull(rankingPosition);

@@ -1,8 +1,9 @@
 package forms;
 
-import java.util.List;
+import java.util.Collection;
 
 public class UserDetailsForm {
+	
 	private String username;
 	//estadísticas
 	private Integer sRPointsPercentaje;
@@ -15,7 +16,7 @@ public class UserDetailsForm {
 	private Integer followersNumber;
 	private Integer followingNumber;
 	//predicciones ordenadas por fecha
-	private List<PredictionToListForm> predictions;
+	private Collection<PredictionToListForm> predictions;
 	
 	public String getUsername() {
 		return username;
@@ -89,11 +90,11 @@ public class UserDetailsForm {
 		this.followingNumber = followingNumber;
 	}
 	
-	public List<PredictionToListForm> getPredictions() {
+	public Collection<PredictionToListForm> getPredictions() {
 		return predictions;
 	}
 	
-	public void setPredictions(List<PredictionToListForm> predictions) {
+	public void setPredictions(Collection<PredictionToListForm> predictions) {
 		this.predictions = predictions;
 	}	
 }
