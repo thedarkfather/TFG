@@ -92,7 +92,7 @@ predictionController.controller('predictionController', function($scope,
 			$scope.prediction = result.data;
 			$scope.prediction.comments = [];
 			$scope.switchData($scope.prediction.pSimpleResult);
-			
+			$scope.prediction.gameId= $routeParams.gameId;
 		});
 	}
 	
@@ -178,5 +178,78 @@ predictionController.controller('predictionController', function($scope,
 		animateScale : false,
 
 	};
+	
+	//Form
+	
+	$scope.userPrediction = {};
+	
+	$scope.doubleResultCheck = function(resultClicked){
+		if(resultClicked==='1'){
+			$scope.userPrediction.doubleResult2 = !($scope.userPrediction.doubleResultX && $scope.userPrediction.doubleResult2)&&$scope.userPrediction.doubleResult2;
+		}else if(resultClicked==='X'){
+			$scope.userPrediction.doubleResult1 = !($scope.userPrediction.doubleResult1 && $scope.userPrediction.doubleResult2)&&$scope.userPrediction.doubleResult1;
+		}else{
+			$scope.userPrediction.doubleResult1 = !($scope.userPrediction.doubleResult1 && $scope.userPrediction.doubleResultX)&&$scope.userPrediction.doubleResult1;
+		}
+	};
+	
+	$scope.clearForm = function(input){
+		switch(input){
+		case 'simple':
+			$scope.userPrediction.simpleResult = null;
+			break;
+		case 'double':
+			$scope.userPrediction.doubleResult1=null;
+			$scope.userPrediction.doubleResultX=null;
+			$scope.userPrediction.doubleResult2=null;
+			break;
+		case 'result':
+			$scope.userPrediction.homeGoals = null;
+			$scope.userPrediction.awayGoals = null;
+			break;
+		case 'mt25':
+			$scope.userPrediction.mt25 = null;
+			break;
+		}
+	};
+	
+	if($location.path().includes('create')){
+		predictionService.findSystemPrediction($routeParams.gameId).then(function(result){
+			$scope.userPrediction.homeTeam = result.data.homeName;
+			$scope.userPrediction.awayTeam = result.data.awayName;
+		});
+	}
+	
+	$scope.savePrediction = function(){
+		$scope.result = {};
+		if($scope.userPrediction.homeGoals!==undefined || $scope.userPrediction.awayGoals!==undefined){ //si uno de los dos está cumplimentado
+			if(!($scope.userPrediction.homeGoals!==undefined && $scope.userPrediction.awayGoals!==undefined)){ //ambos deben estarlo
+				$scope.result.error = "MUST_FULFILL_BOTH_RESULT";
+			}
+		}
+		if($scope.userPrediction.doubleResult1 || $scope.userPrediction.doubleResultX || $scope.userPrediction.doubleResult2){
+			var pos1 = $scope.userPrediction.doubleResult1 && $scope.userPrediction.doubleResultX;
+			var pos2 = $scope.userPrediction.doubleResult1 && $scope.userPrediction.doubleResult2;
+			var pos3 = $scope.userPrediction.doubleResult1 && $scope.userPrediction.doubleResultX;
+			if(pos1){
+				$scope.userPrediction.doubleResult = "1X";
+			}else if(pos2){
+				$scope.userPrediction.doubleResult = "12";
+			}else if(pos3){
+				$scope.userPrediction.doubleResult = "X2";
+			}else{
+				$scope.result.error = "MUST_FULFILL_BOTH_DOUBLE";
+			}
+		}
+		if(!$scope.result.error){
+			predictionService.savePrediction($scope.userPrediction, $routeParams.gameId).then(function(result){
+				if(result.data.success){
+				
+				}else{
+					$scope.result.error = result.data.errors.fail;
+				}
+			});
+		}
+	}
 
 });

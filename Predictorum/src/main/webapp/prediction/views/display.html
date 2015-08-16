@@ -83,6 +83,7 @@
 					<b>{{prediction.homeGoals}} - {{prediction.awayGoals}}</b>
 				</div>
 			</div>
+			<a ng-href="#/prediction/create/{{prediction.gameId}}" class="btn btn-2">Create my own</a>
 			<div ng-init="loadingComments=false" class="col-lg-12 col-xs-12" style="margin-top: 25px;">
 				<div scroll-to="commentForm" ng-init="showComments=false"
 					ng-click="findComments()" class="col-lg-12 col-xs-12 text-center"

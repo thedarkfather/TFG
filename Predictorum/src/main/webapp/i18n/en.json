@@ -49,6 +49,9 @@
 "LATEST":					"Latest first",
 "MOST_RECENT":				"Most recent",
 "MOST_POPULAR":				"Most popular",
+"SAVE":						"SAVE",
+"MUST_FULFILL_BOTH_DOUBLE":	"You must fulfill exactly two options for double result",
+"MUST_FULFILL_BOTH_RESULT":	"You must fulfill both goals results",
 "HL1": {
 		"WORD1":			"FREE",
 		"WORD2":			" FEATURES"

@@ -1,0 +1,58 @@
+<div class="container" style="margin-top: 40px;">
+	<div class="row">
+		<div class="col-lg-10 col-xs-12 col-lg-offset-1" align="center" >
+
+			<h1>{{userPrediction.homeTeam}} vs {{userPrediction.awayTeam}}</h1>
+			<div class="table-responsive">
+				<table class="table table-condensed table-striped">
+					<tbody>
+						<tr class="success" style="font-weight:bold;"  align="center">
+							<td colspan="2"></td>
+							<td>1</td>
+							<td >X</td>
+							<td >2</td>
+							<td ></td>
+						</tr>
+						<tr align="center">
+							<td colspan="2" align="left"><b translate>SIMPLE</b></td>
+							<td><input ng-model="userPrediction.simpleResult" value="1" type="radio" name="simpleResult"></td>
+							<td  ><input ng-model="userPrediction.simpleResult" value="X" type="radio" name="simpleResult"></td>
+							<td  ><input ng-model="userPrediction.simpleResult" value="2" type="radio" name="simpleResult"></td>
+							<td  ><i style="color:#d12d32; cursor:pointer;" ng-click="clearForm('simple')" class="fa fa-ban"></i></td>
+						</tr>
+						<tr align="center">
+							<td colspan="2" align="left"><b>{{"DOUBLE" | translate | uppercase }} </b></td>
+							<td><input ng-model="userPrediction.doubleResult1" ng-change="doubleResultCheck('1')" type="checkbox"></td>
+							<td  ><input ng-model="userPrediction.doubleResultX" ng-change="doubleResultCheck('X')" type="checkbox"></td>
+							<td  ><input ng-model="userPrediction.doubleResult2" ng-change="doubleResultCheck('2')" type="checkbox"></td>
+							<td  ><i style="color:#d12d32; cursor:pointer;" ng-click="clearForm('double')" class="fa fa-ban"></i></td>
+						</tr>
+						<tr class="success" style="font-weight: bold;" align="center">
+							<td colspan="2"></td>
+							<td>{{userPrediction.homeTeam}}</td>
+							<td  >vs</td>
+							<td  >{{userPrediction.awayTeam}}</td>
+							<td  ></td>
+						</tr>
+						<tr align="center">
+							<td colspan="2" align="left"><b>{{"RESULT" | translate | uppercase}}</b></td>
+							<td><input ng-model="userPrediction.homeGoals" type="number" min="0" style="width:50px;"></td>
+							<td  >-</td>
+							<td  ><input ng-model="userPrediction.awayGoals" type="number" min="0" style="width:50px;"></td>
+							<td  ><i style="color:#d12d32; cursor:pointer;" ng-click="clearForm('result')" class="fa fa-ban"></i></td>
+						</tr>
+						<tr align="center">
+							<td colspan="2" align="left"><b>{{"MT25" | translate | uppercase}}</b></td>
+							<td ng-model="userPrediction.mt25" class="grow" style="cursor:pointer" ng-click="userPrediction.mt25=true"ng-class="{bold: userPrediction.mt25===true}"  translate>YES</td>
+							<td  >-</td>
+							<td ng-model="userPrediction.mt25" class="grow" style="cursor:pointer" ng-click="userPrediction.mt25=false" ng-class="{bold: userPrediction.mt25===false}"  translate>NO</td>
+							<td  ><i style="color:#d12d32; cursor:pointer;" ng-click="clearForm('mt25')" class="fa fa-ban"></i></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<p ng-if="result.error" style="color:red; font-weight:bold" translate>{{result.error}}</p>
+			<a class="btn btn-2" translate ng-click="savePrediction()"> SAVE </a>
+		</div>
+	</div>
+</div>

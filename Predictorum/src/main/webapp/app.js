@@ -88,6 +88,11 @@ predictorum.config(['$routeProvider','$locationProvider','$translateProvider','$
 		templateUrl : 'prediction/views/display.html',
 		controller : 'predictionController'
 	})
+	
+	.when('/prediction/create/:gameId', {
+		templateUrl : 'prediction/views/form.html',
+		controller : 'predictionController'
+	})
 
 	.otherwise({
 		redirectTo : '/'

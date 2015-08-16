@@ -50,6 +50,9 @@
 "LATEST":					"Más lejanos primero",
 "MOST_RECENT":				"Más recientes",
 "MOST_POPULAR":				"Más populares",
+"SAVE":						"GUARDAR",
+"MUST_FULFILL_BOTH_DOUBLE":	"Debes rellenar exactamente dos opciones para el resultado doble",
+"MUST_FULFILL_BOTH_RESULT":	"Debes rellenar los goles tanto del equipo local como del visitante",
 "HL1": {
 		"WORD1":			"TODO",
 		"WORD2":			" GRATUITO"
