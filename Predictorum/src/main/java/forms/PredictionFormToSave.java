@@ -1,5 +1,7 @@
 package forms;
 
+import org.hibernate.validator.constraints.Range;
+
 public class PredictionFormToSave {
 	
 	private Integer gameId;
@@ -33,6 +35,7 @@ public class PredictionFormToSave {
 		this.doubleResult = doubleResult;
 	}
 	
+	@Range(min=0)
 	public Integer getHomeGoals() {
 		return homeGoals;
 	}
@@ -41,6 +44,7 @@ public class PredictionFormToSave {
 		this.homeGoals = homeGoals;
 	}
 	
+	@Range(min=0)
 	public Integer getAwayGoals() {
 		return awayGoals;
 	}

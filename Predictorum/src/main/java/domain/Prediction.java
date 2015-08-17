@@ -10,13 +10,12 @@ import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class Prediction extends DomainEntity{
-	
+	//los atributos pueden ser null porque el usuario no tiene porqué poner todos los valores de una predicción
 	private String simpleResult;
 	private Double pSimpleResult;
 	private String doubleResult;
@@ -25,19 +24,9 @@ public class Prediction extends DomainEntity{
 	private Double pHomeGoals;
 	private Integer awayGoals;
 	private Double pAwayGoals;
-	//POR AHORA NO SE PONDRAN LAS PREDICCIONES A MITAD DE TIEMPO
-	//private Integer halfHomeGoals;
-	//private Double pHalfHomeGoals;
-	//private Integer halfAwayGoals;
-	//private Double pHalfAwayGoals;
-	//private String simpleHalfResult;
-	//private Double pSimpeHalfResult;
-	//private String doubleHalfResult;
-	//private Double pDoubleHalfResult;
 	private Boolean moreThan25;
 	private Double pMoreThan25;
 	
-	@NotBlank
 	public String getSimpleResult() {
 		return simpleResult;
 	}
@@ -56,7 +45,6 @@ public class Prediction extends DomainEntity{
 		this.pSimpleResult = pSimpleResult;
 	}
 	
-	@NotBlank
 	public String getDoubleResult() {
 		return doubleResult;
 	}
@@ -76,7 +64,6 @@ public class Prediction extends DomainEntity{
 	}
 	
 	@Range(min=0)
-	@NotNull
 	public Integer getHomeGoals() {
 		return homeGoals;
 	}
@@ -96,7 +83,6 @@ public class Prediction extends DomainEntity{
 	}
 	
 	@Range(min=0)
-	@NotNull
 	public Integer getAwayGoals() {
 		return awayGoals;
 	}
@@ -114,48 +100,7 @@ public class Prediction extends DomainEntity{
 	public void setpAwayGoals(Double pAwayGoals) {
 		this.pAwayGoals = pAwayGoals;
 	}
-	
-//	@Range(min=0)
-//	@NotNull
-//	public Integer getHalfHomeGoals() {
-//		return halfHomeGoals;
-//	}
-//	
-//	public void setHalfHomeGoals(Integer halfHomeGoals) {
-//		this.halfHomeGoals = halfHomeGoals;
-//	}
-//	
-//	@Range(min=0,max=1)
-//	@NotNull
-//	public Double getpHalfHomeGoals() {
-//		return pHalfHomeGoals;
-//	}
-//	
-//	public void setpHalfHomeGoals(Double pHalfHomeGoals) {
-//		this.pHalfHomeGoals = pHalfHomeGoals;
-//	}
-//	
-//	@Range(min=0)
-//	@NotNull
-//	public Integer getHalfAwayGoals() {
-//		return halfAwayGoals;
-//	}
-//	
-//	public void setHalfAwayGoals(Integer halfAwayGoals) {
-//		this.halfAwayGoals = halfAwayGoals;
-//	}
-//	
-//	@Range(min=0,max=1)
-//	@NotNull
-//	public Double getpHalfAwayGoals() {
-//		return pHalfAwayGoals;
-//	}
-//	
-//	public void setpHalfAwayGoals(Double pHalfAwayGoals) {
-//		this.pHalfAwayGoals = pHalfAwayGoals;
-//	}
-	
-	@NotNull
+		
 	public Boolean getMoreThan25() {
 		return moreThan25;
 	}

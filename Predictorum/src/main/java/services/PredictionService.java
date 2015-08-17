@@ -187,4 +187,9 @@ public class PredictionService {
 		return predictionRepository.findOne(predictionId);
 	}
 	
+	public Boolean checkPredictionAtributes(Prediction prediction) {
+		Boolean res = prediction.getSimpleResult()!=null || prediction.getDoubleResult()!=null || prediction.getAwayGoals()!=null || prediction.getHomeGoals()!=null || prediction.getMoreThan25()!=null;
+		return res;
+	}
+	
 }

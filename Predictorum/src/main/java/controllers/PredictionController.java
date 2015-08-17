@@ -61,8 +61,16 @@ public class PredictionController extends AbstractController {
 		} else {
 			try{
 				Prediction prediction = predictionService.reconstructToSaveUserPrediction(predictionFormToSave);
-				predictionService.save(prediction);
-				generalResponse = new GeneralResponse(true, new HashMap<String, String>());			
+				Boolean notNullAtributes = predictionService.checkPredictionAtributes(prediction);
+				if(notNullAtributes){
+					predictionService.save(prediction);
+					generalResponse = new GeneralResponse(true, new HashMap<String, String>());	
+				}else{
+					Map<String,String> errors = new HashMap<String,String>();
+					errors.put("fail", "Prediction can not be null");
+					generalResponse = new GeneralResponse(false, errors);
+				}
+						
 			}catch (Throwable oops){
 				Map<String,String> errors = new HashMap<String,String>();
 				errors.put("fail", "You can not commit this operation");
@@ -71,6 +79,5 @@ public class PredictionController extends AbstractController {
 		}
 		return generalResponse;
 	}
-
 
 }
