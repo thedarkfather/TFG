@@ -95,8 +95,10 @@ actorController.controller("actorController", function($scope, $location,$interv
 			$scope.loadPercentage();
 		});
 	}else{
-		$scope.profile = sessionService.getPrincipal();
-		$scope.loadPercentage();
+		actorService.getPrincipalProfile().then(function(result){
+			$scope.profile = result.data;
+			$scope.loadPercentage();
+		});
 	}
 	
 });

@@ -33,10 +33,10 @@
 
 			<div class="col-lg-6 col-xs-12" style="margin-top: 10px;">
 				<div class="list-group">
-					<a ng-repeat="prediction in profile.predictions"
-						class="list-group-item clearfix"> {{prediction.homeTeam}}:
-						{{prediction.homeGoals}} vs {{prediction.awayTeam}}:
-						{{prediction.awayGoals}} <i class="pull-right">{{prediction.matchDate}}
+					<a ng-href="#/prediction/user/details/{{prediction.id}}" ng-repeat="prediction in profile.predictions"
+						class="list-group-item clearfix"> <b>{{prediction.homeTeamName}}:
+						{{prediction.homeTeamGoals}}</b> <span class="text-color">vs</span> <b>{{prediction.awayTeamName}}:
+						{{prediction.awayTeamGoals}} </b><i class="pull-right">{{prediction.finishDate | date: "dd/mm/yyyy"}}
 					</i>
 
 					</a>

@@ -35,6 +35,19 @@ predictionService
 						return result;
 					};
 
+					predictionService.findUserPrediction = function(predictionId) {
+						var req = {
+							method : 'GET',
+							url : 'http://localhost:8080/Predictorum/api/prediction/findOne/'
+									+ predictionId,
+							withCredentials : true,
+						}
+
+						result = $http(req)
+
+						return result;
+					};
+					
 					predictionService.findComments = function(predictionId) {
 						var req = {
 							method : 'GET',

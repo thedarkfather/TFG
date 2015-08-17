@@ -88,12 +88,21 @@ predictionController.controller('predictionController', function($scope,
 	}
 	
 	if($location.path().includes('details')){
-		predictionService.findSystemPrediction($routeParams.gameId).then(function(result){
-			$scope.prediction = result.data;
-			$scope.prediction.comments = [];
-			$scope.switchData($scope.prediction.pSimpleResult);
-			$scope.prediction.gameId= $routeParams.gameId;
-		});
+		
+		if($location.path().includes('user')){
+			predictionService.findUserPrediction($routeParams.predictionId).then(function(result){
+				$scope.prediction = result.data;
+				$scope.prediction.comments = [];
+				$scope.switchData($scope.prediction.pSimpleResult);
+			});
+		}else{
+			predictionService.findSystemPrediction($routeParams.gameId).then(function(result){
+				$scope.prediction = result.data;
+				$scope.prediction.comments = [];
+				$scope.switchData($scope.prediction.pSimpleResult);
+				$scope.prediction.gameId= $routeParams.gameId;
+			});
+		}
 	}
 	
 	
@@ -122,7 +131,8 @@ predictionController.controller('predictionController', function($scope,
 	$scope.saveComment = function(){
 		var commentForm ={};
 		commentForm.text = $scope.myComment.text;
-		commentForm.parentId = $scope.myComment.parent.id;
+		if($scope.myComment.parent)
+			commentForm.parentId = $scope.myComment.parent.id;
 		commentForm.predictionId = $scope.prediction.id;
 		predictionService.saveComment(commentForm).then(function(result){
 			if(result.data.id){
@@ -230,7 +240,7 @@ predictionController.controller('predictionController', function($scope,
 		if($scope.userPrediction.doubleResult1 || $scope.userPrediction.doubleResultX || $scope.userPrediction.doubleResult2){
 			var pos1 = $scope.userPrediction.doubleResult1 && $scope.userPrediction.doubleResultX;
 			var pos2 = $scope.userPrediction.doubleResult1 && $scope.userPrediction.doubleResult2;
-			var pos3 = $scope.userPrediction.doubleResult1 && $scope.userPrediction.doubleResultX;
+			var pos3 = $scope.userPrediction.doubleResultX && $scope.userPrediction.doubleResult2;
 			if(pos1){
 				$scope.userPrediction.doubleResult = "1X";
 			}else if(pos2){
@@ -244,7 +254,7 @@ predictionController.controller('predictionController', function($scope,
 		if(!$scope.result.error){
 			predictionService.savePrediction($scope.userPrediction, $routeParams.gameId).then(function(result){
 				if(result.data.success){
-				
+					$location.path('/user/profile')
 				}else{
 					$scope.result.error = result.data.errors.fail;
 				}

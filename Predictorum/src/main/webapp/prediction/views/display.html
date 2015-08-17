@@ -3,6 +3,7 @@
 		<div class="col-lg-10 col-xs-12 col-lg-offset-1">
 			<div class="col-lg-12 col-xs-12 text-center">
 				<h2>{{prediction.homeName}} vs {{prediction.awayName}}</h2>
+				<p class="text-muted" ng-if="prediction.username">{{"CREATED_BY" | translate}} @{{prediction.username}}</p>
 			</div>
 			<div class="col-lg-12 col-xs-12">
 				<div class="widget tabs">
@@ -55,35 +56,53 @@
 				</h3>
 				<div ng-if="tab.current==='SIMPLE'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
-					<b ng-show="prediction.simpleResult==='1'">1</b><span
-						ng-hide="prediction.simpleResult==='1'">1</span> <b
-						ng-show="prediction.simpleResult==='X'">X</b><span
-						ng-hide="prediction.simpleResult==='X'">X</span> <b
-						ng-show="prediction.simpleResult==='2'">2</b><span
-						ng-hide="prediction.simpleResult==='2'">2</span>
+					<div ng-show="prediction.simpleResult">
+						<b ng-show="prediction.simpleResult==='1'">1</b><span
+							ng-hide="prediction.simpleResult==='1'">1</span> <b
+							ng-show="prediction.simpleResult==='X'">X</b><span
+							ng-hide="prediction.simpleResult==='X'">X</span> <b
+							ng-show="prediction.simpleResult==='2'">2</b><span
+							ng-hide="prediction.simpleResult==='2'">2</span>
+					</div>
+					<div ng-show="!prediction.simpleResult">
+						<b style="font-size:20px" translate>EMPTY_LIST</b>
+					</div>
 				</div>
 				<div ng-if="tab.current==='DOUBLE'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
-					<b ng-show="prediction.doubleResult.indexOf('1') != -1">1</b><span
-						ng-hide="prediction.doubleResult.indexOf('1') != -1">1</span> <b
-						ng-show="prediction.doubleResult.indexOf('X') != -1">X</b><span
-						ng-hide="prediction.doubleResult.indexOf('X') != -1">X</span> <b
-						ng-show="prediction.doubleResult.indexOf('2') != -1">2</b><span
-						ng-hide="prediction.doubleResult.indexOf('2') != -1">2</span>
+					<div ng-show="prediction.doubleResult">
+						<b ng-show="prediction.doubleResult.indexOf('1') != -1">1</b><span
+							ng-hide="prediction.doubleResult.indexOf('1') != -1">1</span> <b
+							ng-show="prediction.doubleResult.indexOf('X') != -1">X</b><span
+							ng-hide="prediction.doubleResult.indexOf('X') != -1">X</span> <b
+							ng-show="prediction.doubleResult.indexOf('2') != -1">2</b><span
+							ng-hide="prediction.doubleResult.indexOf('2') != -1">2</span>
+					</div>
+					<div>
+						<b style="font-size:20px" translate>EMPTY_LIST</b>
+					</div>
 				</div>
 				<div ng-if="tab.current==='MT25'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
+					<div ng-show="prediction.moreThan25">
 					<b ng-show="prediction.moreThan25" translate>YES</b> <span
 						ng-hide="prediction.moreThan25" translate>YES</span> <b
 						ng-show="!prediction.moreThan25">NO</b><span
 						ng-hide="!prediction.moreThan25">NO</span>
+					</div>
+					<div ng-show="!prediction.moreThan25">
+						<b style="font-size:20px" translate>EMPTY_LIST</b>
+					</div>
 				</div>
 				<div ng-if="tab.current==='RESULT'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
-					<b>{{prediction.homeGoals}} - {{prediction.awayGoals}}</b>
+					<b ng-show="prediction.homeGoals">{{prediction.homeGoals}} - {{prediction.awayGoals}}</b>
+					<b ng-show="!prediction.homeGoals" style="font-size:20px" translate> EMPTY_LIST </b>
 				</div>
 			</div>
-			<a ng-href="#/prediction/create/{{prediction.gameId}}" class="btn btn-2">Create my own</a>
+			<div align="center">
+				<a ng-href="#/prediction/create/{{prediction.gameId}}" class="btn btn-2" style="margin-top:10px;" translate>CREATE_PREDICTION</a>
+			</div>
 			<div ng-init="loadingComments=false" class="col-lg-12 col-xs-12" style="margin-top: 25px;">
 				<div scroll-to="commentForm" ng-init="showComments=false"
 					ng-click="findComments()" class="col-lg-12 col-xs-12 text-center"
@@ -104,10 +123,13 @@
 						<i class="fa fa-arrow-right"></i>
 					</span>
 				</div>
+				<div ng-show="showComments">
+					<p ng-if="prediction.commentSize===0" ng-hide="loadingComments" class="text-center" style="font-weight:bold;" translate>EMPTY_LIST</p>
+				</div>
 				<img style="margin-top: 15px;"class="col-lg-2 col-lg-offset-5 col-xs-10 col-xs-offset-1"ng-show="loadingComments" src="static/img/flat-loader_transp.gif" >
 				<div ng-show="showComments" ng-hide="loadingComments" class="col-lg-12 col-xs-12 list-group"
 					style="margin-top: 20px;" >
-					<div ng-show="showComments" class="widget tabs" style="margin-bottom:0;">
+					<div ng-if="prediction.commentSize!==0" ng-show="showComments" class="widget tabs" style="margin-bottom:0;">
 						<div id="horizontal-tabs" style="margin-bottom:0;">
 							<ul class="tabs">
 								<li style="width: 50%;" ng-click="switchCommentOrder('MOST_RECENT')"
