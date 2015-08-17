@@ -3,9 +3,10 @@ package forms;
 import org.hibernate.validator.constraints.Email;
 
 public class EditUserForm {
-	
+
 	private String email;
-	private byte[] image;
+	private String password;
+	private String repassword;
 	
 	@Email
 	public String getEmail() {
@@ -16,14 +17,20 @@ public class EditUserForm {
 		this.email = email;
 	}
 	
-	public byte[] getImage() {
-		return image;
+	public String getPassword() {
+		return password;
 	}
 	
-	public void setImage(byte[] image) {
-		this.image = image;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
+	public String getRepassword() {
+		return repassword;
+	}
 	
-
+	public void setRepassword(String repassword) {
+		this.repassword = repassword;
+	}
+	
 }

@@ -30,6 +30,7 @@ import responses.GeneralResponse;
 import security.LoginService;
 import services.UserService;
 import domain.User;
+import forms.EditImageUserForm;
 import forms.EditUserForm;
 import forms.FollowUserForm;
 import forms.UserDetailsForm;
@@ -113,19 +114,16 @@ public class UserController extends AbstractController {
 		return userDetailsForm;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public GeneralResponse editUser(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/changeImage", method = RequestMethod.POST)
+	public GeneralResponse editUserImage(HttpServletRequest request, HttpServletResponse response) {
 		GeneralResponse generalResponse = null;
 		MultipartHttpServletRequest mRequest;
 		// Miraremos si tiene error
 		Boolean tieneFoto = false;
-		String email = request.getParameter("email");
-
 		byte[] image = null;
 
-		EditUserForm editUserForm = new EditUserForm();
-		editUserForm.setEmail(email);
-		editUserForm.setImage(image);
+		EditImageUserForm editImageUserForm = new EditImageUserForm();
+		editImageUserForm.setImage(image);
 		try {
 			mRequest = (MultipartHttpServletRequest) request;
 			mRequest.getParameterMap();
@@ -143,8 +141,8 @@ public class UserController extends AbstractController {
 
 						image = mFile.getBytes(); // así pasamos de
 													// MultipartFile a byte[]
-						editUserForm.setImage(image);
-						User user = userService.reconstructEdit(editUserForm);
+						editImageUserForm.setImage(image);
+						User user = userService.reconstructToChangeImage(editImageUserForm);
 						userService.save(user);
 						generalResponse = new GeneralResponse(true, null);
 
@@ -167,8 +165,8 @@ public class UserController extends AbstractController {
 				URL url = new URL("http://www.indre-reisid.ee/wp-content/themes/envision/lib/images/default-placeholder.png");
 				InputStream is = url.openStream();
 				image = IOUtils.toByteArray(is);
-				editUserForm.setImage(image);
-				User user = userService.reconstructEdit(editUserForm);
+				editImageUserForm.setImage(image);
+				User user = userService.reconstructToChangeImage(editImageUserForm);
 				userService.save(user);
 				generalResponse = new GeneralResponse(true, null);
 			}
@@ -176,6 +174,32 @@ public class UserController extends AbstractController {
 			Map<String, String> errors = new HashMap<String, String>();
 			errors.put("notCommit", "You can not commit this operation.");
 			generalResponse = new GeneralResponse(false, errors);
+		}
+		return generalResponse;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/edit", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public GeneralResponse editUser(@RequestBody @Valid EditUserForm editUserForm, BindingResult binding) {
+		GeneralResponse generalResponse;
+		if (binding.hasErrors()) {
+			generalResponse = new GeneralResponse(false, buildErrors(editUserForm, binding));
+		} else {
+			try {
+				if(!userService.wrongChangePassword(editUserForm)){
+					//password y repeat password son distintas
+					Map<String, String> errors = new HashMap<String, String>();
+					errors.put("fail", "Passwords must be equals");
+					generalResponse = new GeneralResponse(false, errors);
+				}else{
+					userService.editUser(editUserForm);
+					generalResponse = new GeneralResponse(true,	new HashMap<String, String>());
+				}
+				
+			} catch (Throwable oops) {
+				Map<String, String> errors = new HashMap<String, String>();
+				errors.put("fail", "You can not commit this operation");
+				generalResponse = new GeneralResponse(false, errors);
+			}
 		}
 		return generalResponse;
 	}

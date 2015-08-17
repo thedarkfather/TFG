@@ -23,6 +23,7 @@ import domain.Prediction;
 import domain.Result;
 import domain.Team;
 import domain.User;
+import forms.EditImageUserForm;
 import forms.EditUserForm;
 import forms.JoinForm;
 import forms.PredictionToListForm;
@@ -43,10 +44,9 @@ public class UserService {
 	@Autowired
 	private PredictionService predictionService;
 	
-	public User reconstructEdit(EditUserForm editUserForm){
+	public User reconstructToChangeImage(EditImageUserForm editImageUserForm){
 		User user = findByPrincipal();
-		user.setLogo(editUserForm.getImage());
-		user.setEmail(editUserForm.getEmail());
+		user.setLogo(editImageUserForm.getImage());
 		return user;
 	}
 	
@@ -324,6 +324,23 @@ public class UserService {
 			user.setmT25PointsPossible(user.getmT25PointsPossible());			
 			save(user);
 		}		
-	}	
+	}
+
+	public void editUser(EditUserForm editUserForm) {
+		Assert.notNull(editUserForm);
+		User principal = findByPrincipal();
+		principal.setEmail(editUserForm.getEmail());
+		if(!wrongChangePassword(editUserForm)){
+			UserAccount ua = principal.getUserAccount();
+			Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+			String hash = encoder.encodePassword(editUserForm.getPassword(), null);
+			ua.setPassword(hash);
+		}
+		save(principal);		
+	}
+
+	public boolean wrongChangePassword(EditUserForm editUserForm) {
+		return editUserForm.getPassword()!=null && editUserForm.getRepassword()!=null && !editUserForm.getPassword().equals(editUserForm.getRepassword());
+	}
 
 }
