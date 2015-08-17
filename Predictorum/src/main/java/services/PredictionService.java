@@ -137,31 +137,31 @@ public class PredictionService {
 		if(user.getsRPointsPossible().equals(0)){
 			prediction.setpSimpleResult(0.0);
 		}else{
-			prediction.setpSimpleResult(new Double(user.getsRPoints())/user.getsRPointsPossible());
+			prediction.setpSimpleResult(new Double(100*user.getsRPoints())/user.getsRPointsPossible());
 		}				
 		prediction.setDoubleResult(predictionFormToSave.getDoubleResult());
 		if(user.getdRPointsPossible().equals(0)){
 			prediction.setpDoubleResult(0.0);
 		}else{
-			prediction.setpDoubleResult(new Double(user.getdRPoints())/user.getdRPointsPossible());
+			prediction.setpDoubleResult(new Double(100*user.getdRPoints())/user.getdRPointsPossible());
 		}				
 		prediction.setHomeGoals(predictionFormToSave.getHomeGoals());
 		if(user.gethGPointsPossible().equals(0)){
 			prediction.setpHomeGoals(0.0);
 		}else{
-			prediction.setpHomeGoals(new Double(user.gethGPoints())/user.gethGPointsPossible());	
+			prediction.setpHomeGoals(new Double(100*user.gethGPoints())/user.gethGPointsPossible());	
 		}			
 		prediction.setAwayGoals(predictionFormToSave.getAwayGoals());
 		if(user.getaGPointsPossible().equals(0)){
 			prediction.setpAwayGoals(0.0);
 		}else{
-			prediction.setpAwayGoals(new Double(user.getaGPoints())/user.getaGPointsPossible());
+			prediction.setpAwayGoals(new Double(100*user.getaGPoints())/user.getaGPointsPossible());
 		}				
 		prediction.setMoreThan25(predictionFormToSave.getMoreThan25());
 		if(user.getmT25PointsPossible().equals(0)){
 			prediction.setpMoreThan25(0.0);
 		}else{
-			prediction.setpMoreThan25(new Double(user.getmT25Points())/user.getmT25PointsPossible());	
+			prediction.setpMoreThan25(new Double(100*user.getmT25Points())/user.getmT25PointsPossible());	
 		}			
 		return prediction;		
 	}
