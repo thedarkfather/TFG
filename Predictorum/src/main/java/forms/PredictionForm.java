@@ -5,6 +5,7 @@ public class PredictionForm {
 	private Integer id;
 	private Integer homeTeamId;
 	private Integer awayTeamId;
+	private Integer gameId;
 	private String homeName;
 	private String awayName;
 	//Atributos de prediction
@@ -26,6 +27,14 @@ public class PredictionForm {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(Integer gameId) {
+		this.gameId = gameId;
 	}
 
 	public Integer getHomeTeamId() {
