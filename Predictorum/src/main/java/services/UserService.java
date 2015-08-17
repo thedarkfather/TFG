@@ -232,6 +232,7 @@ public class UserService {
 		Assert.notNull(rankingPosition);
 		userDetailsForm.setRankingPosition(rankingPosition);		
 		userDetailsForm.setUsername(user.getUserAccount().getUsername());
+		userDetailsForm.setId(user.getId());
 		return userDetailsForm;
 	}
 	

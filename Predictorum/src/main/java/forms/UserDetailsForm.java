@@ -4,6 +4,7 @@ import java.util.Collection;
 
 public class UserDetailsForm {
 	
+	private Integer id;
 	private String username;
 	//estadísticas
 	private Integer sRPointsPercentaje;
@@ -16,8 +17,16 @@ public class UserDetailsForm {
 	private Integer followersNumber;
 	private Integer followingNumber;
 	//predicciones ordenadas por fecha
-	private Collection<PredictionToListForm> predictions;
+	private Collection<PredictionToListForm> predictions;	
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getUsername() {
 		return username;
 	}
