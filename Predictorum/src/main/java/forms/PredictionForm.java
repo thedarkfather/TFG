@@ -20,6 +20,7 @@ public class PredictionForm {
 	private Boolean moreThan25;
 	private Double pmoreThan25;	
 	private Integer commentSize;
+	private String username;
 
 	public Integer getId() {
 		return id;
@@ -156,6 +157,14 @@ public class PredictionForm {
 
 	public void setCommentSize(Integer commentSize) {
 		this.commentSize = commentSize;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}		
 	
 }

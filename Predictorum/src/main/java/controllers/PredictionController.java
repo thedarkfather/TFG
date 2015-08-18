@@ -53,6 +53,13 @@ public class PredictionController extends AbstractController {
 		return predictionForm;
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/principalPrediction/{gameId}")
+	public PredictionForm findPrincipalPrediction(@PathVariable Integer gameId) {
+		Prediction prediction = predictionService.findPredictionByPrincipalAndGameId(gameId);
+		PredictionForm predictionForm = predictionService.userReconstructToForm(prediction);
+		return predictionForm;
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/saveUserPredicion", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public GeneralResponse saveUserPredicion(@RequestBody @Valid PredictionFormToSave predictionFormToSave, BindingResult binding){
 		GeneralResponse generalResponse;
@@ -61,10 +68,11 @@ public class PredictionController extends AbstractController {
 		} else {
 			try{
 				Prediction prediction = predictionService.reconstructToSaveUserPrediction(predictionFormToSave);
-				Boolean notNullAtributes = predictionService.checkPredictionAtributes(prediction);
-				if(notNullAtributes){
+				Boolean atributtesNotNull = predictionService.checkPredictionAtributes(prediction);
+				if(atributtesNotNull){
 					predictionService.save(prediction);
 					generalResponse = new GeneralResponse(true, new HashMap<String, String>());	
+				//Si todos los atributos son nulos
 				}else{
 					Map<String,String> errors = new HashMap<String,String>();
 					errors.put("fail", "Prediction can not be null");
