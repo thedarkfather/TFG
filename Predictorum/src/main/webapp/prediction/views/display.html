@@ -79,7 +79,7 @@
 							ng-hide="prediction.doubleResult.indexOf('2') != -1">2</span>
 					</div>
 					<div>
-						<b style="font-size:20px" translate>EMPTY_LIST</b>
+						<b ng-show="!prediction.doubleResult" style="font-size:20px" translate>EMPTY_LIST</b>
 					</div>
 				</div>
 				<div ng-if="tab.current==='MT25'" class="text-center result"
@@ -90,14 +90,14 @@
 						ng-show="!prediction.moreThan25">NO</b><span
 						ng-hide="!prediction.moreThan25">NO</span>
 					</div>
-					<div ng-show="!prediction.moreThan25">
+					<div ng-show="prediction.moreThan25===null">
 						<b style="font-size:20px" translate>EMPTY_LIST</b>
 					</div>
 				</div>
 				<div ng-if="tab.current==='RESULT'" class="text-center result"
 					style="font-size: 30px; margin-top: 30px;">
-					<b ng-show="prediction.homeGoals">{{prediction.homeGoals}} - {{prediction.awayGoals}}</b>
-					<b ng-show="!prediction.homeGoals" style="font-size:20px" translate> EMPTY_LIST </b>
+					<b ng-show="prediction.homeGoals!==null">{{prediction.homeGoals}} - {{prediction.awayGoals}}</b>
+					<b ng-show="prediction.homeGoals===null" style="font-size:20px" translate> EMPTY_LIST </b>
 				</div>
 			</div>
 			<div align="center">
