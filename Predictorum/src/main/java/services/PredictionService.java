@@ -141,7 +141,7 @@ public class PredictionService {
 	}
 	
 	public Prediction reconstructToSaveUserPrediction(PredictionFormToSave predictionFormToSave){
-		Prediction prediction = new Prediction();;	
+		Prediction prediction = new Prediction();	
 		Prediction predictionAux = findPredictionByPrincipalAndGameId(prediction.getGame().getId());
 		if(predictionAux!=null){
 			prediction = predictionAux;
@@ -193,11 +193,6 @@ public class PredictionService {
 		Date roundStartDate = prediction.getGame().getRound().getStartDate();
 		//La fecha de los partidos aún no haya comenzado
 		Assert.isTrue(roundStartDate.compareTo(current)>0);
-		//No puede hacer dos predicciones sobre el mismo partido
-		if(prediction.getUser()!=null){
-			Prediction predictionAux = findPredictionByPrincipalAndGameId(prediction.getGame().getId());
-			Assert.isNull(predictionAux);
-		}
 		predictionRepository.save(prediction);
 	}
 	
