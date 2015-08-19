@@ -335,6 +335,8 @@ public class UserService {
 		Assert.notNull(editUserForm);
 		User principal = findByPrincipal();
 		principal.setEmail(editUserForm.getEmail());
+		principal.setName(editUserForm.getName());
+		principal.setSurname(editUserForm.getSurname());
 		if(!wrongChangePassword(editUserForm)){
 			UserAccount ua = principal.getUserAccount();
 			Md5PasswordEncoder encoder = new Md5PasswordEncoder();
