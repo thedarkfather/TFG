@@ -218,15 +218,25 @@ predictionController.controller('predictionController', function($scope,
 			$scope.userPrediction.awayGoals = null;
 			break;
 		case 'mt25':
-			$scope.userPrediction.mt25 = null;
+			$scope.userPrediction.moreThan25 = null;
 			break;
 		}
 	};
 	
 	if($location.path().includes('create')){
-		predictionService.findGame($routeParams.gameId).then(function(result){
-			$scope.userPrediction.homeTeam = result.data.homeTeamName;
-			$scope.userPrediction.awayTeam = result.data.awayTeamName;
+		predictionService.findPrincipalPrediction($routeParams.gameId).then(function(result){
+			if(result.data.gameId !== null){
+				$scope.userPrediction = result.data;
+				if($scope.userPrediction.doubleResult){
+					$scope.userPrediction.doubleResult1 = $scope.userPrediction.doubleResult.includes("1");
+					$scope.userPrediction.doubleResultX = $scope.userPrediction.doubleResult.includes("X");
+					$scope.userPrediction.doubleResult2 = $scope.userPrediction.doubleResult.includes("2");
+				}
+			}
+			predictionService.findGame($routeParams.gameId).then(function(result){
+				$scope.userPrediction.homeTeam = result.data.homeTeamName;
+				$scope.userPrediction.awayTeam = result.data.awayTeamName;
+			});
 		});
 	}
 	

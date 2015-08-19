@@ -9,7 +9,7 @@
 				</div>
 				<div class="col-lg-6 col-xs-6" style="margin-top: 10px;">
 					<span class="text-color"><b> @{{profile.username}} </b></span>
-					<b ng-show="profile.name && !editForm">{{profile.name}} </b><b ng-show="profile.surname && !editForm">{{profile.surname}}</b>
+					<p><i ng-show="profile.name && !editForm">{{profile.name}} </i><i ng-show="profile.surname && !editForm">{{profile.surname}}</i></p>
 					<input placeholder="{{'NAME' | translate}}" ng-show="editForm" type="text" ng-model="profile.name"/>
 					<input placeholder="{{'SURNAME' | translate}}" ng-show="editForm" type="text" ng-model="profile.surname"/>
 					<p class="text-muted" ng-show="profile.email && !editForm">{{profile.email}}</p>
@@ -20,9 +20,9 @@
 					</p>
 					<p><a href="#/user/followers">{{profile.followersNumber}} {{"FOLLOWERS" | translate | lowercase}}</a></p>
 					<p><a href="#/user/following">{{profile.followingNumber}} {{"FOLLOWING" | translate | lowercase}}</a></p>
-					<button ng-click="switchFollow(profile)" ng-show="profile.following===true"
+					<button ng-click="switchFollow(profile)" ng-show="profile.following===false"
 							class="btn-xs btn-2" style="width: 100px" translate>FOLLOW</button>
-						<button ng-click="switchFollow(profile)" ng-show="profile.following===false"
+						<button ng-click="switchFollow(profile)" ng-show="profile.following===true"
 							class="btn-xs btn-2-red" style="width: 100px;" translate>UNFOLLOW</button>
 
 				</div>

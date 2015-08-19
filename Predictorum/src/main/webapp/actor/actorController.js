@@ -99,6 +99,7 @@ actorController.controller("actorController", function($scope, $location,$interv
 		actorService.getPrincipalProfile().then(function(result){
 			$scope.profile = result.data;
 			$scope.loadPercentage();
+			$scope.profile.following = null;
 		});
 		$scope.showEdit = true;
 	}

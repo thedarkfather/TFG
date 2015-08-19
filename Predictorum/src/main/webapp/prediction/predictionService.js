@@ -61,6 +61,19 @@ predictionService
 							return result;
 					};
 					
+					predictionService.findPrincipalPrediction = function(gameId){
+						var req = {
+								method : 'GET',
+								url : 'http://localhost:8080/Predictorum/api/prediction/principalPrediction/'
+										+ gameId,
+								withCredentials : true,
+							}
+
+							result = $http(req)
+
+							return result;
+					};
+					
 					predictionService.findComments = function(predictionId) {
 						var req = {
 							method : 'GET',
