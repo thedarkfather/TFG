@@ -224,9 +224,9 @@ predictionController.controller('predictionController', function($scope,
 	};
 	
 	if($location.path().includes('create')){
-		predictionService.findSystemPrediction($routeParams.gameId).then(function(result){
-			$scope.userPrediction.homeTeam = result.data.homeName;
-			$scope.userPrediction.awayTeam = result.data.awayName;
+		predictionService.findGame($routeParams.gameId).then(function(result){
+			$scope.userPrediction.homeTeam = result.data.homeTeamName;
+			$scope.userPrediction.awayTeam = result.data.awayTeamName;
 		});
 	}
 	

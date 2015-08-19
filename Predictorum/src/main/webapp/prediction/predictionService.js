@@ -48,6 +48,19 @@ predictionService
 						return result;
 					};
 					
+					predictionService.findGame = function(gameId){
+						var req = {
+								method : 'GET',
+								url : 'http://localhost:8080/Predictorum/api/game/findOne/'
+										+ gameId,
+								withCredentials : true,
+							}
+
+							result = $http(req)
+
+							return result;
+					};
+					
 					predictionService.findComments = function(predictionId) {
 						var req = {
 							method : 'GET',

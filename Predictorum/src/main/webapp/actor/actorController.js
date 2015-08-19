@@ -79,6 +79,7 @@ actorController.controller("actorController", function($scope, $location,$interv
 	$scope.finalTimeAwayGoals = 0;
 	$scope.moreThan25 = 0;
 
+	
 	$scope.loadPercentage = function(){
 		$interval(function() {
 	    	$scope.simpleValue+=$scope.profile.sRPointsPercentaje/100;
@@ -99,6 +100,7 @@ actorController.controller("actorController", function($scope, $location,$interv
 			$scope.profile = result.data;
 			$scope.loadPercentage();
 		});
+		$scope.showEdit = true;
 	}
 	
 });
