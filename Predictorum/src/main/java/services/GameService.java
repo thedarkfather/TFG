@@ -66,7 +66,7 @@ public class GameService {
 		gameToListForm.setHomeTeamId(game.getHomeTeam().getId());
 		gameToListForm.setHomeTeamName(game.getHomeTeam().getName());
 		gameToListForm.setRoundNumber(game.getRound().getRoundNumber());
-		gameToListForm.setStartDate(game.getRound().getFinishDate());
+		gameToListForm.setStartDate(game.getRound().getStartDate());
 		return gameToListForm;
 	}
 	
