@@ -142,7 +142,7 @@ public class PredictionService {
 	
 	public Prediction reconstructToSaveUserPrediction(PredictionFormToSave predictionFormToSave){
 		Prediction prediction = new Prediction();	
-		Prediction predictionAux = findPredictionByPrincipalAndGameId(prediction.getGame().getId());
+		Prediction predictionAux = findPredictionByPrincipalAndGameId(predictionFormToSave.getGameId());
 		if(predictionAux!=null){
 			prediction = predictionAux;
 		}
