@@ -1,6 +1,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.LinkedList;
 
 import javax.transaction.Transactional;
@@ -126,8 +127,25 @@ public class PredictionService {
 		return predictionForm;
 	}
 	
+	public PredictionFormToSave userReconstructFormToSave(Prediction prediction) {
+		PredictionFormToSave predictionFormToSave  = new PredictionFormToSave();
+		if(prediction!=null){
+			predictionFormToSave.setAwayGoals(prediction.getAwayGoals());
+			predictionFormToSave.setDoubleResult(prediction.getDoubleResult());
+			predictionFormToSave.setGameId(prediction.getGame().getId());
+			predictionFormToSave.setHomeGoals(prediction.getHomeGoals());
+			predictionFormToSave.setMoreThan25(prediction.getMoreThan25());
+			predictionFormToSave.setSimpleResult(prediction.getSimpleResult());
+		}
+		return predictionFormToSave;
+	}
+	
 	public Prediction reconstructToSaveUserPrediction(PredictionFormToSave predictionFormToSave){
-		Prediction prediction = new Prediction();		
+		Prediction prediction = new Prediction();;	
+		Prediction predictionAux = findPredictionByPrincipalAndGameId(prediction.getGame().getId());
+		if(predictionAux!=null){
+			prediction = predictionAux;
+		}
 		User user = userService.findByPrincipal();
 		Assert.notNull(user);
 		prediction.setUser(user);
@@ -171,6 +189,10 @@ public class PredictionService {
 	
 	public void save(Prediction prediction){
 		Assert.notNull(prediction);
+		Date current = new Date(System.currentTimeMillis());
+		Date roundStartDate = prediction.getGame().getRound().getStartDate();
+		//La fecha de los partidos aún no haya comenzado
+		Assert.isTrue(roundStartDate.compareTo(current)>0);
 		//No puede hacer dos predicciones sobre el mismo partido
 		if(prediction.getUser()!=null){
 			Prediction predictionAux = findPredictionByPrincipalAndGameId(prediction.getGame().getId());

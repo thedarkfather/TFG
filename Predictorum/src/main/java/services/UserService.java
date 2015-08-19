@@ -225,7 +225,8 @@ public class UserService {
 		}
 		
 		userDetailsForm.setFollowersNumber(user.getFollowers().size());
-		userDetailsForm.setFollowingNumber(user.getFollowing().size());			
+		userDetailsForm.setFollowingNumber(user.getFollowing().size());	
+		userDetailsForm.setFollowing(isFollowed(user));
 		Collection<PredictionToListForm> predictionsToListForm = predictionService.findToListByUserId(user.getId());
 		userDetailsForm.setPredictions(predictionsToListForm);
 		Integer rankingPosition = getPosition(user);
@@ -233,6 +234,9 @@ public class UserService {
 		userDetailsForm.setRankingPosition(rankingPosition);		
 		userDetailsForm.setUsername(user.getUserAccount().getUsername());
 		userDetailsForm.setId(user.getId());
+		userDetailsForm.setName(user.getName());
+		userDetailsForm.setSurname(user.getSurname());
+		userDetailsForm.setEmail(user.getEmail());
 		return userDetailsForm;
 	}
 	

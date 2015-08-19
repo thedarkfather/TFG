@@ -54,10 +54,10 @@ public class PredictionController extends AbstractController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/principalPrediction/{gameId}")
-	public PredictionForm findPrincipalPrediction(@PathVariable Integer gameId) {
+	public PredictionFormToSave findPrincipalPrediction(@PathVariable Integer gameId) {
 		Prediction prediction = predictionService.findPredictionByPrincipalAndGameId(gameId);
-		PredictionForm predictionForm = predictionService.userReconstructToForm(prediction);
-		return predictionForm;
+		PredictionFormToSave predictionFormToSave = predictionService.userReconstructFormToSave(prediction);
+		return predictionFormToSave;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/saveUserPredicion", consumes = MediaType.APPLICATION_JSON_VALUE)
