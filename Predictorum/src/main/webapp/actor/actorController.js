@@ -79,6 +79,9 @@ actorController.controller("actorController", function($scope, $location,$interv
 	$scope.finalTimeAwayGoals = 0;
 	$scope.moreThan25 = 0;
 
+	$scope.setImage = function(image){
+		$scope.image = image.file;
+	}
 	
 	$scope.loadPercentage = function(){
 		$interval(function() {
@@ -108,9 +111,9 @@ actorController.controller("actorController", function($scope, $location,$interv
 		/*actorService.saveProfile($scope.profile).then(function(result){
 			
 		});*/
-		actorService.saveProfilePhoto($scope.photo).then(function(result){
+		actorService.saveProfilePhoto($scope.image).then(function(result){
 			if(result.data.success){
-				$scope.profile.photo = $scope.photo;
+				$scope.profile.photo = $scope.image;
 				$scope.editForm = false;
 			}
 		});

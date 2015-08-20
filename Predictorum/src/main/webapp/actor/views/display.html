@@ -32,7 +32,7 @@
 						<div ng-if="$flow.files[0]" class="form-group"
 						ng-init="photo = $flow.files[0]">
 
-						<div ng-init="image=$flow.files[0]" align="center">
+						<div ng-init="setImage($flow.files[0])" align="center">
 							<div ng-show="$flow.files.length" class="result">
 								<img flow-img="$flow.files[0]"
 									class="img-responsive center-block"

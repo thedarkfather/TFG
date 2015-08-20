@@ -98,11 +98,15 @@ actorService
 	}
 	
 	actorService.saveProfilePhoto = function(profilePhoto){
+		var imgForm = {
+				image: profilePhoto
+		};
 		var req = {
 				method: 'POST',
 				url: 'http://localhost:8080/Predictorum/api/user/changeImage',
 				withCredentials: true,
-				data: profilePhoto
+				data: imgForm,
+				file: profilePhoto
 		};
 		
 		result = $http(req);
