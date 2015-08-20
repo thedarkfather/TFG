@@ -87,8 +87,8 @@ actorService
 		var userForm = {userId: actor.id};
 		var req = {
 				method: 'POST',
-				url: 'http://localhost:8080/Predictorum/api/user/follow',
 				withCredentials: true,
+				url: 'http://localhost:8080/Predictorum/api/user/follow',
 				data: userForm
 		};
 		
@@ -98,15 +98,14 @@ actorService
 	}
 	
 	actorService.saveProfilePhoto = function(profilePhoto){
-		var imgForm = {
-				image: profilePhoto
-		};
+		var formData = new FormData();
+		formData.append("file",profilePhoto);
 		var req = {
 				method: 'POST',
+				headers: {'Content-Type': undefined},
 				url: 'http://localhost:8080/Predictorum/api/user/changeImage',
 				withCredentials: true,
-				data: imgForm,
-				file: profilePhoto
+				data: formData,
 		};
 		
 		result = $http(req);

@@ -126,7 +126,10 @@
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
-
+	
+	<!-- images -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+	
 	<!-- Security -->
 
 	<import resource="config/security.xml" />
