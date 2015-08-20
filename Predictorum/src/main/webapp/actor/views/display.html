@@ -4,30 +4,89 @@
 
 			<div class="col-lg-6 col-xs-12" style="margin-top: 10px;">
 				<div class="col-lg-6 col-xs-6">
-					<img ng-src="404" err-src="static/img/team/team-default.jpg" class="img-responsive"
+					<img ng-show="!editForm" ng-src="profile.photo" err-src="static/img/team/team-default.jpg" class="img-responsive"
 						style="width: 200px; height: 200px;">
+						
+					<!-- IMG DRAG & DROP -->
+					<div flow-init flow-prevent-drop ng-show="editForm" style="margin-top:5px;">
+							<div ng-if="!$flow.files[0]" flow-files-submitted="$flow.upload()"
+							flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+							class="form-group img-responsive result" align="center">
+							<div flow-drop
+								flow-drag-enter="style={border: '2px #82dc23 dashed',color: '#82dc23'}"
+								flow-drag-leave="style={}" ng-style="style"
+								class="drop form-group text-center">
+								<p class="text-muted" align="center"
+									style="color: rgba(227, 59, 59, 0.9);font-size:20px;margin-top:50px;">
+	
+									<b>Drop your image here</b>
+	
+								</p>
+								<div class="btn-xs btn-2-red" style="margin-top:50px;">
+									<span flow-btn>Upload Image</span>
+								</div>
+	
+							</div>
+	
+						</div>
+						<div ng-if="$flow.files[0]" class="form-group"
+						ng-init="photo = $flow.files[0]">
+
+						<div ng-init="image=$flow.files[0]" align="center">
+							<div ng-show="$flow.files.length" class="result">
+								<img flow-img="$flow.files[0]"
+									class="img-responsive center-block"
+									style="width: 200px; height: 200px;" />
+							</div>
+							<div class="progress progress-striped"
+								ng-class="{active: $flow.files[0].isUploading()}" style="margin-top:5px;margin-bottom:5px">
+								<div class="progress-bar" role="progressbar"
+									aria-valuenow="{{$flow.files[0].progress() * 100}}"
+									aria-valuemin="0" aria-valuemax="100"
+									ng-style="{width: ($flow.files[0].progress() * 100) + '%'}">
+									<span class="sr-only">{{$flow.files[0].progress()}}%
+										Complete</span>
+									</div>
+								</div>
+
+								<a class="btn-xs btn-2-red"
+									ng-click="$flow.files[0].cancel()"> Remove </a>
+
+							</div>
+
+						</div>
+					</div>
+					<!-- /IMG DRAG & DROP -->
 				</div>
 				<div class="col-lg-6 col-xs-6" style="margin-top: 10px;">
 					<span class="text-color"><b> @{{profile.username}} </b></span>
 					<p><i ng-show="profile.name && !editForm">{{profile.name}} </i><i ng-show="profile.surname && !editForm">{{profile.surname}}</i></p>
-					<input placeholder="{{'NAME' | translate}}" ng-show="editForm" type="text" ng-model="profile.name"/>
-					<input placeholder="{{'SURNAME' | translate}}" ng-show="editForm" type="text" ng-model="profile.surname"/>
+					<input class="form-control col-lg-6 col-xs-12" placeholder="{{'NAME' | translate}}" ng-show="editForm" type="text" ng-model="profile.name"/>
+					<input class="form-control col-lg-6 col-xs-12" placeholder="{{'SURNAME' | translate}}" ng-show="editForm" type="text" ng-model="profile.surname"/>
 					<p class="text-muted" ng-show="profile.email && !editForm">{{profile.email}}</p>
-					<input placeholder="{{'E-mail' | translate}}" ng-show="editForm" type="email" ng-model="profile.email"/>
+					<input class="form-control" placeholder="{{'E-mail' | translate}}" ng-show="editForm" type="email" ng-model="profile.email"/>
 					
-					<p>
+					<p ng-show="!editForm">
 						<b>Ranking:</b> {{profile.rankingPosition}}&deg;
 					</p>
-					<p><a href="#/user/followers">{{profile.followersNumber}} {{"FOLLOWERS" | translate | lowercase}}</a></p>
-					<p><a href="#/user/following">{{profile.followingNumber}} {{"FOLLOWING" | translate | lowercase}}</a></p>
+					<p ng-show="!editForm"><a href="#/user/followers">{{profile.followersNumber}} {{"FOLLOWERS" | translate | lowercase}}</a></p>
+					<p ng-show="!editForm"><a href="#/user/following">{{profile.followingNumber}} {{"FOLLOWING" | translate | lowercase}}</a></p>
 					<button ng-click="switchFollow(profile)" ng-show="profile.following===false"
 							class="btn-xs btn-2" style="width: 100px" translate>FOLLOW</button>
 						<button ng-click="switchFollow(profile)" ng-show="profile.following===true"
 							class="btn-xs btn-2-red" style="width: 100px;" translate>UNFOLLOW</button>
 
 				</div>
-				<div ng-init="editForm=false" ng-click="editForm=!editForm" class="col-lg-12 col-xs-12 text-center" style="background-color: #82dc23; color: white; cursor: pointer; margin:15px; padding: 5px; border-radius: 25px;">
-					<b translate ng-show="showEdit">EDIT_PROFILE</b>
+				<div ng-init="editForm=false" ng-show="showEdit && !editForm" ng-click="editForm=true" class="col-lg-12 col-xs-12 text-center" style="background-color: #82dc23; color: white; cursor: pointer; margin:15px; padding: 5px; border-radius: 25px;">
+					<b translate >EDIT_PROFILE</b>
+				</div>
+				<div ng-show="editForm" class="col-lg-12 col-xs-12">
+					<div ng-click="saveProfile()" class="col-lg-5 col-xs-12 text-center" style="background-color: #82dc23; color: white; cursor: pointer; margin:15px; padding: 5px; border-radius: 25px;">
+						<b translate >SAVE</b>
+					</div>
+					<div ng-click="editForm=false" class="col-lg-5 col-xs-12 text-center" style="background-color: #d12d32; color: white; cursor: pointer; margin:15px; padding: 5px; border-radius: 25px;">
+						<b translate >CANCEL</b>
+					</div>
 				</div>
 				<div class="col-lg-12 col-xs-12" style="margin-top:10px;">
 					<h4 class="text-center"translate>HIT_PERCENTAGE</h4>

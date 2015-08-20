@@ -83,6 +83,33 @@ actorService
 			return $http(req);
 	}
 	
+	actorService.saveProfile = function(profile){
+		var userForm = {userId: actor.id};
+		var req = {
+				method: 'POST',
+				url: 'http://localhost:8080/Predictorum/api/user/follow',
+				withCredentials: true,
+				data: userForm
+		};
+		
+		result = $http(req);
+		
+		return result;
+	}
+	
+	actorService.saveProfilePhoto = function(profilePhoto){
+		var req = {
+				method: 'POST',
+				url: 'http://localhost:8080/Predictorum/api/user/changeImage',
+				withCredentials: true,
+				data: profilePhoto
+		};
+		
+		result = $http(req);
+		
+		return result;
+	}
+	
 	return actorService;
 	
 } );

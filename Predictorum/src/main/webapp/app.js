@@ -1,7 +1,7 @@
 // Creación del módulo
 
 var predictorum = angular.module('predictorum', [ 'ngAnimate','ngRoute','ngCookies','ipCookie',
-		'pascalprecht.translate', 'smoothScroll','isteven-omni-bar','tc.chartjs',
+		'pascalprecht.translate', 'smoothScroll','isteven-omni-bar','tc.chartjs','flow',
 		'predictorum.sessionService','predictorum.teamController','predictorum.actorController',
 		'predictorum.predictionController']);
 

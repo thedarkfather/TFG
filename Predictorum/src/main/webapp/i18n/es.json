@@ -55,7 +55,9 @@
 "MOST_RECENT":				"Más recientes",
 "MOST_POPULAR":				"Más populares",
 "CREATE_PREDICTION":		"Crear una propia",
+"EDIT_PREDICTION":			"Editar",
 "SAVE":						"GUARDAR",
+"CANCEL":					"CANCELAR",
 "MUST_FULFILL_BOTH_DOUBLE":	"Debes rellenar exactamente dos opciones para el resultado doble",
 "MUST_FULFILL_BOTH_RESULT":	"Debes rellenar los goles tanto del equipo local como del visitante",
 "HL1": {

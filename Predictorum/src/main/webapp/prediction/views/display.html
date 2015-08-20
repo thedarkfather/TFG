@@ -101,7 +101,8 @@
 				</div>
 			</div>
 			<div align="center">
-				<a ng-href="#/prediction/create/{{prediction.gameId}}" class="btn btn-2" style="margin-top:10px;" translate>CREATE_PREDICTION</a>
+				<a ng-href="#/prediction/create/{{prediction.gameId}}" ng-show="!editPrediction"class="btn btn-2" style="margin-top:10px;" translate>CREATE_PREDICTION</a>
+				<a ng-href="#/prediction/create/{{prediction.gameId}}" ng-show="editPrediction" class="btn btn-2" style="margin-top:10px;" translate>EDIT_PREDICTION</a>
 			</div>
 			<div ng-init="loadingComments=false" class="col-lg-12 col-xs-12" style="margin-top: 25px;">
 				<div scroll-to="commentForm" ng-init="showComments=false"

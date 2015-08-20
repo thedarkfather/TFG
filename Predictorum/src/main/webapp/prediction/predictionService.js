@@ -126,7 +126,7 @@ predictionService
 							doubleResult : userPrediction.doubleResult,
 							homeGoals : userPrediction.homeGoals,
 							awayGoals : userPrediction.awayGoals,
-							moreThan25 : userPrediction.mt25
+							moreThan25 : userPrediction.moreThan25
 						};
 						var req = {
 								method : 'POST',

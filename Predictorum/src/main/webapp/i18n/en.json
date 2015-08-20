@@ -54,7 +54,9 @@
 "MOST_RECENT":				"Most recent",
 "MOST_POPULAR":				"Most popular",
 "CREATE_PREDICTION":		"Create my own",
+"EDIT_PREDICTION":			"Edit",
 "SAVE":						"SAVE",
+"CANCEL":					"CANCEL",
 "MUST_FULFILL_BOTH_DOUBLE":	"You must fulfill exactly two options for double result",
 "MUST_FULFILL_BOTH_RESULT":	"You must fulfill both goals results",
 "HL1": {

@@ -5,7 +5,7 @@ var predictionController = angular.module('predictorum.predictionController',
 		[ 'predictorum.predictionService' ]);
 
 predictionController.controller('predictionController', function($scope,
-		$location, $timeout, $routeParams, $filter, $timeout, predictionService) {
+		$location, $timeout, $routeParams, $filter, $timeout, predictionService, sessionService) {
 
 	// List
 	
@@ -94,6 +94,10 @@ predictionController.controller('predictionController', function($scope,
 				$scope.prediction = result.data;
 				$scope.prediction.comments = [];
 				$scope.switchData($scope.prediction.pSimpleResult);
+				var principal = sessionService.getPrincipal();
+				if($scope.prediction.username === principal.username){
+					$scope.editPrediction = true;
+				}
 			});
 		}else{
 			predictionService.findSystemPrediction($routeParams.gameId).then(function(result){

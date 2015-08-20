@@ -104,4 +104,16 @@ actorController.controller("actorController", function($scope, $location,$interv
 		$scope.showEdit = true;
 	}
 	
+	$scope.saveProfile = function(){
+		/*actorService.saveProfile($scope.profile).then(function(result){
+			
+		});*/
+		actorService.saveProfilePhoto($scope.photo).then(function(result){
+			if(result.data.success){
+				$scope.profile.photo = $scope.photo;
+				$scope.editForm = false;
+			}
+		});
+	}
+	
 });
