@@ -340,17 +340,28 @@ public class UserService {
 		principal.setEmail(editUserForm.getEmail());
 		principal.setName(editUserForm.getName());
 		principal.setSurname(editUserForm.getSurname());
-		if(!wrongChangePassword(editUserForm)){
-			UserAccount ua = principal.getUserAccount();
-			Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-			String hash = encoder.encodePassword(editUserForm.getPassword(), null);
-			ua.setPassword(hash);
+		if (editUserForm.getPassword() != null	&& editUserForm.getRepassword() != null) {
+			if (checkPassword(editUserForm)) {
+				UserAccount ua = principal.getUserAccount();
+				Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+				String hash = encoder.encodePassword(
+						editUserForm.getPassword(), null);
+				ua.setPassword(hash);
+			}
 		}
 		save(principal);		
 	}
 
-	public boolean wrongChangePassword(EditUserForm editUserForm) {
-		return editUserForm.getPassword()!=null && editUserForm.getRepassword()!=null && !editUserForm.getPassword().equals(editUserForm.getRepassword());
+	public boolean checkPassword(EditUserForm editUserForm) {
+		boolean res;
+		boolean passAndReNull =  editUserForm.getPassword()==null && editUserForm.getRepassword()==null;
+		if(passAndReNull){
+			res = true;
+		}else{
+			res = editUserForm.getPassword()!=null && editUserForm.getRepassword()!=null && editUserForm.getPassword().equals(editUserForm.getRepassword());
+		}
+		return res;
+
 	}
 
 }

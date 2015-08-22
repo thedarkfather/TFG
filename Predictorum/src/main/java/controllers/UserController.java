@@ -185,16 +185,15 @@ public class UserController extends AbstractController {
 			generalResponse = new GeneralResponse(false, buildErrors(editUserForm, binding));
 		} else {
 			try {
-				if(!userService.wrongChangePassword(editUserForm)){
+				if(userService.checkPassword(editUserForm)){
+					userService.editUser(editUserForm);
+					generalResponse = new GeneralResponse(true,	new HashMap<String, String>());
+				}else{				
 					//password y repeat password son distintas
 					Map<String, String> errors = new HashMap<String, String>();
 					errors.put("fail", "Passwords must be equals");
 					generalResponse = new GeneralResponse(false, errors);
-				}else{
-					userService.editUser(editUserForm);
-					generalResponse = new GeneralResponse(true,	new HashMap<String, String>());
-				}
-				
+				}				
 			} catch (Throwable oops) {
 				Map<String, String> errors = new HashMap<String, String>();
 				errors.put("fail", "You can not commit this operation");
