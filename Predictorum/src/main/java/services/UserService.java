@@ -129,6 +129,7 @@ public class UserService {
 				UserToRank userToRank = new UserToRank();
 				userToRank.setFollowing(isFollowed(rankedUser.get(i)));
 				userToRank.setId(user.getId());
+				userToRank.setImage(user.getLogo());
 				userToRank.setName(user.getUserAccount().getUsername());
 				Integer points = user.getaGPoints() + user.getdRPoints() + user.gethGPoints() + user.getmT25Points() + user.getsRPoints();
 				userToRank.setPoints(points);
@@ -153,6 +154,7 @@ public class UserService {
 	public UserToList reconstructToList(User user) {
 		UserToList userToList = new UserToList();
 		userToList.setId(user.getId());
+		userToList.setImage(user.getLogo());
 		userToList.setName(user.getUserAccount().getUsername());		
 		Integer points = user.getaGPoints() + user.getdRPoints() + user.gethGPoints() + user.getmT25Points() + user.getsRPoints();
 		userToList.setPoints(points);
@@ -237,6 +239,7 @@ public class UserService {
 		userDetailsForm.setName(user.getName());
 		userDetailsForm.setSurname(user.getSurname());
 		userDetailsForm.setEmail(user.getEmail());
+		userDetailsForm.setImage(user.getLogo());
 		return userDetailsForm;
 	}
 	

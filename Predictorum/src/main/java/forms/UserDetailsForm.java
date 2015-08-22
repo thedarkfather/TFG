@@ -9,6 +9,7 @@ public class UserDetailsForm {
 	private String name;
 	private String surname;
 	private String email;
+	private byte[] image;
 	//estadísticas
 	private Integer sRPointsPercentaje;
 	private Integer dRPointsPercentaje;
@@ -63,6 +64,14 @@ public class UserDetailsForm {
 		this.username = username;
 	}
 	
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
 	public Integer getsRPointsPercentaje() {
 		return sRPointsPercentaje;
 	}

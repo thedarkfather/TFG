@@ -6,6 +6,7 @@ public class UserToRank {
 	private Integer points;
 	private Boolean following;
 	private Integer position;
+	private byte[] image;	
 	
 	public int getId() {
 		return id;
@@ -45,6 +46,14 @@ public class UserToRank {
 	
 	public void setPosition(Integer position) {
 		this.position = position;
+	}
+	
+	public byte[] getImage() {
+		return image;
+	}
+	
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 }
