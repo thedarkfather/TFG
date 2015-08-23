@@ -7,6 +7,7 @@
 "REGISTERED_MESSAGE":		"Now sign in...",
 "REPEAT_PASSWORD":			"Repeat password",
 "EDIT_PASSWORD":			"Edit password",
+"REMOVE":					"REMOVE",
 "BLANK_ERROR":				"Must not be blank",
 "PASSWORD_MATCH_ERROR":		"Passwords must match",
 "MAX_SIZE":					"Image maximum size is 2MB",
@@ -64,6 +65,14 @@
 "CANCEL":					"CANCEL",
 "MUST_FULFILL_BOTH_DOUBLE":	"You must fulfill exactly two options for double result",
 "MUST_FULFILL_BOTH_RESULT":	"You must fulfill both goals results",
+"GET_INFORMATION":			"GET INFORMATION",
+"GET_INFORMATION_PARAGRAPH":"Take a look at our system predictions and check team's statistics",
+"PARTICIPATE":				"PARTICIPATE",
+"PARTICIPATE_PARAGRAPH":	"Make your own predictions, earn points making a good guess and scale to the top of our ranking",
+"SOCIAL_VALUE":				"SOCIAL VALUE",
+"SOCIAL_VALUE_PARAGRAPH":	"We believe you people could be as good as our system so join us to be better together",
+"PREDICTORUM_TEAM":			"Predictorum Team",
+"PREDICTORUM_TEAM_PARAGRAPH":"Get to know the talented people behind it all!",
 "HL1": {
 		"WORD1":			"FREE",
 		"WORD2":			" FEATURES"

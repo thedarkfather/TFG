@@ -52,7 +52,7 @@
 								</div>
 
 								<a class="btn-xs btn-2-red"
-									ng-click="$flow.files[0].cancel()"> Remove </a>
+									ng-click="$flow.files[0].cancel()" translate> REMOVE </a>
 
 							</div>
 
@@ -67,9 +67,9 @@
 					<input class="form-control col-lg-6 col-xs-12" placeholder="{{'SURNAME' | translate}}" ng-show="editForm" type="text" ng-model="profile.surname"/>
 					<p class="text-muted" ng-show="profile.email && !editForm">{{profile.email}}</p>
 					<input class="form-control" placeholder="{{'E-mail' | translate}}" ng-show="editForm" type="email" ng-model="profile.email"/>
-					<b translate>EDIT_PASSWORD</b>
-					<input class="form-control col-lg-6 col-xs-12" placeholder="Password" ng-show="editForm" type="text" ng-model="profile.password"/>
-					<input class="form-control col-lg-6 col-xs-12" placeholder="{{'REPEAT_PASSWORD' | translate}}" ng-show="editForm" type="text" ng-model="profile.repassword"/>
+					<b translate ng-show="editForm">EDIT_PASSWORD</b>
+					<input class="form-control col-lg-6 col-xs-12" placeholder="Password" ng-show="editForm" type="password" ng-model="profile.password"/>
+					<input class="form-control col-lg-6 col-xs-12" placeholder="{{'REPEAT_PASSWORD' | translate}}" ng-show="editForm" type="password" ng-model="profile.repassword"/>
 					<p ng-show="!editForm">
 						<b>Ranking:</b> {{profile.rankingPosition}}&deg;
 					</p>
@@ -107,9 +107,10 @@
 			<div class="col-lg-6 col-xs-12" style="margin-top: 10px;">
 				<div class="list-group">
 					<a ng-href="#/prediction/user/details/{{prediction.id}}" ng-repeat="prediction in profile.predictions"
-						class="list-group-item clearfix"> <b>{{prediction.homeTeamName}}:
-						{{prediction.homeTeamGoals}}</b> <span class="text-color">vs</span> <b>{{prediction.awayTeamName}}:
-						{{prediction.awayTeamGoals}} </b><i class="pull-right">{{prediction.finishDate | date: "dd/mm/yyyy"}}
+						class="list-group-item clearfix"> <b>{{prediction.homeTeamName}}<span ng-if="prediction.homeTeamGoals!==null">: {{prediction.homeTeamGoals}}</span></b>
+						<span class="text-color">vs</span>
+						<b>{{prediction.awayTeamName}}<span ng-if="prediction.awayTeamGoals!==null">: {{prediction.awayTeamGoals}}</span></b>
+						<i class="pull-right">{{prediction.finishDate | date: "dd/mm/yyyy"}}
 					</i>
 
 					</a>

@@ -71,19 +71,17 @@ actorController.controller("actorController", function($scope, $location,$interv
 	$scope.switchTab($scope.tab.current);
 	
 	//Profile
-	
-
-	$scope.simpleValue = 0;
-	$scope.doubleValue = 0;
-	$scope.finalTimeHomeGoals = 0;
-	$scope.finalTimeAwayGoals = 0;
-	$scope.moreThan25 = 0;
 
 	$scope.setImage = function(image){
 		$scope.image = image.file;
 	}
 	
 	$scope.loadPercentage = function(){
+		$scope.simpleValue = 0;
+		$scope.doubleValue = 0;
+		$scope.finalTimeHomeGoals = 0;
+		$scope.finalTimeAwayGoals = 0;
+		$scope.moreThan25 = 0;
 		$interval(function() {
 	    	$scope.simpleValue+=$scope.profile.sRPointsPercentaje/100;
 	    	$scope.doubleValue+=$scope.profile.dRPointsPercentaje/100;
@@ -122,9 +120,12 @@ actorController.controller("actorController", function($scope, $location,$interv
 			$scope.editform = true;
 			actorService.saveProfilePhoto($scope.image).then(function(result){
 				if(result.data.success){
-					$scope.profile.image = $scope.image;
 					$scope.editForm = false;
 					$scope.errorEditingProfile = null;
+					actorService.getPrincipalProfile().then(function(result){
+						$scope.profile = result.data;
+						$scope.loadPercentage();
+					});
 				}else{
 					if(result.data.errors.tam.includes("size")){
 						$scope.errorEditingProfile = "MAX_SIZE";
