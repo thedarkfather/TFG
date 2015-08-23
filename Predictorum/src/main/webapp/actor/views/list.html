@@ -33,7 +33,9 @@
 				<div class="list-group-item clearfix">
 					<div class="col-lg-6 col-xs-6">
 
-						<img ng-src="404" err-src="static/img/team/team-default.jpg" class="img-responsive"
+						<img ng-if="actor.image" data-ng-src="data:image/JPEG;base64,{{actor.image}}" class="img-responsive"
+							style="width: 100px; height: 100px;">
+						<img ng-if="!actor.image" src="static/img/team/team-default.jpg" class="img-responsive"
 							style="width: 100px; height: 100px;">
 
 					</div>

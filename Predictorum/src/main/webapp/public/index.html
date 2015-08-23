@@ -237,9 +237,8 @@
 									<!-- Sign up form -->
 									<div class="row text-center">
 										<div class="col-md-2"></div>
-										<div class="col-md-8" ng-init="loading=false">
-											<img ng-show="loading" src="static/img/flat-loader_transp.gif">
-											<form ng-show="notRegistered" ng-hide="loading" id="signup" name="signUpForm" ng-submit="goSignUp()" novalidate>
+										<div class="col-md-8" >
+											<form ng-show="notRegistered" id="signup" name="signUpForm" ng-submit="goSignUp()" novalidate>
 												<fieldset>
 													<input ng-class="{'ng-submitted ng-invalid': notUniqueError}" class="form-control wow fadeInLeft" type="text"
 														placeholder="Username" data-ng-model="signUp.username" style="margin-bottom: 5%;" required>
@@ -249,7 +248,7 @@
 													
 													<input ng-class="{'ng-submitted ng-invalid': passwordMatchError}" 
 														class="form-control wow fadeInLeft" type="password"
-														placeholder="Repeat Password" data-ng-model="signUp.rpassword" required>
+														placeholder="{{'REPEAT_PASSWORD' | translate}}" data-ng-model="signUp.rpassword" required>
 													<span class="error" ng-show="blankError&&signUpSubmitted" translate>BLANK_ERROR</span>
 													<span class="error" ng-show="passwordMatchError" translate>PASSWORD_MATCH_ERROR</span>
 													<span class="error" ng-show="notUniqueError" translate>NOT_UNIQUE_ERROR</span>

@@ -108,15 +108,30 @@ actorController.controller("actorController", function($scope, $location,$interv
 	}
 	
 	$scope.saveProfile = function(){
-		/*actorService.saveProfile($scope.profile).then(function(result){
-			
-		});*/
-		actorService.saveProfilePhoto($scope.image).then(function(result){
+		actorService.saveProfile($scope.profile).then(function(result){
 			if(result.data.success){
-				$scope.profile.photo = $scope.image;
 				$scope.editForm = false;
+				$scope.errorEditingProfile = null;
+			}else{
+				if(result.data.errors.fail.includes("equals")){
+					$scope.errorEditingProfile = "PASSWORD_MATCH_ERROR";
+				}
 			}
 		});
+		if($scope.image){
+			$scope.editform = true;
+			actorService.saveProfilePhoto($scope.image).then(function(result){
+				if(result.data.success){
+					$scope.profile.image = $scope.image;
+					$scope.editForm = false;
+					$scope.errorEditingProfile = null;
+				}else{
+					if(result.data.errors.tam.includes("size")){
+						$scope.errorEditingProfile = "MAX_SIZE";
+					}
+				}
+			});
+		}
 	}
 	
 });
