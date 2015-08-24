@@ -228,6 +228,7 @@ predictionController.controller('predictionController', function($scope,
 	};
 	
 	if($location.path().includes('create')){
+		$scope.cancelUrl=$routeParams.gameId;
 		predictionService.findPrincipalPrediction($routeParams.gameId).then(function(result){
 			if(result.data.gameId !== null){
 				$scope.userPrediction = result.data;
