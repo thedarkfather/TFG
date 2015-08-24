@@ -17,6 +17,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import antlr.debug.NewLineEvent;
 import domain.Game;
 import domain.League;
 import domain.Prediction;
@@ -105,54 +106,72 @@ public class UpdateService {
 	@Autowired
 	private DiaryService diaryService;
 	
-	//@Scheduled(cron = "*/120 * * * * ?")
+	//@Scheduled(cron = "*/800 * * * * ?")
 	public void inicializaBaseHistorica() throws IOException {
 		
 
 		String urlCalendarioResultados = "";
 		String urlEquipos = "";
 		Collection<League> leagues = leagueService.findAll();
-		Integer anyoFin = 2015;
-		String seasonDateSpanish = (anyoFin-1)+"_15";
-		String seasonDateOther = (anyoFin-1)+"-"+anyoFin;
+		//Integer anyoFin = 2015;
+		List<Integer> years = new LinkedList<Integer>();
+		years.add(2015);
+		years.add(2014);
+		years.add(2013);
+		for (Integer anyoFin : years) {
+			String fin = anyoFin+"";
+			fin = fin.substring(2);
+			String seasonDateSpanish = (anyoFin - 1) + "_"+fin;
+			String seasonDateOther = (anyoFin - 1) + "-" + anyoFin;
 
-		for (League league : leagues) {
-			String leagueName = league.getName();
-			if (BBVA.equals(leagueName)) {
-				urlCalendarioResultados = urlCalendarioResultadosBBVABaseHistorica+seasonDateSpanish;
-				//en la misma pagina se pueden conseguir los equipos
-				urlEquipos = urlCalendarioResultados;
-			} else if (adelante.equals(leagueName)) {
-				urlCalendarioResultados = urlCalendarioResultadosAdelanteBaseHistorica+seasonDateSpanish;
-				//en la misma pagina se pueden conseguir los equipos
-				urlEquipos = urlCalendarioResultados;
-			} else if (bundesliga.equals(leagueName)) {
-				urlCalendarioResultados = urlCalendarioResultadosBundesliga	+ seasonDateOther + calendarioHtml;
-				urlEquipos = urlEquiposBundesliga + seasonDateOther+ clasificacionHtml;
-			} else if (calcio.equals(leagueName)) {
-				urlCalendarioResultados = urlCalendarioResultadosCalcio	+ seasonDateOther + calendarioHtml;
-				urlEquipos = urlEquiposCalcio + seasonDateOther + clasificacionHtml;
-			} else if (premier.equals(leagueName)) {
-				urlCalendarioResultados = urlCalendarioResultadosPremier+ seasonDateOther + calendarioHtml;
-				urlEquipos = urlEquiposPremier + seasonDateOther + clasificacionHtml;
-			} else {
-				break;
+			for (League league : leagues) {
+				String leagueName = league.getName();
+				if (BBVA.equals(leagueName)) {
+					urlCalendarioResultados = urlCalendarioResultadosBBVABaseHistorica
+							+ seasonDateSpanish;
+					// en la misma pagina se pueden conseguir los equipos
+					urlEquipos = urlCalendarioResultados;
+				} else if (adelante.equals(leagueName)) {
+					urlCalendarioResultados = urlCalendarioResultadosAdelanteBaseHistorica
+							+ seasonDateSpanish;
+					// en la misma pagina se pueden conseguir los equipos
+					urlEquipos = urlCalendarioResultados;
+				} else if (bundesliga.equals(leagueName)) {
+					urlCalendarioResultados = urlCalendarioResultadosBundesliga
+							+ seasonDateOther + calendarioHtml;
+					urlEquipos = urlEquiposBundesliga + seasonDateOther
+							+ clasificacionHtml;
+				} else if (calcio.equals(leagueName)) {
+					urlCalendarioResultados = urlCalendarioResultadosCalcio
+							+ seasonDateOther + calendarioHtml;
+					urlEquipos = urlEquiposCalcio + seasonDateOther
+							+ clasificacionHtml;
+				} else if (premier.equals(leagueName)) {
+					urlCalendarioResultados = urlCalendarioResultadosPremier
+							+ seasonDateOther + calendarioHtml;
+					urlEquipos = urlEquiposPremier + seasonDateOther
+							+ clasificacionHtml;
+				} else {
+					break;
+				}
+				Season season = createSeasonWithYear(league, anyoFin);
+
+				addTeamToSeason(urlEquipos, season);
+
+				if (BBVA.equals(leagueName) || adelante.equals(leagueName)) {
+					addRoundToSeasonFormatPrimeraYSegundaBaseHistorica(
+							urlCalendarioResultados, season);
+				} else {
+					addRoundToSeasonFormatOthersLeagues(
+							urlCalendarioResultados, season);
+				}
+
 			}
-			Season season = createSeasonWithYear(league,anyoFin);
-
-			addTeamToSeason(urlEquipos, season);
-
-			if (BBVA.equals(leagueName)||adelante.equals(leagueName)) {
-				addRoundToSeasonFormatPrimeraYSegundaBaseHistorica(urlCalendarioResultados, season);
-			} else {
-				addRoundToSeasonFormatOthersLeagues(urlCalendarioResultados,season);
-			}
-
 		}
 	}
 	
 
-	//@Scheduled(cron = "*/120 * * * * ?")
+	//@Scheduled(cron = "*/800 * * * * ?")
 	public void actualizaBaseHistorica() throws IOException {
 		/*
 		 * Primero tengo que crear la temporada, después tengo que añadir los
@@ -162,32 +181,40 @@ public class UpdateService {
 
 		String urlCalendarioResultados = "";
 		Collection<League> leagues = leagueService.findAll();
-		Integer anyoFin = 2015;
-		String seasonDateSpanish = (anyoFin-1)+"_15";
-		String seasonDateOther = (anyoFin-1)+"-"+anyoFin;
-
+		
 		for (League league : leagues) {
 			String leagueName = league.getName();
-			if (BBVA.equals(leagueName)) {
-				urlCalendarioResultados = urlCalendarioResultadosBBVABaseHistorica+seasonDateSpanish;
-			} else if (adelante.equals(leagueName)) {
-				urlCalendarioResultados = urlCalendarioResultadosAdelanteBaseHistorica+seasonDateSpanish;
-			} else if (bundesliga.equals(leagueName)) {
-				urlCalendarioResultados = urlCalendarioResultadosBundesliga
-						+ seasonDateOther + calendarioHtml;
-			} else if (calcio.equals(leagueName)) {
-				urlCalendarioResultados = urlCalendarioResultadosCalcio
-						+ seasonDateOther + calendarioHtml;
-			} else if (premier.equals(leagueName)) {
-				urlCalendarioResultados = urlCalendarioResultadosPremier
-						+ seasonDateOther + calendarioHtml;
-			} else {
-				break;
-			}
-
-			// Primero cojo la temporada
 			Collection<Season> seasons = seasonService.findByLeagueId(league.getId());
-			for(Season season: seasons){				
+			for (Season season : seasons) {
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(season.getFinishDate());
+				Integer anyoFin = calendar.get(Calendar.YEAR);
+				String fin = anyoFin + "";
+				fin = fin.substring(2);
+				String seasonDateSpanish = (anyoFin - 1) + "_" + fin;
+				String seasonDateOther = (anyoFin - 1) + "-" + anyoFin;
+
+				if (BBVA.equals(leagueName)) {
+					urlCalendarioResultados = urlCalendarioResultadosBBVABaseHistorica
+							+ seasonDateSpanish;
+				} else if (adelante.equals(leagueName)) {
+					urlCalendarioResultados = urlCalendarioResultadosAdelanteBaseHistorica
+							+ seasonDateSpanish;
+				} else if (bundesliga.equals(leagueName)) {
+					urlCalendarioResultados = urlCalendarioResultadosBundesliga
+							+ seasonDateOther + calendarioHtml;
+				} else if (calcio.equals(leagueName)) {
+					urlCalendarioResultados = urlCalendarioResultadosCalcio
+							+ seasonDateOther + calendarioHtml;
+				} else if (premier.equals(leagueName)) {
+					urlCalendarioResultados = urlCalendarioResultadosPremier
+							+ seasonDateOther + calendarioHtml;
+				} else {
+					break;
+				}
+
+				// Primero cojo la temporada
+
 				/*
 				 * Añado jornadas a la temporada
 				 * 
@@ -195,16 +222,18 @@ public class UpdateService {
 				 * diferente por lo que habrá que hacer distinción según el
 				 * nombre de la liga
 				 */
-				if (BBVA.equals(leagueName)||adelante.equals(leagueName)) {
-					updatePrimeraYSegundaBaseHistorica(urlCalendarioResultados, season);
+				if (BBVA.equals(leagueName) || adelante.equals(leagueName)) {
+					updatePrimeraYSegundaBaseHistorica(urlCalendarioResultados,
+							season);
 				} else {
 					updateOthersLeagues(urlCalendarioResultados, season);
 				}
 			}
 
 		}
-
 	}
+
+
 
 
 	private Season createSeasonWithYear(League league, Integer anyoFin) {
@@ -768,6 +797,26 @@ public class UpdateService {
 		String equipoVisitante = elementPartido.getElementsByClass(classVisitante).text();
 		Team localTeam = teamService.findByTeamNameAndSeasonId(equipoLocal,round.getSeason().getId());
 		Team awayTeam = teamService.findByTeamNameAndSeasonId(equipoVisitante,round.getSeason().getId());
+		if(localTeam==null){
+			Team team1 = new Team();
+			team1.setName(equipoLocal);
+			team1.setSeason(round.getSeason());
+			team1.setUsers(new LinkedList<User>());
+			team1.setAwayMatchs(new LinkedList<Game>());
+			team1.setHomeMatchs(new LinkedList<Game>());
+			localTeam = teamService.saveEasy(team1);
+			teamStatisticsService.createAndSave(localTeam);
+		}
+		if(awayTeam==null){
+			Team team2 = new Team();
+			team2.setName(equipoVisitante);
+			team2.setSeason(round.getSeason());
+			team2.setUsers(new LinkedList<User>());
+			team2.setAwayMatchs(new LinkedList<Game>());
+			team2.setHomeMatchs(new LinkedList<Game>());
+			awayTeam = teamService.saveEasy(team2);
+			teamStatisticsService.createAndSave(awayTeam);
+		}
 		Assert.notNull(localTeam);
 		Assert.notNull(awayTeam);
 		Game game = new Game();

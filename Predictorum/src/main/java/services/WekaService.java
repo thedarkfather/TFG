@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,8 @@ public class WekaService {
 	
 	@Autowired
 	private PredictionService predictionService;
+	
+	private static final Logger LOG = Logger.getLogger(UpdateService.class);
 	
 	//@Scheduled(cron = "*/120 * * * * ?")
 	public void calculaPrediccion() throws Exception{
@@ -146,7 +149,7 @@ public class WekaService {
 	
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(game.getRound().getSeason().getStartDate());
-		int year = Calendar.YEAR;
+		int year = calendar.get(Calendar.YEAR);
 		instance.setValue((Attribute)fvWekaAttributes.elementAt(0), year);//fvWekaAttributes.addElement(startYearSeason);
 		 
 		instance.setValue((Attribute)fvWekaAttributes.elementAt(1), game.getHomeTeam().getName());
@@ -267,45 +270,50 @@ public class WekaService {
 		 Instances set = new Instances(relName, fvWekaAttributes, diariesSize);  	                 
          // Create the instance
 		 for(Diary diary : diaries){
-			 Instance instance = new Instance(numberOfAttributes);
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(0), diary.getStartYearSeason());//fvWekaAttributes.addElement(startYearSeason);
-			 
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(1), diary.getTeam1());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(2), diary.getHomeWonMatches1());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(3), diary.getAwayWonMatches1());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(4), diary.getHomeLostMatches1());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(5), diary.getAwayLostMatches1());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(6), diary.getTotalHomeGoals1());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(7), diary.getTotalAwayGoals1());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(8), diary.getTotalMoreThan251());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(9), diary.getPoints1());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(10), diary.getTotalGames1());
-			 
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(11), diary.getTeam2());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(12), diary.getHomeWonMatches2());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(13), diary.getAwayWonMatches2());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(14), diary.getHomeLostMatches2());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(15), diary.getAwayLostMatches2());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(16), diary.getTotalHomeGoals2());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(17), diary.getTotalAwayGoals2());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(18), diary.getTotalMoreThan252());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(19), diary.getPoints2());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(20), diary.getTotalGames2());
-			 
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(21), diary.getWinner());
-			 Integer homeGoals = diary.getHomeGoals();
-			 if(homeGoals.compareTo(5)>0){
-				 homeGoals = 5;
-			 }
-			 Integer awayGoals = diary.getAwayGoals();
-			 if(awayGoals.compareTo(5)>0){
-				 awayGoals = 5;
-			 }
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(22), homeGoals);
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(23), awayGoals);
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(24), diary.getMoreThan25());
+			 try{
+				 Instance instance = new Instance(numberOfAttributes);
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(0), diary.getStartYearSeason());//fvWekaAttributes.addElement(startYearSeason);
+				 
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(1), diary.getTeam1());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(2), diary.getHomeWonMatches1());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(3), diary.getAwayWonMatches1());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(4), diary.getHomeLostMatches1());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(5), diary.getAwayLostMatches1());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(6), diary.getTotalHomeGoals1());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(7), diary.getTotalAwayGoals1());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(8), diary.getTotalMoreThan251());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(9), diary.getPoints1());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(10), diary.getTotalGames1());
+				 
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(11), diary.getTeam2());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(12), diary.getHomeWonMatches2());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(13), diary.getAwayWonMatches2());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(14), diary.getHomeLostMatches2());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(15), diary.getAwayLostMatches2());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(16), diary.getTotalHomeGoals2());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(17), diary.getTotalAwayGoals2());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(18), diary.getTotalMoreThan252());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(19), diary.getPoints2());
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(20), diary.getTotalGames2());
+				 
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(21), diary.getWinner());
+				 Integer homeGoals = diary.getHomeGoals();
+				 if(homeGoals.compareTo(5)>0){
+					 homeGoals = 5;
+				 }
+				 Integer awayGoals = diary.getAwayGoals();
+				 if(awayGoals.compareTo(5)>0){
+					 awayGoals = 5;
+				 }
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(22), homeGoals);
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(23), awayGoals);
+				 instance.setValue((Attribute)fvWekaAttributes.elementAt(24), diary.getMoreThan25());
 
-			 set.add(instance);
+				 set.add(instance);
+			 }catch(Exception e){
+				 LOG.info("No se ha podido insertar la entrada para realizar la predicción");
+			 }
+			 
 		 }
 		 return set;
   	 }
