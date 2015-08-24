@@ -2,7 +2,6 @@ package services;
 
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,10 +74,10 @@ public class WekaService {
                 	doble = "X2";
                 	pDoble = fDistributionWinner[1]+fDistributionWinner[2];
                 }else if(fDistributionWinner[1] <= fDistributionWinner[0] && fDistributionWinner[1] <= fDistributionWinner[2]){
-                	doble = "12";
+                	doble = "1X";
                 	pDoble = fDistributionWinner[0]+fDistributionWinner[1];
                 }else{
-                	doble = "1X";
+                	doble = "12";
                 	pDoble = fDistributionWinner[0]+fDistributionWinner[2];
                 }   
                 
@@ -88,7 +87,7 @@ public class WekaService {
                 double[] fDistributionM25 = createFuncionDistribucion(fvWekaAttributes,game, isTrainingSet, cModel);
                 Boolean moreThan25;
                 double pMoreThan25;
-                if(fDistributionM25[0] <= fDistributionM25[1]){
+                if(fDistributionM25[0] >= fDistributionM25[1]){
                 	moreThan25 = true;
                 	pMoreThan25 = fDistributionM25[0];
                 }else{
@@ -133,12 +132,7 @@ public class WekaService {
             	prediction.setHomeGoals(homeGoals);
             	prediction.setpHomeGoals(pHomeGoals);
             	prediction.setAwayGoals(awayGoals);
-            	prediction.setpAwayGoals(pAwayGoals);
-            	
-            	//private Integer homeGoals;
-            	//private Double pHomeGoals;
-            	//private Integer awayGoals;
-            	//private Double pAwayGoals;        	
+            	prediction.setpAwayGoals(pAwayGoals);      	
             	predictionService.save(prediction);
         	}
         	
@@ -166,7 +160,7 @@ public class WekaService {
 		instance.setValue((Attribute)fvWekaAttributes.elementAt(9), team1.getPoints());
 		instance.setValue((Attribute)fvWekaAttributes.elementAt(10), team1.getTotalGames());
 		 
-		instance.setValue((Attribute)fvWekaAttributes.elementAt(11), game.getHomeTeam().getName());
+		instance.setValue((Attribute)fvWekaAttributes.elementAt(11), game.getAwayTeam().getName());
 		instance.setValue((Attribute)fvWekaAttributes.elementAt(12), team2.getHomeWonMatches());
 		instance.setValue((Attribute)fvWekaAttributes.elementAt(13), team2.getAwayWonMatches());
 		instance.setValue((Attribute)fvWekaAttributes.elementAt(14), team2.getHomeLostMatches());
@@ -218,20 +212,13 @@ public class WekaService {
 		winnerClass.addElement("2");
 		winnerClass.addElement("X");
 		Attribute winner = new Attribute("winner", winnerClass);
-		FastVector goalsClass = new FastVector(13);
+		FastVector goalsClass = new FastVector(6);
 		goalsClass.addElement("0");
 		goalsClass.addElement("1");
 		goalsClass.addElement("2");
 		goalsClass.addElement("3");
 		goalsClass.addElement("4");
 		goalsClass.addElement("5");
-		goalsClass.addElement("6");
-		goalsClass.addElement("7");
-		goalsClass.addElement("8");
-		goalsClass.addElement("9");
-		goalsClass.addElement("10");
-		goalsClass.addElement("11");
-		goalsClass.addElement("12");
 		Attribute homeGoals = new Attribute("homeGoals",goalsClass);
 		Attribute awayGoals = new Attribute("awayGoals",goalsClass);		
 		FastVector moreThan25Class = new FastVector(2);
@@ -306,8 +293,16 @@ public class WekaService {
 			 instance.setValue((Attribute)fvWekaAttributes.elementAt(20), diary.getTotalGames2());
 			 
 			 instance.setValue((Attribute)fvWekaAttributes.elementAt(21), diary.getWinner());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(22), diary.getHomeGoals());
-			 instance.setValue((Attribute)fvWekaAttributes.elementAt(23), diary.getAwayGoals());
+			 Integer homeGoals = diary.getHomeGoals();
+			 if(homeGoals.compareTo(5)>0){
+				 homeGoals = 5;
+			 }
+			 Integer awayGoals = diary.getAwayGoals();
+			 if(awayGoals.compareTo(5)>0){
+				 awayGoals = 5;
+			 }
+			 instance.setValue((Attribute)fvWekaAttributes.elementAt(22), homeGoals);
+			 instance.setValue((Attribute)fvWekaAttributes.elementAt(23), awayGoals);
 			 instance.setValue((Attribute)fvWekaAttributes.elementAt(24), diary.getMoreThan25());
 
 			 set.add(instance);
