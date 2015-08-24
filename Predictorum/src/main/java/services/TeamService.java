@@ -63,9 +63,9 @@ public class TeamService {
 		return res;
 	}
 	
-	public Team findByTeamName(String teamName){
+	public Team findByTeamNameAndSeasonId(String teamName, Integer seasonId){
 		Assert.notNull(teamName);
-		Team team = teamRepository.findByTeamName(teamName);
+		Team team = teamRepository.findByTeamNameAndSeasonId(teamName, seasonId);
 		return team;
 	}
 	
@@ -90,5 +90,10 @@ public class TeamService {
 		team.setUsers(users);
 		saveEasy(team);		
 	}
-
+	
+	public Collection<String> teamsName(){
+		Collection<String> teamNames = new LinkedList<String>();
+		teamNames = teamRepository.teamNames();
+		return teamNames;
+	}
 }

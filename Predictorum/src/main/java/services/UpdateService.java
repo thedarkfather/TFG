@@ -47,7 +47,9 @@ public class UpdateService {
 
 	// URLs Calendario
 	static final String urlCalendarioResultadosBBVA = "http://www.marca.com/futbol/primera/calendario.html";
+	static final String urlCalendarioResultadosBBVABaseHistorica = "http://www.marca.com/estadisticas/futbol/primera/";
 	static final String urlCalendarioResultadosAdelante = "http://www.marca.com/futbol/segunda/calendario.html";
+	static final String urlCalendarioResultadosAdelanteBaseHistorica = "http://www.marca.com/estadisticas/futbol/segunda/";
 	static final String urlCalendarioResultadosBundesliga = "http://www.marca.com/deporte/central-de-datos/futbol/bundesliga/";
 	static final String urlCalendarioResultadosCalcio = "http://www.marca.com/deporte/central-de-datos/futbol/calcio/";
 	static final String urlCalendarioResultadosPremier = "http://www.marca.com/deporte/central-de-datos/futbol/premier-league/";
@@ -62,6 +64,9 @@ public class UpdateService {
 	static final String classJor = "jor";
 	static final String classResultado = "resultado";
 	static final String classProx_Jor = "prox_jor";
+	static final String classNavegacion_Jornadas = "navegacion-jornadas";
+	static final String classEquipo_Local= "equipo-local";
+	static final String classEquipo_Visitante= "equipo-visitante";
 
 	// html tags
 	static final String tagH2 = "h2";
@@ -69,6 +74,7 @@ public class UpdateService {
 	static final String tagTh = "th";
 	static final String tagTr = "tr";
 	static final String tagTbody = "tbody";
+	static final String tagA = "a";
 
 	private static final Logger LOG = Logger.getLogger(UpdateService.class);
 
@@ -95,6 +101,135 @@ public class UpdateService {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private DiaryService diaryService;
+	
+	//@Scheduled(cron = "*/120 * * * * ?")
+	public void inicializaBaseHistorica() throws IOException {
+		
+
+		String urlCalendarioResultados = "";
+		String urlEquipos = "";
+		Collection<League> leagues = leagueService.findAll();
+		Integer anyoFin = 2015;
+		String seasonDateSpanish = (anyoFin-1)+"_15";
+		String seasonDateOther = (anyoFin-1)+"-"+anyoFin;
+
+		for (League league : leagues) {
+			String leagueName = league.getName();
+			if (BBVA.equals(leagueName)) {
+				urlCalendarioResultados = urlCalendarioResultadosBBVABaseHistorica+seasonDateSpanish;
+				//en la misma pagina se pueden conseguir los equipos
+				urlEquipos = urlCalendarioResultados;
+			} else if (adelante.equals(leagueName)) {
+				urlCalendarioResultados = urlCalendarioResultadosAdelanteBaseHistorica+seasonDateSpanish;
+				//en la misma pagina se pueden conseguir los equipos
+				urlEquipos = urlCalendarioResultados;
+			} else if (bundesliga.equals(leagueName)) {
+				urlCalendarioResultados = urlCalendarioResultadosBundesliga	+ seasonDateOther + calendarioHtml;
+				urlEquipos = urlEquiposBundesliga + seasonDateOther+ clasificacionHtml;
+			} else if (calcio.equals(leagueName)) {
+				urlCalendarioResultados = urlCalendarioResultadosCalcio	+ seasonDateOther + calendarioHtml;
+				urlEquipos = urlEquiposCalcio + seasonDateOther + clasificacionHtml;
+			} else if (premier.equals(leagueName)) {
+				urlCalendarioResultados = urlCalendarioResultadosPremier+ seasonDateOther + calendarioHtml;
+				urlEquipos = urlEquiposPremier + seasonDateOther + clasificacionHtml;
+			} else {
+				break;
+			}
+			Season season = createSeasonWithYear(league,anyoFin);
+
+			addTeamToSeason(urlEquipos, season);
+
+			if (BBVA.equals(leagueName)||adelante.equals(leagueName)) {
+				addRoundToSeasonFormatPrimeraYSegundaBaseHistorica(urlCalendarioResultados, season);
+			} else {
+				addRoundToSeasonFormatOthersLeagues(urlCalendarioResultados,season);
+			}
+
+		}
+	}
+	
+
+	//@Scheduled(cron = "*/120 * * * * ?")
+	public void actualizaBaseHistorica() throws IOException {
+		/*
+		 * Primero tengo que crear la temporada, después tengo que añadir los
+		 * equipos a la temporada, después tengo que crear la jornada, cuando
+		 * cree la jornada creo todos los partidos asociados a esa jornada.
+		 */
+
+		String urlCalendarioResultados = "";
+		Collection<League> leagues = leagueService.findAll();
+		Integer anyoFin = 2015;
+		String seasonDateSpanish = (anyoFin-1)+"_15";
+		String seasonDateOther = (anyoFin-1)+"-"+anyoFin;
+
+		for (League league : leagues) {
+			String leagueName = league.getName();
+			if (BBVA.equals(leagueName)) {
+				urlCalendarioResultados = urlCalendarioResultadosBBVABaseHistorica+seasonDateSpanish;
+			} else if (adelante.equals(leagueName)) {
+				urlCalendarioResultados = urlCalendarioResultadosAdelanteBaseHistorica+seasonDateSpanish;
+			} else if (bundesliga.equals(leagueName)) {
+				urlCalendarioResultados = urlCalendarioResultadosBundesliga
+						+ seasonDateOther + calendarioHtml;
+			} else if (calcio.equals(leagueName)) {
+				urlCalendarioResultados = urlCalendarioResultadosCalcio
+						+ seasonDateOther + calendarioHtml;
+			} else if (premier.equals(leagueName)) {
+				urlCalendarioResultados = urlCalendarioResultadosPremier
+						+ seasonDateOther + calendarioHtml;
+			} else {
+				break;
+			}
+
+			// Primero cojo la temporada
+			Collection<Season> seasons = seasonService.findByLeagueId(league.getId());
+			for(Season season: seasons){				
+				/*
+				 * Añado jornadas a la temporada
+				 * 
+				 * El html para las ligas bbva y adelante tienen un formato
+				 * diferente por lo que habrá que hacer distinción según el
+				 * nombre de la liga
+				 */
+				if (BBVA.equals(leagueName)||adelante.equals(leagueName)) {
+					updatePrimeraYSegundaBaseHistorica(urlCalendarioResultados, season);
+				} else {
+					updateOthersLeagues(urlCalendarioResultados, season);
+				}
+			}
+
+		}
+
+	}
+
+
+	private Season createSeasonWithYear(League league, Integer anyoFin) {
+
+		Date current = new Date(System.currentTimeMillis());
+		Calendar startCalendar = Calendar.getInstance();
+		Calendar finishCalendar = Calendar.getInstance();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(current);
+		startCalendar.set(anyoFin - 1, 7, 1);
+		finishCalendar.set(anyoFin, 6, 31);
+		Date startDate = startCalendar.getTime();
+		Date finishDate = finishCalendar.getTime();
+
+		Season season = new Season();
+		season.setStartDate(startDate);
+		season.setFinishDate(finishDate);
+		season.setLeague(league);
+		season.setRounds(new LinkedList<Round>());
+		season.setTeams(new LinkedList<Team>());
+		season = seasonService.saveEasy(season);
+
+		return season;
+
+	}
 
 	//@Scheduled(cron = "*/120 * * * * ?")
 	public void inicializaCalendario() throws IOException {
@@ -148,8 +283,7 @@ public class UpdateService {
 			} else if(adelante.equals(leagueName)) {
 				addRoundToSeasonFormatSegunda(urlCalendarioResultados, season);
 			} else {
-				addRoundToSeasonFormatOthersLeagues(urlCalendarioResultados,
-						season);
+				addRoundToSeasonFormatOthersLeagues(urlCalendarioResultados,season);
 			}
 
 		}
@@ -229,7 +363,7 @@ public class UpdateService {
 					for (Element elementPartido : elementPartidos) {
 						Game game = findGame(elementPartido, round);
 						Result result = saveResult(elementPartido, game);
-						userService.updatePointsByResult(result);
+						diaryService.create(result);
 						teamStatisticsService.update(result);						
 					}
 					round.setUpdated(true);
@@ -324,6 +458,54 @@ public class UpdateService {
 		}		
 		
 	}
+	
+	private void updatePrimeraYSegundaBaseHistorica(String urlCalendarioResultados, Season season) {
+		// Primero calculamos el numero total de jornadas
+		// La URL se irá modificando según la jornada
+		// Para cada jornada iremos añadiendo los games
+		Document doc;
+		try {
+			doc = Jsoup.connect(urlCalendarioResultados).get();
+			Elements elementJornadasAux = doc.getElementsByClass(classNavegacion_Jornadas);
+			Elements elementJornadas = elementJornadasAux.get(0).getElementsByTag(tagA);
+			for (Element elementJornada : elementJornadas) {
+				String numeroJornada = elementJornada.text();
+				String urlJornada = urlCalendarioResultados + "/jornada_"+ numeroJornada;
+				Document doc2 = Jsoup.connect(urlJornada).get();
+				Round round = roundService.findNoUpdatedBySeasonIdAndRoundNumber(season.getId(),new Integer(numeroJornada));
+				// Si existe esta ronda, tengo que actualizar los partidos
+				if (round != null) {
+					Elements equipoLocales = doc2.getElementsByClass(classEquipo_Local);
+					Elements equipoVisitantes = doc2.getElementsByClass(classEquipo_Visitante);
+					Elements resultados = doc2.getElementsByClass(classResultado);
+					int size = equipoLocales.size();
+					for (int i = 0; i < size; i++) {
+						String equipoLocal = equipoLocales.get(i).text();
+						String equipoVisitante = equipoVisitantes.get(i).text();
+						Game game = gameService.findByRoundIdAndLocalTeamAndAwayTeam(round.getId(), equipoLocal,equipoVisitante);
+						Assert.notNull(game);
+						String cadenaResultado = resultados.get(i).text();
+						List<Integer> goals = Parser.result(cadenaResultado);
+						Result result = new Result();
+						result.setGame(game);
+						result.setHomeGoals(goals.get(0));
+						result.setAwayGoals(goals.get(1));
+						result = resultService.save(result);
+						diaryService.create(result);
+						teamStatisticsService.update(result);
+					}
+					round.setUpdated(true);
+					roundService.saveEasy(round);
+				}
+			}
+
+		} catch (IOException e) {
+			LOG.info("No se pudo actualizar las jornadas para la liga: " + season.getLeague().getName());
+		}
+		
+	}
+	
+	
 	
 	public Game findGame(Element elementPartido, Round round){
 		String equipoLocal = elementPartido.getElementsByClass(classLocal).text();
@@ -452,6 +634,54 @@ public class UpdateService {
 		}
 
 	}
+	
+	private void addRoundToSeasonFormatPrimeraYSegundaBaseHistorica(String urlCalendarioResultados, Season season) {
+		//Primero calculamos el numero total de jornadas
+		//La URL se irá modificando según la jornada
+		//Para cada jornada iremos añadiendo los games
+		Document doc;
+		try {
+			doc = Jsoup.connect(urlCalendarioResultados).get();			
+			Elements elementJornadasAux = doc.getElementsByClass(classNavegacion_Jornadas);
+			Elements elementJornadas = elementJornadasAux.get(0).getElementsByTag(tagA);
+			for (Element elementJornada : elementJornadas) {
+				String numeroJornada  = elementJornada.text();
+				String urlJornada = urlCalendarioResultados+"/jornada_"+numeroJornada;
+				Document doc2 = Jsoup.connect(urlJornada).get();				
+				Round round = new Round();
+				//La fecha de la jornada no importa pero lo podremos modificar en el futuro si lo deseamos
+				round.setStartDate(season.getStartDate());
+				round.setFinishDate(season.getFinishDate());
+				round.setSeason(season);
+				round.setRoundNumber(new Integer(numeroJornada));
+				round.setGames(new LinkedList<Game>());
+				round.setUpdated(false);
+				round = roundService.saveEasy(round);
+				
+				Elements equipoLocales = doc2.getElementsByClass(classEquipo_Local);
+				Elements equipoVisitantes = doc2.getElementsByClass(classEquipo_Visitante);
+				int size = equipoLocales.size();;
+				for(int i = 0;i<size;i++){
+					String equipoLocal = equipoLocales.get(i).text();
+					String equipoVisitante = equipoVisitantes.get(i).text();
+					Team localTeam = teamService.findByTeamNameAndSeasonId(equipoLocal,round.getSeason().getId());
+					Team awayTeam = teamService.findByTeamNameAndSeasonId(equipoVisitante,round.getSeason().getId());
+					Assert.notNull(localTeam);
+					Assert.notNull(awayTeam);
+					Game game = new Game();
+					game.setHomeTeam(localTeam);
+					game.setAwayTeam(awayTeam);
+					game.setRound(round);
+					game.setPredictions(new LinkedList<Prediction>());
+					game = gameService.saveEasy(game);
+				}
+			}
+
+		} catch (IOException e) {
+			LOG.info("No se pudo actualizar las jornadas para la liga: "+ season.getLeague().getName());
+		}
+		
+	}
 
 	private void addRoundToSeasonFormatSegunda(
 			String urlCalendarioResultados, Season season) {
@@ -536,8 +766,8 @@ public class UpdateService {
 	public Game saveGame(Element elementPartido, Round round){
 		String equipoLocal = elementPartido.getElementsByClass(classLocal).text();
 		String equipoVisitante = elementPartido.getElementsByClass(classVisitante).text();
-		Team localTeam = teamService.findByTeamName(equipoLocal);
-		Team awayTeam = teamService.findByTeamName(equipoVisitante);
+		Team localTeam = teamService.findByTeamNameAndSeasonId(equipoLocal,round.getSeason().getId());
+		Team awayTeam = teamService.findByTeamNameAndSeasonId(equipoVisitante,round.getSeason().getId());
 		Assert.notNull(localTeam);
 		Assert.notNull(awayTeam);
 		Game game = new Game();
