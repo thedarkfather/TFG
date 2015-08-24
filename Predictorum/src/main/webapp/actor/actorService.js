@@ -84,11 +84,17 @@ actorService
 	}
 	
 	actorService.saveProfile = function(profile){
-		var userForm = {userId: actor.id};
+		var userForm = {
+			email: 		profile.email,
+			name:		profile.name,
+			surname:	profile.surname,
+			password:	profile.password,
+			repassword:	profile.repassword
+		};
 		var req = {
 				method: 'POST',
 				withCredentials: true,
-				url: 'http://localhost:8080/Predictorum/api/user/follow',
+				url: 'http://localhost:8080/Predictorum/api/user/edit',
 				data: userForm
 		};
 		

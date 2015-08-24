@@ -36,7 +36,7 @@ public class WekaService {
 	@Autowired
 	private PredictionService predictionService;
 	
-	@Scheduled(cron = "*/120 * * * * ?")
+	//@Scheduled(cron = "*/120 * * * * ?")
 	public void calculaPrediccion() throws Exception{
 		//Declaro el vector con sus atributos
 		FastVector fvWekaAttributes = createFastVector();

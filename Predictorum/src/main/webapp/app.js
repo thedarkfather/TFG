@@ -139,9 +139,7 @@ predictorum.controller('indexController', function($scope, $location, $translate
 		$scope.signUpSubmitted = true;
 		$scope.blankError = false;
 		$scope.passwordMatchError = false;
-		$scope.loading = true;
 		sessionService.signUp($scope.signUp).then(function(result){
-			$scope.loading=false;
 			if(!result.data.success){
 				if(result.data.errors.username){
 					$scope.blankError = result.data.errors.username.includes('empty')

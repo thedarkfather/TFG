@@ -4,7 +4,9 @@
 
 			<div class="col-lg-6 col-xs-12" style="margin-top: 10px;">
 				<div class="col-lg-6 col-xs-6">
-					<img ng-show="!editForm" ng-src="profile.photo" err-src="static/img/team/team-default.jpg" class="img-responsive"
+					<img ng-if="profile.image" ng-show="!editForm" data-ng-src="data:image/JPEG;base64,{{profile.image}}" class="img-responsive"
+						style="width: 200px; height: 200px;">
+					<img ng-if="!profile.image" ng-show="!editForm" src="static/img/team/team-default.jpg" class="img-responsive"
 						style="width: 200px; height: 200px;">
 						
 					<!-- IMG DRAG & DROP -->
@@ -19,11 +21,11 @@
 								<p class="text-muted" align="center"
 									style="color: rgba(227, 59, 59, 0.9);font-size:20px;margin-top:50px;">
 	
-									<b>Drop your image here</b>
+									<b translate>DROP_IMAGE</b>
 	
 								</p>
 								<div class="btn-xs btn-2-red" style="margin-top:50px;">
-									<span flow-btn>Upload Image</span>
+									<span flow-btn translate>UPLOAD_IMAGE</span>
 								</div>
 	
 							</div>
@@ -50,7 +52,7 @@
 								</div>
 
 								<a class="btn-xs btn-2-red"
-									ng-click="$flow.files[0].cancel()"> Remove </a>
+									ng-click="$flow.files[0].cancel()" translate> REMOVE </a>
 
 							</div>
 
@@ -65,7 +67,9 @@
 					<input class="form-control col-lg-6 col-xs-12" placeholder="{{'SURNAME' | translate}}" ng-show="editForm" type="text" ng-model="profile.surname"/>
 					<p class="text-muted" ng-show="profile.email && !editForm">{{profile.email}}</p>
 					<input class="form-control" placeholder="{{'E-mail' | translate}}" ng-show="editForm" type="email" ng-model="profile.email"/>
-					
+					<b translate ng-show="editForm">EDIT_PASSWORD</b>
+					<input class="form-control col-lg-6 col-xs-12" placeholder="Password" ng-show="editForm" type="password" ng-model="profile.password"/>
+					<input class="form-control col-lg-6 col-xs-12" placeholder="{{'REPEAT_PASSWORD' | translate}}" ng-show="editForm" type="password" ng-model="profile.repassword"/>
 					<p ng-show="!editForm">
 						<b>Ranking:</b> {{profile.rankingPosition}}&deg;
 					</p>
@@ -81,6 +85,7 @@
 					<b translate >EDIT_PROFILE</b>
 				</div>
 				<div ng-show="editForm" class="col-lg-12 col-xs-12">
+					<p class="error" align="center" ng-if="errorEditingProfile" translate>{{errorEditingProfile}}</p>
 					<div ng-click="saveProfile()" class="col-lg-5 col-xs-12 text-center" style="background-color: #82dc23; color: white; cursor: pointer; margin:15px; padding: 5px; border-radius: 25px;">
 						<b translate >SAVE</b>
 					</div>
@@ -102,9 +107,10 @@
 			<div class="col-lg-6 col-xs-12" style="margin-top: 10px;">
 				<div class="list-group">
 					<a ng-href="#/prediction/user/details/{{prediction.id}}" ng-repeat="prediction in profile.predictions"
-						class="list-group-item clearfix"> <b>{{prediction.homeTeamName}}:
-						{{prediction.homeTeamGoals}}</b> <span class="text-color">vs</span> <b>{{prediction.awayTeamName}}:
-						{{prediction.awayTeamGoals}} </b><i class="pull-right">{{prediction.finishDate | date: "dd/mm/yyyy"}}
+						class="list-group-item clearfix"> <b>{{prediction.homeTeamName}}<span ng-if="prediction.homeTeamGoals!==null">: {{prediction.homeTeamGoals}}</span></b>
+						<span class="text-color">vs</span>
+						<b>{{prediction.awayTeamName}}<span ng-if="prediction.awayTeamGoals!==null">: {{prediction.awayTeamGoals}}</span></b>
+						<i class="pull-right">{{prediction.finishDate | date: "dd/mm/yyyy"}}
 					</i>
 
 					</a>
