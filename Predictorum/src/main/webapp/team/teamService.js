@@ -33,6 +33,18 @@ teamService.factory('teamService', function($http) {
 		return result;
 	};
 	
+	teamService.getStatistics = function(teamId){
+		var req = {
+				method : 'GET',
+				url : 'http://localhost:8080/Predictorum/api/teamStatistics/'+teamId,
+				withCredentials : true,
+			}
+
+			result = $http(req)
+
+			return result;
+	}
+	
 	return teamService;
 
 });

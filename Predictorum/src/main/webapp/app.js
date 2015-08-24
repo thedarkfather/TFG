@@ -49,8 +49,13 @@ predictorum.config(['$routeProvider','$locationProvider','$translateProvider','$
 		controller : 'teamController'
 	})
 	
-	.when('/team/favorites', {
+	.when('/team/list/favorites', {
 		templateUrl : 'team/views/list.html',
+		controller : 'teamController'
+	})
+	
+	.when('/team/statistics/:teamId', {
+		templateUrl : 'team/views/display.html',
 		controller : 'teamController'
 	})
 	

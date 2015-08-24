@@ -52,7 +52,7 @@
 				</table>
 			</div>
 			<p ng-if="result.error" style="color:red; font-weight:bold" translate>{{result.error}}</p>
-			<a class="btn btn-2" translate ng-click="savePrediction()"> SAVE </a>
+			<a class="btn btn-2" translate ng-click="savePrediction()" style="margin:3px;"> SAVE </a> <a class="btn btn-2-red" ng-href="#/prediction/details/{{cancelUrl}}" style="margin:3px;" translate> CANCEL</a>
 		</div>
 	</div>
 </div>

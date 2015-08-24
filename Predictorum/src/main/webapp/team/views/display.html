@@ -1,0 +1,43 @@
+<div class="container" style="margin-top: 50px;">
+	<div class="row">
+		<div class="col-lg-8 col-xs-12 col-lg-offset-2">
+			<div class="col-lg-12 col-xs-12 text-center">
+				<h2>{{team.teamName}}</h2>
+				<p class="text-mutted">{{team.leagueName}}</p>
+				<p><i translate>POSITION</i>: <b>{{team.leaguePosition}}&deg;</b> <i translate>WITH</i> <b>{{team.points}}</b> <i translate>POINT</i><i><ng-pluralize count="team.points" when="{'1':'','other':'s'}"></ng-pluralize></i></p>
+				<span class="text-center badge" ng-style="getBadgeColor($index)" ng-repeat="char in team.streak track by $index">
+					<b translate> {{char | uppercase}} </b>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-10 col-xs-12 col-lg-offset-1">
+			<div class="col-lg-6 col-xs-12 text-center">
+				<h3 translate>MATCH_RESULTS</h3>
+				<canvas ng-if="dataResults" tc-chartjs-doughnut chart-options="doughnut_options" chart-data="dataResults">
+				</canvas>
+				<span
+					style="width: 10px; height: 10px; background-color: #82dc23; display: inline-block">
+				</span> %<i translate>WON</i> &nbsp;&nbsp;&nbsp;
+				<span
+					style="width: 10px; height: 10px; background-color: #DAA520; display: inline-block">
+				</span> %<i translate>DRAW</i> &nbsp;&nbsp;&nbsp;
+				<span
+					style="width: 10px; height: 10px; background-color: #F7464A; display: inline-block">
+				</span> %<i translate>LOST</i>
+			</div>
+			<div class="col-lg-6 col-xs-12 text-center">
+				<h3 translate>HOME_AWAY_RESULTS</h3>
+				<canvas tc-chartjs-bar chart-options="bar_options" chart-data="dataBar"></canvas>
+				</canvas>
+				<span
+					style="width: 10px; height: 10px; background-color: #8ABBEE; display: inline-block">
+				</span><i translate>LOCAL</i> &nbsp;&nbsp;&nbsp;
+				<span
+					style="width: 10px; height: 10px; background-color: #4FDCBB; display: inline-block">
+				</span><i translate>AWAY</i> &nbsp;&nbsp;&nbsp;
+			</div>
+		</div>
+	</div>
+</div>
