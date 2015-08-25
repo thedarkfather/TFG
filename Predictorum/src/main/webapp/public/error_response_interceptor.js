@@ -1,6 +1,6 @@
 (function() {
 	var httpInterceptor = function($provide, $httpProvider) {
-		$provide.factory('httpInterceptor', function($q, $location, sessionService) {
+		$provide.factory('httpInterceptor', function($q, $location, ipCookie) {
 			return {
 				response : function(response) {
 					return response || $q.when(response);
@@ -8,7 +8,7 @@
 				responseError : function(rejection) {
 					if (rejection.status === 401) {
 						$location.path("/#welcome");
-						sessionService.logout();
+						ipCookie.remove('PRINCIPAL');
 					} else {
 						$location.path("/public/" + rejection.status + ".html");
 					}

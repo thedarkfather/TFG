@@ -34,7 +34,7 @@
 		<sec:intercept-url pattern="/api/user/changeImage" access="isAuthenticated()" />
 		<!-- PREDICTION -->
 		<sec:intercept-url pattern="/api/game/listNextGames" access="isAuthenticated()" />
-		<sec:intercept-url pattern="/api/prediction/systemPrediction" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/prediction/systemPrediction/*" access="isAuthenticated()" />
 		<sec:intercept-url pattern="/api/prediction/findOne/*" access="isAuthenticated()" />
 		<sec:intercept-url pattern="/api/game/findOne/*" access="isAuthenticated()" />
 		<sec:intercept-url pattern="/api/prediction/principalPrediction/*" access="isAuthenticated()" />
