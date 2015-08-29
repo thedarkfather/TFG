@@ -95,9 +95,9 @@ teamController.controller('teamController',function($scope,$location,$routeParam
 	
 	$scope.getBadgeColor = function (charIndex) {
 		var result = {};
-		if($scope.team.streak.charAt(charIndex)==='d'){
+		if($scope.team.streak.charAt(charIndex)==='D' || $scope.team.streak.charAt(charIndex)==='d'){
 			result = {'background-color' : '#d12d32'};
-		}else if($scope.team.streak.charAt(charIndex)==='x'){
+		}else if($scope.team.streak.charAt(charIndex)==='X' || $scope.team.streak.charAt(charIndex)==='x'){
 			result = {'background-color': '#DAA520'};
 		}
 		return result;
