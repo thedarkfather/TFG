@@ -38,7 +38,6 @@ public class TeamController extends AbstractController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/list")
 	public Collection<TeamToList> findAll() {
-		authenticate("user1");
 		Collection<Team> teams = teamService.findCurrentTeams();
 		Collection<TeamToList> teamsToList = teamService.reconstructsToList(teams);
 		return teamsToList;
@@ -46,7 +45,6 @@ public class TeamController extends AbstractController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/follow", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public GeneralResponse follow(@RequestBody @Valid FollowTeamForm followTeamForm, BindingResult binding){
-		authenticate("user1");
 		GeneralResponse generalResponse;
 		if (binding.hasErrors()) {
 			generalResponse = new GeneralResponse(false, buildErrors(followTeamForm, binding));
@@ -61,18 +59,6 @@ public class TeamController extends AbstractController {
 			}
 		}
 		return generalResponse;
-	}
-
-	// quitar luego
-	public void authenticate(String username) {
-		UserDetails userDetails;
-		TestingAuthenticationToken authenticationToken;
-		SecurityContext context;
-
-		userDetails = loginService.loadUserByUsername(username);
-		authenticationToken = new TestingAuthenticationToken(userDetails, null);
-		context = SecurityContextHolder.getContext();
-		context.setAuthentication(authenticationToken);
 	}
 
 }

@@ -41,9 +41,7 @@
 			<div class="list-group">
 				<a	ng-href="#/team/statistics/{{team.teamId}}"
 					ng-repeat="team in filteredTeams = (teams | filter:{teamName:query,leagueName:tab.current, isFollow: tab.favorites} | orderBy:orderProp)"
-					class="list-group-item clearfix"> <img ng-src=""
-					class="img-responsive pull-left"
-					style="width: 30px; height: 30px; margin-right: 5px;"><b><span
+					class="list-group-item clearfix"><b><span
 						class="text-color" style="margin-right:5px;">{{team.teamPosition}}&deg;</span>
 						{{team.teamName}}</b> <span class="pull-right"> <span
 						class="text-muted">{{team.leagueName}}</span>

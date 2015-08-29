@@ -19,6 +19,35 @@
 		<!-- STATIC FILES -->
 		
 		<sec:intercept-url pattern="/j_spring_security_check" access="permitAll" />
+		<sec:intercept-url pattern="/api/join" access="permitAll" />
+		
+		
+		<!-- USER -->
+		<sec:intercept-url pattern="/api/user/profile" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/user/display" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/user/listFollowers" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/user/listFollowing" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/user/ranking" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/user/follow" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/user/find/*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/user/edit" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/user/changeImage" access="isAuthenticated()" />
+		<!-- PREDICTION -->
+		<sec:intercept-url pattern="/api/game/listNextGames" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/prediction/systemPrediction/*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/prediction/findOne/*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/game/findOne/*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/prediction/principalPrediction/*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/comment/list" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/comment/save" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/comment/evaluate" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/prediction/saveUserPrediction" access="isAuthenticated()" />
+		<!-- TEAM -->
+		<sec:intercept-url pattern="/api/team/list" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/team/follow" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/api/team/stadistics/*" access="isAuthenticated()" />
+		
+		
 		
 		<!-- Aquí terminan los intercepts -->
 

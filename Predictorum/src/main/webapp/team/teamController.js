@@ -101,7 +101,7 @@ teamController.controller('teamController',function($scope,$location,$routeParam
 			result = {'background-color': '#DAA520'};
 		}
 		return result;
-	}
+	};
 	
 	// Chart.js Doughnut Graph Options
 	$scope.doughnut_options = {
