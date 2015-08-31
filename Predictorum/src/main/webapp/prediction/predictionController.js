@@ -28,6 +28,7 @@ predictionController.controller('predictionController', function($scope,
 	
 	$scope.prediction = {};
 	$scope.myComment = {};
+	$scope.currentDate = new Date();
 	
 	$scope.tab = {
 		current : 'SIMPLE'

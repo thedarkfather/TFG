@@ -100,7 +100,7 @@
 					<b ng-show="prediction.homeGoals===null" style="font-size:20px" translate> EMPTY_LIST </b>
 				</div>
 			</div>
-			<div align="center">
+			<div align="center" ng-show="prediction.startDate > currentDate">
 				<a ng-href="#/prediction/create/{{prediction.gameId}}" ng-show="!editPrediction"class="btn btn-2" style="margin-top:10px;" translate>CREATE_PREDICTION</a>
 				<a ng-href="#/prediction/create/{{prediction.gameId}}" ng-show="editPrediction" class="btn btn-2" style="margin-top:10px;" translate>EDIT_PREDICTION</a>
 			</div>
