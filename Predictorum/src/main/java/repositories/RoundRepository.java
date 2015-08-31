@@ -16,6 +16,6 @@ public interface RoundRepository extends JpaRepository<Round,Integer> {
 	Round findNoUpdatedBySeasonIdAndRoundNumber(Integer seasonId,Integer roundNumber);
 	
 	//la siguiente jornada
-	@Query("select r from Round r where r.season.league.id=?1 and r.updated=false and r.startDate > CURRENT_TIMESTAMP order by r.roundNumber asc")
-	List<Round> nextRounds(Integer leagueId);
+	@Query("select r from Round r where r.season.league.id=?1 and r.updated=false and r.finishDate >= CURRENT_TIMESTAMP order by r.roundNumber asc")
+	List<Round> nextRounds(Integer leagueId);											
 }

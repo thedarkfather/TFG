@@ -1,5 +1,7 @@
 package forms;
 
+import java.util.Date;
+
 public class PredictionForm {
 	
 	private Integer id;
@@ -21,6 +23,7 @@ public class PredictionForm {
 	private Double pmoreThan25;	
 	private Integer commentSize;
 	private String username;
+	private Date startDate;
 
 	public Integer getId() {
 		return id;
@@ -165,6 +168,14 @@ public class PredictionForm {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}		
-	
+		
 }

@@ -71,6 +71,7 @@ public class PredictionService {
 		predictionForm.setMoreThan25(prediction.getMoreThan25());
 		predictionForm.setPmoreThan25(100*prediction.getpMoreThan25());
 		predictionForm.setCommentSize(commentService.findByPrediciontId(prediction.getId()).size());
+		predictionForm.setStartDate(prediction.getGame().getRound().getStartDate());
 		return predictionForm;
 	}
 
@@ -124,6 +125,7 @@ public class PredictionService {
 		predictionForm.setPmoreThan25(100*prediction.getpMoreThan25());
 		predictionForm.setCommentSize(commentService.findByPrediciontId(prediction.getId()).size());
 		predictionForm.setUsername(prediction.getUser().getUserAccount().getUsername());
+		predictionForm.setStartDate(prediction.getGame().getRound().getStartDate());
 		return predictionForm;
 	}
 	

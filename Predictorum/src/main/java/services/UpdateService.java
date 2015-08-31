@@ -171,7 +171,7 @@ public class UpdateService {
 	}
 	
 
-	//@Scheduled(cron = "*/800 * * * * ?")
+	//@Scheduled(cron = "*/120 * * * * ?")
 	public void actualizaBaseHistorica() throws IOException {
 		/*
 		 * Primero tengo que crear la temporada, después tengo que añadir los
