@@ -30,6 +30,10 @@ teamController.controller('teamController',function($scope,$location,$routeParam
 		});
 	};
 	
+	$scope.goTo = function(path){
+		$location.path(path);
+	};
+	
 	$scope.switchTab = function(tab){
 		
 		if(tab==='Favorites'){

@@ -39,16 +39,16 @@
 		<div class="col-lg-7 col-xs-12" style="margin-top: 20px;">
 			<p ng-hide="filteredTeams.length" class="text-center" style="font-weight:bold;" translate>EMPTY_LIST</p>
 			<div class="list-group">
-				<a	ng-href="#/team/statistics/{{team.teamId}}"
+				<a	style="cursor:default"
 					ng-repeat="team in filteredTeams = (teams | filter:{teamName:query,leagueName:tab.current, isFollow: tab.favorites} | orderBy:orderProp)"
 					class="list-group-item clearfix"><b><span
-						class="text-color" style="margin-right:5px;">{{team.teamPosition}}&deg;</span>
-						{{team.teamName}}</b> <span class="pull-right"> <span
+						style="margin-right:5px;">{{team.teamPosition}}&deg;</span>
+						<span style="cursor:pointer;" ng-click="goTo('/team/statistics/'+team.teamId)">{{team.teamName}}</span></b> <span class="pull-right"> <span
 						class="text-muted">{{team.leagueName}}</span>
 						<button ng-click="follow(team)" ng-show="!team.isFollow" class="btn-xs btn-2"
-							style="margin-left: 5px;width:100px">Follow</button>
+							style="margin-left: 5px;width:100px" translate>FOLLOW</button>
 						<button ng-click="follow(team)" ng-show="team.isFollow" class="btn-xs btn-2-red"
-							style="margin-left: 5px;width:100px;">Unfollow</button>
+							style="margin-left: 5px;width:100px;" translate>UNFOLLOW</button>
 				</span>
 				</a>
 			</div>
