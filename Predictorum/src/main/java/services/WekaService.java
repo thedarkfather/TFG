@@ -39,6 +39,7 @@ public class WekaService {
 	private static final Logger LOG = Logger.getLogger(UpdateService.class);
 	
 	//@Scheduled(cron = "*/10 * * * * ?")
+	@Scheduled(cron = "0 0 5 * * 7")
 	public void calculaPrediccion() throws Exception{
 		//Declaro el vector con sus atributos
 		FastVector fvWekaAttributes = createFastVector();

@@ -1,0 +1,12 @@
+Proyecto: Predicción de resultados deportivos
+
+Nombre aplicación: Predictorum
+
+Alumnos:
+	Letrán González, David - 53585005L
+	Núñez-Romero Olmo, Miguel Ángel - 80162664M
+
+Contenido del disco:
+	-	código: Código fuente de la aplicación en formato .zip junto con las instrucciones para compilarlo.
+	-	ejecutable: Proyecto compilado en formato .war junto con las instrucciones de lanzamiento.
+	- 	memoria: Memoria del proyecto en formato .pdf.

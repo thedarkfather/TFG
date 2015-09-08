@@ -1,0 +1,26 @@
+Los pasos para poner en ejecución la aplicación son:
+
+	1º Desde un gestor de base de datos MySQL:
+	/*********
+		drop database if exists 'Predictorum';
+		create database 'Predictorum';
+
+		grant select, insert, update, delete
+		on 'Predictorum'.* to 'acme-user'@'%';
+
+		grant select, insert, update, delete, create, drop, references, index, alter,
+		create temporary tables, lock tables, create view, create routine,
+		alter routine, execute, trigger, show view
+		on 'Predictorum'.* to 'acme-manager'@'%';
+	*********/
+
+	2º Ejecutar el fichero que creará las entidades en la base de datos "src\main\java\utilities\PopulateDatabase.java"
+
+	3º Previo al lanzamiento de la aplicación se debe ejecutar una única vez a través del modo debug algunos métodos. Se tratan de tareas programadas que se encargarán de inicializar tanto la base histórica de nuestro proyecto como de crear el calendario para la temporada actual. Para ello accedemos a "src\main\java\services\UpdateService.java" y ejecutamos los métodos en el siguiente orden:
+
+		1º inicializaBaseHistorica()	-> Inicializa la base histórica con calendarios de temporadas pasadas
+		2º actualizaBaseHistorica() 	-> Crea el registro de elementos de la base historica
+		3º inicializaCalendario()		-> Crea el calendario de la temporada actual (Descomentar para ello //@Scheduled(cron = "*/120 * * * * ?"))
+		4º actualizaCalendario()		-> Actualiza el calendario hasta la temporada actual (Descomentar para ello //@Scheduled(cron = "*/120 * * * * ?"))
+		
+	4º Subir el proyecto compilado Predictorum.war a un servidor Apache Tomcat.

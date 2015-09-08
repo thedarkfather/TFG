@@ -260,6 +260,7 @@ public class UpdateService {
 	}
 
 	//@Scheduled(cron = "*/120 * * * * ?")
+	@Scheduled(cron = "0 0 0 2 8 ?")
 	public void inicializaCalendario() throws IOException {
 		/*
 		 * Primero tengo que crear la temporada, después tengo que añadir los
@@ -319,6 +320,7 @@ public class UpdateService {
 	}
 	
 	//@Scheduled(cron = "*/120 * * * * ?")
+	@Scheduled(cron = "0 0 3 * * 7")
 	public void actualizaCalendario() throws IOException {
 		/*
 		 * Primero tengo que crear la temporada, después tengo que añadir los
