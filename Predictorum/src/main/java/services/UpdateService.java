@@ -17,7 +17,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import antlr.debug.NewLineEvent;
 import domain.Game;
 import domain.League;
 import domain.Prediction;
