@@ -323,7 +323,7 @@ public class UpdateService {
 	//Martes a las 3 de la mañana
 	//@Scheduled(cron = "0 0 3 * * 7")
 	//@Scheduled(cron = "*/120 * * * * ?")
-	@Scheduled(cron = "0 0 3 * * 3")
+	@Scheduled(cron = "0 0 3 * * 2")
 	public void actualizaCalendario() throws IOException {
 		/*
 		 * Primero tengo que crear la temporada, después tengo que añadir los

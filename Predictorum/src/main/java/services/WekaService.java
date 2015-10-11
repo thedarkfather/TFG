@@ -41,7 +41,7 @@ public class WekaService {
 	
 	//second, minute, hour, day of month, month, day(s) of week
 	//@Scheduled(cron = "*/120 * * * * ?")
-	@Scheduled(cron = "0 0 5 * * 3")
+	@Scheduled(cron = "0 0 5 * * 2")
 	public void calculaPrediccion() throws Exception{
 		//Declaro el vector con sus atributos
 		FastVector fvWekaAttributes = createFastVector();
@@ -281,11 +281,6 @@ public class WekaService {
          // Create the instance
 		 for(Diary diary : diaries){
 			 try{
-				 boolean paramos;
-				 if(diary.getId()==71871){
-					 paramos = true;
-				 }
-				 paramos = false;
 				 Instance instance = new Instance(numberOfAttributes);
 				 instance.setValue((Attribute)fvWekaAttributes.elementAt(0), diary.getStartYearSeason());//fvWekaAttributes.addElement(startYearSeason);
 				 
