@@ -198,6 +198,11 @@ public class PredictionService {
 		predictionRepository.save(prediction);
 	}
 	
+	public void saveSystem(Prediction prediction){
+		Assert.notNull(prediction);
+		predictionRepository.save(prediction);
+	}
+	
 	public Prediction findPredictionByPrincipalAndGameId(Integer gameId){
 		User principal = userService.findByPrincipal();
 		Prediction prediction = predictionRepository.findPredictionByPrincipalAndGameId(principal.getId(),gameId);

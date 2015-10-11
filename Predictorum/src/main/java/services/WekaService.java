@@ -38,8 +38,10 @@ public class WekaService {
 	
 	private static final Logger LOG = Logger.getLogger(UpdateService.class);
 	
-	//@Scheduled(cron = "*/10 * * * * ?")
-	@Scheduled(cron = "0 0 5 * * 7")
+	
+	//second, minute, hour, day of month, month, day(s) of week
+	//@Scheduled(cron = "*/120 * * * * ?")
+	@Scheduled(cron = "0 0 5 * * 3")
 	public void calculaPrediccion() throws Exception{
 		//Declaro el vector con sus atributos
 		FastVector fvWekaAttributes = createFastVector();
@@ -137,7 +139,7 @@ public class WekaService {
             	prediction.setpHomeGoals(pHomeGoals);
             	prediction.setAwayGoals(awayGoals);
             	prediction.setpAwayGoals(pAwayGoals);      	
-            	predictionService.save(prediction);
+            	predictionService.saveSystem(prediction);
         	}
         	
         }
@@ -187,6 +189,13 @@ public class WekaService {
 		for(String teamName : teamNames){
 			teams.addElement(teamName);
 		}
+		String bayer = "Bayern Munich";
+		if(!teams.contains(bayer)){
+			//parece que el bayer no lo coje bien
+			teams.addElement(bayer);
+		}	
+		
+		
 		Attribute startYearSeason = new Attribute("startYearSeason");
 		Attribute team1 = new Attribute("team1", teams);
 		Attribute homeWonMatches1 = new Attribute("homeWonMatches1");
@@ -272,6 +281,11 @@ public class WekaService {
          // Create the instance
 		 for(Diary diary : diaries){
 			 try{
+				 boolean paramos;
+				 if(diary.getId()==71871){
+					 paramos = true;
+				 }
+				 paramos = false;
 				 Instance instance = new Instance(numberOfAttributes);
 				 instance.setValue((Attribute)fvWekaAttributes.elementAt(0), diary.getStartYearSeason());//fvWekaAttributes.addElement(startYearSeason);
 				 
@@ -313,6 +327,8 @@ public class WekaService {
 				 set.add(instance);
 			 }catch(Exception e){
 				 LOG.info("No se ha podido insertar la entrada para realizar la predicción");
+				 LOG.info(diary.getTeam1());
+				 LOG.info(diary.getTeam2());
 			 }
 			 
 		 }
