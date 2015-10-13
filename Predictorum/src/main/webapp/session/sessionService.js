@@ -26,7 +26,7 @@ sessionService
 	sessionService.login = function(username,password) {
 		var req = {
 			method : 'POST',
-			url : 'http://localhost:8080/Predictorum/j_spring_security_check',
+			url : 'http://predictorum-dlgmanro.rhcloud.com/j_spring_security_check',
 			headers : {
 				'Content-Type' : 'application/x-www-form-urlencoded'
 			},
@@ -55,7 +55,7 @@ sessionService
 		}
 		var req = {
 				method : 'POST',
-				url : 'http://localhost:8080/Predictorum/api/join',
+				url : 'http://predictorum-dlgmanro.rhcloud.com/api/join',
 				data : signUpForm,
 				withCredentials : false,
 			}

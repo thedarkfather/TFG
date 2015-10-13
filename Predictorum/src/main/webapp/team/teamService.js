@@ -10,7 +10,7 @@ teamService.factory('teamService', function($http) {
 	teamService.findAll = function() {
 		var req = {
 			method : 'GET',
-			url : 'http://localhost:8080/Predictorum/api/team/list',
+			url : 'http://predictorum-dlgmanro.rhcloud.com/api/team/list',
 			withCredentials : true,
 		}
 
@@ -23,7 +23,7 @@ teamService.factory('teamService', function($http) {
 		var teamForm = {teamId: team.teamId};
 		var req = {
 				method: 'POST',
-				url: 'http://localhost:8080/Predictorum/api/team/follow',
+				url: 'http://predictorum-dlgmanro.rhcloud.com/api/team/follow',
 				withCredentials: true,
 				data: teamForm
 		};
@@ -36,7 +36,7 @@ teamService.factory('teamService', function($http) {
 	teamService.getStatistics = function(teamId){
 		var req = {
 				method : 'GET',
-				url : 'http://localhost:8080/Predictorum/api/teamStatistics/'+teamId,
+				url : 'http://predictorum-dlgmanro.rhcloud.com/api/teamStatistics/'+teamId,
 				withCredentials : true,
 			}
 

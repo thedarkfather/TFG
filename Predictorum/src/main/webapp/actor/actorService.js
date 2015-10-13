@@ -12,7 +12,7 @@ actorService
 	actorService.getPrincipalProfile = function() {
 		var req = {
 				method : 'GET',
-				url : 'http://localhost:8080/Predictorum/api/user/profile',
+				url : 'http://predictorum-dlgmanro.rhcloud.com/api/user/profile',
 				withCredentials : true,
 			}
 			
@@ -22,7 +22,7 @@ actorService
 	actorService.getProfile = function(actorId) {
 		var req = {
 				method : 'GET',
-				url : 'http://localhost:8080/Predictorum/api/user/display/'+actorId,
+				url : 'http://predictorum-dlgmanro.rhcloud.com/api/user/display/'+actorId,
 				withCredentials : true,
 			}
 			
@@ -32,7 +32,7 @@ actorService
 	actorService.getFollowers = function() {
 		var req = {
 			method : 'GET',
-			url : 'http://localhost:8080/Predictorum/api/user/listFollowers',
+			url : 'http://predictorum-dlgmanro.rhcloud.com/api/user/listFollowers',
 			withCredentials : true,
 		}
 		
@@ -42,7 +42,7 @@ actorService
 	actorService.getFollowing = function() {
 		var req = {
 			method : 'GET',
-			url : 'http://localhost:8080/Predictorum/api/user/listFollowing',
+			url : 'http://predictorum-dlgmanro.rhcloud.com/api/user/listFollowing',
 			withCredentials : true,
 		}
 		
@@ -52,7 +52,7 @@ actorService
 	actorService.getRanking = function() {
 		var req = {
 			method : 'GET',
-			url : 'http://localhost:8080/Predictorum/api/user/ranking',
+			url : 'http://predictorum-dlgmanro.rhcloud.com/api/user/ranking',
 			withCredentials : true,
 		}
 		
@@ -63,7 +63,7 @@ actorService
 		var userForm = {userId: actor.id};
 		var req = {
 				method: 'POST',
-				url: 'http://localhost:8080/Predictorum/api/user/follow',
+				url: 'http://predictorum-dlgmanro.rhcloud.com/api/user/follow',
 				withCredentials: true,
 				data: userForm
 		};
@@ -76,7 +76,7 @@ actorService
 	actorService.find = function(query){
 		var req = {
 				method : 'GET',
-				url : 'http://localhost:8080/Predictorum/api/user/find/'+query,
+				url : 'http://predictorum-dlgmanro.rhcloud.com/api/user/find/'+query,
 				withCredentials : true,
 			}
 			
@@ -94,7 +94,7 @@ actorService
 		var req = {
 				method: 'POST',
 				withCredentials: true,
-				url: 'http://localhost:8080/Predictorum/api/user/edit',
+				url: 'http://predictorum-dlgmanro.rhcloud.com/api/user/edit',
 				data: userForm
 		};
 		
@@ -109,7 +109,7 @@ actorService
 		var req = {
 				method: 'POST',
 				headers: {'Content-Type': undefined},
-				url: 'http://localhost:8080/Predictorum/api/user/changeImage',
+				url: 'http://predictorum-dlgmanro.rhcloud.com/api/user/changeImage',
 				withCredentials: true,
 				data: formData,
 		};

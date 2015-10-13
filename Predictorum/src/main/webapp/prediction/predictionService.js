@@ -13,7 +13,7 @@ predictionService
 					predictionService.findUpcoming = function() {
 						var req = {
 							method : 'GET',
-							url : 'http://localhost:8080/Predictorum/api/game/listNextGames',
+							url : 'http://predictorum-dlgmanro.rhcloud.com/api/game/listNextGames',
 							withCredentials : true,
 						}
 
@@ -25,7 +25,7 @@ predictionService
 					predictionService.findSystemPrediction = function(gameId) {
 						var req = {
 							method : 'GET',
-							url : 'http://localhost:8080/Predictorum/api/prediction/systemPrediction/'
+							url : 'http://predictorum-dlgmanro.rhcloud.com/api/prediction/systemPrediction/'
 									+ gameId,
 							withCredentials : true,
 						}
@@ -38,7 +38,7 @@ predictionService
 					predictionService.findUserPrediction = function(predictionId) {
 						var req = {
 							method : 'GET',
-							url : 'http://localhost:8080/Predictorum/api/prediction/findOne/'
+							url : 'http://predictorum-dlgmanro.rhcloud.com/api/prediction/findOne/'
 									+ predictionId,
 							withCredentials : true,
 						}
@@ -51,7 +51,7 @@ predictionService
 					predictionService.findGame = function(gameId){
 						var req = {
 								method : 'GET',
-								url : 'http://localhost:8080/Predictorum/api/game/findOne/'
+								url : 'http://predictorum-dlgmanro.rhcloud.com/api/game/findOne/'
 										+ gameId,
 								withCredentials : true,
 							}
@@ -64,7 +64,7 @@ predictionService
 					predictionService.findPrincipalPrediction = function(gameId){
 						var req = {
 								method : 'GET',
-								url : 'http://localhost:8080/Predictorum/api/prediction/principalPrediction/'
+								url : 'http://predictorum-dlgmanro.rhcloud.com/api/prediction/principalPrediction/'
 										+ gameId,
 								withCredentials : true,
 							}
@@ -77,7 +77,7 @@ predictionService
 					predictionService.findComments = function(predictionId) {
 						var req = {
 							method : 'GET',
-							url : 'http://localhost:8080/Predictorum/api/comment/list/'
+							url : 'http://predictorum-dlgmanro.rhcloud.com/api/comment/list/'
 									+ predictionId,
 							withCredentials : true,
 						}
@@ -90,7 +90,7 @@ predictionService
 					predictionService.saveComment = function(commentForm) {
 						var req = {
 							method : 'POST',
-							url : 'http://localhost:8080/Predictorum/api/comment/save',
+							url : 'http://predictorum-dlgmanro.rhcloud.com/api/comment/save',
 							withCredentials : true,
 							data : commentForm
 						};
@@ -108,7 +108,7 @@ predictionService
 						};
 						var req = {
 							method : 'POST',
-							url : 'http://localhost:8080/Predictorum/api/comment/evaluate',
+							url : 'http://predictorum-dlgmanro.rhcloud.com/api/comment/evaluate',
 							withCredentials : true,
 							data : evaluationForm
 						};
@@ -130,7 +130,7 @@ predictionService
 						};
 						var req = {
 								method : 'POST',
-								url : 'http://localhost:8080/Predictorum/api/prediction/saveUserPredicion',
+								url : 'http://predictorum-dlgmanro.rhcloud.com/api/prediction/saveUserPredicion',
 								withCredentials : true,
 								data : predictionForm
 							};
